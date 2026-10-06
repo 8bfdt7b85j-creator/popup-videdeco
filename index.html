@@ -2,15 +2,31 @@
 <html lang="fr">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>VIDE DECO — POP-UP</title>
 
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- QR CODE -->
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
+<!-- SCANNER QR -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+
 <style>
+
+/* =========================================================
+   BASE
+========================================================= */
 
 * {
   box-sizing:border-box;
@@ -25,7 +41,10 @@
   --grey:#d6d3cc;
   --green:#b7ff00;
   --red:#e34b3f;
-  --blue:#2f86ff;
+}
+
+html {
+  scroll-behavior:smooth;
 }
 
 body {
@@ -76,7 +95,7 @@ header {
 }
 
 main {
-  width:min(1100px,90%);
+  width:min(1150px,90%);
   margin:auto;
   padding:55px 0 80px;
 }
@@ -103,19 +122,55 @@ h2 {
 
 
 /* =========================================================
-   LOGIN
+   BOUTONS
 ========================================================= */
 
-.login {
-  max-width:520px;
-  margin:40px auto;
+.primary {
+  width:100%;
+  border:0;
+  background:var(--black);
+  color:white;
+  padding:17px 20px;
+  margin-top:22px;
+  font-weight:900;
+  text-transform:uppercase;
 }
 
-.login-box,
-.form-box {
-  border:2px solid var(--black);
-  padding:28px;
+.primary:hover {
+  opacity:.85;
 }
+
+.primary:disabled {
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.secondary {
+  border:1px solid var(--black);
+  background:transparent;
+  padding:12px 18px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.secondary:hover {
+  background:var(--black);
+  color:white;
+}
+
+.danger {
+  border:0;
+  background:var(--red);
+  color:white;
+  padding:14px 18px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   FORMULAIRES
+========================================================= */
 
 label {
   display:block;
@@ -141,34 +196,6 @@ textarea {
   resize:vertical;
 }
 
-.primary {
-  width:100%;
-  border:0;
-  background:var(--black);
-  color:white;
-  padding:17px 20px;
-  margin-top:22px;
-  font-weight:900;
-  text-transform:uppercase;
-}
-
-.primary:hover {
-  opacity:.85;
-}
-
-.primary:disabled {
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-.secondary {
-  border:1px solid var(--black);
-  background:transparent;
-  padding:12px 18px;
-  font-weight:800;
-  text-transform:uppercase;
-}
-
 .message {
   margin-top:18px;
   font-size:14px;
@@ -177,6 +204,7 @@ textarea {
 
 .message.error {
   color:#b52222;
+  font-weight:700;
 }
 
 .message.success {
@@ -184,6 +212,22 @@ textarea {
   color:var(--black);
   padding:12px;
   font-weight:900;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login {
+  max-width:520px;
+  margin:40px auto;
+}
+
+.login-box,
+.form-box {
+  border:2px solid var(--black);
+  padding:28px;
 }
 
 
@@ -279,7 +323,7 @@ textarea {
 
 
 /* =========================================================
-   FORMULAIRE ARTICLE
+   ARTICLE
 ========================================================= */
 
 .article-page {
@@ -379,16 +423,13 @@ textarea {
   background:var(--background);
   display:flex;
   flex-direction:column;
-  min-width:0;
 }
 
 .object-image {
   width:100%;
   aspect-ratio:4/3;
   object-fit:cover;
-  display:block;
   border-bottom:2px solid var(--black);
-  background:#ddd;
 }
 
 .object-no-image {
@@ -401,7 +442,6 @@ textarea {
   background:#e2dfd8;
   font-size:12px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .object-content {
@@ -414,7 +454,6 @@ textarea {
 .object-reference {
   font-size:11px;
   font-weight:900;
-  text-transform:uppercase;
   margin-bottom:12px;
 }
 
@@ -439,7 +478,6 @@ textarea {
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  gap:10px;
 }
 
 .object-price {
@@ -460,7 +498,6 @@ textarea {
   padding:7px 9px;
   font-size:10px;
   font-weight:900;
-  text-transform:uppercase;
   background:var(--green);
 }
 
@@ -469,15 +506,6 @@ textarea {
   color:white;
 }
 
-.object-status.retire {
-  background:var(--grey);
-}
-
-
-/* =========================================================
-   ACTIONS OBJET
-========================================================= */
-
 .object-actions {
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
@@ -485,14 +513,13 @@ textarea {
 }
 
 .object-action {
-  min-height:48px;
   border:0;
   border-right:1px solid var(--black);
   background:transparent;
+  min-height:48px;
+  padding:8px 4px;
   font-size:10px;
   font-weight:900;
-  text-transform:uppercase;
-  padding:10px 5px;
 }
 
 .object-action:last-child {
@@ -506,12 +533,11 @@ textarea {
 
 .object-action.remove:hover {
   background:var(--red);
-  color:white;
 }
 
 
 /* =========================================================
-   QR CODE
+   QR
 ========================================================= */
 
 .qr-box {
@@ -519,26 +545,24 @@ textarea {
   padding:30px;
   max-width:520px;
   margin:auto;
-  background:var(--background);
 }
 
 .qr-reference {
   font-size:14px;
   font-weight:900;
-  margin-bottom:12px;
 }
 
 .qr-name {
   font-size:36px;
   font-weight:900;
   letter-spacing:-2px;
-  line-height:1;
+  margin-top:10px;
 }
 
 .qr-price {
   font-size:42px;
   font-weight:900;
-  margin:18px 0;
+  margin:15px 0;
 }
 
 .qr-code {
@@ -546,28 +570,246 @@ textarea {
   padding:20px;
   display:flex;
   justify-content:center;
-  align-items:center;
   margin:25px 0;
 }
 
-.qr-code img,
-.qr-code canvas {
-  max-width:100%;
-  height:auto !important;
-}
-
 .qr-help {
+  font-size:12px;
+  line-height:1.5;
   border-top:1px solid #aaa;
   padding-top:15px;
+}
+
+
+/* =========================================================
+   CAISSE
+========================================================= */
+
+.cashier-layout {
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:25px;
+  align-items:start;
+}
+
+.cashier-panel {
+  border:2px solid var(--black);
+  padding:25px;
+}
+
+.cashier-title {
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:-1px;
+  margin-bottom:20px;
+}
+
+.reference-search {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+}
+
+.reference-search input {
+  text-transform:uppercase;
+}
+
+.reference-search button {
+  border:0;
+  background:var(--black);
+  color:white;
+  padding:0 20px;
+  font-weight:900;
+}
+
+.scan-button {
+  width:100%;
+  margin-top:12px;
+  border:2px solid var(--black);
+  background:var(--green);
+  padding:16px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+#reader {
+  margin-top:15px;
+  width:100%;
+  overflow:hidden;
+  background:white;
+}
+
+.cart-empty {
+  padding:40px 15px;
+  text-align:center;
+  border:1px dashed #999;
+  font-size:13px;
+}
+
+.cart-item {
+  border-top:1px solid #aaa;
+  padding:16px 0;
+}
+
+.cart-item:first-child {
+  border-top:0;
+}
+
+.cart-ref {
+  font-size:10px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+
+.cart-name {
+  font-size:19px;
+  font-weight:900;
+}
+
+.cart-line {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-top:10px;
+}
+
+.cart-price {
+  font-size:20px;
+  font-weight:900;
+}
+
+.quantity-controls {
+  display:flex;
+  align-items:center;
+  border:1px solid var(--black);
+}
+
+.quantity-controls button {
+  width:35px;
+  height:35px;
+  border:0;
+  background:transparent;
+  font-weight:900;
+}
+
+.quantity-controls span {
+  width:30px;
+  text-align:center;
+  font-weight:900;
+}
+
+.cart-remove {
+  border:0;
+  background:transparent;
+  text-decoration:underline;
+  font-size:11px;
+  margin-top:10px;
+}
+
+.cart-total {
+  border-top:3px solid var(--black);
+  margin-top:20px;
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+
+.cart-total-label {
   font-size:12px;
+  font-weight:900;
+}
+
+.cart-total-value {
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.payment-title {
+  font-size:12px;
+  font-weight:900;
+  margin:25px 0 10px;
+}
+
+.payment-methods {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+}
+
+.payment-button {
+  border:2px solid var(--black);
+  background:transparent;
+  padding:14px 5px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.payment-button.active {
+  background:var(--black);
+  color:white;
+}
+
+.validate-sale {
+  width:100%;
+  border:0;
+  background:var(--green);
+  color:var(--black);
+  padding:20px;
+  margin-top:20px;
+  font-weight:900;
+  font-size:15px;
+}
+
+.validate-sale:disabled {
+  opacity:.3;
+}
+
+.cash-warning {
+  margin-top:12px;
+  font-size:11px;
   line-height:1.5;
 }
 
-.qr-actions {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:20px;
+
+/* =========================================================
+   VENTE RÉUSSIE
+========================================================= */
+
+.sale-success {
+  border:3px solid var(--black);
+  max-width:650px;
+  margin:auto;
+  padding:40px;
+  text-align:center;
+}
+
+.sale-success-check {
+  width:80px;
+  height:80px;
+  background:var(--green);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  font-weight:900;
+  margin:0 auto 25px;
+}
+
+.sale-success-title {
+  font-size:50px;
+  font-weight:900;
+  letter-spacing:-3px;
+  line-height:.9;
+}
+
+.sale-success-total {
+  font-size:45px;
+  font-weight:900;
+  margin:25px 0;
 }
 
 
@@ -606,33 +848,12 @@ footer {
    MOBILE
 ========================================================= */
 
-@media(max-width:800px) {
-
-  main {
-    width:90%;
-    padding-top:35px;
-  }
-
-  header {
-    padding:22px 5%;
-  }
-
-  h1 {
-    letter-spacing:-3px;
-  }
+@media(max-width:850px) {
 
   .cards,
-  .objects-grid {
+  .objects-grid,
+  .cashier-layout {
     grid-template-columns:1fr;
-  }
-
-  .card {
-    min-height:190px;
-  }
-
-  .dashboard-header,
-  .page-header {
-    flex-direction:column;
   }
 
   .form-grid {
@@ -643,60 +864,75 @@ footer {
     grid-column:auto;
   }
 
-  .objects-toolbar {
-    align-items:flex-start;
+  .dashboard-header,
+  .page-header {
     flex-direction:column;
+  }
+
+  .card {
+    min-height:190px;
+  }
+
+  .cashier-layout {
+    gap:15px;
   }
 
 }
 
 
 /* =========================================================
-   IMPRESSION ÉTIQUETTE
+   IMPRESSION QR
 ========================================================= */
 
 @media print {
 
-  body {
-    background:white;
+  body * {
+    visibility:hidden;
   }
 
-  header,
-  footer,
-  .page-header,
-  .qr-actions,
-  .qr-help {
-    display:none !important;
-  }
-
-  main {
-    width:100%;
-    padding:0;
+  #qrSection,
+  #qrSection * {
+    visibility:visible;
   }
 
   #qrSection {
-    display:block !important;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+  }
+
+  #qrSection .page-header,
+  #qrPrintButtons,
+  #qrHelp {
+    display:none !important;
   }
 
   .qr-box {
-    border:2px solid black;
     width:90mm;
-    max-width:90mm;
-    padding:8mm;
+    border:2px solid black;
     margin:0;
   }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 <header>
-  <div class="logo">VIDE DECO</div>
-  <div class="tag">POP-UP MANAGEMENT</div>
+
+  <div class="logo">
+    VIDE DECO
+  </div>
+
+  <div class="tag">
+    POP-UP MANAGEMENT
+  </div>
+
 </header>
 
 
@@ -704,12 +940,14 @@ footer {
 
 
 <!-- =====================================================
-     CONNEXION
+     LOGIN
 ===================================================== -->
 
 <section id="loginSection" class="login">
 
-  <div class="eyebrow">Boutique éphémère</div>
+  <div class="eyebrow">
+    Boutique éphémère
+  </div>
 
   <h1>
     GÉRER.<br>
@@ -721,31 +959,25 @@ footer {
 
     <h2>Connexion</h2>
 
-    <label for="email">
-      Adresse e-mail
-    </label>
+    <label>E-mail</label>
 
     <input
-      type="email"
       id="email"
+      type="email"
       autocomplete="email"
-      placeholder="votre@email.fr"
     >
 
-    <label for="password">
-      Mot de passe
-    </label>
+    <label>Mot de passe</label>
 
     <input
-      type="password"
       id="password"
+      type="password"
       autocomplete="current-password"
-      placeholder="••••••••"
     >
 
     <button
-      class="primary"
       id="loginButton"
+      class="primary"
       type="button"
     >
       Se connecter
@@ -765,7 +997,10 @@ footer {
      DASHBOARD
 ===================================================== -->
 
-<section id="dashboardSection" class="hidden">
+<section
+  id="dashboardSection"
+  class="hidden"
+>
 
   <div class="dashboard-header">
 
@@ -804,15 +1039,20 @@ footer {
 
   <!-- ADMIN -->
 
-  <div id="adminCards" class="cards hidden">
+  <div
+    id="adminCards"
+    class="cards hidden"
+  >
 
     <div
       class="card"
       onclick="fonctionBientotDisponible('STOCK')"
     >
+
       <div class="number">01</div>
 
       <div>
+
         <div class="card-title">
           STOCK
         </div>
@@ -820,33 +1060,39 @@ footer {
         <p>
           Articles en boutique<br>
           Articles à apporter<br>
-          Retraits et retours
+          Stock général
         </p>
+
       </div>
 
       <div class="arrow">→</div>
+
     </div>
 
 
     <div
       class="card"
-      onclick="fonctionBientotDisponible('CAISSE')"
+      onclick="ouvrirCaisse()"
     >
+
       <div class="number">02</div>
 
       <div>
+
         <div class="card-title">
           CAISSE
         </div>
 
         <p>
-          Scanner les articles<br>
+          Scanner les QR codes<br>
           Constituer le panier<br>
-          Valider les ventes
+          Enregistrer les paiements
         </p>
+
       </div>
 
       <div class="arrow">→</div>
+
     </div>
 
 
@@ -854,9 +1100,11 @@ footer {
       class="card"
       onclick="fonctionBientotDisponible('ADMINISTRATION')"
     >
+
       <div class="number">03</div>
 
       <div>
+
         <div class="card-title">
           ADMIN
         </div>
@@ -864,11 +1112,13 @@ footer {
         <p>
           Brocanteurs<br>
           Chiffre d'affaires<br>
-          Commissions et reversements
+          Reversements
         </p>
+
       </div>
 
       <div class="arrow">→</div>
+
     </div>
 
   </div>
@@ -876,15 +1126,20 @@ footer {
 
   <!-- BROCANTEUR -->
 
-  <div id="sellerCards" class="cards hidden">
+  <div
+    id="sellerCards"
+    class="cards hidden"
+  >
 
     <div
       class="card"
       onclick="ouvrirAjoutArticle()"
     >
+
       <div class="number">01</div>
 
       <div>
+
         <div class="card-title">
           AJOUTER
         </div>
@@ -894,9 +1149,11 @@ footer {
           Ajouter sa photo<br>
           Définir son prix
         </p>
+
       </div>
 
       <div class="arrow">→</div>
+
     </div>
 
 
@@ -904,21 +1161,25 @@ footer {
       class="card"
       onclick="ouvrirMesObjets()"
     >
+
       <div class="number">02</div>
 
       <div>
+
         <div class="card-title">
           MES OBJETS
         </div>
 
         <p>
-          À apporter<br>
-          En boutique<br>
-          Vendus ou retirés
+          Voir les objets<br>
+          Modifier<br>
+          Imprimer les QR codes
         </p>
+
       </div>
 
       <div class="arrow">→</div>
+
     </div>
 
 
@@ -926,21 +1187,25 @@ footer {
       class="card"
       onclick="fonctionBientotDisponible('MES VENTES')"
     >
+
       <div class="number">03</div>
 
       <div>
+
         <div class="card-title">
           MES VENTES
         </div>
 
         <p>
-          Suivre les ventes<br>
+          Historique<br>
           Chiffre d'affaires<br>
-          Historique
+          Reversements
         </p>
+
       </div>
 
       <div class="arrow">→</div>
+
     </div>
 
   </div>
@@ -951,7 +1216,7 @@ footer {
     <strong>Base de données :</strong>
 
     <span id="databaseStatus">
-      connexion en cours…
+      connexion…
     </span>
 
   </div>
@@ -960,7 +1225,7 @@ footer {
 
 
 <!-- =====================================================
-     AJOUT / MODIFICATION ARTICLE
+     ARTICLE
 ===================================================== -->
 
 <section
@@ -991,8 +1256,7 @@ footer {
 
     <button
       class="secondary"
-      type="button"
-      onclick="annulerFormulaireArticle()"
+      onclick="annulerArticle()"
     >
       ← Retour
     </button>
@@ -1004,17 +1268,15 @@ footer {
 
     <div class="form-grid">
 
-
       <div class="full">
 
-        <label for="articleNom">
+        <label>
           Nom de l'objet *
         </label>
 
         <input
           id="articleNom"
           type="text"
-          placeholder="Ex. Lampe vintage"
         >
 
       </div>
@@ -1022,21 +1284,24 @@ footer {
 
       <div>
 
-        <label for="articleCategorie">
+        <label>
           Catégorie
         </label>
 
         <select id="articleCategorie">
 
-          <option value="">Choisir</option>
-          <option value="Mobilier">Mobilier</option>
-          <option value="Luminaire">Luminaire</option>
-          <option value="Décoration">Décoration</option>
-          <option value="Vaisselle">Vaisselle</option>
-          <option value="Textile">Textile</option>
-          <option value="Art">Art</option>
-          <option value="Livre">Livre</option>
-          <option value="Divers">Divers</option>
+          <option value="">
+            Choisir
+          </option>
+
+          <option>Mobilier</option>
+          <option>Luminaire</option>
+          <option>Décoration</option>
+          <option>Vaisselle</option>
+          <option>Textile</option>
+          <option>Art</option>
+          <option>Livre</option>
+          <option>Divers</option>
 
         </select>
 
@@ -1045,7 +1310,7 @@ footer {
 
       <div class="price-wrapper">
 
-        <label for="articlePrix">
+        <label>
           Prix *
         </label>
 
@@ -1054,18 +1319,18 @@ footer {
           type="number"
           min="0"
           step="0.01"
-          inputmode="decimal"
-          placeholder="0,00"
         >
 
-        <span class="euro">€</span>
+        <span class="euro">
+          €
+        </span>
 
       </div>
 
 
       <div>
 
-        <label for="articleQuantite">
+        <label>
           Quantité *
         </label>
 
@@ -1073,7 +1338,6 @@ footer {
           id="articleQuantite"
           type="number"
           min="1"
-          step="1"
           value="1"
         >
 
@@ -1082,13 +1346,12 @@ footer {
 
       <div class="full">
 
-        <label for="articleDescription">
+        <label>
           Description
         </label>
 
         <textarea
           id="articleDescription"
-          placeholder="Décris brièvement l'objet..."
         ></textarea>
 
       </div>
@@ -1096,26 +1359,23 @@ footer {
 
       <div class="full photo-zone">
 
-        <label for="articlePhoto">
-          Photo de l'objet
+        <label>
+          Photo
         </label>
 
         <input
           id="articlePhoto"
           type="file"
           accept="image/*"
-          capture="environment"
         >
 
         <div class="photo-help">
-          Tu peux prendre une photo ou choisir une image existante.
-          En modification, laisse ce champ vide pour conserver la photo actuelle.
+          Prends une photo ou choisis une image.
         </div>
 
         <img
           id="photoPreview"
           class="photo-preview hidden"
-          alt="Aperçu de la photo"
         >
 
       </div>
@@ -1126,7 +1386,6 @@ footer {
     <button
       id="saveArticleButton"
       class="primary"
-      type="button"
     >
       Enregistrer l'objet
     </button>
@@ -1137,15 +1396,6 @@ footer {
       class="message"
     ></div>
 
-
-    <div class="form-info">
-
-      Chaque objet possède une référence unique VIDE DECO.
-      Son QR code reste associé au même objet même si tu modifies
-      son nom ou son prix.
-
-    </div>
-
   </div>
 
 </section>
@@ -1155,7 +1405,10 @@ footer {
      MES OBJETS
 ===================================================== -->
 
-<section id="objectsSection" class="hidden">
+<section
+  id="objectsSection"
+  class="hidden"
+>
 
   <div class="page-header">
 
@@ -1174,7 +1427,6 @@ footer {
 
     <button
       class="secondary"
-      type="button"
       onclick="retourDashboard()"
     >
       ← Retour
@@ -1194,10 +1446,9 @@ footer {
 
     <button
       class="secondary"
-      type="button"
       onclick="ouvrirAjoutArticle()"
     >
-      + Ajouter un objet
+      + Ajouter
     </button>
 
   </div>
@@ -1207,7 +1458,6 @@ footer {
     id="objectsMessage"
     class="message"
   ></div>
-
 
   <div
     id="objectsGrid"
@@ -1221,7 +1471,10 @@ footer {
      QR CODE
 ===================================================== -->
 
-<section id="qrSection" class="hidden">
+<section
+  id="qrSection"
+  class="hidden"
+>
 
   <div class="page-header">
 
@@ -1240,7 +1493,6 @@ footer {
 
     <button
       class="secondary"
-      type="button"
       onclick="ouvrirMesObjets()"
     >
       ← Retour
@@ -1271,32 +1523,262 @@ footer {
       class="qr-code"
     ></div>
 
-    <div class="qr-help">
-      Ce QR code identifie cet objet dans VIDE DECO.
-      Le prix n'est pas enregistré dans le QR code :
-      la caisse récupérera toujours le prix actuel depuis Supabase.
+    <div
+      id="qrHelp"
+      class="qr-help"
+    >
+      Le QR code contient uniquement l'identifiant de
+      l'article. Le prix est récupéré dans la base au
+      moment de la vente.
     </div>
 
-    <div class="qr-actions">
-
-      <button
-        class="secondary"
-        type="button"
-        onclick="ouvrirMesObjets()"
-      >
-        Retour
-      </button>
+    <div id="qrPrintButtons">
 
       <button
         class="primary"
-        style="margin-top:0"
-        type="button"
         onclick="window.print()"
       >
-        Imprimer
+        Imprimer l'étiquette
       </button>
 
     </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CAISSE
+===================================================== -->
+
+<section
+  id="cashierSection"
+  class="hidden"
+>
+
+  <div class="page-header">
+
+    <div>
+
+      <div class="eyebrow">
+        POINT DE VENTE
+      </div>
+
+      <div class="page-title">
+        CAISSE.
+      </div>
+
+    </div>
+
+    <button
+      class="secondary"
+      onclick="quitterCaisse()"
+    >
+      ← Retour
+    </button>
+
+  </div>
+
+
+  <div class="cashier-layout">
+
+
+    <!-- SCAN -->
+
+    <div class="cashier-panel">
+
+      <div class="cashier-title">
+        AJOUTER UN ARTICLE
+      </div>
+
+
+      <div class="reference-search">
+
+        <input
+          id="cashReference"
+          type="text"
+          placeholder="VD-000002"
+          autocomplete="off"
+        >
+
+        <button
+          onclick="ajouterParReference()"
+        >
+          AJOUTER
+        </button>
+
+      </div>
+
+
+      <button
+        id="scanButton"
+        class="scan-button"
+        onclick="demarrerScanner()"
+      >
+        📷 SCANNER UN QR CODE
+      </button>
+
+
+      <div
+        id="reader"
+        class="hidden"
+      ></div>
+
+
+      <div
+        id="cashMessage"
+        class="message"
+      ></div>
+
+
+      <div class="form-info">
+
+        Tu peux scanner l'étiquette de l'objet ou saisir
+        directement sa référence, par exemple
+        <strong>VD-000002</strong>.
+
+      </div>
+
+    </div>
+
+
+    <!-- PANIER -->
+
+    <div class="cashier-panel">
+
+      <div class="cashier-title">
+        PANIER
+      </div>
+
+
+      <div id="cartItems">
+
+        <div class="cart-empty">
+          Aucun article dans le panier.
+        </div>
+
+      </div>
+
+
+      <div class="cart-total">
+
+        <div class="cart-total-label">
+          TOTAL
+        </div>
+
+        <div
+          id="cartTotal"
+          class="cart-total-value"
+        >
+          0,00 €
+        </div>
+
+      </div>
+
+
+      <div class="payment-title">
+        MODE DE PAIEMENT
+      </div>
+
+
+      <div class="payment-methods">
+
+        <button
+          id="paymentCarte"
+          class="payment-button"
+          onclick="choisirPaiement('carte')"
+        >
+          CARTE
+        </button>
+
+        <button
+          id="paymentEspeces"
+          class="payment-button"
+          onclick="choisirPaiement('especes')"
+        >
+          ESPÈCES
+        </button>
+
+        <button
+          id="paymentAutre"
+          class="payment-button"
+          onclick="choisirPaiement('autre')"
+        >
+          AUTRE
+        </button>
+
+      </div>
+
+
+      <button
+        id="validateSaleButton"
+        class="validate-sale"
+        onclick="validerVente()"
+        disabled
+      >
+        VALIDER LE PAIEMENT
+      </button>
+
+
+      <div class="cash-warning">
+
+        Pour un paiement par carte, attends que le TPE
+        confirme que le paiement est accepté avant de
+        valider la vente dans VIDE DECO.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     VENTE RÉUSSIE
+===================================================== -->
+
+<section
+  id="saleSuccessSection"
+  class="hidden"
+>
+
+  <div class="sale-success">
+
+    <div class="sale-success-check">
+      ✓
+    </div>
+
+    <div class="sale-success-title">
+      VENTE<br>
+      ENREGISTRÉE.
+    </div>
+
+    <div
+      id="successTotal"
+      class="sale-success-total"
+    >
+      0,00 €
+    </div>
+
+    <div id="successPayment"></div>
+
+    <button
+      class="primary"
+      onclick="nouvelleVente()"
+    >
+      Nouvelle vente
+    </button>
+
+    <button
+      class="secondary"
+      style="width:100%; margin-top:10px"
+      onclick="retourDashboard()"
+    >
+      Retour au tableau de bord
+    </button>
 
   </div>
 
@@ -1308,8 +1790,13 @@ footer {
 
 <footer>
 
-  <div>VIDE DECO</div>
-  <div>Boutique éphémère</div>
+  <div>
+    VIDE DECO
+  </div>
+
+  <div>
+    Boutique éphémère
+  </div>
 
 </footer>
 
@@ -1341,7 +1828,13 @@ let utilisateurActuel = null;
 let profilActuel = null;
 
 let articleEnModification = null;
-let retourFormulaire = "dashboard";
+
+let panier = [];
+
+let modePaiement = null;
+
+let scanner = null;
+let scannerActif = false;
 
 
 /* =========================================================
@@ -1363,14 +1856,11 @@ document.getElementById("objectsSection");
 const qrSection =
 document.getElementById("qrSection");
 
-const loginButton =
-document.getElementById("loginButton");
+const cashierSection =
+document.getElementById("cashierSection");
 
-const logoutButton =
-document.getElementById("logoutButton");
-
-const saveArticleButton =
-document.getElementById("saveArticleButton");
+const saleSuccessSection =
+document.getElementById("saleSuccessSection");
 
 const loginMessage =
 document.getElementById("loginMessage");
@@ -1381,38 +1871,20 @@ document.getElementById("articleMessage");
 const objectsMessage =
 document.getElementById("objectsMessage");
 
+const cashMessage =
+document.getElementById("cashMessage");
+
 const objectsGrid =
 document.getElementById("objectsGrid");
 
 const objectsCount =
 document.getElementById("objectsCount");
 
-const adminCards =
-document.getElementById("adminCards");
-
-const sellerCards =
-document.getElementById("sellerCards");
-
-const hello =
-document.getElementById("hello");
-
-const roleBadge =
-document.getElementById("roleBadge");
-
-const databaseStatus =
-document.getElementById("databaseStatus");
-
 const articlePhoto =
 document.getElementById("articlePhoto");
 
 const photoPreview =
 document.getElementById("photoPreview");
-
-const articleEyebrow =
-document.getElementById("articleEyebrow");
-
-const articlePageTitle =
-document.getElementById("articlePageTitle");
 
 
 /* =========================================================
@@ -1426,13 +1898,15 @@ function cacherToutesLesPages() {
   articleSection.classList.add("hidden");
   objectsSection.classList.add("hidden");
   qrSection.classList.add("hidden");
+  cashierSection.classList.add("hidden");
+  saleSuccessSection.classList.add("hidden");
 
 }
 
 
 function retourDashboard() {
 
-  articleEnModification = null;
+  arreterScanner();
 
   cacherToutesLesPages();
 
@@ -1443,86 +1917,11 @@ function retourDashboard() {
 }
 
 
-function annulerFormulaireArticle() {
+function annulerArticle() {
 
   articleEnModification = null;
 
-  reinitialiserFormulaireArticle();
-
-  if (retourFormulaire === "objets") {
-
-    ouvrirMesObjets();
-
-  } else {
-
-    retourDashboard();
-
-  }
-
-}
-
-
-/* =========================================================
-   FORMULAIRE
-========================================================= */
-
-function reinitialiserFormulaireArticle() {
-
-  document.getElementById("articleNom").value = "";
-  document.getElementById("articleCategorie").value = "";
-  document.getElementById("articlePrix").value = "";
-  document.getElementById("articleQuantite").value = "1";
-  document.getElementById("articleDescription").value = "";
-
-  articlePhoto.value = "";
-
-  photoPreview.src = "";
-  photoPreview.classList.add("hidden");
-
-  articleMessage.textContent = "";
-  articleMessage.className = "message";
-
-}
-
-
-function ouvrirAjoutArticle() {
-
-  articleEnModification = null;
-
-  retourFormulaire =
-  objectsSection.classList.contains("hidden")
-  ? "dashboard"
-  : "objets";
-
-  reinitialiserFormulaireArticle();
-
-  articleEyebrow.textContent =
-  "NOUVEL OBJET";
-
-  articlePageTitle.innerHTML =
-  "AJOUTER<br>UN OBJET.";
-
-  saveArticleButton.textContent =
-  "ENREGISTRER L'OBJET";
-
-  cacherToutesLesPages();
-
-  articleSection.classList.remove("hidden");
-
-  window.scrollTo(0,0);
-
-}
-
-
-async function ouvrirMesObjets() {
-
-  cacherToutesLesPages();
-
-  objectsSection.classList.remove("hidden");
-
-  window.scrollTo(0,0);
-
-  await chargerMesObjets();
+  ouvrirMesObjets();
 
 }
 
@@ -1535,9 +1934,6 @@ async function connexion() {
 
   loginMessage.textContent =
   "Connexion…";
-
-  loginMessage.className =
-  "message";
 
   const email =
   document.getElementById("email")
@@ -1552,7 +1948,7 @@ async function connexion() {
   if (!email || !password) {
 
     loginMessage.textContent =
-    "Renseigne ton adresse e-mail et ton mot de passe.";
+    "Renseigne ton e-mail et ton mot de passe.";
 
     loginMessage.className =
     "message error";
@@ -1571,10 +1967,8 @@ async function connexion() {
 
   if (error) {
 
-    console.error(error);
-
     loginMessage.textContent =
-    "Connexion impossible : vérifie ton e-mail et ton mot de passe.";
+    error.message;
 
     loginMessage.className =
     "message error";
@@ -1597,43 +1991,25 @@ async function connexion() {
 
 async function afficherUtilisateur(user) {
 
-  if (!user) {
-
-    afficherConnexion();
-
-    return;
-
-  }
-
-
   utilisateurActuel = user;
 
 
   const {data:profil,error} =
   await db
   .from("profils")
-  .select(
-    "id, role, nom, prenom, enseigne, commission, actif"
-  )
+  .select("*")
   .eq("id",user.id)
   .single();
 
 
   if (error || !profil) {
 
-    console.error(
-      "ERREUR PROFIL :",
-      error
-    );
-
     cacherToutesLesPages();
 
     loginSection.classList.remove("hidden");
 
     loginMessage.textContent =
-    error
-    ? "ERREUR SUPABASE : " + error.message
-    : "Profil utilisateur introuvable.";
+    "Profil introuvable.";
 
     loginMessage.className =
     "message error";
@@ -1651,20 +2027,31 @@ async function afficherUtilisateur(user) {
   dashboardSection.classList.remove("hidden");
 
 
-  const nomAffiche =
+  const nom =
   profil.prenom ||
   profil.enseigne ||
   "VIDE DECO";
 
 
-  hello.textContent =
+  document.getElementById(
+    "hello"
+  ).textContent =
   "BONJOUR " +
-  nomAffiche.toUpperCase() +
+  nom.toUpperCase() +
   ".";
 
 
-  databaseStatus.textContent =
+  document.getElementById(
+    "databaseStatus"
+  ).textContent =
   "Supabase connecté ✓";
+
+
+  const adminCards =
+  document.getElementById("adminCards");
+
+  const sellerCards =
+  document.getElementById("sellerCards");
 
 
   adminCards.classList.add("hidden");
@@ -1673,14 +2060,20 @@ async function afficherUtilisateur(user) {
 
   if (profil.role === "admin") {
 
-    roleBadge.textContent =
+    document.getElementById(
+      "roleBadge"
+    ).textContent =
     "ADMINISTRATEUR";
 
     adminCards.classList.remove("hidden");
 
-  } else {
+  }
 
-    roleBadge.textContent =
+  else {
+
+    document.getElementById(
+      "roleBadge"
+    ).textContent =
     "BROCANTEUR";
 
     sellerCards.classList.remove("hidden");
@@ -1691,7 +2084,61 @@ async function afficherUtilisateur(user) {
 
 
 /* =========================================================
-   PHOTO APERÇU
+   AJOUT ARTICLE
+========================================================= */
+
+function resetArticleForm() {
+
+  document.getElementById("articleNom").value = "";
+  document.getElementById("articleCategorie").value = "";
+  document.getElementById("articlePrix").value = "";
+  document.getElementById("articleQuantite").value = 1;
+  document.getElementById("articleDescription").value = "";
+
+  articlePhoto.value = "";
+
+  photoPreview.src = "";
+  photoPreview.classList.add("hidden");
+
+  articleMessage.textContent = "";
+
+}
+
+
+function ouvrirAjoutArticle() {
+
+  articleEnModification = null;
+
+  resetArticleForm();
+
+
+  document.getElementById(
+    "articleEyebrow"
+  ).textContent =
+  "NOUVEL OBJET";
+
+
+  document.getElementById(
+    "articlePageTitle"
+  ).innerHTML =
+  "AJOUTER<br>UN OBJET.";
+
+
+  document.getElementById(
+    "saveArticleButton"
+  ).textContent =
+  "ENREGISTRER L'OBJET";
+
+
+  cacherToutesLesPages();
+
+  articleSection.classList.remove("hidden");
+
+}
+
+
+/* =========================================================
+   PHOTO
 ========================================================= */
 
 articlePhoto.addEventListener(
@@ -1701,34 +2148,17 @@ function() {
   const fichier =
   articlePhoto.files[0];
 
-
   if (!fichier) {
-
-    if (!articleEnModification) {
-
-      photoPreview.src = "";
-      photoPreview.classList.add("hidden");
-
-    }
-
     return;
-
   }
 
-
-  const url =
+  photoPreview.src =
   URL.createObjectURL(fichier);
-
-  photoPreview.src = url;
 
   photoPreview.classList.remove("hidden");
 
 });
 
-
-/* =========================================================
-   ENVOYER PHOTO
-========================================================= */
 
 async function envoyerPhoto(
   fichier,
@@ -1741,9 +2171,7 @@ async function envoyerPhoto(
 
 
   const extension =
-  fichier.name.includes(".")
-  ? fichier.name.split(".").pop().toLowerCase()
-  : "jpg";
+  fichier.name.split(".").pop() || "jpg";
 
 
   const chemin =
@@ -1761,21 +2189,13 @@ async function envoyerPhoto(
     chemin,
     fichier,
     {
-      cacheControl:"3600",
       upsert:true
     }
   );
 
 
   if (error) {
-
-    console.error(
-      "ERREUR PHOTO :",
-      error
-    );
-
     throw error;
-
   }
 
 
@@ -1785,12 +2205,6 @@ async function envoyerPhoto(
   .getPublicUrl(chemin);
 
 
-  /*
-     On ajoute un paramètre pour éviter
-     que Safari conserve l'ancienne photo
-     en cache après une modification.
-  */
-
   return data.publicUrl +
   "?v=" +
   Date.now();
@@ -1799,10 +2213,10 @@ async function envoyerPhoto(
 
 
 /* =========================================================
-   LECTURE FORMULAIRE
+   ENREGISTRER ARTICLE
 ========================================================= */
 
-function lireFormulaireArticle() {
+async function enregistrerArticle() {
 
   const nom =
   document.getElementById("articleNom")
@@ -1813,13 +2227,15 @@ function lireFormulaireArticle() {
   document.getElementById("articleCategorie")
   .value;
 
-  const prixTexte =
-  document.getElementById("articlePrix")
-  .value;
+  const prix =
+  Number(
+    document.getElementById("articlePrix").value
+  );
 
-  const quantiteTexte =
-  document.getElementById("articleQuantite")
-  .value;
+  const quantite =
+  Number(
+    document.getElementById("articleQuantite").value
+  );
 
   const description =
   document.getElementById("articleDescription")
@@ -1829,24 +2245,13 @@ function lireFormulaireArticle() {
 
   if (!nom) {
 
-    throw new Error(
+    afficherErreurArticle(
       "Indique le nom de l'objet."
     );
 
-  }
-
-
-  if (prixTexte === "") {
-
-    throw new Error(
-      "Indique le prix de l'objet."
-    );
+    return;
 
   }
-
-
-  const prix =
-  Number(prixTexte);
 
 
   if (
@@ -1854,15 +2259,13 @@ function lireFormulaireArticle() {
     prix < 0
   ) {
 
-    throw new Error(
+    afficherErreurArticle(
       "Indique un prix valide."
     );
 
+    return;
+
   }
-
-
-  const quantite =
-  Number(quantiteTexte);
 
 
   if (
@@ -1870,110 +2273,44 @@ function lireFormulaireArticle() {
     quantite < 1
   ) {
 
-    throw new Error(
-      "La quantité doit être au minimum de 1."
+    afficherErreurArticle(
+      "Quantité incorrecte."
     );
 
-  }
-
-
-  return {
-    nom,
-    categorie:
-    categorie || null,
-    prix,
-    quantite,
-    description:
-    description || null
-  };
-
-}
-
-
-/* =========================================================
-   ENREGISTRER / MODIFIER
-========================================================= */
-
-async function enregistrerArticle() {
-
-  articleMessage.textContent = "";
-  articleMessage.className = "message";
-
-
-  if (!utilisateurActuel) {
-
-    articleMessage.textContent =
-    "Utilisateur non connecté.";
-
-    articleMessage.className =
-    "message error";
-
     return;
 
   }
 
 
-  let valeurs;
+  const bouton =
+  document.getElementById(
+    "saveArticleButton"
+  );
+
+  bouton.disabled = true;
 
 
   try {
 
-    valeurs =
-    lireFormulaireArticle();
-
-  } catch(error) {
-
-    articleMessage.textContent =
-    error.message;
-
-    articleMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  saveArticleButton.disabled = true;
-
-  saveArticleButton.textContent =
-  articleEnModification
-  ? "MODIFICATION…"
-  : "ENREGISTREMENT…";
-
-
-  try {
-
-    const fichierPhoto =
+    const fichier =
     articlePhoto.files[0] || null;
 
 
-    /* =====================================================
-       MODIFICATION
-    ===================================================== */
+    /* MODIFICATION */
 
     if (articleEnModification) {
 
-      const article =
-      articleEnModification;
-
-
       const ancienneQuantite =
-      Number(article.quantite) || 0;
+      Number(
+        articleEnModification.quantite
+      );
 
       const ancienneDisponible =
-      Number(article.quantite_disponible) || 0;
+      Number(
+        articleEnModification.quantite_disponible
+      );
 
-
-      /*
-        Quantité déjà vendue ou indisponible.
-        Exemple :
-        quantité initiale = 5
-        disponible = 3
-        donc 2 sont déjà sorties du stock.
-      */
-
-      const quantiteDejaSortie =
+      const dejaVendus =
       Math.max(
         0,
         ancienneQuantite -
@@ -1981,43 +2318,25 @@ async function enregistrerArticle() {
       );
 
 
-      if (
-        valeurs.quantite <
-        quantiteDejaSortie
-      ) {
+      if (quantite < dejaVendus) {
 
         throw new Error(
-          "Impossible de réduire la quantité à " +
-          valeurs.quantite +
-          " : " +
-          quantiteDejaSortie +
-          " exemplaire(s) sont déjà sortis du stock."
+          "Cette quantité est inférieure au nombre déjà vendu."
         );
 
       }
 
 
-      const nouvelleDisponible =
-      Math.max(
-        0,
-        valeurs.quantite -
-        quantiteDejaSortie
-      );
+      let photo =
+      articleEnModification.photo_url;
 
 
-      let nouvellePhoto =
-      article.photo_url || null;
+      if (fichier) {
 
-
-      if (fichierPhoto) {
-
-        articleMessage.textContent =
-        "Mise à jour de la photo…";
-
-        nouvellePhoto =
+        photo =
         await envoyerPhoto(
-          fichierPhoto,
-          article.id
+          fichier,
+          articleEnModification.id
         );
 
       }
@@ -2028,32 +2347,30 @@ async function enregistrerArticle() {
       .from("articles")
       .update({
 
-        nom:
-        valeurs.nom,
-
+        nom,
         categorie:
-        valeurs.categorie,
+        categorie || null,
 
-        prix:
-        valeurs.prix,
-
-        quantite:
-        valeurs.quantite,
+        prix,
+        quantite,
 
         quantite_disponible:
-        nouvelleDisponible,
+        quantite - dejaVendus,
 
         description:
-        valeurs.description,
+        description || null,
 
         photo_url:
-        nouvellePhoto,
+        photo,
 
         updated_at:
         new Date().toISOString()
 
       })
-      .eq("id",article.id)
+      .eq(
+        "id",
+        articleEnModification.id
+      )
       .eq(
         "vendeur_id",
         utilisateurActuel.id
@@ -2065,30 +2382,16 @@ async function enregistrerArticle() {
       }
 
 
-      articleMessage.textContent =
-      "OBJET MODIFIÉ ✓";
-
-      articleMessage.className =
-      "message success";
-
-
-      setTimeout(
-        () => {
-          ouvrirMesObjets();
-        },
-        700
-      );
+      await ouvrirMesObjets();
 
       return;
 
     }
 
 
-    /* =====================================================
-       CRÉATION
-    ===================================================== */
+    /* NOUVEAU */
 
-    const {data:article,error:articleError} =
+    const {data:article,error} =
     await db
     .from("articles")
     .insert({
@@ -2096,23 +2399,20 @@ async function enregistrerArticle() {
       vendeur_id:
       utilisateurActuel.id,
 
-      nom:
-      valeurs.nom,
+      nom,
 
       description:
-      valeurs.description,
+      description || null,
 
       categorie:
-      valeurs.categorie,
+      categorie || null,
 
-      prix:
-      valeurs.prix,
+      prix,
 
-      quantite:
-      valeurs.quantite,
+      quantite,
 
       quantite_disponible:
-      valeurs.quantite,
+      quantite,
 
       statut:
       "a_apporter"
@@ -2122,61 +2422,40 @@ async function enregistrerArticle() {
     .single();
 
 
-    if (articleError) {
-      throw articleError;
+    if (error) {
+      throw error;
     }
 
 
-    if (fichierPhoto) {
+    if (fichier) {
 
-      articleMessage.textContent =
-      "Envoi de la photo…";
-
-
-      const photoUrl =
+      const photo =
       await envoyerPhoto(
-        fichierPhoto,
+        fichier,
         article.id
       );
 
 
-      const {error:updateError} =
+      const {error:photoError} =
       await db
       .from("articles")
       .update({
-        photo_url:photoUrl
+        photo_url:photo
       })
-      .eq("id",article.id)
-      .eq(
-        "vendeur_id",
-        utilisateurActuel.id
-      );
+      .eq("id",article.id);
 
 
-      if (updateError) {
-        throw updateError;
+      if (photoError) {
+        throw photoError;
       }
 
     }
 
 
-    articleMessage.textContent =
-    fichierPhoto
-    ? "OBJET ET PHOTO ENREGISTRÉS ✓"
-    : "OBJET ENREGISTRÉ ✓";
-
-
-    articleMessage.className =
-    "message success";
-
-
-    reinitialiserFormulaireArticle();
-
+    resetArticleForm();
 
     articleMessage.textContent =
-    fichierPhoto
-    ? "OBJET ET PHOTO ENREGISTRÉS ✓"
-    : "OBJET ENREGISTRÉ ✓";
+    "OBJET ENREGISTRÉ ✓";
 
     articleMessage.className =
     "message success";
@@ -2185,445 +2464,59 @@ async function enregistrerArticle() {
 
   catch(error) {
 
-    console.error(
-      "ERREUR ARTICLE :",
-      error
+    afficherErreurArticle(
+      error.message
     );
-
-    articleMessage.textContent =
-    "Erreur : " +
-    error.message;
-
-    articleMessage.className =
-    "message error";
 
   }
 
   finally {
 
-    saveArticleButton.disabled =
-    false;
-
-    saveArticleButton.textContent =
-    articleEnModification
-    ? "ENREGISTRER LES MODIFICATIONS"
-    : "ENREGISTRER L'OBJET";
+    bouton.disabled = false;
 
   }
 
 }
 
 
+function afficherErreurArticle(message) {
+
+  articleMessage.textContent =
+  "Erreur : " + message;
+
+  articleMessage.className =
+  "message error";
+
+}
+
+
 /* =========================================================
-   OUVRIR MODIFICATION
+   MES OBJETS
 ========================================================= */
 
-async function modifierArticle(id) {
-
-  objectsMessage.textContent =
-  "Chargement de l'objet…";
-
-  objectsMessage.className =
-  "message";
-
-
-  const {data:article,error} =
-  await db
-  .from("articles")
-  .select(
-    "id, reference, vendeur_id, nom, description, categorie, prix, quantite, quantite_disponible, photo_url, statut"
-  )
-  .eq("id",id)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
-  .single();
-
-
-  if (error || !article) {
-
-    objectsMessage.textContent =
-    "Impossible de charger cet objet.";
-
-    objectsMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  if (article.statut === "vendu") {
-
-    alert(
-      "Cet objet est vendu et ne peut plus être modifié."
-    );
-
-    return;
-
-  }
-
-
-  articleEnModification =
-  article;
-
-  retourFormulaire =
-  "objets";
-
-
-  document.getElementById("articleNom").value =
-  article.nom || "";
-
-  document.getElementById("articleCategorie").value =
-  article.categorie || "";
-
-  document.getElementById("articlePrix").value =
-  article.prix ?? "";
-
-  document.getElementById("articleQuantite").value =
-  article.quantite || 1;
-
-  document.getElementById("articleDescription").value =
-  article.description || "";
-
-  articlePhoto.value = "";
-
-
-  if (article.photo_url) {
-
-    photoPreview.src =
-    article.photo_url;
-
-    photoPreview.classList.remove(
-      "hidden"
-    );
-
-  } else {
-
-    photoPreview.src = "";
-
-    photoPreview.classList.add(
-      "hidden"
-    );
-
-  }
-
-
-  articleEyebrow.textContent =
-  article.reference
-  ? article.reference
-  : "MODIFICATION";
-
-
-  articlePageTitle.innerHTML =
-  "MODIFIER<br>UN OBJET.";
-
-
-  saveArticleButton.textContent =
-  "ENREGISTRER LES MODIFICATIONS";
-
-
-  articleMessage.textContent = "";
-  articleMessage.className = "message";
-
+async function ouvrirMesObjets() {
 
   cacherToutesLesPages();
 
-  articleSection.classList.remove(
-    "hidden"
-  );
-
-  window.scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   RETIRER
-========================================================= */
-
-async function retirerArticle(
-  id,
-  nom
-) {
-
-  const confirmation =
-  confirm(
-    "RETIRER CET OBJET ?\n\n" +
-    nom +
-    "\n\n" +
-    "L'objet ne sera pas supprimé. " +
-    "Il restera dans ton historique avec le statut RETIRÉ."
-  );
-
-
-  if (!confirmation) {
-    return;
-  }
-
-
-  objectsMessage.textContent =
-  "Retrait de l'objet…";
-
-  objectsMessage.className =
-  "message";
-
-
-  /*
-    On vérifie d'abord l'article.
-  */
-
-  const {data:article,error:lectureError} =
-  await db
-  .from("articles")
-  .select(
-    "id, statut"
-  )
-  .eq("id",id)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
-  .single();
-
-
-  if (lectureError || !article) {
-
-    objectsMessage.textContent =
-    "Impossible de retrouver cet objet.";
-
-    objectsMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  if (article.statut === "vendu") {
-
-    objectsMessage.textContent =
-    "Un objet vendu ne peut pas être retiré.";
-
-    objectsMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  const {error} =
-  await db
-  .from("articles")
-  .update({
-
-    statut:"retire",
-
-    quantite_disponible:0,
-
-    updated_at:
-    new Date().toISOString()
-
-  })
-  .eq("id",id)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  );
-
-
-  if (error) {
-
-    console.error(
-      "ERREUR RETRAIT :",
-      error
-    );
-
-    objectsMessage.textContent =
-    "Impossible de retirer l'objet : " +
-    error.message;
-
-    objectsMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  objectsMessage.textContent =
-  "OBJET RETIRÉ ✓";
-
-  objectsMessage.className =
-  "message success";
-
+  objectsSection.classList.remove("hidden");
 
   await chargerMesObjets();
 
 }
 
 
-/* =========================================================
-   QR CODE
-========================================================= */
-
-async function afficherQRCode(id) {
-
-  const {data:article,error} =
-  await db
-  .from("articles")
-  .select(
-    "id, reference, nom, prix, vendeur_id"
-  )
-  .eq("id",id)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
-  .single();
-
-
-  if (error || !article) {
-
-    alert(
-      "Impossible de générer le QR code."
-    );
-
-    return;
-
-  }
-
-
-  cacherToutesLesPages();
-
-  qrSection.classList.remove(
-    "hidden"
-  );
-
-
-  document.getElementById(
-    "qrReference"
-  ).textContent =
-  article.reference
-  ? "RÉF. " + article.reference
-  : "VIDE DECO";
-
-
-  document.getElementById(
-    "qrName"
-  ).textContent =
-  article.nom;
-
-
-  document.getElementById(
-    "qrPrice"
-  ).textContent =
-  formaterPrix(
-    article.prix
-  );
-
-
-  const conteneur =
-  document.getElementById(
-    "qrCode"
-  );
-
-
-  conteneur.innerHTML = "";
-
-
-  /*
-    IMPORTANT :
-    le QR ne contient volontairement
-    ni le prix ni le nom.
-
-    Il contient seulement l'identifiant
-    stable de l'article.
-  */
-
-  const contenuQR =
-  "VIDEDECO:" +
-  article.id;
-
-
-  try {
-
-    new QRCode(
-      conteneur,
-      {
-        text:
-        contenuQR,
-
-        width:
-        240,
-
-        height:
-        240,
-
-        correctLevel:
-        QRCode.CorrectLevel.H
-      }
-    );
-
-  }
-
-  catch(error) {
-
-    console.error(
-      "ERREUR QR :",
-      error
-    );
-
-    conteneur.textContent =
-    "Impossible de générer le QR code.";
-
-  }
-
-
-  window.scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   CHARGER MES OBJETS
-========================================================= */
-
 async function chargerMesObjets() {
 
   objectsGrid.innerHTML = "";
 
   objectsMessage.textContent =
-  "Chargement des objets…";
-
-  objectsMessage.className =
-  "message";
-
-  objectsCount.textContent =
   "Chargement…";
 
 
-  if (!utilisateurActuel) {
-
-    objectsMessage.textContent =
-    "Utilisateur non connecté.";
-
-    objectsMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  const {data:articles,error} =
+  const {data,error} =
   await db
   .from("articles")
-  .select(
-    "id, reference, nom, description, categorie, prix, quantite, quantite_disponible, photo_url, statut, created_at"
-  )
+  .select("*")
   .eq(
     "vendeur_id",
     utilisateurActuel.id
@@ -2638,20 +2531,11 @@ async function chargerMesObjets() {
 
   if (error) {
 
-    console.error(
-      "ERREUR OBJETS :",
-      error
-    );
-
     objectsMessage.textContent =
-    "Impossible de charger les objets : " +
     error.message;
 
     objectsMessage.className =
     "message error";
-
-    objectsCount.textContent =
-    "Erreur";
 
     return;
 
@@ -2661,22 +2545,23 @@ async function chargerMesObjets() {
   objectsMessage.textContent = "";
 
 
-  const liste =
-  articles || [];
+  const articles =
+  data || [];
 
 
   objectsCount.textContent =
-  liste.length +
+  articles.length +
   (
-    liste.length > 1
+    articles.length > 1
     ? " OBJETS"
     : " OBJET"
   );
 
 
-  if (liste.length === 0) {
+  if (!articles.length) {
 
     objectsGrid.innerHTML = `
+
       <div
         class="empty-state"
         style="grid-column:1/-1"
@@ -2686,14 +2571,8 @@ async function chargerMesObjets() {
           AUCUN OBJET.
         </div>
 
-        <p>
-          Ton inventaire est encore vide.<br>
-          Ajoute ton premier objet pour commencer.
-        </p>
-
         <button
           class="primary"
-          type="button"
           onclick="ouvrirAjoutArticle()"
         >
           Ajouter un objet
@@ -2707,26 +2586,19 @@ async function chargerMesObjets() {
   }
 
 
-  liste.forEach(
-  article => {
+  articles.forEach(article => {
 
-    const carte =
-    document.createElement(
-      "article"
-    );
+    const card =
+    document.createElement("article");
 
-    carte.className =
+    card.className =
     "object-card";
 
-
-    /* PHOTO */
 
     if (article.photo_url) {
 
       const image =
-      document.createElement(
-        "img"
-      );
+      document.createElement("img");
 
       image.className =
       "object-image";
@@ -2734,311 +2606,143 @@ async function chargerMesObjets() {
       image.src =
       article.photo_url;
 
-      image.alt =
-      article.nom || "Objet";
-
-      carte.appendChild(
-        image
-      );
+      card.appendChild(image);
 
     }
 
     else {
 
-      const sansPhoto =
-      document.createElement(
-        "div"
-      );
+      const noImage =
+      document.createElement("div");
 
-      sansPhoto.className =
+      noImage.className =
       "object-no-image";
 
-      sansPhoto.textContent =
+      noImage.textContent =
       "Pas de photo";
 
-      carte.appendChild(
-        sansPhoto
-      );
+      card.appendChild(noImage);
 
     }
 
 
-    /* CONTENU */
+    const content =
+    document.createElement("div");
 
-    const contenu =
-    document.createElement(
-      "div"
-    );
-
-    contenu.className =
+    content.className =
     "object-content";
 
 
-    const reference =
-    document.createElement(
-      "div"
-    );
+    content.innerHTML = `
 
-    reference.className =
-    "object-reference";
+      <div class="object-reference">
+        RÉF. ${article.reference || "—"}
+      </div>
 
-    reference.textContent =
-    article.reference
-    ? "RÉF. " + article.reference
-    : "RÉFÉRENCE EN ATTENTE";
+      <div class="object-name">
+        ${echapperHTML(article.nom)}
+      </div>
 
+      <div class="object-category">
+        ${echapperHTML(article.categorie || "Sans catégorie")}
+      </div>
 
-    const nom =
-    document.createElement(
-      "div"
-    );
+      <div class="object-bottom">
 
-    nom.className =
-    "object-name";
+        <div class="object-price">
+          ${formaterPrix(article.prix)}
+        </div>
 
-    nom.textContent =
-    article.nom;
+        <div class="object-quantity">
+          QTÉ ${article.quantite}<br>
+          DISPONIBLE ${article.quantite_disponible}
+        </div>
 
+      </div>
 
-    const categorie =
-    document.createElement(
-      "div"
-    );
-
-    categorie.className =
-    "object-category";
-
-    categorie.textContent =
-    article.categorie ||
-    "Sans catégorie";
+      <div class="object-status ${article.statut}">
+        ${texteStatut(article.statut)}
+      </div>
+    `;
 
 
-    const bas =
-    document.createElement(
-      "div"
-    );
+    card.appendChild(content);
 
-    bas.className =
-    "object-bottom";
-
-
-    const prix =
-    document.createElement(
-      "div"
-    );
-
-    prix.className =
-    "object-price";
-
-    prix.textContent =
-    formaterPrix(
-      article.prix
-    );
-
-
-    const quantite =
-    document.createElement(
-      "div"
-    );
-
-    quantite.className =
-    "object-quantity";
-
-    quantite.innerHTML =
-    "QTÉ " +
-    article.quantite +
-    "<br>DISPONIBLE " +
-    article.quantite_disponible;
-
-
-    bas.appendChild(
-      prix
-    );
-
-    bas.appendChild(
-      quantite
-    );
-
-
-    const statut =
-    document.createElement(
-      "div"
-    );
-
-    statut.className =
-    "object-status " +
-    (
-      article.statut || ""
-    );
-
-    statut.textContent =
-    texteStatut(
-      article.statut
-    );
-
-
-    contenu.appendChild(
-      reference
-    );
-
-    contenu.appendChild(
-      nom
-    );
-
-    contenu.appendChild(
-      categorie
-    );
-
-    contenu.appendChild(
-      bas
-    );
-
-    contenu.appendChild(
-      statut
-    );
-
-
-    carte.appendChild(
-      contenu
-    );
-
-
-    /* =====================================================
-       BOUTONS
-    ===================================================== */
 
     const actions =
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
     actions.className =
     "object-actions";
 
 
-    const boutonModifier =
-    document.createElement(
-      "button"
-    );
+    const edit =
+    document.createElement("button");
 
-    boutonModifier.type =
-    "button";
-
-    boutonModifier.className =
+    edit.className =
     "object-action";
 
-    boutonModifier.textContent =
+    edit.textContent =
     "MODIFIER";
 
-    boutonModifier.addEventListener(
-      "click",
-      function() {
-
-        modifierArticle(
-          article.id
-        );
-
-      }
-    );
+    edit.onclick =
+    () => modifierArticle(article.id);
 
 
-    const boutonQR =
-    document.createElement(
-      "button"
-    );
+    const qr =
+    document.createElement("button");
 
-    boutonQR.type =
-    "button";
-
-    boutonQR.className =
+    qr.className =
     "object-action";
 
-    boutonQR.textContent =
+    qr.textContent =
     "QR CODE";
 
-    boutonQR.addEventListener(
-      "click",
-      function() {
-
-        afficherQRCode(
-          article.id
-        );
-
-      }
-    );
+    qr.onclick =
+    () => afficherQRCode(article.id);
 
 
-    const boutonRetirer =
-    document.createElement(
-      "button"
-    );
+    const remove =
+    document.createElement("button");
 
-    boutonRetirer.type =
-    "button";
-
-    boutonRetirer.className =
+    remove.className =
     "object-action remove";
 
-    boutonRetirer.textContent =
-    article.statut === "retire"
-    ? "RETIRÉ"
+    remove.textContent =
+    article.statut === "vendu"
+    ? "VENDU"
     : "RETIRER";
 
 
-    if (
-      article.statut === "retire" ||
-      article.statut === "vendu"
-    ) {
+    if (article.statut === "vendu") {
 
-      boutonRetirer.disabled =
-      true;
-
-      boutonRetirer.style.opacity =
-      ".35";
-
-      boutonRetirer.style.cursor =
-      "not-allowed";
+      remove.disabled = true;
+      remove.style.opacity = ".3";
 
     }
 
     else {
 
-      boutonRetirer.addEventListener(
-        "click",
-        function() {
-
-          retirerArticle(
-            article.id,
-            article.nom
-          );
-
-        }
+      remove.onclick =
+      () =>
+      retirerArticle(
+        article.id,
+        article.nom
       );
 
     }
 
 
-    actions.appendChild(
-      boutonModifier
-    );
-
-    actions.appendChild(
-      boutonQR
-    );
-
-    actions.appendChild(
-      boutonRetirer
+    actions.append(
+      edit,
+      qr,
+      remove
     );
 
 
-    carte.appendChild(
-      actions
-    );
+    card.appendChild(actions);
 
-
-    objectsGrid.appendChild(
-      carte
-    );
+    objectsGrid.appendChild(card);
 
   });
 
@@ -3046,7 +2750,1142 @@ async function chargerMesObjets() {
 
 
 /* =========================================================
-   FORMAT PRIX
+   MODIFIER
+========================================================= */
+
+async function modifierArticle(id) {
+
+  const {data,error} =
+  await db
+  .from("articles")
+  .select("*")
+  .eq("id",id)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  )
+  .single();
+
+
+  if (error) {
+
+    alert(error.message);
+
+    return;
+
+  }
+
+
+  articleEnModification =
+  data;
+
+
+  document.getElementById(
+    "articleNom"
+  ).value =
+  data.nom || "";
+
+
+  document.getElementById(
+    "articleCategorie"
+  ).value =
+  data.categorie || "";
+
+
+  document.getElementById(
+    "articlePrix"
+  ).value =
+  data.prix;
+
+
+  document.getElementById(
+    "articleQuantite"
+  ).value =
+  data.quantite;
+
+
+  document.getElementById(
+    "articleDescription"
+  ).value =
+  data.description || "";
+
+
+  articlePhoto.value = "";
+
+
+  if (data.photo_url) {
+
+    photoPreview.src =
+    data.photo_url;
+
+    photoPreview.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  else {
+
+    photoPreview.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  document.getElementById(
+    "articleEyebrow"
+  ).textContent =
+  data.reference || "MODIFICATION";
+
+
+  document.getElementById(
+    "articlePageTitle"
+  ).innerHTML =
+  "MODIFIER<br>UN OBJET.";
+
+
+  document.getElementById(
+    "saveArticleButton"
+  ).textContent =
+  "ENREGISTRER LES MODIFICATIONS";
+
+
+  cacherToutesLesPages();
+
+  articleSection.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =========================================================
+   RETIRER = SUPPRIMER
+========================================================= */
+
+async function retirerArticle(
+  id,
+  nom
+) {
+
+  const ok =
+  confirm(
+    "RETIRER CET OBJET ?\n\n" +
+    nom +
+    "\n\nIl disparaîtra de ton inventaire."
+  );
+
+
+  if (!ok) {
+    return;
+  }
+
+
+  const {error} =
+  await db
+  .from("articles")
+  .delete()
+  .eq("id",id)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  );
+
+
+  if (error) {
+
+    alert(
+      "Impossible de retirer l'objet :\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await chargerMesObjets();
+
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+async function afficherQRCode(id) {
+
+  const {data,error} =
+  await db
+  .from("articles")
+  .select("*")
+  .eq("id",id)
+  .single();
+
+
+  if (error) {
+
+    alert(error.message);
+
+    return;
+
+  }
+
+
+  cacherToutesLesPages();
+
+  qrSection.classList.remove("hidden");
+
+
+  document.getElementById(
+    "qrReference"
+  ).textContent =
+  "RÉF. " +
+  (data.reference || "—");
+
+
+  document.getElementById(
+    "qrName"
+  ).textContent =
+  data.nom;
+
+
+  document.getElementById(
+    "qrPrice"
+  ).textContent =
+  formaterPrix(data.prix);
+
+
+  const zone =
+  document.getElementById(
+    "qrCode"
+  );
+
+
+  zone.innerHTML = "";
+
+
+  new QRCode(
+    zone,
+    {
+      text:
+      "VIDEDECO:" +
+      data.id,
+
+      width:240,
+      height:240,
+
+      correctLevel:
+      QRCode.CorrectLevel.H
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CAISSE
+========================================================= */
+
+function ouvrirCaisse() {
+
+  panier = [];
+  modePaiement = null;
+
+  cacherToutesLesPages();
+
+  cashierSection.classList.remove(
+    "hidden"
+  );
+
+  document.getElementById(
+    "cashReference"
+  ).value = "";
+
+  cashMessage.textContent = "";
+
+  afficherPanier();
+
+}
+
+
+/* =========================================================
+   AJOUT PAR RÉFÉRENCE
+========================================================= */
+
+async function ajouterParReference() {
+
+  const input =
+  document.getElementById(
+    "cashReference"
+  );
+
+
+  let reference =
+  input.value
+  .trim()
+  .toUpperCase();
+
+
+  if (!reference) {
+    return;
+  }
+
+
+  cashMessage.textContent =
+  "Recherche…";
+
+  cashMessage.className =
+  "message";
+
+
+  const {data,error} =
+  await db
+  .from("articles")
+  .select(
+    "id, reference, nom, prix, quantite_disponible, statut"
+  )
+  .eq(
+    "reference",
+    reference
+  )
+  .maybeSingle();
+
+
+  if (error) {
+
+    erreurCaisse(
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  if (!data) {
+
+    erreurCaisse(
+      "Article introuvable : " +
+      reference
+    );
+
+    return;
+
+  }
+
+
+  ajouterArticleAuPanier(
+    data
+  );
+
+
+  input.value = "";
+
+}
+
+
+/* =========================================================
+   AJOUT QR
+========================================================= */
+
+async function ajouterParQRCode(
+  texte
+) {
+
+  if (
+    !texte.startsWith(
+      "VIDEDECO:"
+    )
+  ) {
+
+    erreurCaisse(
+      "Ce QR code n'est pas un QR VIDE DECO."
+    );
+
+    return;
+
+  }
+
+
+  const id =
+  texte.substring(
+    "VIDEDECO:".length
+  );
+
+
+  const {data,error} =
+  await db
+  .from("articles")
+  .select(
+    "id, reference, nom, prix, quantite_disponible, statut"
+  )
+  .eq("id",id)
+  .maybeSingle();
+
+
+  if (error || !data) {
+
+    erreurCaisse(
+      "Article introuvable."
+    );
+
+    return;
+
+  }
+
+
+  ajouterArticleAuPanier(
+    data
+  );
+
+}
+
+
+/* =========================================================
+   PANIER
+========================================================= */
+
+function ajouterArticleAuPanier(
+  article
+) {
+
+  if (
+    article.statut === "vendu" ||
+    Number(
+      article.quantite_disponible
+    ) <= 0
+  ) {
+
+    erreurCaisse(
+      "Cet article n'est plus disponible."
+    );
+
+    return;
+
+  }
+
+
+  const existant =
+  panier.find(
+    item =>
+    item.id === article.id
+  );
+
+
+  if (existant) {
+
+    if (
+      existant.quantite + 1 >
+      Number(
+        article.quantite_disponible
+      )
+    ) {
+
+      erreurCaisse(
+        "Stock insuffisant."
+      );
+
+      return;
+
+    }
+
+
+    existant.quantite++;
+
+  }
+
+  else {
+
+    panier.push({
+
+      ...article,
+
+      quantite:1
+
+    });
+
+  }
+
+
+  cashMessage.textContent =
+  "ARTICLE AJOUTÉ ✓";
+
+  cashMessage.className =
+  "message success";
+
+
+  afficherPanier();
+
+}
+
+
+/* =========================================================
+   AFFICHER PANIER
+========================================================= */
+
+function afficherPanier() {
+
+  const zone =
+  document.getElementById(
+    "cartItems"
+  );
+
+
+  zone.innerHTML = "";
+
+
+  if (!panier.length) {
+
+    zone.innerHTML = `
+
+      <div class="cart-empty">
+        Aucun article dans le panier.
+      </div>
+    `;
+
+  }
+
+  else {
+
+    panier.forEach(
+    (item,index) => {
+
+      const ligne =
+      document.createElement("div");
+
+      ligne.className =
+      "cart-item";
+
+
+      ligne.innerHTML = `
+
+        <div class="cart-ref">
+          ${echapperHTML(item.reference || "")}
+        </div>
+
+        <div class="cart-name">
+          ${echapperHTML(item.nom)}
+        </div>
+
+        <div class="cart-line">
+
+          <div class="cart-price">
+
+            ${formaterPrix(
+              Number(item.prix) *
+              item.quantite
+            )}
+
+          </div>
+
+          <div class="quantity-controls">
+
+            <button
+              onclick="changerQuantite(${index},-1)"
+            >
+              −
+            </button>
+
+            <span>
+              ${item.quantite}
+            </span>
+
+            <button
+              onclick="changerQuantite(${index},1)"
+            >
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+        <button
+          class="cart-remove"
+          onclick="supprimerDuPanier(${index})"
+        >
+          Retirer du panier
+        </button>
+      `;
+
+
+      zone.appendChild(ligne);
+
+    });
+
+  }
+
+
+  document.getElementById(
+    "cartTotal"
+  ).textContent =
+  formaterPrix(
+    calculerTotal()
+  );
+
+
+  actualiserBoutonVente();
+
+}
+
+
+/* =========================================================
+   QUANTITÉ PANIER
+========================================================= */
+
+function changerQuantite(
+  index,
+  variation
+) {
+
+  const item =
+  panier[index];
+
+
+  const nouvelle =
+  item.quantite +
+  variation;
+
+
+  if (nouvelle <= 0) {
+
+    supprimerDuPanier(
+      index
+    );
+
+    return;
+
+  }
+
+
+  if (
+    nouvelle >
+    Number(
+      item.quantite_disponible
+    )
+  ) {
+
+    erreurCaisse(
+      "Il n'y a que " +
+      item.quantite_disponible +
+      " exemplaire(s) disponible(s)."
+    );
+
+    return;
+
+  }
+
+
+  item.quantite =
+  nouvelle;
+
+
+  afficherPanier();
+
+}
+
+
+function supprimerDuPanier(index) {
+
+  panier.splice(
+    index,
+    1
+  );
+
+  afficherPanier();
+
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function calculerTotal() {
+
+  return panier.reduce(
+    (total,item) =>
+
+      total +
+      (
+        Number(item.prix) *
+        item.quantite
+      ),
+
+    0
+  );
+
+}
+
+
+/* =========================================================
+   PAIEMENT
+========================================================= */
+
+function choisirPaiement(mode) {
+
+  modePaiement =
+  mode;
+
+
+  document
+  .querySelectorAll(
+    ".payment-button"
+  )
+  .forEach(
+    bouton =>
+    bouton.classList.remove(
+      "active"
+    )
+  );
+
+
+  const ids = {
+
+    carte:
+    "paymentCarte",
+
+    especes:
+    "paymentEspeces",
+
+    autre:
+    "paymentAutre"
+
+  };
+
+
+  document.getElementById(
+    ids[mode]
+  )
+  .classList.add(
+    "active"
+  );
+
+
+  actualiserBoutonVente();
+
+}
+
+
+function actualiserBoutonVente() {
+
+  const bouton =
+  document.getElementById(
+    "validateSaleButton"
+  );
+
+
+  bouton.disabled =
+  !panier.length ||
+  !modePaiement;
+
+
+  if (
+    panier.length &&
+    modePaiement
+  ) {
+
+    bouton.textContent =
+    "VALIDER LE PAIEMENT — " +
+    formaterPrix(
+      calculerTotal()
+    );
+
+  }
+
+  else {
+
+    bouton.textContent =
+    "VALIDER LE PAIEMENT";
+
+  }
+
+}
+
+
+/* =========================================================
+   VALIDER VENTE
+========================================================= */
+
+async function validerVente() {
+
+  if (
+    !panier.length ||
+    !modePaiement
+  ) {
+    return;
+  }
+
+
+  const total =
+  calculerTotal();
+
+
+  let texteMode =
+  modePaiement.toUpperCase();
+
+
+  if (
+    modePaiement === "especes"
+  ) {
+
+    texteMode =
+    "ESPÈCES";
+
+  }
+
+
+  const confirmation =
+  confirm(
+    "CONFIRMER LE PAIEMENT ?\n\n" +
+    "Total : " +
+    formaterPrix(total) +
+    "\n" +
+    "Paiement : " +
+    texteMode +
+    "\n\n" +
+    "Confirme uniquement si le paiement a bien été encaissé."
+  );
+
+
+  if (!confirmation) {
+    return;
+  }
+
+
+  const bouton =
+  document.getElementById(
+    "validateSaleButton"
+  );
+
+
+  bouton.disabled = true;
+
+  bouton.textContent =
+  "ENREGISTREMENT…";
+
+
+  cashMessage.textContent =
+  "Enregistrement de la vente…";
+
+  cashMessage.className =
+  "message";
+
+
+  const articlesRPC =
+  panier.map(
+    item => ({
+      article_id:
+      item.id,
+
+      quantite:
+      item.quantite
+    })
+  );
+
+
+  try {
+
+    const {data,error} =
+    await db.rpc(
+      "valider_vente",
+      {
+        p_articles:
+        articlesRPC,
+
+        p_mode_paiement:
+        modePaiement
+      }
+    );
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    const totalFinal =
+    total;
+
+    const paiementFinal =
+    modePaiement;
+
+
+    panier = [];
+    modePaiement = null;
+
+
+    cacherToutesLesPages();
+
+    saleSuccessSection.classList.remove(
+      "hidden"
+    );
+
+
+    document.getElementById(
+      "successTotal"
+    ).textContent =
+    formaterPrix(
+      totalFinal
+    );
+
+
+    document.getElementById(
+      "successPayment"
+    ).textContent =
+    "Paiement : " +
+    (
+      paiementFinal === "especes"
+      ? "ESPÈCES"
+      : paiementFinal.toUpperCase()
+    );
+
+
+    console.log(
+      "VENTE ENREGISTRÉE :",
+      data
+    );
+
+  }
+
+  catch(error) {
+
+    console.error(
+      error
+    );
+
+
+    erreurCaisse(
+      "La vente n'a pas été enregistrée : " +
+      error.message
+    );
+
+
+    bouton.disabled = false;
+
+    actualiserBoutonVente();
+
+  }
+
+}
+
+
+/* =========================================================
+   NOUVELLE VENTE
+========================================================= */
+
+function nouvelleVente() {
+
+  ouvrirCaisse();
+
+}
+
+
+/* =========================================================
+   SCANNER
+========================================================= */
+
+async function demarrerScanner() {
+
+  const reader =
+  document.getElementById(
+    "reader"
+  );
+
+
+  if (scannerActif) {
+
+    await arreterScanner();
+
+    return;
+
+  }
+
+
+  reader.classList.remove(
+    "hidden"
+  );
+
+
+  cashMessage.textContent =
+  "Autorise l'accès à la caméra si ton appareil le demande.";
+
+  cashMessage.className =
+  "message";
+
+
+  try {
+
+    scanner =
+    new Html5Qrcode(
+      "reader"
+    );
+
+
+    await scanner.start(
+
+      {
+        facingMode:
+        "environment"
+      },
+
+      {
+        fps:10,
+
+        qrbox:{
+          width:250,
+          height:250
+        }
+      },
+
+      async texte => {
+
+        if (!scannerActif) {
+          return;
+        }
+
+
+        await arreterScanner();
+
+        await ajouterParQRCode(
+          texte
+        );
+
+      },
+
+      () => {}
+
+    );
+
+
+    scannerActif =
+    true;
+
+
+    document.getElementById(
+      "scanButton"
+    ).textContent =
+    "FERMER LA CAMÉRA";
+
+  }
+
+  catch(error) {
+
+    console.error(
+      error
+    );
+
+
+    scannerActif =
+    false;
+
+
+    reader.classList.add(
+      "hidden"
+    );
+
+
+    erreurCaisse(
+      "Impossible d'ouvrir la caméra. Tu peux saisir la référence manuellement."
+    );
+
+  }
+
+}
+
+
+async function arreterScanner() {
+
+  if (
+    scanner &&
+    scannerActif
+  ) {
+
+    try {
+
+      await scanner.stop();
+
+      scanner.clear();
+
+    }
+
+    catch(error) {
+
+      console.log(error);
+
+    }
+
+  }
+
+
+  scannerActif =
+  false;
+
+  scanner =
+  null;
+
+
+  const reader =
+  document.getElementById(
+    "reader"
+  );
+
+
+  if (reader) {
+
+    reader.innerHTML = "";
+
+    reader.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  const bouton =
+  document.getElementById(
+    "scanButton"
+  );
+
+
+  if (bouton) {
+
+    bouton.textContent =
+    "📷 SCANNER UN QR CODE";
+
+  }
+
+}
+
+
+function quitterCaisse() {
+
+  arreterScanner();
+
+  retourDashboard();
+
+}
+
+
+/* =========================================================
+   ERREUR CAISSE
+========================================================= */
+
+function erreurCaisse(message) {
+
+  cashMessage.textContent =
+  message;
+
+  cashMessage.className =
+  "message error";
+
+}
+
+
+/* =========================================================
+   OUTILS
 ========================================================= */
 
 function formaterPrix(prix) {
@@ -3064,10 +3903,6 @@ function formaterPrix(prix) {
 }
 
 
-/* =========================================================
-   STATUT
-========================================================= */
-
 function texteStatut(statut) {
 
   switch(statut) {
@@ -3081,9 +3916,6 @@ function texteStatut(statut) {
     case "vendu":
       return "VENDU";
 
-    case "retire":
-      return "RETIRÉ";
-
     default:
       return statut || "—";
 
@@ -3092,9 +3924,33 @@ function texteStatut(statut) {
 }
 
 
+function echapperHTML(texte) {
+
+  const div =
+  document.createElement("div");
+
+  div.textContent =
+  texte || "";
+
+  return div.innerHTML;
+
+}
+
+
 /* =========================================================
    DÉCONNEXION
 ========================================================= */
+
+async function deconnexion() {
+
+  await arreterScanner();
+
+  await db.auth.signOut();
+
+  afficherConnexion();
+
+}
+
 
 function afficherConnexion() {
 
@@ -3104,32 +3960,8 @@ function afficherConnexion() {
     "hidden"
   );
 
-  adminCards.classList.add(
-    "hidden"
-  );
-
-  sellerCards.classList.add(
-    "hidden"
-  );
-
   utilisateurActuel = null;
   profilActuel = null;
-  articleEnModification = null;
-
-}
-
-
-async function deconnexion() {
-
-  await db.auth.signOut();
-
-  document.getElementById(
-    "password"
-  ).value = "";
-
-  loginMessage.textContent = "";
-
-  afficherConnexion();
 
 }
 
@@ -3167,32 +3999,58 @@ async function verifierSession() {
 
 
 /* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+function fonctionBientotDisponible(
+  nom
+) {
+
+  alert(
+    nom +
+    "\n\nCette partie sera construite ensuite."
+  );
+
+}
+
+
+/* =========================================================
    ÉVÉNEMENTS
 ========================================================= */
 
-loginButton.addEventListener(
+document.getElementById(
+  "loginButton"
+)
+.addEventListener(
   "click",
   connexion
 );
 
 
-logoutButton.addEventListener(
+document.getElementById(
+  "logoutButton"
+)
+.addEventListener(
   "click",
   deconnexion
 );
 
 
-saveArticleButton.addEventListener(
+document.getElementById(
+  "saveArticleButton"
+)
+.addEventListener(
   "click",
   enregistrerArticle
 );
 
 
-document
-.getElementById("password")
+document.getElementById(
+  "password"
+)
 .addEventListener(
   "keydown",
-  function(event) {
+  event => {
 
     if (
       event.key === "Enter"
@@ -3206,14 +4064,23 @@ document
 );
 
 
-function fonctionBientotDisponible(nom) {
+document.getElementById(
+  "cashReference"
+)
+.addEventListener(
+  "keydown",
+  event => {
 
-  alert(
-    nom +
-    "\n\nCette fonction sera construite à l'étape suivante."
-  );
+    if (
+      event.key === "Enter"
+    ) {
 
-}
+      ajouterParReference();
+
+    }
+
+  }
+);
 
 
 /* =========================================================
