@@ -42,6 +42,11 @@
       cursor: pointer;
     }
 
+    button:disabled {
+      cursor: wait;
+      opacity: .6;
+    }
+
     header {
       padding: 26px 5%;
       display: flex;
@@ -290,6 +295,52 @@
       font-weight: 900;
     }
 
+    /* PHOTO */
+
+    .photo-zone {
+      margin-top: 8px;
+      border: 2px dashed var(--black);
+      background: #ebe9e3;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .photo-input {
+      padding: 12px;
+      background: white;
+      border: 1px solid #999;
+    }
+
+    .photo-help {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .photo-preview-wrapper {
+      margin-top: 18px;
+    }
+
+    .photo-preview {
+      display: block;
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      background: white;
+      border: 1px solid var(--black);
+    }
+
+    .remove-photo {
+      width: 100%;
+      margin-top: 8px;
+      padding: 11px;
+      border: 1px solid var(--black);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
     .form-info {
       margin-top: 25px;
       padding: 18px;
@@ -367,6 +418,7 @@
       <h2>Connexion</h2>
 
       <label for="email">Adresse e-mail</label>
+
       <input
         type="email"
         id="email"
@@ -375,6 +427,7 @@
       >
 
       <label for="password">Mot de passe</label>
+
       <input
         type="password"
         id="password"
@@ -431,6 +484,7 @@
     <div id="adminCards" class="cards hidden">
 
       <div class="card" onclick="fonctionBientotDisponible('STOCK')">
+
         <div class="number">01</div>
 
         <div>
@@ -443,10 +497,12 @@
         </div>
 
         <div class="arrow">→</div>
+
       </div>
 
 
       <div class="card" onclick="fonctionBientotDisponible('CAISSE')">
+
         <div class="number">02</div>
 
         <div>
@@ -459,10 +515,12 @@
         </div>
 
         <div class="arrow">→</div>
+
       </div>
 
 
       <div class="card" onclick="fonctionBientotDisponible('ADMINISTRATION')">
+
         <div class="number">03</div>
 
         <div>
@@ -475,6 +533,7 @@
         </div>
 
         <div class="arrow">→</div>
+
       </div>
 
     </div>
@@ -485,6 +544,7 @@
     <div id="sellerCards" class="cards hidden">
 
       <div class="card" onclick="ouvrirAjoutArticle()">
+
         <div class="number">01</div>
 
         <div>
@@ -497,10 +557,12 @@
         </div>
 
         <div class="arrow">→</div>
+
       </div>
 
 
       <div class="card" onclick="fonctionBientotDisponible('MES ARTICLES')">
+
         <div class="number">02</div>
 
         <div>
@@ -513,10 +575,12 @@
         </div>
 
         <div class="arrow">→</div>
+
       </div>
 
 
       <div class="card" onclick="fonctionBientotDisponible('MES VENTES')">
+
         <div class="number">03</div>
 
         <div>
@@ -529,6 +593,7 @@
         </div>
 
         <div class="arrow">→</div>
+
       </div>
 
     </div>
@@ -549,6 +614,7 @@
     <div class="page-header">
 
       <div>
+
         <div class="eyebrow">
           NOUVEL OBJET
         </div>
@@ -556,6 +622,7 @@
         <div class="page-title">
           AJOUTER<br>UN OBJET.
         </div>
+
       </div>
 
       <button
@@ -573,7 +640,11 @@
 
       <div class="form-grid">
 
+
+        <!-- NOM -->
+
         <div class="full">
+
           <label for="articleNom">
             Nom de l'objet *
           </label>
@@ -583,15 +654,20 @@
             type="text"
             placeholder="Ex. Lampe vintage"
           >
+
         </div>
 
 
+        <!-- CATÉGORIE -->
+
         <div>
+
           <label for="articleCategorie">
             Catégorie
           </label>
 
           <select id="articleCategorie">
+
             <option value="">Choisir</option>
             <option value="Mobilier">Mobilier</option>
             <option value="Luminaire">Luminaire</option>
@@ -601,11 +677,16 @@
             <option value="Art">Art</option>
             <option value="Livre">Livre</option>
             <option value="Divers">Divers</option>
+
           </select>
+
         </div>
 
 
+        <!-- PRIX -->
+
         <div class="price-wrapper">
+
           <label for="articlePrix">
             Prix *
           </label>
@@ -620,10 +701,14 @@
           >
 
           <span class="euro">€</span>
+
         </div>
 
 
+        <!-- QUANTITÉ -->
+
         <div>
+
           <label for="articleQuantite">
             Quantité *
           </label>
@@ -635,10 +720,14 @@
             step="1"
             value="1"
           >
+
         </div>
 
 
+        <!-- DESCRIPTION -->
+
         <div class="full">
+
           <label for="articleDescription">
             Description
           </label>
@@ -647,6 +736,56 @@
             id="articleDescription"
             placeholder="Décris brièvement l'objet..."
           ></textarea>
+
+        </div>
+
+
+        <!-- PHOTO -->
+
+        <div class="full">
+
+          <label for="articlePhoto">
+            Photo de l'objet
+          </label>
+
+          <div class="photo-zone">
+
+            <input
+              id="articlePhoto"
+              class="photo-input"
+              type="file"
+              accept="image/*"
+            >
+
+            <div class="photo-help">
+              Sur téléphone ou tablette, tu peux prendre une photo
+              ou choisir une image existante.
+            </div>
+
+
+            <div
+              id="photoPreviewWrapper"
+              class="photo-preview-wrapper hidden"
+            >
+
+              <img
+                id="photoPreview"
+                class="photo-preview"
+                alt="Aperçu de l'objet"
+              >
+
+              <button
+                id="removePhotoButton"
+                class="remove-photo"
+                type="button"
+              >
+                Supprimer cette photo
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -665,9 +804,9 @@
 
 
       <div class="form-info">
-        Après l'enregistrement, l'objet apparaîtra avec le statut
-        <strong>À APPORTER</strong>. Nous ajouterons ensuite la photo,
-        la référence automatique et l'étiquette.
+        L'objet sera enregistré avec le statut
+        <strong>À APPORTER</strong>.
+        La photo sera conservée dans VIDE DECO et associée à l'objet.
       </div>
 
     </div>
@@ -707,6 +846,8 @@
 
   let utilisateurActuel = null;
   let profilActuel = null;
+  let photoSelectionnee = null;
+  let photoPreviewURL = null;
 
 
   /* =========================================================
@@ -752,6 +893,18 @@
   const databaseStatus =
     document.getElementById("databaseStatus");
 
+  const articlePhoto =
+    document.getElementById("articlePhoto");
+
+  const photoPreview =
+    document.getElementById("photoPreview");
+
+  const photoPreviewWrapper =
+    document.getElementById("photoPreviewWrapper");
+
+  const removePhotoButton =
+    document.getElementById("removePhotoButton");
+
 
   /* =========================================================
      CONNEXION
@@ -767,6 +920,7 @@
 
     const password =
       document.getElementById("password").value;
+
 
     if (!email || !password) {
 
@@ -833,7 +987,10 @@
 
     if (error || !profil) {
 
-      console.error("ERREUR PROFIL :", error);
+      console.error(
+        "ERREUR PROFIL :",
+        error
+      );
 
       loginMessage.textContent =
         error
@@ -895,7 +1052,7 @@
 
 
   /* =========================================================
-     AJOUT ARTICLE
+     NAVIGATION
      ========================================================= */
 
   function ouvrirAjoutArticle() {
@@ -921,6 +1078,184 @@
   }
 
 
+  /* =========================================================
+     PHOTO
+     ========================================================= */
+
+  function afficherApercuPhoto(file) {
+
+    if (photoPreviewURL) {
+      URL.revokeObjectURL(photoPreviewURL);
+    }
+
+    photoPreviewURL =
+      URL.createObjectURL(file);
+
+    photoPreview.src =
+      photoPreviewURL;
+
+    photoPreviewWrapper.classList.remove(
+      "hidden"
+    );
+
+  }
+
+
+  function supprimerPhotoSelectionnee() {
+
+    photoSelectionnee = null;
+
+    articlePhoto.value = "";
+
+    if (photoPreviewURL) {
+
+      URL.revokeObjectURL(
+        photoPreviewURL
+      );
+
+      photoPreviewURL = null;
+
+    }
+
+    photoPreview.removeAttribute("src");
+
+    photoPreviewWrapper.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  articlePhoto.addEventListener(
+    "change",
+    function(event) {
+
+      const file =
+        event.target.files[0];
+
+
+      if (!file) {
+
+        supprimerPhotoSelectionnee();
+
+        return;
+
+      }
+
+
+      if (!file.type.startsWith("image/")) {
+
+        articleMessage.textContent =
+          "Le fichier sélectionné doit être une image.";
+
+        articleMessage.className =
+          "message error";
+
+        supprimerPhotoSelectionnee();
+
+        return;
+
+      }
+
+
+      photoSelectionnee = file;
+
+      afficherApercuPhoto(file);
+
+      articleMessage.textContent = "";
+      articleMessage.className = "message";
+
+    }
+  );
+
+
+  removePhotoButton.addEventListener(
+    "click",
+    supprimerPhotoSelectionnee
+  );
+
+
+  /* =========================================================
+     ENVOI PHOTO SUPABASE
+     ========================================================= */
+
+  async function envoyerPhoto(articleId) {
+
+    if (!photoSelectionnee) {
+      return null;
+    }
+
+
+    const extensionOriginale =
+      photoSelectionnee.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+
+    const extension =
+      extensionOriginale ||
+      "jpg";
+
+
+    /*
+      Chaque vendeur possède son propre dossier.
+      Chaque article possède ensuite son fichier.
+    */
+
+    const chemin =
+      utilisateurActuel.id +
+      "/" +
+      articleId +
+      "-" +
+      Date.now() +
+      "." +
+      extension;
+
+
+    const { error: uploadError } =
+      await db.storage
+        .from("photos-articles")
+        .upload(
+          chemin,
+          photoSelectionnee,
+          {
+            cacheControl: "3600",
+            upsert: false
+          }
+        );
+
+
+    if (uploadError) {
+
+      console.error(
+        "ERREUR PHOTO :",
+        uploadError
+      );
+
+      throw new Error(
+        "Impossible d'envoyer la photo : " +
+        uploadError.message
+      );
+
+    }
+
+
+    const { data } =
+      db.storage
+        .from("photos-articles")
+        .getPublicUrl(chemin);
+
+
+    return data.publicUrl;
+
+  }
+
+
+  /* =========================================================
+     ENREGISTRER ARTICLE
+     ========================================================= */
+
   async function enregistrerArticle() {
 
     articleMessage.textContent = "";
@@ -936,30 +1271,42 @@
         "message error";
 
       return;
+
     }
 
 
     const nom =
-      document.getElementById("articleNom")
+      document
+        .getElementById("articleNom")
         .value
         .trim();
 
+
     const categorie =
-      document.getElementById("articleCategorie")
+      document
+        .getElementById("articleCategorie")
         .value;
+
 
     const prix =
       Number(
-        document.getElementById("articlePrix").value
+        document
+          .getElementById("articlePrix")
+          .value
       );
+
 
     const quantite =
       Number(
-        document.getElementById("articleQuantite").value
+        document
+          .getElementById("articleQuantite")
+          .value
       );
 
+
     const description =
-      document.getElementById("articleDescription")
+      document
+        .getElementById("articleDescription")
         .value
         .trim();
 
@@ -973,6 +1320,7 @@
         "message error";
 
       return;
+
     }
 
 
@@ -988,6 +1336,7 @@
         "message error";
 
       return;
+
     }
 
 
@@ -1003,13 +1352,21 @@
         "message error";
 
       return;
+
     }
 
 
     saveArticleButton.disabled = true;
-    saveArticleButton.textContent =
-      "ENREGISTREMENT…";
 
+    saveArticleButton.textContent =
+      photoSelectionnee
+        ? "ENREGISTREMENT ET ENVOI DE LA PHOTO…"
+        : "ENREGISTREMENT…";
+
+
+    /*
+      1 — Création de l'article
+    */
 
     const nouvelArticle = {
 
@@ -1040,7 +1397,10 @@
     };
 
 
-    const { data, error } =
+    const {
+      data: articleCree,
+      error: articleError
+    } =
       await db
         .from("articles")
         .insert(nouvelArticle)
@@ -1048,55 +1408,136 @@
         .single();
 
 
-    saveArticleButton.disabled = false;
-    saveArticleButton.textContent =
-      "ENREGISTRER L'OBJET";
-
-
-    if (error) {
+    if (articleError) {
 
       console.error(
         "ERREUR ARTICLE :",
-        error
+        articleError
       );
 
+      saveArticleButton.disabled = false;
+      saveArticleButton.textContent =
+        "ENREGISTRER L'OBJET";
+
       articleMessage.textContent =
-        "Erreur : " + error.message;
+        "Erreur : " +
+        articleError.message;
 
       articleMessage.className =
         "message error";
 
       return;
+
     }
 
 
-    console.log(
-      "ARTICLE CRÉÉ :",
-      data
-    );
+    /*
+      2 — Envoi de la photo
+    */
+
+    try {
+
+      if (photoSelectionnee) {
+
+        const photoURL =
+          await envoyerPhoto(
+            articleCree.id
+          );
 
 
-    articleMessage.textContent =
-      "OBJET ENREGISTRÉ ✓";
+        /*
+          3 — Enregistrement de l'adresse
+          de la photo dans l'article
+        */
 
-    articleMessage.className =
-      "message success";
+        const { error: updateError } =
+          await db
+            .from("articles")
+            .update({
+              photo_url: photoURL
+            })
+            .eq(
+              "id",
+              articleCree.id
+            );
 
 
-    document.getElementById("articleNom").value =
-      "";
+        if (updateError) {
 
-    document.getElementById("articleCategorie").value =
-      "";
+          console.error(
+            "ERREUR URL PHOTO :",
+            updateError
+          );
 
-    document.getElementById("articlePrix").value =
-      "";
+          throw new Error(
+            "La photo a été envoyée mais son adresse n'a pas pu être enregistrée : " +
+            updateError.message
+          );
 
-    document.getElementById("articleQuantite").value =
-      "1";
+        }
 
-    document.getElementById("articleDescription").value =
-      "";
+      }
+
+
+      articleMessage.textContent =
+        photoSelectionnee
+          ? "OBJET ET PHOTO ENREGISTRÉS ✓"
+          : "OBJET ENREGISTRÉ ✓";
+
+
+      articleMessage.className =
+        "message success";
+
+
+      /*
+        Réinitialisation du formulaire
+      */
+
+      document.getElementById(
+        "articleNom"
+      ).value = "";
+
+
+      document.getElementById(
+        "articleCategorie"
+      ).value = "";
+
+
+      document.getElementById(
+        "articlePrix"
+      ).value = "";
+
+
+      document.getElementById(
+        "articleQuantite"
+      ).value = "1";
+
+
+      document.getElementById(
+        "articleDescription"
+      ).value = "";
+
+
+      supprimerPhotoSelectionnee();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      articleMessage.textContent =
+        error.message;
+
+      articleMessage.className =
+        "message error";
+
+    }
+
+
+    saveArticleButton.disabled = false;
+
+    saveArticleButton.textContent =
+      "ENREGISTRER L'OBJET";
 
   }
 
@@ -1107,12 +1548,27 @@
 
   function afficherConnexion() {
 
-    dashboardSection.classList.add("hidden");
-    articleSection.classList.add("hidden");
-    loginSection.classList.remove("hidden");
+    dashboardSection.classList.add(
+      "hidden"
+    );
 
-    adminCards.classList.add("hidden");
-    sellerCards.classList.add("hidden");
+    articleSection.classList.add(
+      "hidden"
+    );
+
+    loginSection.classList.remove(
+      "hidden"
+    );
+
+
+    adminCards.classList.add(
+      "hidden"
+    );
+
+    sellerCards.classList.add(
+      "hidden"
+    );
+
 
     utilisateurActuel = null;
     profilActuel = null;
@@ -1124,11 +1580,11 @@
 
     await db.auth.signOut();
 
-    document.getElementById("password").value =
-      "";
+    document.getElementById(
+      "password"
+    ).value = "";
 
-    loginMessage.textContent =
-      "";
+    loginMessage.textContent = "";
 
     afficherConnexion();
 
