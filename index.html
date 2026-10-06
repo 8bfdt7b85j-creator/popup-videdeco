@@ -25,7 +25,7 @@
   --grey:#d6d3cc;
   --green:#b7ff00;
   --red:#e34b3f;
-  --blue:#3182f6;
+  --blue:#2f86ff;
 }
 
 body {
@@ -103,7 +103,7 @@ h2 {
 
 
 /* =========================================================
-   FORMULAIRES
+   LOGIN
 ========================================================= */
 
 .login {
@@ -150,6 +150,10 @@ textarea {
   margin-top:22px;
   font-weight:900;
   text-transform:uppercase;
+}
+
+.primary:hover {
+  opacity:.85;
 }
 
 .primary:disabled {
@@ -235,6 +239,8 @@ textarea {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  background:transparent;
+  transition:.15s;
   cursor:pointer;
 }
 
@@ -273,7 +279,7 @@ textarea {
 
 
 /* =========================================================
-   ARTICLE
+   FORMULAIRE ARTICLE
 ========================================================= */
 
 .article-page {
@@ -359,6 +365,7 @@ textarea {
 .objects-count {
   font-size:13px;
   font-weight:900;
+  text-transform:uppercase;
 }
 
 .objects-grid {
@@ -369,6 +376,7 @@ textarea {
 
 .object-card {
   border:2px solid var(--black);
+  background:var(--background);
   display:flex;
   flex-direction:column;
   min-width:0;
@@ -378,7 +386,9 @@ textarea {
   width:100%;
   aspect-ratio:4/3;
   object-fit:cover;
+  display:block;
   border-bottom:2px solid var(--black);
+  background:#ddd;
 }
 
 .object-no-image {
@@ -391,6 +401,7 @@ textarea {
   background:#e2dfd8;
   font-size:12px;
   font-weight:900;
+  text-transform:uppercase;
 }
 
 .object-content {
@@ -403,6 +414,7 @@ textarea {
 .object-reference {
   font-size:11px;
   font-weight:900;
+  text-transform:uppercase;
   margin-bottom:12px;
 }
 
@@ -448,6 +460,7 @@ textarea {
   padding:7px 9px;
   font-size:10px;
   font-weight:900;
+  text-transform:uppercase;
   background:var(--green);
 }
 
@@ -467,18 +480,19 @@ textarea {
 
 .object-actions {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:1fr 1fr 1fr;
   border-top:2px solid var(--black);
 }
 
 .object-action {
+  min-height:48px;
   border:0;
   border-right:1px solid var(--black);
   background:transparent;
-  padding:13px 5px;
   font-size:10px;
   font-weight:900;
   text-transform:uppercase;
+  padding:10px 5px;
 }
 
 .object-action:last-child {
@@ -490,7 +504,7 @@ textarea {
   color:white;
 }
 
-.object-action.danger:hover {
+.object-action.remove:hover {
   background:var(--red);
   color:white;
 }
@@ -500,128 +514,77 @@ textarea {
    QR CODE
 ========================================================= */
 
-.qr-overlay {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.qr-modal {
-  width:min(460px,100%);
+.qr-box {
+  border:2px solid var(--black);
+  padding:30px;
+  max-width:520px;
+  margin:auto;
   background:var(--background);
-  border:3px solid var(--black);
-  padding:28px;
-}
-
-.qr-top {
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
-}
-
-.qr-close {
-  border:0;
-  background:none;
-  font-size:25px;
-  font-weight:900;
-}
-
-.qr-title {
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:-1px;
 }
 
 .qr-reference {
-  margin-top:7px;
-  font-size:13px;
+  font-size:14px;
   font-weight:900;
+  margin-bottom:12px;
+}
+
+.qr-name {
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:-2px;
+  line-height:1;
+}
+
+.qr-price {
+  font-size:42px;
+  font-weight:900;
+  margin:18px 0;
 }
 
 .qr-code {
+  background:white;
+  padding:20px;
   display:flex;
   justify-content:center;
-  margin:28px 0;
-  padding:20px;
-  background:white;
+  align-items:center;
+  margin:25px 0;
 }
 
 .qr-code img,
 .qr-code canvas {
   max-width:100%;
+  height:auto !important;
 }
 
-.qr-price {
-  font-size:38px;
-  font-weight:900;
-  text-align:center;
+.qr-help {
+  border-top:1px solid #aaa;
+  padding-top:15px;
+  font-size:12px;
+  line-height:1.5;
 }
 
-.qr-note {
-  font-size:11px;
-  line-height:1.4;
-  text-align:center;
-  margin-top:10px;
-}
-
-.qr-buttons {
+.qr-actions {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:25px;
-}
-
-.qr-buttons button {
-  margin:0;
+  margin-top:20px;
 }
 
 
 /* =========================================================
-   CONFIRMATION
+   EMPTY
 ========================================================= */
 
-.confirm-box {
-  width:min(500px,100%);
-  background:var(--background);
-  border:3px solid var(--black);
-  padding:28px;
+.empty-state {
+  border:2px solid var(--black);
+  padding:45px 25px;
+  text-align:center;
 }
 
-.confirm-title {
+.empty-title {
   font-size:32px;
   font-weight:900;
-  margin-bottom:15px;
-}
-
-.confirm-text {
-  line-height:1.5;
-  margin-bottom:25px;
-}
-
-.confirm-actions {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.confirm-actions button {
-  margin:0;
-}
-
-.danger-button {
-  width:100%;
-  border:0;
-  background:var(--red);
-  color:white;
-  padding:17px;
-  font-weight:900;
-  text-transform:uppercase;
+  margin-bottom:10px;
 }
 
 
@@ -650,9 +613,21 @@ footer {
     padding-top:35px;
   }
 
+  header {
+    padding:22px 5%;
+  }
+
+  h1 {
+    letter-spacing:-3px;
+  }
+
   .cards,
   .objects-grid {
     grid-template-columns:1fr;
+  }
+
+  .card {
+    min-height:190px;
   }
 
   .dashboard-header,
@@ -669,8 +644,8 @@ footer {
   }
 
   .objects-toolbar {
-    flex-direction:column;
     align-items:flex-start;
+    flex-direction:column;
   }
 
 }
@@ -682,30 +657,33 @@ footer {
 
 @media print {
 
-  body * {
-    visibility:hidden;
-  }
-
-  #qrOverlay,
-  #qrOverlay * {
-    visibility:visible;
-  }
-
-  #qrOverlay {
-    position:absolute;
-    inset:0;
+  body {
     background:white;
+  }
+
+  header,
+  footer,
+  .page-header,
+  .qr-actions,
+  .qr-help {
+    display:none !important;
+  }
+
+  main {
+    width:100%;
     padding:0;
   }
 
-  .qr-modal {
-    width:100%;
-    border:0;
+  #qrSection {
+    display:block !important;
   }
 
-  .qr-close,
-  .qr-buttons {
-    display:none !important;
+  .qr-box {
+    border:2px solid black;
+    width:90mm;
+    max-width:90mm;
+    padding:8mm;
+    margin:0;
   }
 
 }
@@ -721,10 +699,13 @@ footer {
   <div class="tag">POP-UP MANAGEMENT</div>
 </header>
 
+
 <main>
 
 
-<!-- CONNEXION -->
+<!-- =====================================================
+     CONNEXION
+===================================================== -->
 
 <section id="loginSection" class="login">
 
@@ -740,24 +721,49 @@ footer {
 
     <h2>Connexion</h2>
 
-    <label>Adresse e-mail</label>
-    <input id="email" type="email" autocomplete="email">
+    <label for="email">
+      Adresse e-mail
+    </label>
 
-    <label>Mot de passe</label>
-    <input id="password" type="password" autocomplete="current-password">
+    <input
+      type="email"
+      id="email"
+      autocomplete="email"
+      placeholder="votre@email.fr"
+    >
 
-    <button id="loginButton" class="primary">
+    <label for="password">
+      Mot de passe
+    </label>
+
+    <input
+      type="password"
+      id="password"
+      autocomplete="current-password"
+      placeholder="••••••••"
+    >
+
+    <button
+      class="primary"
+      id="loginButton"
+      type="button"
+    >
       Se connecter
     </button>
 
-    <div id="loginMessage" class="message"></div>
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
 
   </div>
 
 </section>
 
 
-<!-- DASHBOARD -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
 <section id="dashboardSection" class="hidden">
 
@@ -769,17 +775,27 @@ footer {
         VIDE DECO POP-UP
       </div>
 
-      <div id="hello" class="hello">
+      <div
+        id="hello"
+        class="hello"
+      >
         BONJOUR.
       </div>
 
-      <div id="roleBadge" class="status">
+      <div
+        id="roleBadge"
+        class="status"
+      >
         CONNEXION
       </div>
 
     </div>
 
-    <button id="logoutButton" class="logout">
+    <button
+      id="logoutButton"
+      class="logout"
+      type="button"
+    >
       Déconnexion
     </button>
 
@@ -790,42 +806,68 @@ footer {
 
   <div id="adminCards" class="cards hidden">
 
-    <div class="card" onclick="fonctionBientotDisponible('STOCK')">
+    <div
+      class="card"
+      onclick="fonctionBientotDisponible('STOCK')"
+    >
       <div class="number">01</div>
+
       <div>
-        <div class="card-title">STOCK</div>
+        <div class="card-title">
+          STOCK
+        </div>
+
         <p>
           Articles en boutique<br>
           Articles à apporter<br>
           Retraits et retours
         </p>
       </div>
+
       <div class="arrow">→</div>
     </div>
 
-    <div class="card" onclick="fonctionBientotDisponible('CAISSE')">
+
+    <div
+      class="card"
+      onclick="fonctionBientotDisponible('CAISSE')"
+    >
       <div class="number">02</div>
+
       <div>
-        <div class="card-title">CAISSE</div>
+        <div class="card-title">
+          CAISSE
+        </div>
+
         <p>
           Scanner les articles<br>
           Constituer le panier<br>
           Valider les ventes
         </p>
       </div>
+
       <div class="arrow">→</div>
     </div>
 
-    <div class="card" onclick="fonctionBientotDisponible('ADMIN')">
+
+    <div
+      class="card"
+      onclick="fonctionBientotDisponible('ADMINISTRATION')"
+    >
       <div class="number">03</div>
+
       <div>
-        <div class="card-title">ADMIN</div>
+        <div class="card-title">
+          ADMIN
+        </div>
+
         <p>
           Brocanteurs<br>
           Chiffre d'affaires<br>
-          Commissions
+          Commissions et reversements
         </p>
       </div>
+
       <div class="arrow">→</div>
     </div>
 
@@ -836,74 +878,122 @@ footer {
 
   <div id="sellerCards" class="cards hidden">
 
-    <div class="card" onclick="ouvrirAjoutArticle()">
+    <div
+      class="card"
+      onclick="ouvrirAjoutArticle()"
+    >
       <div class="number">01</div>
+
       <div>
-        <div class="card-title">AJOUTER</div>
+        <div class="card-title">
+          AJOUTER
+        </div>
+
         <p>
           Enregistrer un objet<br>
           Ajouter sa photo<br>
           Définir son prix
         </p>
       </div>
+
       <div class="arrow">→</div>
     </div>
 
-    <div class="card" onclick="ouvrirMesObjets()">
+
+    <div
+      class="card"
+      onclick="ouvrirMesObjets()"
+    >
       <div class="number">02</div>
+
       <div>
-        <div class="card-title">MES OBJETS</div>
+        <div class="card-title">
+          MES OBJETS
+        </div>
+
         <p>
           À apporter<br>
           En boutique<br>
           Vendus ou retirés
         </p>
       </div>
+
       <div class="arrow">→</div>
     </div>
 
-    <div class="card" onclick="fonctionBientotDisponible('MES VENTES')">
+
+    <div
+      class="card"
+      onclick="fonctionBientotDisponible('MES VENTES')"
+    >
       <div class="number">03</div>
+
       <div>
-        <div class="card-title">MES VENTES</div>
+        <div class="card-title">
+          MES VENTES
+        </div>
+
         <p>
           Suivre les ventes<br>
           Chiffre d'affaires<br>
           Historique
         </p>
       </div>
+
       <div class="arrow">→</div>
     </div>
 
   </div>
 
+
   <div class="connection">
+
     <strong>Base de données :</strong>
-    <span id="databaseStatus">connexion en cours…</span>
+
+    <span id="databaseStatus">
+      connexion en cours…
+    </span>
+
   </div>
 
 </section>
 
 
-<!-- AJOUT / MODIFICATION -->
+<!-- =====================================================
+     AJOUT / MODIFICATION ARTICLE
+===================================================== -->
 
-<section id="articleSection" class="article-page hidden">
+<section
+  id="articleSection"
+  class="article-page hidden"
+>
 
   <div class="page-header">
 
     <div>
 
-      <div id="articleEyebrow" class="eyebrow">
+      <div
+        id="articleEyebrow"
+        class="eyebrow"
+      >
         NOUVEL OBJET
       </div>
 
-      <div id="articlePageTitle" class="page-title">
-        AJOUTER<br>UN OBJET.
+      <div
+        id="articlePageTitle"
+        class="page-title"
+      >
+        AJOUTER<br>
+        UN OBJET.
       </div>
 
     </div>
 
-    <button class="secondary" onclick="annulerEdition()">
+    <button
+      class="secondary"
+      type="button"
+      onclick="annulerFormulaireArticle()"
+    >
       ← Retour
     </button>
 
@@ -914,15 +1004,30 @@ footer {
 
     <div class="form-grid">
 
+
       <div class="full">
-        <label>Nom de l'objet *</label>
-        <input id="articleNom" type="text" placeholder="Ex. Lampe vintage">
+
+        <label for="articleNom">
+          Nom de l'objet *
+        </label>
+
+        <input
+          id="articleNom"
+          type="text"
+          placeholder="Ex. Lampe vintage"
+        >
+
       </div>
 
+
       <div>
-        <label>Catégorie</label>
+
+        <label for="articleCategorie">
+          Catégorie
+        </label>
 
         <select id="articleCategorie">
+
           <option value="">Choisir</option>
           <option value="Mobilier">Mobilier</option>
           <option value="Luminaire">Luminaire</option>
@@ -932,13 +1037,17 @@ footer {
           <option value="Art">Art</option>
           <option value="Livre">Livre</option>
           <option value="Divers">Divers</option>
+
         </select>
 
       </div>
 
+
       <div class="price-wrapper">
 
-        <label>Prix *</label>
+        <label for="articlePrix">
+          Prix *
+        </label>
 
         <input
           id="articlePrix"
@@ -946,15 +1055,19 @@ footer {
           min="0"
           step="0.01"
           inputmode="decimal"
+          placeholder="0,00"
         >
 
         <span class="euro">€</span>
 
       </div>
 
+
       <div>
 
-        <label>Quantité *</label>
+        <label for="articleQuantite">
+          Quantité *
+        </label>
 
         <input
           id="articleQuantite"
@@ -966,17 +1079,26 @@ footer {
 
       </div>
 
+
       <div class="full">
 
-        <label>Description</label>
+        <label for="articleDescription">
+          Description
+        </label>
 
-        <textarea id="articleDescription"></textarea>
+        <textarea
+          id="articleDescription"
+          placeholder="Décris brièvement l'objet..."
+        ></textarea>
 
       </div>
 
+
       <div class="full photo-zone">
 
-        <label>Photo de l'objet</label>
+        <label for="articlePhoto">
+          Photo de l'objet
+        </label>
 
         <input
           id="articlePhoto"
@@ -986,14 +1108,14 @@ footer {
         >
 
         <div class="photo-help">
-          Tu peux prendre une nouvelle photo ou choisir une image.
+          Tu peux prendre une photo ou choisir une image existante.
           En modification, laisse ce champ vide pour conserver la photo actuelle.
         </div>
 
         <img
           id="photoPreview"
           class="photo-preview hidden"
-          alt="Aperçu"
+          alt="Aperçu de la photo"
         >
 
       </div>
@@ -1001,16 +1123,27 @@ footer {
     </div>
 
 
-    <button id="saveArticleButton" class="primary">
-      ENREGISTRER L'OBJET
+    <button
+      id="saveArticleButton"
+      class="primary"
+      type="button"
+    >
+      Enregistrer l'objet
     </button>
 
-    <div id="articleMessage" class="message"></div>
+
+    <div
+      id="articleMessage"
+      class="message"
+    ></div>
+
 
     <div class="form-info">
-      Chaque objet possède une référence et un QR code uniques.
-      Le QR code reste identique même si le prix ou les informations de
-      l'objet sont modifiés.
+
+      Chaque objet possède une référence unique VIDE DECO.
+      Son QR code reste associé au même objet même si tu modifies
+      son nom ou son prix.
+
     </div>
 
   </div>
@@ -1018,7 +1151,9 @@ footer {
 </section>
 
 
-<!-- MES OBJETS -->
+<!-- =====================================================
+     MES OBJETS
+===================================================== -->
 
 <section id="objectsSection" class="hidden">
 
@@ -1031,12 +1166,17 @@ footer {
       </div>
 
       <div class="page-title">
-        MES<br>OBJETS.
+        MES<br>
+        OBJETS.
       </div>
 
     </div>
 
-    <button class="secondary" onclick="retourDashboard()">
+    <button
+      class="secondary"
+      type="button"
+      onclick="retourDashboard()"
+    >
       ← Retour
     </button>
 
@@ -1045,66 +1185,114 @@ footer {
 
   <div class="objects-toolbar">
 
-    <div id="objectsCount" class="objects-count">
+    <div
+      id="objectsCount"
+      class="objects-count"
+    >
       Chargement…
     </div>
 
-    <button class="secondary" onclick="ouvrirAjoutArticle()">
+    <button
+      class="secondary"
+      type="button"
+      onclick="ouvrirAjoutArticle()"
+    >
       + Ajouter un objet
     </button>
 
   </div>
 
-  <div id="objectsMessage" class="message"></div>
 
-  <div id="objectsGrid" class="objects-grid"></div>
+  <div
+    id="objectsMessage"
+    class="message"
+  ></div>
+
+
+  <div
+    id="objectsGrid"
+    class="objects-grid"
+  ></div>
 
 </section>
 
-</main>
 
+<!-- =====================================================
+     QR CODE
+===================================================== -->
 
-<footer>
-  <div>VIDE DECO</div>
-  <div>Boutique éphémère</div>
-</footer>
+<section id="qrSection" class="hidden">
 
+  <div class="page-header">
 
-<!-- QR CODE -->
+    <div>
 
-<div id="qrOverlay" class="qr-overlay hidden">
-
-  <div class="qr-modal">
-
-    <div class="qr-top">
-
-      <div>
-        <div class="eyebrow">ÉTIQUETTE OBJET</div>
-        <div id="qrNom" class="qr-title"></div>
-        <div id="qrReference" class="qr-reference"></div>
+      <div class="eyebrow">
+        ÉTIQUETTE ARTICLE
       </div>
 
-      <button class="qr-close" onclick="fermerQR()">
-        ×
-      </button>
+      <div class="page-title">
+        QR<br>
+        CODE.
+      </div>
 
     </div>
 
-    <div id="qrCode" class="qr-code"></div>
+    <button
+      class="secondary"
+      type="button"
+      onclick="ouvrirMesObjets()"
+    >
+      ← Retour
+    </button>
 
-    <div id="qrPrice" class="qr-price"></div>
+  </div>
 
-    <div class="qr-note">
-      Scanner ce QR code à la caisse pour identifier l'objet.
+
+  <div class="qr-box">
+
+    <div
+      id="qrReference"
+      class="qr-reference"
+    ></div>
+
+    <div
+      id="qrName"
+      class="qr-name"
+    ></div>
+
+    <div
+      id="qrPrice"
+      class="qr-price"
+    ></div>
+
+    <div
+      id="qrCode"
+      class="qr-code"
+    ></div>
+
+    <div class="qr-help">
+      Ce QR code identifie cet objet dans VIDE DECO.
+      Le prix n'est pas enregistré dans le QR code :
+      la caisse récupérera toujours le prix actuel depuis Supabase.
     </div>
 
-    <div class="qr-buttons">
+    <div class="qr-actions">
 
-      <button class="secondary" onclick="fermerQR()">
-        Fermer
+      <button
+        class="secondary"
+        type="button"
+        onclick="ouvrirMesObjets()"
+      >
+        Retour
       </button>
 
-      <button class="primary" onclick="window.print()">
+      <button
+        class="primary"
+        style="margin-top:0"
+        type="button"
+        onclick="window.print()"
+      >
         Imprimer
       </button>
 
@@ -1112,36 +1300,18 @@ footer {
 
   </div>
 
-</div>
+</section>
 
 
-<!-- CONFIRMATION RETRAIT -->
+</main>
 
-<div id="confirmOverlay" class="qr-overlay hidden">
 
-  <div class="confirm-box">
+<footer>
 
-    <div class="confirm-title">
-      RETIRER L'OBJET ?
-    </div>
+  <div>VIDE DECO</div>
+  <div>Boutique éphémère</div>
 
-    <div id="confirmText" class="confirm-text"></div>
-
-    <div class="confirm-actions">
-
-      <button class="secondary" onclick="annulerRetrait()">
-        Annuler
-      </button>
-
-      <button class="danger-button" onclick="confirmerRetrait()">
-        Retirer
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
+</footer>
 
 
 <script>
@@ -1156,7 +1326,8 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
 
-const db = supabase.createClient(
+const db =
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
@@ -1169,47 +1340,79 @@ const db = supabase.createClient(
 let utilisateurActuel = null;
 let profilActuel = null;
 
-let articleEnEdition = null;
-let articleARetirer = null;
-
-let articlesActuels = [];
+let articleEnModification = null;
+let retourFormulaire = "dashboard";
 
 
 /* =========================================================
    ÉLÉMENTS
 ========================================================= */
 
-const loginSection = document.getElementById("loginSection");
-const dashboardSection = document.getElementById("dashboardSection");
-const articleSection = document.getElementById("articleSection");
-const objectsSection = document.getElementById("objectsSection");
+const loginSection =
+document.getElementById("loginSection");
 
-const adminCards = document.getElementById("adminCards");
-const sellerCards = document.getElementById("sellerCards");
+const dashboardSection =
+document.getElementById("dashboardSection");
 
-const loginButton = document.getElementById("loginButton");
-const logoutButton = document.getElementById("logoutButton");
-const saveArticleButton = document.getElementById("saveArticleButton");
+const articleSection =
+document.getElementById("articleSection");
 
-const loginMessage = document.getElementById("loginMessage");
-const articleMessage = document.getElementById("articleMessage");
-const objectsMessage = document.getElementById("objectsMessage");
+const objectsSection =
+document.getElementById("objectsSection");
 
-const objectsGrid = document.getElementById("objectsGrid");
-const objectsCount = document.getElementById("objectsCount");
+const qrSection =
+document.getElementById("qrSection");
 
-const hello = document.getElementById("hello");
-const roleBadge = document.getElementById("roleBadge");
-const databaseStatus = document.getElementById("databaseStatus");
+const loginButton =
+document.getElementById("loginButton");
 
-const articlePhoto = document.getElementById("articlePhoto");
-const photoPreview = document.getElementById("photoPreview");
+const logoutButton =
+document.getElementById("logoutButton");
 
-const articleEyebrow = document.getElementById("articleEyebrow");
-const articlePageTitle = document.getElementById("articlePageTitle");
+const saveArticleButton =
+document.getElementById("saveArticleButton");
 
-const qrOverlay = document.getElementById("qrOverlay");
-const confirmOverlay = document.getElementById("confirmOverlay");
+const loginMessage =
+document.getElementById("loginMessage");
+
+const articleMessage =
+document.getElementById("articleMessage");
+
+const objectsMessage =
+document.getElementById("objectsMessage");
+
+const objectsGrid =
+document.getElementById("objectsGrid");
+
+const objectsCount =
+document.getElementById("objectsCount");
+
+const adminCards =
+document.getElementById("adminCards");
+
+const sellerCards =
+document.getElementById("sellerCards");
+
+const hello =
+document.getElementById("hello");
+
+const roleBadge =
+document.getElementById("roleBadge");
+
+const databaseStatus =
+document.getElementById("databaseStatus");
+
+const articlePhoto =
+document.getElementById("articlePhoto");
+
+const photoPreview =
+document.getElementById("photoPreview");
+
+const articleEyebrow =
+document.getElementById("articleEyebrow");
+
+const articlePageTitle =
+document.getElementById("articlePageTitle");
 
 
 /* =========================================================
@@ -1222,13 +1425,14 @@ function cacherToutesLesPages() {
   dashboardSection.classList.add("hidden");
   articleSection.classList.add("hidden");
   objectsSection.classList.add("hidden");
+  qrSection.classList.add("hidden");
 
 }
 
 
 function retourDashboard() {
 
-  articleEnEdition = null;
+  articleEnModification = null;
 
   cacherToutesLesPages();
 
@@ -1239,13 +1443,61 @@ function retourDashboard() {
 }
 
 
+function annulerFormulaireArticle() {
+
+  articleEnModification = null;
+
+  reinitialiserFormulaireArticle();
+
+  if (retourFormulaire === "objets") {
+
+    ouvrirMesObjets();
+
+  } else {
+
+    retourDashboard();
+
+  }
+
+}
+
+
+/* =========================================================
+   FORMULAIRE
+========================================================= */
+
+function reinitialiserFormulaireArticle() {
+
+  document.getElementById("articleNom").value = "";
+  document.getElementById("articleCategorie").value = "";
+  document.getElementById("articlePrix").value = "";
+  document.getElementById("articleQuantite").value = "1";
+  document.getElementById("articleDescription").value = "";
+
+  articlePhoto.value = "";
+
+  photoPreview.src = "";
+  photoPreview.classList.add("hidden");
+
+  articleMessage.textContent = "";
+  articleMessage.className = "message";
+
+}
+
+
 function ouvrirAjoutArticle() {
 
-  articleEnEdition = null;
+  articleEnModification = null;
 
-  reinitialiserFormulaire();
+  retourFormulaire =
+  objectsSection.classList.contains("hidden")
+  ? "dashboard"
+  : "objets";
 
-  articleEyebrow.textContent = "NOUVEL OBJET";
+  reinitialiserFormulaireArticle();
+
+  articleEyebrow.textContent =
+  "NOUVEL OBJET";
 
   articlePageTitle.innerHTML =
   "AJOUTER<br>UN OBJET.";
@@ -1275,29 +1527,27 @@ async function ouvrirMesObjets() {
 }
 
 
-function annulerEdition() {
-
-  articleEnEdition = null;
-
-  ouvrirMesObjets();
-
-}
-
-
 /* =========================================================
    CONNEXION
 ========================================================= */
 
 async function connexion() {
 
-  loginMessage.textContent = "Connexion…";
-  loginMessage.className = "message";
+  loginMessage.textContent =
+  "Connexion…";
+
+  loginMessage.className =
+  "message";
 
   const email =
-  document.getElementById("email").value.trim();
+  document.getElementById("email")
+  .value
+  .trim();
 
   const password =
-  document.getElementById("password").value;
+  document.getElementById("password")
+  .value;
+
 
   if (!email || !password) {
 
@@ -1308,7 +1558,9 @@ async function connexion() {
     "message error";
 
     return;
+
   }
+
 
   const {data,error} =
   await db.auth.signInWithPassword({
@@ -1316,7 +1568,10 @@ async function connexion() {
     password
   });
 
+
   if (error) {
+
+    console.error(error);
 
     loginMessage.textContent =
     "Connexion impossible : vérifie ton e-mail et ton mot de passe.";
@@ -1325,9 +1580,13 @@ async function connexion() {
     "message error";
 
     return;
+
   }
 
-  await afficherUtilisateur(data.user);
+
+  await afficherUtilisateur(
+    data.user
+  );
 
 }
 
@@ -1339,20 +1598,33 @@ async function connexion() {
 async function afficherUtilisateur(user) {
 
   if (!user) {
+
     afficherConnexion();
+
     return;
+
   }
 
+
   utilisateurActuel = user;
+
 
   const {data:profil,error} =
   await db
   .from("profils")
-  .select("id, role, nom, prenom, enseigne, commission, actif")
+  .select(
+    "id, role, nom, prenom, enseigne, commission, actif"
+  )
   .eq("id",user.id)
   .single();
 
+
   if (error || !profil) {
+
+    console.error(
+      "ERREUR PROFIL :",
+      error
+    );
 
     cacherToutesLesPages();
 
@@ -1367,29 +1639,37 @@ async function afficherUtilisateur(user) {
     "message error";
 
     return;
+
   }
 
+
   profilActuel = profil;
+
 
   cacherToutesLesPages();
 
   dashboardSection.classList.remove("hidden");
+
 
   const nomAffiche =
   profil.prenom ||
   profil.enseigne ||
   "VIDE DECO";
 
+
   hello.textContent =
   "BONJOUR " +
   nomAffiche.toUpperCase() +
   ".";
 
+
   databaseStatus.textContent =
   "Supabase connecté ✓";
 
+
   adminCards.classList.add("hidden");
   sellerCards.classList.add("hidden");
+
 
   if (profil.role === "admin") {
 
@@ -1411,17 +1691,30 @@ async function afficherUtilisateur(user) {
 
 
 /* =========================================================
-   PHOTO
+   PHOTO APERÇU
 ========================================================= */
 
-articlePhoto.addEventListener("change",function() {
+articlePhoto.addEventListener(
+"change",
+function() {
 
   const fichier =
   articlePhoto.files[0];
 
+
   if (!fichier) {
+
+    if (!articleEnModification) {
+
+      photoPreview.src = "";
+      photoPreview.classList.add("hidden");
+
+    }
+
     return;
+
   }
+
 
   const url =
   URL.createObjectURL(fichier);
@@ -1433,16 +1726,25 @@ articlePhoto.addEventListener("change",function() {
 });
 
 
-async function envoyerPhoto(fichier,articleId) {
+/* =========================================================
+   ENVOYER PHOTO
+========================================================= */
+
+async function envoyerPhoto(
+  fichier,
+  articleId
+) {
 
   if (!fichier) {
     return null;
   }
 
+
   const extension =
   fichier.name.includes(".")
   ? fichier.name.split(".").pop().toLowerCase()
   : "jpg";
+
 
   const chemin =
   utilisateurActuel.id +
@@ -1450,6 +1752,7 @@ async function envoyerPhoto(fichier,articleId) {
   articleId +
   "." +
   extension;
+
 
   const {error} =
   await db.storage
@@ -1463,75 +1766,511 @@ async function envoyerPhoto(fichier,articleId) {
     }
   );
 
+
   if (error) {
+
+    console.error(
+      "ERREUR PHOTO :",
+      error
+    );
+
     throw error;
+
   }
+
 
   const {data} =
   db.storage
   .from("photos-articles")
   .getPublicUrl(chemin);
 
+
   /*
-    Le paramètre évite que Safari conserve
-    l'ancienne photo en cache après modification.
+     On ajoute un paramètre pour éviter
+     que Safari conserve l'ancienne photo
+     en cache après une modification.
   */
 
-  return data.publicUrl + "?v=" + Date.now();
+  return data.publicUrl +
+  "?v=" +
+  Date.now();
 
 }
 
 
 /* =========================================================
-   FORMULAIRE
+   LECTURE FORMULAIRE
 ========================================================= */
 
-function reinitialiserFormulaire() {
+function lireFormulaireArticle() {
 
-  document.getElementById("articleNom").value = "";
-  document.getElementById("articleCategorie").value = "";
-  document.getElementById("articlePrix").value = "";
-  document.getElementById("articleQuantite").value = "1";
-  document.getElementById("articleDescription").value = "";
+  const nom =
+  document.getElementById("articleNom")
+  .value
+  .trim();
 
-  articlePhoto.value = "";
+  const categorie =
+  document.getElementById("articleCategorie")
+  .value;
 
-  photoPreview.src = "";
-  photoPreview.classList.add("hidden");
+  const prixTexte =
+  document.getElementById("articlePrix")
+  .value;
+
+  const quantiteTexte =
+  document.getElementById("articleQuantite")
+  .value;
+
+  const description =
+  document.getElementById("articleDescription")
+  .value
+  .trim();
+
+
+  if (!nom) {
+
+    throw new Error(
+      "Indique le nom de l'objet."
+    );
+
+  }
+
+
+  if (prixTexte === "") {
+
+    throw new Error(
+      "Indique le prix de l'objet."
+    );
+
+  }
+
+
+  const prix =
+  Number(prixTexte);
+
+
+  if (
+    !Number.isFinite(prix) ||
+    prix < 0
+  ) {
+
+    throw new Error(
+      "Indique un prix valide."
+    );
+
+  }
+
+
+  const quantite =
+  Number(quantiteTexte);
+
+
+  if (
+    !Number.isInteger(quantite) ||
+    quantite < 1
+  ) {
+
+    throw new Error(
+      "La quantité doit être au minimum de 1."
+    );
+
+  }
+
+
+  return {
+    nom,
+    categorie:
+    categorie || null,
+    prix,
+    quantite,
+    description:
+    description || null
+  };
+
+}
+
+
+/* =========================================================
+   ENREGISTRER / MODIFIER
+========================================================= */
+
+async function enregistrerArticle() {
 
   articleMessage.textContent = "";
   articleMessage.className = "message";
 
+
+  if (!utilisateurActuel) {
+
+    articleMessage.textContent =
+    "Utilisateur non connecté.";
+
+    articleMessage.className =
+    "message error";
+
+    return;
+
+  }
+
+
+  let valeurs;
+
+
+  try {
+
+    valeurs =
+    lireFormulaireArticle();
+
+  } catch(error) {
+
+    articleMessage.textContent =
+    error.message;
+
+    articleMessage.className =
+    "message error";
+
+    return;
+
+  }
+
+
+  saveArticleButton.disabled = true;
+
+  saveArticleButton.textContent =
+  articleEnModification
+  ? "MODIFICATION…"
+  : "ENREGISTREMENT…";
+
+
+  try {
+
+    const fichierPhoto =
+    articlePhoto.files[0] || null;
+
+
+    /* =====================================================
+       MODIFICATION
+    ===================================================== */
+
+    if (articleEnModification) {
+
+      const article =
+      articleEnModification;
+
+
+      const ancienneQuantite =
+      Number(article.quantite) || 0;
+
+      const ancienneDisponible =
+      Number(article.quantite_disponible) || 0;
+
+
+      /*
+        Quantité déjà vendue ou indisponible.
+        Exemple :
+        quantité initiale = 5
+        disponible = 3
+        donc 2 sont déjà sorties du stock.
+      */
+
+      const quantiteDejaSortie =
+      Math.max(
+        0,
+        ancienneQuantite -
+        ancienneDisponible
+      );
+
+
+      if (
+        valeurs.quantite <
+        quantiteDejaSortie
+      ) {
+
+        throw new Error(
+          "Impossible de réduire la quantité à " +
+          valeurs.quantite +
+          " : " +
+          quantiteDejaSortie +
+          " exemplaire(s) sont déjà sortis du stock."
+        );
+
+      }
+
+
+      const nouvelleDisponible =
+      Math.max(
+        0,
+        valeurs.quantite -
+        quantiteDejaSortie
+      );
+
+
+      let nouvellePhoto =
+      article.photo_url || null;
+
+
+      if (fichierPhoto) {
+
+        articleMessage.textContent =
+        "Mise à jour de la photo…";
+
+        nouvellePhoto =
+        await envoyerPhoto(
+          fichierPhoto,
+          article.id
+        );
+
+      }
+
+
+      const {error} =
+      await db
+      .from("articles")
+      .update({
+
+        nom:
+        valeurs.nom,
+
+        categorie:
+        valeurs.categorie,
+
+        prix:
+        valeurs.prix,
+
+        quantite:
+        valeurs.quantite,
+
+        quantite_disponible:
+        nouvelleDisponible,
+
+        description:
+        valeurs.description,
+
+        photo_url:
+        nouvellePhoto,
+
+        updated_at:
+        new Date().toISOString()
+
+      })
+      .eq("id",article.id)
+      .eq(
+        "vendeur_id",
+        utilisateurActuel.id
+      );
+
+
+      if (error) {
+        throw error;
+      }
+
+
+      articleMessage.textContent =
+      "OBJET MODIFIÉ ✓";
+
+      articleMessage.className =
+      "message success";
+
+
+      setTimeout(
+        () => {
+          ouvrirMesObjets();
+        },
+        700
+      );
+
+      return;
+
+    }
+
+
+    /* =====================================================
+       CRÉATION
+    ===================================================== */
+
+    const {data:article,error:articleError} =
+    await db
+    .from("articles")
+    .insert({
+
+      vendeur_id:
+      utilisateurActuel.id,
+
+      nom:
+      valeurs.nom,
+
+      description:
+      valeurs.description,
+
+      categorie:
+      valeurs.categorie,
+
+      prix:
+      valeurs.prix,
+
+      quantite:
+      valeurs.quantite,
+
+      quantite_disponible:
+      valeurs.quantite,
+
+      statut:
+      "a_apporter"
+
+    })
+    .select()
+    .single();
+
+
+    if (articleError) {
+      throw articleError;
+    }
+
+
+    if (fichierPhoto) {
+
+      articleMessage.textContent =
+      "Envoi de la photo…";
+
+
+      const photoUrl =
+      await envoyerPhoto(
+        fichierPhoto,
+        article.id
+      );
+
+
+      const {error:updateError} =
+      await db
+      .from("articles")
+      .update({
+        photo_url:photoUrl
+      })
+      .eq("id",article.id)
+      .eq(
+        "vendeur_id",
+        utilisateurActuel.id
+      );
+
+
+      if (updateError) {
+        throw updateError;
+      }
+
+    }
+
+
+    articleMessage.textContent =
+    fichierPhoto
+    ? "OBJET ET PHOTO ENREGISTRÉS ✓"
+    : "OBJET ENREGISTRÉ ✓";
+
+
+    articleMessage.className =
+    "message success";
+
+
+    reinitialiserFormulaireArticle();
+
+
+    articleMessage.textContent =
+    fichierPhoto
+    ? "OBJET ET PHOTO ENREGISTRÉS ✓"
+    : "OBJET ENREGISTRÉ ✓";
+
+    articleMessage.className =
+    "message success";
+
+  }
+
+  catch(error) {
+
+    console.error(
+      "ERREUR ARTICLE :",
+      error
+    );
+
+    articleMessage.textContent =
+    "Erreur : " +
+    error.message;
+
+    articleMessage.className =
+    "message error";
+
+  }
+
+  finally {
+
+    saveArticleButton.disabled =
+    false;
+
+    saveArticleButton.textContent =
+    articleEnModification
+    ? "ENREGISTRER LES MODIFICATIONS"
+    : "ENREGISTRER L'OBJET";
+
+  }
+
 }
 
 
 /* =========================================================
-   MODIFIER
+   OUVRIR MODIFICATION
 ========================================================= */
 
-function modifierArticle(id) {
+async function modifierArticle(id) {
 
-  const article =
-  articlesActuels.find(
-    item => item.id === id
-  );
+  objectsMessage.textContent =
+  "Chargement de l'objet…";
 
-  if (!article) {
-    alert("Objet introuvable.");
+  objectsMessage.className =
+  "message";
+
+
+  const {data:article,error} =
+  await db
+  .from("articles")
+  .select(
+    "id, reference, vendeur_id, nom, description, categorie, prix, quantite, quantite_disponible, photo_url, statut"
+  )
+  .eq("id",id)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  )
+  .single();
+
+
+  if (error || !article) {
+
+    objectsMessage.textContent =
+    "Impossible de charger cet objet.";
+
+    objectsMessage.className =
+    "message error";
+
     return;
+
   }
+
 
   if (article.statut === "vendu") {
-    alert("Un objet vendu ne peut plus être modifié.");
+
+    alert(
+      "Cet objet est vendu et ne peut plus être modifié."
+    );
+
     return;
+
   }
 
-  if (article.statut === "retire") {
-    alert("Cet objet a été retiré.");
-    return;
-  }
 
-  articleEnEdition = article;
+  articleEnModification =
+  article;
+
+  retourFormulaire =
+  "objets";
+
 
   document.getElementById("articleNom").value =
   article.nom || "";
@@ -1550,321 +2289,52 @@ function modifierArticle(id) {
 
   articlePhoto.value = "";
 
+
   if (article.photo_url) {
 
     photoPreview.src =
     article.photo_url;
 
-    photoPreview.classList.remove("hidden");
+    photoPreview.classList.remove(
+      "hidden"
+    );
 
   } else {
 
     photoPreview.src = "";
-    photoPreview.classList.add("hidden");
+
+    photoPreview.classList.add(
+      "hidden"
+    );
 
   }
+
 
   articleEyebrow.textContent =
   article.reference
   ? article.reference
   : "MODIFICATION";
 
+
   articlePageTitle.innerHTML =
-  "MODIFIER<br>L'OBJET.";
+  "MODIFIER<br>UN OBJET.";
+
 
   saveArticleButton.textContent =
   "ENREGISTRER LES MODIFICATIONS";
 
+
   articleMessage.textContent = "";
   articleMessage.className = "message";
+
 
   cacherToutesLesPages();
 
-  articleSection.classList.remove("hidden");
-
-  window.scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   ENREGISTRER ARTICLE
-========================================================= */
-
-async function enregistrerArticle() {
-
-  articleMessage.textContent = "";
-  articleMessage.className = "message";
-
-  if (!utilisateurActuel) {
-
-    articleMessage.textContent =
-    "Utilisateur non connecté.";
-
-    articleMessage.className =
-    "message error";
-
-    return;
-  }
-
-  const nom =
-  document.getElementById("articleNom").value.trim();
-
-  const categorie =
-  document.getElementById("articleCategorie").value;
-
-  const prixTexte =
-  document.getElementById("articlePrix").value;
-
-  const prix =
-  Number(prixTexte);
-
-  const quantite =
-  Number(
-    document.getElementById("articleQuantite").value
+  articleSection.classList.remove(
+    "hidden"
   );
 
-  const description =
-  document.getElementById("articleDescription").value.trim();
-
-  const fichierPhoto =
-  articlePhoto.files[0] || null;
-
-
-  if (!nom) {
-
-    articleMessage.textContent =
-    "Indique le nom de l'objet.";
-
-    articleMessage.className =
-    "message error";
-
-    return;
-  }
-
-
-  if (
-    prixTexte === "" ||
-    !Number.isFinite(prix) ||
-    prix < 0
-  ) {
-
-    articleMessage.textContent =
-    "Indique un prix valide.";
-
-    articleMessage.className =
-    "message error";
-
-    return;
-  }
-
-
-  if (
-    !Number.isInteger(quantite) ||
-    quantite < 1
-  ) {
-
-    articleMessage.textContent =
-    "La quantité doit être au minimum de 1.";
-
-    articleMessage.className =
-    "message error";
-
-    return;
-  }
-
-
-  saveArticleButton.disabled = true;
-
-  saveArticleButton.textContent =
-  "ENREGISTREMENT…";
-
-
-  try {
-
-    /*
-      =====================================================
-      MODIFICATION
-      =====================================================
-    */
-
-    if (articleEnEdition) {
-
-      const vendue =
-      Math.max(
-        0,
-        Number(articleEnEdition.quantite || 0) -
-        Number(articleEnEdition.quantite_disponible || 0)
-      );
-
-      if (quantite < vendue) {
-
-        throw new Error(
-          "La quantité ne peut pas être inférieure au nombre d'articles déjà vendus."
-        );
-
-      }
-
-      const nouvelleDisponibilite =
-      quantite - vendue;
-
-      let photoUrl =
-      articleEnEdition.photo_url || null;
-
-
-      if (fichierPhoto) {
-
-        articleMessage.textContent =
-        "Mise à jour de la photo…";
-
-        photoUrl =
-        await envoyerPhoto(
-          fichierPhoto,
-          articleEnEdition.id
-        );
-
-      }
-
-
-      const {error} =
-      await db
-      .from("articles")
-      .update({
-
-        nom,
-        categorie:categorie || null,
-        prix,
-        quantite,
-        quantite_disponible:nouvelleDisponibilite,
-        description:description || null,
-        photo_url:photoUrl,
-        updated_at:new Date().toISOString()
-
-      })
-      .eq("id",articleEnEdition.id)
-      .eq("vendeur_id",utilisateurActuel.id);
-
-
-      if (error) {
-        throw error;
-      }
-
-
-      articleMessage.textContent =
-      "MODIFICATIONS ENREGISTRÉES ✓";
-
-      articleMessage.className =
-      "message success";
-
-
-      articleEnEdition = null;
-
-
-      setTimeout(
-        () => ouvrirMesObjets(),
-        700
-      );
-
-      return;
-
-    }
-
-
-    /*
-      =====================================================
-      CRÉATION
-      =====================================================
-    */
-
-    const {data:article,error:articleError} =
-    await db
-    .from("articles")
-    .insert({
-
-      vendeur_id:utilisateurActuel.id,
-      nom,
-      description:description || null,
-      categorie:categorie || null,
-      prix,
-      quantite,
-      quantite_disponible:quantite,
-      statut:"a_apporter"
-
-    })
-    .select()
-    .single();
-
-
-    if (articleError) {
-      throw articleError;
-    }
-
-
-    if (fichierPhoto) {
-
-      articleMessage.textContent =
-      "Envoi de la photo…";
-
-      const photoUrl =
-      await envoyerPhoto(
-        fichierPhoto,
-        article.id
-      );
-
-      const {error:updateError} =
-      await db
-      .from("articles")
-      .update({
-        photo_url:photoUrl
-      })
-      .eq("id",article.id);
-
-
-      if (updateError) {
-        throw updateError;
-      }
-
-    }
-
-
-    articleMessage.textContent =
-    fichierPhoto
-    ? "OBJET ET PHOTO ENREGISTRÉS ✓"
-    : "OBJET ENREGISTRÉ ✓";
-
-    articleMessage.className =
-    "message success";
-
-    reinitialiserFormulaire();
-
-
-  } catch(error) {
-
-    console.error(error);
-
-    articleMessage.textContent =
-    "Erreur : " + error.message;
-
-    articleMessage.className =
-    "message error";
-
-  } finally {
-
-    saveArticleButton.disabled = false;
-
-    if (articleEnEdition) {
-
-      saveArticleButton.textContent =
-      "ENREGISTRER LES MODIFICATIONS";
-
-    } else {
-
-      saveArticleButton.textContent =
-      "ENREGISTRER L'OBJET";
-
-    }
-
-  }
+  window.scrollTo(0,0);
 
 }
 
@@ -1873,95 +2343,122 @@ async function enregistrerArticle() {
    RETIRER
 ========================================================= */
 
-function demanderRetrait(id) {
+async function retirerArticle(
+  id,
+  nom
+) {
 
-  const article =
-  articlesActuels.find(
-    item => item.id === id
+  const confirmation =
+  confirm(
+    "RETIRER CET OBJET ?\n\n" +
+    nom +
+    "\n\n" +
+    "L'objet ne sera pas supprimé. " +
+    "Il restera dans ton historique avec le statut RETIRÉ."
   );
 
-  if (!article) {
+
+  if (!confirmation) {
     return;
   }
+
+
+  objectsMessage.textContent =
+  "Retrait de l'objet…";
+
+  objectsMessage.className =
+  "message";
+
+
+  /*
+    On vérifie d'abord l'article.
+  */
+
+  const {data:article,error:lectureError} =
+  await db
+  .from("articles")
+  .select(
+    "id, statut"
+  )
+  .eq("id",id)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  )
+  .single();
+
+
+  if (lectureError || !article) {
+
+    objectsMessage.textContent =
+    "Impossible de retrouver cet objet.";
+
+    objectsMessage.className =
+    "message error";
+
+    return;
+
+  }
+
 
   if (article.statut === "vendu") {
 
-    alert(
-      "Impossible : cet objet est déjà vendu."
-    );
+    objectsMessage.textContent =
+    "Un objet vendu ne peut pas être retiré.";
+
+    objectsMessage.className =
+    "message error";
 
     return;
 
   }
 
-  if (article.statut === "retire") {
-
-    alert(
-      "Cet objet est déjà retiré."
-    );
-
-    return;
-
-  }
-
-  articleARetirer = article;
-
-  document.getElementById("confirmText").innerHTML =
-  "Tu vas retirer <strong>" +
-  echapperHTML(article.nom) +
-  "</strong> de la vente.<br><br>" +
-  "L'objet ne sera pas supprimé : il restera dans ton historique avec le statut <strong>RETIRÉ</strong>.";
-
-  confirmOverlay.classList.remove("hidden");
-
-}
-
-
-function annulerRetrait() {
-
-  articleARetirer = null;
-
-  confirmOverlay.classList.add("hidden");
-
-}
-
-
-async function confirmerRetrait() {
-
-  if (!articleARetirer) {
-    return;
-  }
-
-  const id =
-  articleARetirer.id;
 
   const {error} =
   await db
   .from("articles")
   .update({
+
     statut:"retire",
-    updated_at:new Date().toISOString()
+
+    quantite_disponible:0,
+
+    updated_at:
+    new Date().toISOString()
+
   })
   .eq("id",id)
-  .eq("vendeur_id",utilisateurActuel.id)
-  .neq("statut","vendu");
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  );
 
 
   if (error) {
 
-    alert(
-      "Impossible de retirer l'objet : " +
-      error.message
+    console.error(
+      "ERREUR RETRAIT :",
+      error
     );
+
+    objectsMessage.textContent =
+    "Impossible de retirer l'objet : " +
+    error.message;
+
+    objectsMessage.className =
+    "message error";
 
     return;
 
   }
 
 
-  articleARetirer = null;
+  objectsMessage.textContent =
+  "OBJET RETIRÉ ✓";
 
-  confirmOverlay.classList.add("hidden");
+  objectsMessage.className =
+  "message success";
+
 
   await chargerMesObjets();
 
@@ -1972,79 +2469,120 @@ async function confirmerRetrait() {
    QR CODE
 ========================================================= */
 
-function afficherQR(id) {
+async function afficherQRCode(id) {
 
-  const article =
-  articlesActuels.find(
-    item => item.id === id
-  );
+  const {data:article,error} =
+  await db
+  .from("articles")
+  .select(
+    "id, reference, nom, prix, vendeur_id"
+  )
+  .eq("id",id)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  )
+  .single();
 
-  if (!article) {
+
+  if (error || !article) {
+
+    alert(
+      "Impossible de générer le QR code."
+    );
+
     return;
+
   }
 
-  document.getElementById("qrNom").textContent =
-  article.nom;
 
-  document.getElementById("qrReference").textContent =
+  cacherToutesLesPages();
+
+  qrSection.classList.remove(
+    "hidden"
+  );
+
+
+  document.getElementById(
+    "qrReference"
+  ).textContent =
   article.reference
   ? "RÉF. " + article.reference
-  : "OBJET VIDE DECO";
+  : "VIDE DECO";
 
-  document.getElementById("qrPrice").textContent =
-  formatPrix(article.prix);
 
-  const zone =
-  document.getElementById("qrCode");
+  document.getElementById(
+    "qrName"
+  ).textContent =
+  article.nom;
 
-  zone.innerHTML = "";
+
+  document.getElementById(
+    "qrPrice"
+  ).textContent =
+  formaterPrix(
+    article.prix
+  );
+
+
+  const conteneur =
+  document.getElementById(
+    "qrCode"
+  );
+
+
+  conteneur.innerHTML = "";
 
 
   /*
     IMPORTANT :
-    Le QR code contient uniquement l'identifiant immuable
-    de l'article.
+    le QR ne contient volontairement
+    ni le prix ni le nom.
 
-    Plus tard, la caisse scannera cet identifiant et
-    demandera à Supabase le prix ACTUEL.
+    Il contient seulement l'identifiant
+    stable de l'article.
   */
 
-  const valeurQR =
-  "VIDEDECO:" + article.id;
+  const contenuQR =
+  "VIDEDECO:" +
+  article.id;
 
 
   try {
 
     new QRCode(
-      zone,
+      conteneur,
       {
-        text:valeurQR,
-        width:220,
-        height:220,
-        correctLevel:QRCode.CorrectLevel.H
+        text:
+        contenuQR,
+
+        width:
+        240,
+
+        height:
+        240,
+
+        correctLevel:
+        QRCode.CorrectLevel.H
       }
     );
 
-  } catch(error) {
+  }
 
-    console.error(error);
+  catch(error) {
 
-    zone.innerHTML =
-    "<strong>Impossible de générer le QR code.</strong>";
+    console.error(
+      "ERREUR QR :",
+      error
+    );
+
+    conteneur.textContent =
+    "Impossible de générer le QR code.";
 
   }
 
 
-  qrOverlay.classList.remove("hidden");
-
-}
-
-
-function fermerQR() {
-
-  qrOverlay.classList.add("hidden");
-
-  document.getElementById("qrCode").innerHTML = "";
+  window.scrollTo(0,0);
 
 }
 
@@ -2060,8 +2598,24 @@ async function chargerMesObjets() {
   objectsMessage.textContent =
   "Chargement des objets…";
 
+  objectsMessage.className =
+  "message";
+
   objectsCount.textContent =
   "Chargement…";
+
+
+  if (!utilisateurActuel) {
+
+    objectsMessage.textContent =
+    "Utilisateur non connecté.";
+
+    objectsMessage.className =
+    "message error";
+
+    return;
+
+  }
 
 
   const {data:articles,error} =
@@ -2070,14 +2624,24 @@ async function chargerMesObjets() {
   .select(
     "id, reference, nom, description, categorie, prix, quantite, quantite_disponible, photo_url, statut, created_at"
   )
-  .eq("vendeur_id",utilisateurActuel.id)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  )
   .order(
     "created_at",
-    {ascending:false}
+    {
+      ascending:false
+    }
   );
 
 
   if (error) {
+
+    console.error(
+      "ERREUR OBJETS :",
+      error
+    );
 
     objectsMessage.textContent =
     "Impossible de charger les objets : " +
@@ -2086,33 +2650,55 @@ async function chargerMesObjets() {
     objectsMessage.className =
     "message error";
 
+    objectsCount.textContent =
+    "Erreur";
+
     return;
+
   }
-
-
-  articlesActuels =
-  articles || [];
 
 
   objectsMessage.textContent = "";
 
+
+  const liste =
+  articles || [];
+
+
   objectsCount.textContent =
-  articlesActuels.length +
+  liste.length +
   (
-    articlesActuels.length > 1
+    liste.length > 1
     ? " OBJETS"
     : " OBJET"
   );
 
 
-  if (articlesActuels.length === 0) {
+  if (liste.length === 0) {
 
     objectsGrid.innerHTML = `
-      <div style="grid-column:1/-1;border:2px solid #111;padding:40px;text-align:center">
-        <h2>AUCUN OBJET.</h2>
-        <button class="primary" onclick="ouvrirAjoutArticle()">
+      <div
+        class="empty-state"
+        style="grid-column:1/-1"
+      >
+
+        <div class="empty-title">
+          AUCUN OBJET.
+        </div>
+
+        <p>
+          Ton inventaire est encore vide.<br>
+          Ajoute ton premier objet pour commencer.
+        </p>
+
+        <button
+          class="primary"
+          type="button"
+          onclick="ouvrirAjoutArticle()"
+        >
           Ajouter un objet
         </button>
+
       </div>
     `;
 
@@ -2121,10 +2707,13 @@ async function chargerMesObjets() {
   }
 
 
-  articlesActuels.forEach(article => {
+  liste.forEach(
+  article => {
 
     const carte =
-    document.createElement("article");
+    document.createElement(
+      "article"
+    );
 
     carte.className =
     "object-card";
@@ -2135,7 +2724,9 @@ async function chargerMesObjets() {
     if (article.photo_url) {
 
       const image =
-      document.createElement("img");
+      document.createElement(
+        "img"
+      );
 
       image.className =
       "object-image";
@@ -2144,14 +2735,20 @@ async function chargerMesObjets() {
       article.photo_url;
 
       image.alt =
-      article.nom;
+      article.nom || "Objet";
 
-      carte.appendChild(image);
+      carte.appendChild(
+        image
+      );
 
-    } else {
+    }
+
+    else {
 
       const sansPhoto =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
       sansPhoto.className =
       "object-no-image";
@@ -2159,7 +2756,9 @@ async function chargerMesObjets() {
       sansPhoto.textContent =
       "Pas de photo";
 
-      carte.appendChild(sansPhoto);
+      carte.appendChild(
+        sansPhoto
+      );
 
     }
 
@@ -2167,26 +2766,32 @@ async function chargerMesObjets() {
     /* CONTENU */
 
     const contenu =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     contenu.className =
     "object-content";
 
 
     const reference =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     reference.className =
     "object-reference";
 
     reference.textContent =
     article.reference
-    ? article.reference
+    ? "RÉF. " + article.reference
     : "RÉFÉRENCE EN ATTENTE";
 
 
     const nom =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     nom.className =
     "object-name";
@@ -2196,7 +2801,9 @@ async function chargerMesObjets() {
 
 
     const categorie =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     categorie.className =
     "object-category";
@@ -2207,136 +2814,231 @@ async function chargerMesObjets() {
 
 
     const bas =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     bas.className =
     "object-bottom";
 
 
     const prix =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     prix.className =
     "object-price";
 
     prix.textContent =
-    formatPrix(article.prix);
+    formaterPrix(
+      article.prix
+    );
 
 
     const quantite =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     quantite.className =
     "object-quantity";
 
     quantite.innerHTML =
-    "QUANTITÉ : " +
+    "QTÉ " +
     article.quantite +
-    "<br>DISPONIBLE : " +
+    "<br>DISPONIBLE " +
     article.quantite_disponible;
 
 
-    bas.appendChild(prix);
-    bas.appendChild(quantite);
+    bas.appendChild(
+      prix
+    );
+
+    bas.appendChild(
+      quantite
+    );
 
 
     const statut =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     statut.className =
     "object-status " +
-    (article.statut || "");
+    (
+      article.statut || ""
+    );
 
     statut.textContent =
-    texteStatut(article.statut);
+    texteStatut(
+      article.statut
+    );
 
 
-    contenu.appendChild(reference);
-    contenu.appendChild(nom);
-    contenu.appendChild(categorie);
-    contenu.appendChild(bas);
-    contenu.appendChild(statut);
+    contenu.appendChild(
+      reference
+    );
 
-    carte.appendChild(contenu);
+    contenu.appendChild(
+      nom
+    );
+
+    contenu.appendChild(
+      categorie
+    );
+
+    contenu.appendChild(
+      bas
+    );
+
+    contenu.appendChild(
+      statut
+    );
 
 
-    /* ACTIONS */
+    carte.appendChild(
+      contenu
+    );
+
+
+    /* =====================================================
+       BOUTONS
+    ===================================================== */
 
     const actions =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
     actions.className =
     "object-actions";
 
 
-    const modifier =
-    document.createElement("button");
+    const boutonModifier =
+    document.createElement(
+      "button"
+    );
 
-    modifier.className =
+    boutonModifier.type =
+    "button";
+
+    boutonModifier.className =
     "object-action";
 
-    modifier.textContent =
-    "Modifier";
+    boutonModifier.textContent =
+    "MODIFIER";
 
-    modifier.onclick =
-    () => modifierArticle(article.id);
+    boutonModifier.addEventListener(
+      "click",
+      function() {
+
+        modifierArticle(
+          article.id
+        );
+
+      }
+    );
 
 
-    const qr =
-    document.createElement("button");
+    const boutonQR =
+    document.createElement(
+      "button"
+    );
 
-    qr.className =
+    boutonQR.type =
+    "button";
+
+    boutonQR.className =
     "object-action";
 
-    qr.textContent =
+    boutonQR.textContent =
     "QR CODE";
 
-    qr.onclick =
-    () => afficherQR(article.id);
+    boutonQR.addEventListener(
+      "click",
+      function() {
+
+        afficherQRCode(
+          article.id
+        );
+
+      }
+    );
 
 
-    const retirer =
-    document.createElement("button");
+    const boutonRetirer =
+    document.createElement(
+      "button"
+    );
 
-    retirer.className =
-    "object-action danger";
+    boutonRetirer.type =
+    "button";
 
-    retirer.textContent =
+    boutonRetirer.className =
+    "object-action remove";
+
+    boutonRetirer.textContent =
     article.statut === "retire"
-    ? "Retiré"
-    : "Retirer";
-
-    retirer.onclick =
-    () => demanderRetrait(article.id);
+    ? "RETIRÉ"
+    : "RETIRER";
 
 
     if (
-      article.statut === "vendu" ||
-      article.statut === "retire"
+      article.statut === "retire" ||
+      article.statut === "vendu"
     ) {
 
-      modifier.disabled = true;
+      boutonRetirer.disabled =
+      true;
+
+      boutonRetirer.style.opacity =
+      ".35";
+
+      boutonRetirer.style.cursor =
+      "not-allowed";
+
+    }
+
+    else {
+
+      boutonRetirer.addEventListener(
+        "click",
+        function() {
+
+          retirerArticle(
+            article.id,
+            article.nom
+          );
+
+        }
+      );
 
     }
 
 
-    if (
-      article.statut === "vendu" ||
-      article.statut === "retire"
-    ) {
+    actions.appendChild(
+      boutonModifier
+    );
 
-      retirer.disabled = true;
+    actions.appendChild(
+      boutonQR
+    );
 
-    }
+    actions.appendChild(
+      boutonRetirer
+    );
 
 
-    actions.appendChild(modifier);
-    actions.appendChild(qr);
-    actions.appendChild(retirer);
+    carte.appendChild(
+      actions
+    );
 
-    carte.appendChild(actions);
 
-    objectsGrid.appendChild(carte);
+    objectsGrid.appendChild(
+      carte
+    );
 
   });
 
@@ -2344,7 +3046,26 @@ async function chargerMesObjets() {
 
 
 /* =========================================================
-   OUTILS
+   FORMAT PRIX
+========================================================= */
+
+function formaterPrix(prix) {
+
+  return Number(prix)
+  .toLocaleString(
+    "fr-FR",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  ) +
+  " €";
+
+}
+
+
+/* =========================================================
+   STATUT
 ========================================================= */
 
 function texteStatut(statut) {
@@ -2371,32 +3092,6 @@ function texteStatut(statut) {
 }
 
 
-function formatPrix(prix) {
-
-  return Number(prix).toLocaleString(
-    "fr-FR",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  ) + " €";
-
-}
-
-
-function echapperHTML(texte) {
-
-  const div =
-  document.createElement("div");
-
-  div.textContent =
-  texte || "";
-
-  return div.innerHTML;
-
-}
-
-
 /* =========================================================
    DÉCONNEXION
 ========================================================= */
@@ -2405,11 +3100,21 @@ function afficherConnexion() {
 
   cacherToutesLesPages();
 
-  loginSection.classList.remove("hidden");
+  loginSection.classList.remove(
+    "hidden"
+  );
+
+  adminCards.classList.add(
+    "hidden"
+  );
+
+  sellerCards.classList.add(
+    "hidden"
+  );
 
   utilisateurActuel = null;
   profilActuel = null;
-  articlesActuels = [];
+  articleEnModification = null;
 
 }
 
@@ -2418,7 +3123,11 @@ async function deconnexion() {
 
   await db.auth.signOut();
 
-  document.getElementById("password").value = "";
+  document.getElementById(
+    "password"
+  ).value = "";
+
+  loginMessage.textContent = "";
 
   afficherConnexion();
 
@@ -2437,13 +3146,18 @@ async function verifierSession() {
   await db.auth.getSession();
 
 
-  if (session && session.user) {
+  if (
+    session &&
+    session.user
+  ) {
 
     await afficherUtilisateur(
       session.user
     );
 
-  } else {
+  }
+
+  else {
 
     afficherConnexion();
 
@@ -2461,15 +3175,18 @@ loginButton.addEventListener(
   connexion
 );
 
+
 logoutButton.addEventListener(
   "click",
   deconnexion
 );
 
+
 saveArticleButton.addEventListener(
   "click",
   enregistrerArticle
 );
+
 
 document
 .getElementById("password")
@@ -2477,8 +3194,12 @@ document
   "keydown",
   function(event) {
 
-    if (event.key === "Enter") {
+    if (
+      event.key === "Enter"
+    ) {
+
       connexion();
+
     }
 
   }
