@@ -276,9 +276,7 @@
 
 <main>
 
-  <!-- =====================================================
-       CONNEXION
-       ===================================================== -->
+  <!-- CONNEXION -->
 
   <section id="loginSection" class="login">
 
@@ -323,9 +321,7 @@
   </section>
 
 
-  <!-- =====================================================
-       ESPACE CONNECTÉ
-       ===================================================== -->
+  <!-- ESPACE CONNECTÉ -->
 
   <section id="dashboardSection" class="hidden">
 
@@ -357,6 +353,8 @@
 
     </div>
 
+
+    <!-- ESPACE ADMIN -->
 
     <div id="adminCards" class="cards hidden">
 
@@ -409,6 +407,8 @@
 
     </div>
 
+
+    <!-- ESPACE BROCANTEUR -->
 
     <div id="sellerCards" class="cards hidden">
 
@@ -481,7 +481,7 @@
 <script>
 
   /* =========================================================
-     CONNEXION SUPABASE
+     SUPABASE
      ========================================================= */
 
   const SUPABASE_URL =
@@ -546,6 +546,7 @@
     const password =
       document.getElementById("password").value;
 
+
     if (!email || !password) {
 
       loginMessage.textContent =
@@ -567,7 +568,7 @@
 
     if (error) {
 
-      console.error(error);
+      console.error("ERREUR CONNEXION :", error);
 
       loginMessage.textContent =
         "Connexion impossible : vérifie ton e-mail et ton mot de passe.";
@@ -579,21 +580,29 @@
     }
 
 
+    console.log("UTILISATEUR CONNECTÉ :", data.user);
+
     await afficherUtilisateur(data.user);
 
   }
 
 
   /* =========================================================
-     AFFICHAGE UTILISATEUR
+     CHARGEMENT DU PROFIL
      ========================================================= */
 
   async function afficherUtilisateur(user) {
 
     if (!user) {
+
       afficherConnexion();
+
       return;
     }
+
+
+    console.log("USER ID :", user.id);
+    console.log("USER EMAIL :", user.email);
 
 
     const { data: profil, error } =
@@ -603,27 +612,74 @@
           "id, role, nom, prenom, enseigne, commission, actif"
         )
         .eq("id", user.id)
-        .single();
+        .maybeSingle();
 
 
-if (error || !profil) {
+    /*
+      IMPORTANT :
+      Si Supabase refuse la lecture du profil,
+      on affiche maintenant l'erreur exacte.
+    */
 
-  console.error("ERREUR PROFIL :", error);
-  console.log("USER ID :", user.id);
-  console.log("PROFIL :", profil);
+    if (error) {
 
-  loginMessage.textContent =
-    error
-      ? "ERREUR SUPABASE : " + error.message
-      : "ERREUR : aucun profil trouvé pour " + user.id;
+      console.error("ERREUR PROFIL :", error);
 
-  loginMessage.className = "message error";
+      loginMessage.textContent =
+        "ERREUR SUPABASE : " + error.message;
 
-  return;
-}
+      loginMessage.className =
+        "message error";
 
+      return;
+    }
+
+
+    if (!profil) {
+
+      console.error(
+        "AUCUN PROFIL POUR L'UTILISATEUR :",
+        user.id
+      );
+
+      loginMessage.textContent =
+        "ERREUR : aucun profil trouvé pour " + user.id;
+
+      loginMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    console.log("PROFIL TROUVÉ :", profil);
+
+
+    /*
+      Vérification supplémentaire :
+      le profil doit être actif.
+    */
+
+    if (profil.actif === false) {
+
+      loginMessage.textContent =
+        "Ce compte est actuellement désactivé.";
+
+      loginMessage.className =
+        "message error";
+
+      await db.auth.signOut();
+
+      return;
+    }
+
+
+    /* AFFICHAGE DU DASHBOARD */
+
+    loginMessage.textContent = "";
 
     loginSection.classList.add("hidden");
+
     dashboardSection.classList.remove("hidden");
 
 
@@ -634,7 +690,9 @@ if (error || !profil) {
 
 
     hello.textContent =
-      "BONJOUR " + nomAffiche.toUpperCase() + ".";
+      "BONJOUR " +
+      nomAffiche.toUpperCase() +
+      ".";
 
 
     databaseStatus.textContent =
@@ -642,8 +700,13 @@ if (error || !profil) {
 
 
     adminCards.classList.add("hidden");
+
     sellerCards.classList.add("hidden");
 
+
+    /*
+      ADMIN
+    */
 
     if (profil.role === "admin") {
 
@@ -652,7 +715,14 @@ if (error || !profil) {
 
       adminCards.classList.remove("hidden");
 
-    } else {
+    }
+
+
+    /*
+      BROCANTEUR
+    */
+
+    else if (profil.role === "brocanteur") {
 
       roleBadge.textContent =
         "BROCANTEUR";
@@ -661,22 +731,42 @@ if (error || !profil) {
 
     }
 
+
+    /*
+      RÔLE INCONNU
+    */
+
+    else {
+
+      roleBadge.textContent =
+        "RÔLE INCONNU";
+
+      console.error(
+        "Rôle inconnu :",
+        profil.role
+      );
+
+    }
+
   }
 
 
   /* =========================================================
-     ÉCRAN CONNEXION
+     ÉCRAN DE CONNEXION
      ========================================================= */
 
   function afficherConnexion() {
 
     dashboardSection.classList.add("hidden");
+
     loginSection.classList.remove("hidden");
 
     adminCards.classList.add("hidden");
+
     sellerCards.classList.add("hidden");
 
     databaseStatus.textContent = "";
+
   }
 
 
@@ -698,21 +788,44 @@ if (error || !profil) {
 
 
   /* =========================================================
-     SESSION EXISTANTE
+     VÉRIFICATION SESSION
      ========================================================= */
 
   async function verifierSession() {
 
     const {
-      data: { session }
+      data: { session },
+      error
     } = await db.auth.getSession();
+
+
+    if (error) {
+
+      console.error(
+        "ERREUR SESSION :",
+        error
+      );
+
+      afficherConnexion();
+
+      return;
+    }
 
 
     if (session && session.user) {
 
-      await afficherUtilisateur(session.user);
+      console.log(
+        "SESSION EXISTANTE :",
+        session.user
+      );
 
-    } else {
+      await afficherUtilisateur(
+        session.user
+      );
+
+    }
+
+    else {
 
       afficherConnexion();
 
@@ -744,12 +857,18 @@ if (error || !profil) {
       function(event) {
 
         if (event.key === "Enter") {
+
           connexion();
+
         }
 
       }
     );
 
+
+  /* =========================================================
+     FONCTIONS À CONSTRUIRE
+     ========================================================= */
 
   function fonctionBientotDisponible(nom) {
 
