@@ -525,6 +525,10 @@ textarea {
   border-right:0;
 }
 
+.object-action:hover:not(:disabled) {
+  background:var(--green);
+}
+
 
 /* =========================================================
    STATISTIQUES
@@ -617,21 +621,9 @@ textarea {
   color:white;
 }
 
-.accept-button:hover,
-.reverse-button:hover {
-  background:var(--green);
-  color:var(--black);
-}
-
 .refuse-button {
   background:transparent;
-  color:var(--black);
   border:1px solid var(--black);
-}
-
-.refuse-button:hover {
-  background:var(--red);
-  color:white;
 }
 
 .request-list {
@@ -672,10 +664,11 @@ textarea {
 
 
 /* =========================================================
-   VENTES
+   VENTES / REVERSEMENTS
 ========================================================= */
 
-.sales-list {
+.sales-list,
+.repayment-list {
   border-top:2px solid var(--black);
 }
 
@@ -693,11 +686,7 @@ textarea {
   font-weight:900;
 }
 
-.sale-name {
-  font-size:18px;
-  font-weight:900;
-}
-
+.sale-name,
 .sale-net {
   font-size:18px;
   font-weight:900;
@@ -707,15 +696,6 @@ textarea {
   font-size:30px;
   font-weight:900;
   margin:40px 0 20px;
-}
-
-
-/* =========================================================
-   REVERSEMENTS
-========================================================= */
-
-.repayment-list {
-  border-top:2px solid var(--black);
 }
 
 .repayment-row {
@@ -776,7 +756,6 @@ textarea {
 .modal-top {
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
   gap:20px;
 }
 
@@ -793,7 +772,6 @@ textarea {
   width:42px;
   height:42px;
   font-weight:900;
-  flex:none;
 }
 
 .modal-summary {
@@ -1038,11 +1016,6 @@ textarea {
   margin:25px 0;
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
 footer {
   border-top:1px solid #ccc;
   padding:22px 5%;
@@ -1050,11 +1023,6 @@ footer {
   justify-content:space-between;
   font-size:11px;
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media(max-width:1000px) {
 
@@ -1091,14 +1059,7 @@ footer {
     grid-column:auto;
   }
 
-  .sale-row {
-    grid-template-columns:1fr 1fr;
-  }
-
-  .sale-row > div:nth-child(2) {
-    grid-column:1/-1;
-  }
-
+  .sale-row,
   .repayment-row {
     grid-template-columns:1fr 1fr;
   }
@@ -1113,24 +1074,17 @@ footer {
 
 </head>
 
-
 <body>
 
 <header>
-
 <div class="logo">VIDE DECO</div>
-
 <div class="tag">POP-UP MANAGEMENT</div>
-
 </header>
-
 
 <main>
 
 
-<!-- =========================================================
-     LOGIN
-========================================================= -->
+<!-- LOGIN -->
 
 <section id="loginSection" class="login">
 
@@ -1147,10 +1101,10 @@ SUIVRE.
 <h2>Connexion</h2>
 
 <label>E-mail</label>
-<input id="email" type="email" autocomplete="email">
+<input id="email" type="email">
 
 <label>Mot de passe</label>
-<input id="password" type="password" autocomplete="current-password">
+<input id="password" type="password">
 
 <button id="loginButton" class="primary">
 SE CONNECTER
@@ -1167,25 +1121,15 @@ DEVENIR BROCANTEUR →
 </section>
 
 
-<!-- =========================================================
-     INSCRIPTION
-========================================================= -->
+<!-- INSCRIPTION -->
 
 <section id="signupSection" class="signup hidden">
 
 <div class="page-header">
 
 <div>
-
-<div class="eyebrow">
-REJOINDRE VIDE DECO
-</div>
-
-<div class="page-title">
-DEVENIR<br>
-BROCANTEUR.
-</div>
-
+<div class="eyebrow">REJOINDRE VIDE DECO</div>
+<div class="page-title">DEVENIR<br>BROCANTEUR.</div>
 </div>
 
 <button class="secondary" onclick="retourConnexion()">
@@ -1199,64 +1143,50 @@ BROCANTEUR.
 <h2>Demande d'inscription</h2>
 
 <p class="signup-intro">
-Crée ton compte brocanteur. Ta demande sera ensuite vérifiée et validée par VIDE DECO avant que tu puisses déposer tes objets.
+Crée ton compte brocanteur. Ta demande sera ensuite vérifiée et validée par VIDE DECO.
 </p>
 
 <div class="form-grid">
 
 <div>
-
 <label>Prénom *</label>
-<input id="signupPrenom" type="text" autocomplete="given-name">
-
+<input id="signupPrenom">
 </div>
 
 <div>
-
 <label>Nom *</label>
-<input id="signupNom" type="text" autocomplete="family-name">
-
+<input id="signupNom">
 </div>
 
 <div class="full">
-
 <label>Enseigne / nom de brocante *</label>
-<input id="signupEnseigne" type="text">
-
+<input id="signupEnseigne">
 </div>
 
 <div class="full">
-
 <label>Téléphone *</label>
-<input id="signupTelephone" type="tel" autocomplete="tel">
-
+<input id="signupTelephone" type="tel">
 </div>
 
 <div class="full">
-
 <label>E-mail *</label>
-<input id="signupEmail" type="email" autocomplete="email">
-
+<input id="signupEmail" type="email">
 </div>
 
 <div>
-
 <label>Mot de passe *</label>
-<input id="signupPassword" type="password" autocomplete="new-password">
-
+<input id="signupPassword" type="password">
 </div>
 
 <div>
-
 <label>Confirmer le mot de passe *</label>
-<input id="signupPasswordConfirm" type="password" autocomplete="new-password">
-
+<input id="signupPasswordConfirm" type="password">
 </div>
 
 </div>
 
 <div class="signup-note">
-Le compte ne sera pas utilisable immédiatement. VIDE DECO doit d'abord valider la demande et définir le taux de commission.
+Le compte ne sera pas utilisable immédiatement. VIDE DECO doit d'abord valider la demande.
 </div>
 
 <button id="signupButton" class="primary" onclick="inscriptionBrocanteur()">
@@ -1270,10 +1200,6 @@ ENVOYER MA DEMANDE
 </section>
 
 
-<!-- =========================================================
-     INSCRIPTION ENVOYÉE
-========================================================= -->
-
 <section id="signupSuccessSection" class="signup hidden">
 
 <div class="signup-success">
@@ -1281,15 +1207,12 @@ ENVOYER MA DEMANDE
 <div class="signup-success-mark">✓</div>
 
 <div class="signup-success-title">
-DEMANDE<br>
-ENVOYÉE.
+DEMANDE<br>ENVOYÉE.
 </div>
 
 <p>
 Ton inscription a bien été enregistrée.<br><br>
 <strong>VIDE DECO doit maintenant valider ton compte.</strong>
-<br><br>
-Une fois ton compte accepté, tu pourras te connecter avec ton adresse e-mail et ton mot de passe.
 </p>
 
 <button class="primary" onclick="retourConnexion()">
@@ -1301,26 +1224,16 @@ RETOUR À LA CONNEXION
 </section>
 
 
-<!-- =========================================================
-     DASHBOARD
-========================================================= -->
+<!-- DASHBOARD -->
 
 <section id="dashboardSection" class="hidden">
 
 <div class="dashboard-header">
 
 <div>
-
 <div class="eyebrow">VIDE DECO POP-UP</div>
-
-<div id="hello" class="hello">
-BONJOUR.
-</div>
-
-<div id="roleBadge" class="status">
-CONNEXION
-</div>
-
+<div id="hello" class="hello">BONJOUR.</div>
+<div id="roleBadge" class="status">CONNEXION</div>
 </div>
 
 <button id="logoutButton" class="logout">
@@ -1333,27 +1246,20 @@ Déconnexion
 <div id="adminCards" class="cards hidden">
 
 <div class="card" onclick="ouvrirStock()">
-
 <div class="number">01</div>
-
 <div>
 <div class="card-title">STOCK</div>
 <p>
 Tous les objets<br>
-Quantités disponibles<br>
-Brocanteurs
+Modifier les objets<br>
+Créer les QR codes
 </p>
 </div>
-
 <div class="arrow">→</div>
-
 </div>
 
-
 <div class="card" onclick="ouvrirCaisse()">
-
 <div class="number">02</div>
-
 <div>
 <div class="card-title">CAISSE</div>
 <p>
@@ -1362,16 +1268,11 @@ Constituer le panier<br>
 Enregistrer les paiements
 </p>
 </div>
-
 <div class="arrow">→</div>
-
 </div>
 
-
 <div class="card" onclick="ouvrirAdmin()">
-
 <div class="number">03</div>
-
 <div>
 <div class="card-title">ADMIN</div>
 <p>
@@ -1380,9 +1281,7 @@ Chiffre d'affaires<br>
 Commissions & reversements
 </p>
 </div>
-
 <div class="arrow">→</div>
-
 </div>
 
 </div>
@@ -1391,90 +1290,53 @@ Commissions & reversements
 <div id="sellerCards" class="cards hidden">
 
 <div class="card" onclick="ouvrirAjoutArticle()">
-
 <div class="number">01</div>
-
 <div>
 <div class="card-title">AJOUTER</div>
-<p>
-Enregistrer un objet<br>
-Ajouter sa photo<br>
-Définir son prix
-</p>
+<p>Enregistrer un objet<br>Ajouter sa photo<br>Définir son prix</p>
 </div>
-
 <div class="arrow">→</div>
-
 </div>
-
 
 <div class="card" onclick="ouvrirMesObjets()">
-
 <div class="number">02</div>
-
 <div>
 <div class="card-title">MES OBJETS</div>
-<p>
-Voir les objets<br>
-Modifier<br>
-QR codes
-</p>
+<p>Voir les objets<br>Modifier<br>QR codes</p>
 </div>
-
 <div class="arrow">→</div>
-
 </div>
-
 
 <div class="card" onclick="ouvrirMesVentes()">
-
 <div class="number">03</div>
-
 <div>
 <div class="card-title">MES VENTES</div>
-<p>
-Historique<br>
-Chiffre d'affaires<br>
-Reversements
-</p>
+<p>Historique<br>Chiffre d'affaires<br>Reversements</p>
 </div>
-
 <div class="arrow">→</div>
-
 </div>
 
 </div>
-
 
 <div class="connection">
-
 <strong>Base de données :</strong>
 <span id="databaseStatus">connexion…</span>
-
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     AJOUT ARTICLE
-========================================================= -->
+<!-- ARTICLE -->
 
 <section id="articleSection" class="article-page hidden">
 
 <div class="page-header">
 
 <div>
-
-<div id="articleEyebrow" class="eyebrow">
-NOUVEL OBJET
-</div>
-
+<div id="articleEyebrow" class="eyebrow">NOUVEL OBJET</div>
 <div id="articlePageTitle" class="page-title">
-AJOUTER<br>
-UN OBJET.
+AJOUTER<br>UN OBJET.
 </div>
-
 </div>
 
 <button class="secondary" onclick="annulerArticle()">
@@ -1483,20 +1345,19 @@ UN OBJET.
 
 </div>
 
-
 <div class="form-box">
+
+<div id="articleOwnerInfo" class="message hidden"></div>
 
 <div class="form-grid">
 
 <div class="full">
 <label>Nom de l'objet *</label>
-<input id="articleNom" type="text">
+<input id="articleNom">
 </div>
 
 <div>
-
 <label>Catégorie</label>
-
 <select id="articleCategorie">
 <option value="">Choisir</option>
 <option>Mobilier</option>
@@ -1508,38 +1369,28 @@ UN OBJET.
 <option>Livre</option>
 <option>Divers</option>
 </select>
-
 </div>
 
 <div class="price-wrapper">
-
 <label>Prix *</label>
 <input id="articlePrix" type="number" min="0" step="0.01">
 <span class="euro">€</span>
-
 </div>
 
 <div>
-
 <label>Quantité *</label>
 <input id="articleQuantite" type="number" min="1" value="1">
-
 </div>
 
 <div class="full">
-
 <label>Description</label>
 <textarea id="articleDescription"></textarea>
-
 </div>
 
 <div class="full photo-zone">
-
 <label>Photo</label>
 <input id="articlePhoto" type="file" accept="image/*">
-
 <img id="photoPreview" class="photo-preview hidden">
-
 </div>
 
 </div>
@@ -1555,23 +1406,15 @@ ENREGISTRER L'OBJET
 </section>
 
 
-<!-- =========================================================
-     MES OBJETS
-========================================================= -->
+<!-- MES OBJETS -->
 
 <section id="objectsSection" class="hidden">
 
 <div class="page-header">
 
 <div>
-
 <div class="eyebrow">INVENTAIRE PERSONNEL</div>
-
-<div class="page-title">
-MES<br>
-OBJETS.
-</div>
-
+<div class="page-title">MES<br>OBJETS.</div>
 </div>
 
 <button class="secondary" onclick="retourDashboard()">
@@ -1596,23 +1439,15 @@ OBJETS.
 </section>
 
 
-<!-- =========================================================
-     MES VENTES
-========================================================= -->
+<!-- MES VENTES -->
 
 <section id="salesSection" class="hidden">
 
 <div class="page-header">
 
 <div>
-
 <div class="eyebrow">ACTIVITÉ BROCANTEUR</div>
-
-<div class="page-title">
-MES<br>
-VENTES.
-</div>
-
+<div class="page-title">MES<br>VENTES.</div>
 </div>
 
 <button class="secondary" onclick="retourDashboard()">
@@ -1652,24 +1487,16 @@ VENTES.
 
 </div>
 
-<div class="sales-section-title">
-HISTORIQUE DES VENTES
-</div>
-
+<div class="sales-section-title">HISTORIQUE DES VENTES</div>
 <div id="salesList" class="sales-list"></div>
 
-<div class="sales-section-title">
-MES REVERSEMENTS
-</div>
-
+<div class="sales-section-title">MES REVERSEMENTS</div>
 <div id="sellerRepaymentsList" class="repayment-list"></div>
 
 </section>
 
 
-<!-- =========================================================
-     STOCK ADMIN
-========================================================= -->
+<!-- STOCK ADMIN -->
 
 <section id="stockSection" class="hidden">
 
@@ -1731,22 +1558,15 @@ placeholder="Rechercher référence, objet, brocanteur…">
 </section>
 
 
-<!-- =========================================================
-     ADMIN
-========================================================= -->
+<!-- ADMIN -->
 
 <section id="adminSection" class="hidden">
 
 <div class="page-header">
 
 <div>
-
 <div class="eyebrow">PILOTAGE VIDE DECO</div>
-
-<div class="page-title">
-ADMIN.
-</div>
-
+<div class="page-title">ADMIN.</div>
 </div>
 
 <button class="secondary" onclick="retourDashboard()">
@@ -1757,7 +1577,6 @@ ADMIN.
 
 <div id="adminMessage" class="message"></div>
 
-
 <div class="sales-section-title">
 DEMANDES BROCANTEURS
 </div>
@@ -1767,7 +1586,6 @@ DEMANDES BROCANTEURS
 </div>
 
 <div id="pendingSellers" class="request-list"></div>
-
 
 <div class="stats stats-5">
 
@@ -1798,17 +1616,13 @@ DEMANDES BROCANTEURS
 
 </div>
 
-
-<div class="sales-section-title">
-BROCANTEURS ACTIFS
-</div>
+<div class="sales-section-title">BROCANTEURS ACTIFS</div>
 
 <div class="table-wrap">
 
 <table class="data-table">
 
 <thead>
-
 <tr>
 <th>Brocanteur</th>
 <th>Taux</th>
@@ -1820,7 +1634,6 @@ BROCANTEURS ACTIFS
 <th>Reste</th>
 <th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="adminSellerTable"></tbody>
@@ -1829,13 +1642,11 @@ BROCANTEURS ACTIFS
 
 </div>
 
-
 <div class="sales-section-title">
 HISTORIQUE DES REVERSEMENTS
 </div>
 
 <div id="adminRepaymentsList" class="repayment-list"></div>
-
 
 <div class="sales-section-title">
 DERNIÈRES VENTES
@@ -1846,9 +1657,7 @@ DERNIÈRES VENTES
 </section>
 
 
-<!-- =========================================================
-     MODAL REVERSEMENT
-========================================================= -->
+<!-- MODAL REVERSEMENT -->
 
 <div id="repaymentModal" class="modal-overlay hidden">
 
@@ -1857,19 +1666,13 @@ DERNIÈRES VENTES
 <div class="modal-top">
 
 <div>
-
 <div class="eyebrow">VERSEMENT BROCANTEUR</div>
-
 <div class="modal-title">
-ENREGISTRER<br>
-UN REVERSEMENT.
+ENREGISTRER<br>UN REVERSEMENT.
+</div>
 </div>
 
-</div>
-
-<button class="modal-close" onclick="fermerReversement()">
-×
-</button>
+<button class="modal-close" onclick="fermerReversement()">×</button>
 
 </div>
 
@@ -1898,12 +1701,7 @@ UN REVERSEMENT.
 </div>
 
 <label>Montant du reversement *</label>
-
-<input
-id="repaymentAmount"
-type="number"
-min="0.01"
-step="0.01">
+<input id="repaymentAmount" type="number" min="0.01" step="0.01">
 
 <label>Mode de règlement *</label>
 
@@ -1915,11 +1713,7 @@ step="0.01">
 </select>
 
 <label>Note</label>
-
-<textarea
-id="repaymentNote"
-placeholder="Facultatif">
-</textarea>
+<textarea id="repaymentNote" placeholder="Facultatif"></textarea>
 
 <div id="repaymentMessage" class="message"></div>
 
@@ -1929,10 +1723,7 @@ placeholder="Facultatif">
 ANNULER
 </button>
 
-<button
-id="saveRepaymentButton"
-class="primary"
-onclick="enregistrerReversement()">
+<button id="saveRepaymentButton" class="primary" onclick="enregistrerReversement()">
 ENREGISTRER
 </button>
 
@@ -1943,9 +1734,7 @@ ENREGISTRER
 </div>
 
 
-<!-- =========================================================
-     QR
-========================================================= -->
+<!-- QR -->
 
 <section id="qrSection" class="hidden">
 
@@ -1956,7 +1745,7 @@ ENREGISTRER
 <div class="page-title">QR<br>CODE.</div>
 </div>
 
-<button class="secondary" onclick="ouvrirMesObjets()">
+<button class="secondary" onclick="retourQRCode()">
 ← Retour
 </button>
 
@@ -1964,6 +1753,7 @@ ENREGISTRER
 
 <div class="qr-box">
 
+<div id="qrSeller" class="object-seller"></div>
 <div id="qrReference" class="object-reference"></div>
 <div id="qrName" class="qr-name"></div>
 <div id="qrPrice" class="qr-price"></div>
@@ -1978,9 +1768,7 @@ IMPRIMER
 </section>
 
 
-<!-- =========================================================
-     CAISSE
-========================================================= -->
+<!-- CAISSE -->
 
 <section id="cashierSection" class="hidden">
 
@@ -2001,15 +1789,11 @@ IMPRIMER
 
 <div class="cashier-panel">
 
-<div class="cashier-title">
-AJOUTER UN ARTICLE
-</div>
+<div class="cashier-title">AJOUTER UN ARTICLE</div>
 
 <div class="reference-search">
 
-<input
-id="cashReference"
-placeholder="VD-000001">
+<input id="cashReference" placeholder="VD-000001">
 
 <button onclick="ajouterParReference()">
 AJOUTER
@@ -2017,10 +1801,7 @@ AJOUTER
 
 </div>
 
-<button
-id="scanButton"
-class="scan-button"
-onclick="demarrerScanner()">
+<button id="scanButton" class="scan-button" onclick="demarrerScanner()">
 📷 SCANNER UN QR CODE
 </button>
 
@@ -2032,25 +1813,16 @@ onclick="demarrerScanner()">
 
 <div class="cashier-panel">
 
-<div class="cashier-title">
-PANIER
-</div>
+<div class="cashier-title">PANIER</div>
 
 <div id="cartItems">
-
-<div class="cart-empty">
-Aucun article dans le panier.
-</div>
-
+<div class="cart-empty">Aucun article dans le panier.</div>
 </div>
 
 <div class="cart-total">
 
 <div>TOTAL</div>
-
-<div id="cartTotal" class="cart-total-value">
-0,00 €
-</div>
+<div id="cartTotal" class="cart-total-value">0,00 €</div>
 
 </div>
 
@@ -2058,34 +1830,21 @@ Aucun article dans le panier.
 
 <div class="payment-methods">
 
-<button
-id="paymentCarte"
-class="payment-button"
-onclick="choisirPaiement('carte')">
+<button id="paymentCarte" class="payment-button" onclick="choisirPaiement('carte')">
 CARTE
 </button>
 
-<button
-id="paymentEspeces"
-class="payment-button"
-onclick="choisirPaiement('especes')">
+<button id="paymentEspeces" class="payment-button" onclick="choisirPaiement('especes')">
 ESPÈCES
 </button>
 
-<button
-id="paymentCheque"
-class="payment-button"
-onclick="choisirPaiement('cheque')">
+<button id="paymentCheque" class="payment-button" onclick="choisirPaiement('cheque')">
 CHÈQUE
 </button>
 
 </div>
 
-<button
-id="validateSaleButton"
-class="validate-sale"
-onclick="validerVente()"
-disabled>
+<button id="validateSaleButton" class="validate-sale" onclick="validerVente()" disabled>
 VALIDER LE PAIEMENT
 </button>
 
@@ -2096,10 +1855,6 @@ VALIDER LE PAIEMENT
 </section>
 
 
-<!-- =========================================================
-     SUCCÈS VENTE
-========================================================= -->
-
 <section id="saleSuccessSection" class="hidden">
 
 <div class="sale-success">
@@ -2107,13 +1862,10 @@ VALIDER LE PAIEMENT
 <div class="sale-success-check">✓</div>
 
 <div class="sale-success-title">
-VENTE<br>
-ENREGISTRÉE.
+VENTE<br>ENREGISTRÉE.
 </div>
 
-<div id="successTotal" class="sale-success-total">
-0,00 €
-</div>
+<div id="successTotal" class="sale-success-total">0,00 €</div>
 
 <div id="successPayment"></div>
 
@@ -2136,10 +1888,8 @@ RETOUR
 
 
 <footer>
-
 <div>VIDE DECO</div>
 <div>BOUTIQUE ÉPHÉMÈRE</div>
-
 </footer>
 
 
@@ -2169,6 +1919,15 @@ SUPABASE_KEY
 let utilisateurActuel = null;
 let profilActuel = null;
 let articleEnModification = null;
+
+/*
+NOUVEAU :
+on mémorise d'où vient la modification
+et d'où vient l'ouverture du QR.
+*/
+
+let origineArticle = "objects";
+let origineQRCode = "objects";
 
 let panier = [];
 let modePaiement = null;
@@ -2394,15 +2153,8 @@ throw error;
 }
 
 
-/*
-Si Supabase crée immédiatement une session,
-on la ferme car le compte est encore en attente.
-*/
-
 if(data && data.session){
-
 await db.auth.signOut();
-
 }
 
 
@@ -2450,7 +2202,6 @@ document.getElementById("loginMessage");
 
 message.textContent = "Connexion…";
 message.className = "message";
-
 
 const email =
 document.getElementById("email").value.trim();
@@ -2504,7 +2255,6 @@ async function afficherUtilisateur(user){
 
 utilisateurActuel = user;
 
-
 const {
 data:profil,
 error
@@ -2539,8 +2289,6 @@ return;
 }
 
 
-/* COMPTE EN ATTENTE */
-
 if(profil.statut_compte === "en_attente"){
 
 await db.auth.signOut();
@@ -2564,8 +2312,6 @@ return;
 }
 
 
-/* COMPTE REFUSÉ */
-
 if(profil.statut_compte === "refuse"){
 
 await db.auth.signOut();
@@ -2588,8 +2334,6 @@ return;
 
 }
 
-
-/* COMPTE DÉSACTIVÉ */
 
 if(profil.actif === false){
 
@@ -2667,7 +2411,7 @@ afficherPage("dashboardSection");
 
 
 /* =========================================================
-   DECONNEXION
+   DÉCONNEXION
 ========================================================= */
 
 async function deconnexion(){
@@ -2711,6 +2455,12 @@ document.getElementById("photoPreview");
 preview.src = "";
 preview.classList.add("hidden");
 
+const owner =
+document.getElementById("articleOwnerInfo");
+
+owner.textContent = "";
+owner.classList.add("hidden");
+
 document.getElementById("articleMessage").textContent = "";
 
 }
@@ -2719,6 +2469,7 @@ document.getElementById("articleMessage").textContent = "";
 function ouvrirAjoutArticle(){
 
 articleEnModification = null;
+origineArticle = "objects";
 
 resetArticleForm();
 
@@ -2736,10 +2487,29 @@ afficherPage("articleSection");
 }
 
 
-function annulerArticle(){
+/*
+NOUVEAU :
+si l'admin modifie depuis STOCK,
+le bouton retour revient dans STOCK.
+*/
+
+async function annulerArticle(){
 
 articleEnModification = null;
-ouvrirMesObjets();
+
+if(
+estAdmin() &&
+origineArticle === "stock"
+){
+
+await ouvrirStock();
+
+}
+else{
+
+await ouvrirMesObjets();
+
+}
 
 }
 
@@ -2783,6 +2553,13 @@ return null;
 
 const extension =
 fichier.name.split(".").pop() || "jpg";
+
+/*
+On conserve ici le dossier de l'utilisateur connecté.
+Ainsi, lorsqu'un admin remplace une photo,
+elle peut être enregistrée dans son dossier Storage
+sans modifier le vendeur propriétaire de l'article.
+*/
 
 const chemin =
 utilisateurActuel.id +
@@ -2904,7 +2681,9 @@ const fichier =
 document.getElementById("articlePhoto").files[0] || null;
 
 
-/* MODIFICATION */
+/* =========================================================
+   MODIFICATION
+========================================================= */
 
 if(articleEnModification){
 
@@ -2965,10 +2744,20 @@ articleEnModification.statut
 );
 
 
-const {
-error
-} =
-await db
+/*
+IMPORTANT :
+on ne modifie jamais vendeur_id.
+
+Pour le brocanteur :
+on ajoute le filtre vendeur_id.
+
+Pour l'admin :
+la règle RLS Admin modification articles
+autorise la modification par ID.
+*/
+
+let requeteModification =
+db
 .from("articles")
 .update({
 
@@ -2996,8 +2785,27 @@ updated_at:
 new Date().toISOString()
 
 })
-.eq("id",articleEnModification.id)
-.eq("vendeur_id",utilisateurActuel.id);
+.eq(
+"id",
+articleEnModification.id
+);
+
+
+if(!estAdmin()){
+
+requeteModification =
+requeteModification.eq(
+"vendeur_id",
+utilisateurActuel.id
+);
+
+}
+
+
+const {
+error
+} =
+await requeteModification;
 
 
 if(error){
@@ -3007,14 +2815,35 @@ throw error;
 
 articleEnModification = null;
 
+
+/*
+NOUVEAU :
+retour vers STOCK si l'admin venait du stock.
+*/
+
+if(
+estAdmin() &&
+origineArticle === "stock"
+){
+
+await ouvrirStock();
+
+}
+else{
+
 await ouvrirMesObjets();
+
+}
+
 
 return;
 
 }
 
 
-/* NOUVEAU */
+/* =========================================================
+   NOUVEAU
+========================================================= */
 
 const {
 data:article,
@@ -3198,7 +3027,7 @@ data.forEach(article=>{
 grid.appendChild(
 creerCarteArticle(
 article,
-true
+"seller"
 )
 );
 
@@ -3211,9 +3040,16 @@ true
    CARTE ARTICLE
 ========================================================= */
 
+/*
+mode :
+""       = aucune action
+"seller" = actions brocanteur
+"admin"  = actions administrateur
+*/
+
 function creerCarteArticle(
 article,
-actions=false,
+mode="",
 sellerName=""
 ){
 
@@ -3308,7 +3144,11 @@ ${texteStatut(article.statut)}
 card.appendChild(content);
 
 
-if(actions){
+/* =========================================================
+   ACTIONS BROCANTEUR
+========================================================= */
+
+if(mode === "seller"){
 
 const zone =
 document.createElement("div");
@@ -3332,11 +3172,13 @@ if(article.statut === "vendu"){
 modifier.disabled = true;
 
 }
-
 else{
 
 modifier.onclick =
-()=>modifierArticle(article.id);
+()=>modifierArticle(
+article.id,
+"objects"
+);
 
 }
 
@@ -3351,7 +3193,10 @@ qr.textContent =
 "QR CODE";
 
 qr.onclick =
-()=>afficherQRCode(article.id);
+()=>afficherQRCode(
+article.id,
+"objects"
+);
 
 
 const retirer =
@@ -3373,7 +3218,6 @@ if(article.statut === "vendu"){
 retirer.disabled = true;
 
 }
-
 else{
 
 retirer.onclick =
@@ -3396,6 +3240,89 @@ card.appendChild(zone);
 }
 
 
+/* =========================================================
+   ACTIONS ADMIN
+========================================================= */
+
+if(mode === "admin"){
+
+const zone =
+document.createElement("div");
+
+zone.className =
+"object-actions";
+
+
+const modifier =
+document.createElement("button");
+
+modifier.className =
+"object-action";
+
+modifier.textContent =
+"MODIFIER";
+
+
+/*
+On évite de modifier un article totalement vendu.
+Le QR reste néanmoins disponible.
+*/
+
+if(article.statut === "vendu"){
+
+modifier.disabled = true;
+
+}
+else{
+
+modifier.onclick =
+()=>modifierArticle(
+article.id,
+"stock"
+);
+
+}
+
+
+const qr =
+document.createElement("button");
+
+qr.className =
+"object-action";
+
+qr.textContent =
+"QR CODE";
+
+qr.onclick =
+()=>afficherQRCode(
+article.id,
+"stock"
+);
+
+
+const vendeur =
+document.createElement("button");
+
+vendeur.className =
+"object-action";
+
+vendeur.textContent =
+"VENDEUR";
+
+vendeur.disabled = true;
+
+
+zone.append(
+modifier,
+qr,
+vendeur
+);
+
+card.appendChild(zone);
+
+}
+
+
 return card;
 
 }
@@ -3405,18 +3332,46 @@ return card;
    MODIFIER ARTICLE
 ========================================================= */
 
-async function modifierArticle(id){
+async function modifierArticle(
+id,
+origine="objects"
+){
+
+origineArticle =
+origine;
+
+
+/*
+Admin :
+recherche simplement l'article par son ID.
+
+Brocanteur :
+on vérifie aussi qu'il en est propriétaire.
+*/
+
+let requete =
+db
+.from("articles")
+.select("*")
+.eq("id",id);
+
+
+if(!estAdmin()){
+
+requete =
+requete.eq(
+"vendeur_id",
+utilisateurActuel.id
+);
+
+}
+
 
 const {
 data,
 error
 } =
-await db
-.from("articles")
-.select("*")
-.eq("id",id)
-.eq("vendeur_id",utilisateurActuel.id)
-.single();
+await requete.single();
 
 
 if(error){
@@ -3428,7 +3383,8 @@ return;
 }
 
 
-articleEnModification = data;
+articleEnModification =
+data;
 
 
 document.getElementById("articleNom").value =
@@ -3445,6 +3401,9 @@ data.quantite;
 
 document.getElementById("articleDescription").value =
 data.description || "";
+
+document.getElementById("articlePhoto").value = "";
+
 
 document.getElementById("articleEyebrow").textContent =
 data.reference || "MODIFICATION";
@@ -3468,11 +3427,62 @@ data.photo_url;
 preview.classList.remove("hidden");
 
 }
-
 else{
 
 preview.src = "";
 preview.classList.add("hidden");
+
+}
+
+
+/*
+NOUVEAU :
+l'admin voit clairement à quel brocanteur
+appartient l'article.
+*/
+
+const owner =
+document.getElementById("articleOwnerInfo");
+
+
+if(
+estAdmin() &&
+origine === "stock"
+){
+
+let profil =
+profilsCache[data.vendeur_id];
+
+
+if(!profil){
+
+const {
+data:profilCharge
+} =
+await db
+.from("profils")
+.select("id,nom,prenom,enseigne")
+.eq("id",data.vendeur_id)
+.maybeSingle();
+
+profil =
+profilCharge;
+
+}
+
+
+owner.textContent =
+"OBJET DU BROCANTEUR : " +
+nomProfil(profil);
+
+owner.className =
+"message success";
+
+}
+else{
+
+owner.textContent = "";
+owner.classList.add("hidden");
 
 }
 
@@ -3664,8 +3674,6 @@ document.getElementById("salesRemaining").textContent =
 formaterPrix(reste);
 
 
-/* VENTES */
-
 const zone =
 document.getElementById("salesList");
 
@@ -3682,7 +3690,6 @@ AUCUNE VENTE POUR LE MOMENT.
 `;
 
 }
-
 else{
 
 ventes.forEach(ligne=>{
@@ -3755,8 +3762,6 @@ zone.appendChild(element);
 }
 
 
-/* REVERSEMENTS */
-
 const reversementZone =
 document.getElementById("sellerRepaymentsList");
 
@@ -3773,7 +3778,6 @@ AUCUN REVERSEMENT POUR LE MOMENT.
 `;
 
 }
-
 else{
 
 reversements.forEach(r=>{
@@ -4052,6 +4056,11 @@ return;
 }
 
 
+/*
+NOUVEAU :
+le STOCK admin utilise maintenant mode="admin".
+*/
+
 resultat.forEach(article=>{
 
 const profil =
@@ -4060,7 +4069,7 @@ profilsCache[article.vendeur_id];
 zone.appendChild(
 creerCarteArticle(
 article,
-false,
+"admin",
 nomProfil(profil)
 )
 );
@@ -4188,10 +4197,6 @@ profilsCache[p.id] = p;
 });
 
 
-/* =========================================================
-   DEMANDES EN ATTENTE
-========================================================= */
-
 const demandes =
 profils.filter(
 p=>
@@ -4227,7 +4232,6 @@ AUCUNE NOUVELLE DEMANDE.
 `;
 
 }
-
 else{
 
 demandes.forEach(profil=>{
@@ -4320,9 +4324,7 @@ demandesZone.appendChild(carte);
 }
 
 
-/* =========================================================
-   CALCUL FINANCES
-========================================================= */
+/* CALCUL FINANCES */
 
 let ca = 0;
 let commissions = 0;
@@ -4433,9 +4435,7 @@ document.getElementById("adminRemaining").textContent =
 formaterPrix(totalReste);
 
 
-/* =========================================================
-   TABLE BROCANTEURS ACTIFS
-========================================================= */
+/* TABLE BROCANTEURS */
 
 const tbody =
 document.getElementById("adminSellerTable");
@@ -4504,9 +4504,7 @@ ${escapeHTML(nomProfil(profil))}
 ${Number(profil.commission) || 0} %
 </td>
 
-<td>
-${valeurs.quantite}
-</td>
+<td>${valeurs.quantite}</td>
 
 <td class="money">
 ${formaterPrix(valeurs.ca)}
@@ -4551,9 +4549,7 @@ tbody.appendChild(tr);
 });
 
 
-/* =========================================================
-   HISTORIQUE REVERSEMENTS
-========================================================= */
+/* HISTORIQUE REVERSEMENTS */
 
 const zoneReversements =
 document.getElementById("adminRepaymentsList");
@@ -4571,7 +4567,6 @@ AUCUN REVERSEMENT ENREGISTRÉ.
 `;
 
 }
-
 else{
 
 reversements.forEach(r=>{
@@ -4630,9 +4625,7 @@ zoneReversements.appendChild(row);
 }
 
 
-/* =========================================================
-   HISTORIQUE VENTES
-========================================================= */
+/* HISTORIQUE VENTES */
 
 const historique =
 document.getElementById("adminSalesList");
@@ -4650,7 +4643,6 @@ AUCUNE VENTE.
 `;
 
 }
-
 else{
 
 lignes
@@ -4735,7 +4727,7 @@ message.textContent = "";
 
 
 /* =========================================================
-   ACCEPTER BROCANTEUR
+   ACCEPTER / REFUSER BROCANTEUR
 ========================================================= */
 
 async function accepterBrocanteur(id){
@@ -4842,10 +4834,6 @@ error.message
 }
 
 
-/* =========================================================
-   REFUSER BROCANTEUR
-========================================================= */
-
 async function refuserBrocanteur(id){
 
 if(!estAdmin()){
@@ -4860,8 +4848,7 @@ profilsCache[id];
 if(
 !confirm(
 "REFUSER CETTE DEMANDE ?\n\n" +
-nomProfil(profil) +
-"\n\nLe compte ne pourra pas accéder à VIDE DECO."
+nomProfil(profil)
 )
 ){
 
@@ -4879,12 +4866,8 @@ await db.rpc(
 "valider_brocanteur",
 {
 
-p_vendeur_id:
-id,
-
-p_accepter:
-false,
-
+p_vendeur_id:id,
+p_accepter:false,
 p_commission:
 Number(profil?.commission) || 20
 
@@ -4924,7 +4907,7 @@ error.message
 
 
 /* =========================================================
-   MODAL REVERSEMENT
+   REVERSEMENTS
 ========================================================= */
 
 function ouvrirReversement(
@@ -4963,6 +4946,9 @@ vendeurReversement.dejaReverse
 );
 
 
+document.getElementById("repaymentSeller").textContent =
+nomProfil(profil);
+
 document.getElementById("repaymentNet").textContent =
 formaterPrix(vendeurReversement.net);
 
@@ -4985,60 +4971,23 @@ document.getElementById("repaymentNote").value = "";
 
 document.getElementById("repaymentMessage").textContent = "";
 
-document.getElementById("repaymentModal").classList.remove("hidden");
-
-
-chargerNomReversement(
-vendeurId,
-profil
-);
-
-}
-
-
-async function chargerNomReversement(
-vendeurId,
-profilCache
-){
-
-if(profilCache){
-
-document.getElementById("repaymentSeller").textContent =
-nomProfil(profilCache);
-
-return;
-
-}
-
-
-const {
-data
-} =
-await db
-.from("profils")
-.select("id,nom,prenom,enseigne")
-.eq("id",vendeurId)
-.maybeSingle();
-
-
-document.getElementById("repaymentSeller").textContent =
-nomProfil(data);
+document
+.getElementById("repaymentModal")
+.classList.remove("hidden");
 
 }
 
 
 function fermerReversement(){
 
-document.getElementById("repaymentModal").classList.add("hidden");
+document
+.getElementById("repaymentModal")
+.classList.add("hidden");
 
 vendeurReversement = null;
 
 }
 
-
-/* =========================================================
-   ENREGISTRER REVERSEMENT
-========================================================= */
 
 async function enregistrerReversement(){
 
@@ -5105,30 +5054,16 @@ return;
 }
 
 
-const confirmation =
-confirm(
-
+if(
+!confirm(
 "CONFIRMER LE REVERSEMENT ?\n\n" +
-
-"Brocanteur : " +
-document.getElementById("repaymentSeller").textContent +
-"\n" +
-
 "Montant : " +
-formaterPrix(montant) +
-"\n" +
+formaterPrix(montant)
+)
+){
 
-"Mode : " +
-nomModeReversement(mode) +
-"\n\n" +
-
-"Confirme uniquement si le règlement a réellement été effectué."
-
-);
-
-
-if(!confirmation){
 return;
+
 }
 
 
@@ -5210,7 +5145,20 @@ bouton.textContent = "ENREGISTRER";
    QR CODE
 ========================================================= */
 
-async function afficherQRCode(id){
+/*
+NOUVEAU :
+origine permet de savoir si le QR a été ouvert
+depuis STOCK ou MES OBJETS.
+*/
+
+async function afficherQRCode(
+id,
+origine="objects"
+){
+
+origineQRCode =
+origine;
+
 
 const {
 data,
@@ -5246,11 +5194,56 @@ document.getElementById("qrPrice").textContent =
 formaterPrix(data.prix);
 
 
+/*
+L'admin voit aussi le nom du brocanteur.
+*/
+
+const qrSeller =
+document.getElementById("qrSeller");
+
+qrSeller.textContent = "";
+
+
+if(estAdmin()){
+
+let profil =
+profilsCache[data.vendeur_id];
+
+
+if(!profil){
+
+const {
+data:profilCharge
+} =
+await db
+.from("profils")
+.select("id,nom,prenom,enseigne")
+.eq("id",data.vendeur_id)
+.maybeSingle();
+
+profil =
+profilCharge;
+
+}
+
+
+qrSeller.textContent =
+"BROCANTEUR : " +
+nomProfil(profil);
+
+}
+
+
 const zone =
 document.getElementById("qrCode");
 
 zone.innerHTML = "";
 
+
+/*
+IMPORTANT :
+on conserve exactement le QR utilisé par la caisse.
+*/
 
 new QRCode(
 zone,
@@ -5268,6 +5261,30 @@ QRCode.CorrectLevel.H
 
 }
 );
+
+}
+
+
+/*
+NOUVEAU :
+retour intelligent.
+*/
+
+async function retourQRCode(){
+
+if(
+estAdmin() &&
+origineQRCode === "stock"
+){
+
+await ouvrirStock();
+
+}
+else{
+
+await ouvrirMesObjets();
+
+}
 
 }
 
@@ -5304,7 +5321,7 @@ afficherPanier();
 
 
 /* =========================================================
-   ARTICLE PAR REFERENCE
+   ARTICLE PAR RÉFÉRENCE
 ========================================================= */
 
 async function ajouterParReference(){
@@ -5495,7 +5512,6 @@ return;
 existant.quantite++;
 
 }
-
 else{
 
 panier.push({
@@ -5538,7 +5554,6 @@ Aucun article dans le panier.
 `;
 
 }
-
 else{
 
 panier.forEach(
@@ -5791,7 +5806,6 @@ calculerTotal()
 );
 
 }
-
 else{
 
 bouton.textContent =
@@ -6350,7 +6364,7 @@ valeur ?? ""
 
 
 /* =========================================================
-   EVENEMENTS
+   ÉVÉNEMENTS
 ========================================================= */
 
 document
@@ -6458,7 +6472,6 @@ data.session.user
 );
 
 }
-
 else{
 
 afficherPage("loginSection");
