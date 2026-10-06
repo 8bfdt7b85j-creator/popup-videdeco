@@ -8,13 +8,14 @@
 <title>VIDE DECO — POP-UP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
 <style>
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 :root {
@@ -24,6 +25,7 @@
   --grey:#d6d3cc;
   --green:#b7ff00;
   --red:#e34b3f;
+  --blue:#3182f6;
 }
 
 body {
@@ -101,7 +103,7 @@ h2 {
 
 
 /* =========================================================
-   LOGIN
+   FORMULAIRES
 ========================================================= */
 
 .login {
@@ -148,10 +150,6 @@ textarea {
   margin-top:22px;
   font-weight:900;
   text-transform:uppercase;
-}
-
-.primary:hover {
-  opacity:.85;
 }
 
 .primary:disabled {
@@ -237,8 +235,6 @@ textarea {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  background:transparent;
-  transition:.15s;
   cursor:pointer;
 }
 
@@ -277,7 +273,7 @@ textarea {
 
 
 /* =========================================================
-   AJOUT ARTICLE
+   ARTICLE
 ========================================================= */
 
 .article-page {
@@ -363,7 +359,6 @@ textarea {
 .objects-count {
   font-size:13px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .objects-grid {
@@ -374,7 +369,6 @@ textarea {
 
 .object-card {
   border:2px solid var(--black);
-  background:var(--background);
   display:flex;
   flex-direction:column;
   min-width:0;
@@ -384,9 +378,7 @@ textarea {
   width:100%;
   aspect-ratio:4/3;
   object-fit:cover;
-  display:block;
   border-bottom:2px solid var(--black);
-  background:#ddd;
 }
 
 .object-no-image {
@@ -399,7 +391,6 @@ textarea {
   background:#e2dfd8;
   font-size:12px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .object-content {
@@ -412,7 +403,6 @@ textarea {
 .object-reference {
   font-size:11px;
   font-weight:900;
-  text-transform:uppercase;
   margin-bottom:12px;
 }
 
@@ -458,7 +448,6 @@ textarea {
   padding:7px 9px;
   font-size:10px;
   font-weight:900;
-  text-transform:uppercase;
   background:var(--green);
 }
 
@@ -471,20 +460,168 @@ textarea {
   background:var(--grey);
 }
 
-.empty-state {
-  border:2px solid var(--black);
-  padding:45px 25px;
+
+/* =========================================================
+   ACTIONS OBJET
+========================================================= */
+
+.object-actions {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:2px solid var(--black);
+}
+
+.object-action {
+  border:0;
+  border-right:1px solid var(--black);
+  background:transparent;
+  padding:13px 5px;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.object-action:last-child {
+  border-right:0;
+}
+
+.object-action:hover {
+  background:var(--black);
+  color:white;
+}
+
+.object-action.danger:hover {
+  background:var(--red);
+  color:white;
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+.qr-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.qr-modal {
+  width:min(460px,100%);
+  background:var(--background);
+  border:3px solid var(--black);
+  padding:28px;
+}
+
+.qr-top {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+
+.qr-close {
+  border:0;
+  background:none;
+  font-size:25px;
+  font-weight:900;
+}
+
+.qr-title {
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.qr-reference {
+  margin-top:7px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.qr-code {
+  display:flex;
+  justify-content:center;
+  margin:28px 0;
+  padding:20px;
+  background:white;
+}
+
+.qr-code img,
+.qr-code canvas {
+  max-width:100%;
+}
+
+.qr-price {
+  font-size:38px;
+  font-weight:900;
   text-align:center;
 }
 
-.empty-title {
-  font-size:32px;
-  font-weight:900;
-  margin-bottom:10px;
+.qr-note {
+  font-size:11px;
+  line-height:1.4;
+  text-align:center;
+  margin-top:10px;
 }
 
-.empty-state p {
+.qr-buttons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:25px;
+}
+
+.qr-buttons button {
+  margin:0;
+}
+
+
+/* =========================================================
+   CONFIRMATION
+========================================================= */
+
+.confirm-box {
+  width:min(500px,100%);
+  background:var(--background);
+  border:3px solid var(--black);
+  padding:28px;
+}
+
+.confirm-title {
+  font-size:32px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.confirm-text {
   line-height:1.5;
+  margin-bottom:25px;
+}
+
+.confirm-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.confirm-actions button {
+  margin:0;
+}
+
+.danger-button {
+  width:100%;
+  border:0;
+  background:var(--red);
+  color:white;
+  padding:17px;
+  font-weight:900;
+  text-transform:uppercase;
 }
 
 
@@ -503,7 +640,7 @@ footer {
 
 
 /* =========================================================
-   MOBILE / TABLETTE
+   MOBILE
 ========================================================= */
 
 @media(max-width:800px) {
@@ -513,21 +650,9 @@ footer {
     padding-top:35px;
   }
 
-  header {
-    padding:22px 5%;
-  }
-
-  h1 {
-    letter-spacing:-3px;
-  }
-
   .cards,
   .objects-grid {
     grid-template-columns:1fr;
-  }
-
-  .card {
-    min-height:190px;
   }
 
   .dashboard-header,
@@ -544,8 +669,43 @@ footer {
   }
 
   .objects-toolbar {
-    align-items:flex-start;
     flex-direction:column;
+    align-items:flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   IMPRESSION ÉTIQUETTE
+========================================================= */
+
+@media print {
+
+  body * {
+    visibility:hidden;
+  }
+
+  #qrOverlay,
+  #qrOverlay * {
+    visibility:visible;
+  }
+
+  #qrOverlay {
+    position:absolute;
+    inset:0;
+    background:white;
+    padding:0;
+  }
+
+  .qr-modal {
+    width:100%;
+    border:0;
+  }
+
+  .qr-close,
+  .qr-buttons {
+    display:none !important;
   }
 
 }
@@ -561,19 +721,14 @@ footer {
   <div class="tag">POP-UP MANAGEMENT</div>
 </header>
 
-
 <main>
 
 
-<!-- =====================================================
-     CONNEXION
-===================================================== -->
+<!-- CONNEXION -->
 
 <section id="loginSection" class="login">
 
-  <div class="eyebrow">
-    Boutique éphémère
-  </div>
+  <div class="eyebrow">Boutique éphémère</div>
 
   <h1>
     GÉRER.<br>
@@ -585,55 +740,26 @@ footer {
 
     <h2>Connexion</h2>
 
-    <label for="email">
-      Adresse e-mail
-    </label>
+    <label>Adresse e-mail</label>
+    <input id="email" type="email" autocomplete="email">
 
-    <input
-      type="email"
-      id="email"
-      autocomplete="email"
-      placeholder="votre@email.fr"
-    >
+    <label>Mot de passe</label>
+    <input id="password" type="password" autocomplete="current-password">
 
-    <label for="password">
-      Mot de passe
-    </label>
-
-    <input
-      type="password"
-      id="password"
-      autocomplete="current-password"
-      placeholder="••••••••"
-    >
-
-    <button
-      class="primary"
-      id="loginButton"
-      type="button"
-    >
+    <button id="loginButton" class="primary">
       Se connecter
     </button>
 
-    <div
-      id="loginMessage"
-      class="message"
-    ></div>
+    <div id="loginMessage" class="message"></div>
 
   </div>
 
 </section>
 
 
+<!-- DASHBOARD -->
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
-<section
-  id="dashboardSection"
-  class="hidden"
->
+<section id="dashboardSection" class="hidden">
 
   <div class="dashboard-header">
 
@@ -643,278 +769,141 @@ footer {
         VIDE DECO POP-UP
       </div>
 
-      <div
-        id="hello"
-        class="hello"
-      >
+      <div id="hello" class="hello">
         BONJOUR.
       </div>
 
-      <div
-        id="roleBadge"
-        class="status"
-      >
+      <div id="roleBadge" class="status">
         CONNEXION
       </div>
 
     </div>
 
-    <button
-      id="logoutButton"
-      class="logout"
-      type="button"
-    >
+    <button id="logoutButton" class="logout">
       Déconnexion
     </button>
 
   </div>
 
 
-
   <!-- ADMIN -->
 
-  <div
-    id="adminCards"
-    class="cards hidden"
-  >
+  <div id="adminCards" class="cards hidden">
 
-    <div
-      class="card"
-      onclick="fonctionBientotDisponible('STOCK')"
-    >
-
-      <div class="number">
-        01
-      </div>
-
+    <div class="card" onclick="fonctionBientotDisponible('STOCK')">
+      <div class="number">01</div>
       <div>
-
-        <div class="card-title">
-          STOCK
-        </div>
-
+        <div class="card-title">STOCK</div>
         <p>
           Articles en boutique<br>
           Articles à apporter<br>
           Retraits et retours
         </p>
-
       </div>
-
-      <div class="arrow">
-        →
-      </div>
-
+      <div class="arrow">→</div>
     </div>
 
-
-    <div
-      class="card"
-      onclick="fonctionBientotDisponible('CAISSE')"
-    >
-
-      <div class="number">
-        02
-      </div>
-
+    <div class="card" onclick="fonctionBientotDisponible('CAISSE')">
+      <div class="number">02</div>
       <div>
-
-        <div class="card-title">
-          CAISSE
-        </div>
-
+        <div class="card-title">CAISSE</div>
         <p>
           Scanner les articles<br>
           Constituer le panier<br>
           Valider les ventes
         </p>
-
       </div>
-
-      <div class="arrow">
-        →
-      </div>
-
+      <div class="arrow">→</div>
     </div>
 
-
-    <div
-      class="card"
-      onclick="fonctionBientotDisponible('ADMINISTRATION')"
-    >
-
-      <div class="number">
-        03
-      </div>
-
+    <div class="card" onclick="fonctionBientotDisponible('ADMIN')">
+      <div class="number">03</div>
       <div>
-
-        <div class="card-title">
-          ADMIN
-        </div>
-
+        <div class="card-title">ADMIN</div>
         <p>
           Brocanteurs<br>
           Chiffre d'affaires<br>
-          Commissions et reversements
+          Commissions
         </p>
-
       </div>
-
-      <div class="arrow">
-        →
-      </div>
-
+      <div class="arrow">→</div>
     </div>
 
   </div>
 
 
-
   <!-- BROCANTEUR -->
 
-  <div
-    id="sellerCards"
-    class="cards hidden"
-  >
+  <div id="sellerCards" class="cards hidden">
 
-    <div
-      class="card"
-      onclick="ouvrirAjoutArticle()"
-    >
-
-      <div class="number">
-        01
-      </div>
-
+    <div class="card" onclick="ouvrirAjoutArticle()">
+      <div class="number">01</div>
       <div>
-
-        <div class="card-title">
-          AJOUTER
-        </div>
-
+        <div class="card-title">AJOUTER</div>
         <p>
           Enregistrer un objet<br>
           Ajouter sa photo<br>
           Définir son prix
         </p>
-
       </div>
-
-      <div class="arrow">
-        →
-      </div>
-
+      <div class="arrow">→</div>
     </div>
 
-
-    <div
-      class="card"
-      onclick="ouvrirMesObjets()"
-    >
-
-      <div class="number">
-        02
-      </div>
-
+    <div class="card" onclick="ouvrirMesObjets()">
+      <div class="number">02</div>
       <div>
-
-        <div class="card-title">
-          MES OBJETS
-        </div>
-
+        <div class="card-title">MES OBJETS</div>
         <p>
           À apporter<br>
           En boutique<br>
           Vendus ou retirés
         </p>
-
       </div>
-
-      <div class="arrow">
-        →
-      </div>
-
+      <div class="arrow">→</div>
     </div>
 
-
-    <div
-      class="card"
-      onclick="fonctionBientotDisponible('MES VENTES')"
-    >
-
-      <div class="number">
-        03
-      </div>
-
+    <div class="card" onclick="fonctionBientotDisponible('MES VENTES')">
+      <div class="number">03</div>
       <div>
-
-        <div class="card-title">
-          MES VENTES
-        </div>
-
+        <div class="card-title">MES VENTES</div>
         <p>
           Suivre les ventes<br>
           Chiffre d'affaires<br>
           Historique
         </p>
-
       </div>
-
-      <div class="arrow">
-        →
-      </div>
-
+      <div class="arrow">→</div>
     </div>
 
   </div>
 
-
   <div class="connection">
-
-    <strong>
-      Base de données :
-    </strong>
-
-    <span id="databaseStatus">
-      connexion en cours…
-    </span>
-
+    <strong>Base de données :</strong>
+    <span id="databaseStatus">connexion en cours…</span>
   </div>
 
 </section>
 
 
+<!-- AJOUT / MODIFICATION -->
 
-<!-- =====================================================
-     AJOUTER UN ARTICLE
-===================================================== -->
-
-<section
-  id="articleSection"
-  class="article-page hidden"
->
+<section id="articleSection" class="article-page hidden">
 
   <div class="page-header">
 
     <div>
 
-      <div class="eyebrow">
+      <div id="articleEyebrow" class="eyebrow">
         NOUVEL OBJET
       </div>
 
-      <div class="page-title">
-        AJOUTER<br>
-        UN OBJET.
+      <div id="articlePageTitle" class="page-title">
+        AJOUTER<br>UN OBJET.
       </div>
 
     </div>
 
-    <button
-      class="secondary"
-      type="button"
-      onclick="retourDashboard()"
-    >
+    <button class="secondary" onclick="annulerEdition()">
       ← Retour
     </button>
 
@@ -925,78 +914,31 @@ footer {
 
     <div class="form-grid">
 
-
       <div class="full">
-
-        <label for="articleNom">
-          Nom de l'objet *
-        </label>
-
-        <input
-          id="articleNom"
-          type="text"
-          placeholder="Ex. Lampe vintage"
-        >
-
+        <label>Nom de l'objet *</label>
+        <input id="articleNom" type="text" placeholder="Ex. Lampe vintage">
       </div>
 
-
-
       <div>
-
-        <label for="articleCategorie">
-          Catégorie
-        </label>
+        <label>Catégorie</label>
 
         <select id="articleCategorie">
-
-          <option value="">
-            Choisir
-          </option>
-
-          <option value="Mobilier">
-            Mobilier
-          </option>
-
-          <option value="Luminaire">
-            Luminaire
-          </option>
-
-          <option value="Décoration">
-            Décoration
-          </option>
-
-          <option value="Vaisselle">
-            Vaisselle
-          </option>
-
-          <option value="Textile">
-            Textile
-          </option>
-
-          <option value="Art">
-            Art
-          </option>
-
-          <option value="Livre">
-            Livre
-          </option>
-
-          <option value="Divers">
-            Divers
-          </option>
-
+          <option value="">Choisir</option>
+          <option value="Mobilier">Mobilier</option>
+          <option value="Luminaire">Luminaire</option>
+          <option value="Décoration">Décoration</option>
+          <option value="Vaisselle">Vaisselle</option>
+          <option value="Textile">Textile</option>
+          <option value="Art">Art</option>
+          <option value="Livre">Livre</option>
+          <option value="Divers">Divers</option>
         </select>
 
       </div>
 
-
-
       <div class="price-wrapper">
 
-        <label for="articlePrix">
-          Prix *
-        </label>
+        <label>Prix *</label>
 
         <input
           id="articlePrix"
@@ -1004,22 +946,15 @@ footer {
           min="0"
           step="0.01"
           inputmode="decimal"
-          placeholder="0,00"
         >
 
-        <span class="euro">
-          €
-        </span>
+        <span class="euro">€</span>
 
       </div>
 
-
-
       <div>
 
-        <label for="articleQuantite">
-          Quantité *
-        </label>
+        <label>Quantité *</label>
 
         <input
           id="articleQuantite"
@@ -1031,28 +966,17 @@ footer {
 
       </div>
 
-
-
       <div class="full">
 
-        <label for="articleDescription">
-          Description
-        </label>
+        <label>Description</label>
 
-        <textarea
-          id="articleDescription"
-          placeholder="Décris brièvement l'objet..."
-        ></textarea>
+        <textarea id="articleDescription"></textarea>
 
       </div>
 
-
-
       <div class="full photo-zone">
 
-        <label for="articlePhoto">
-          Photo de l'objet
-        </label>
+        <label>Photo de l'objet</label>
 
         <input
           id="articlePhoto"
@@ -1062,45 +986,31 @@ footer {
         >
 
         <div class="photo-help">
-          Sur téléphone ou tablette, tu peux prendre une photo
-          ou choisir une image existante.
+          Tu peux prendre une nouvelle photo ou choisir une image.
+          En modification, laisse ce champ vide pour conserver la photo actuelle.
         </div>
 
         <img
           id="photoPreview"
           class="photo-preview hidden"
-          alt="Aperçu de la photo"
+          alt="Aperçu"
         >
 
       </div>
 
-
     </div>
 
 
-    <button
-      id="saveArticleButton"
-      class="primary"
-      type="button"
-    >
-      Enregistrer l'objet
+    <button id="saveArticleButton" class="primary">
+      ENREGISTRER L'OBJET
     </button>
 
-
-    <div
-      id="articleMessage"
-      class="message"
-    ></div>
-
+    <div id="articleMessage" class="message"></div>
 
     <div class="form-info">
-
-      L'objet sera enregistré avec le statut
-      <strong>À APPORTER</strong>.
-
-      La photo sera conservée dans VIDE DECO
-      et associée à l'objet.
-
+      Chaque objet possède une référence et un QR code uniques.
+      Le QR code reste identique même si le prix ou les informations de
+      l'objet sont modifiés.
     </div>
 
   </div>
@@ -1108,15 +1018,9 @@ footer {
 </section>
 
 
+<!-- MES OBJETS -->
 
-<!-- =====================================================
-     MES OBJETS
-===================================================== -->
-
-<section
-  id="objectsSection"
-  class="hidden"
->
+<section id="objectsSection" class="hidden">
 
   <div class="page-header">
 
@@ -1127,17 +1031,12 @@ footer {
       </div>
 
       <div class="page-title">
-        MES<br>
-        OBJETS.
+        MES<br>OBJETS.
       </div>
 
     </div>
 
-    <button
-      class="secondary"
-      type="button"
-      onclick="retourDashboard()"
-    >
+    <button class="secondary" onclick="retourDashboard()">
       ← Retour
     </button>
 
@@ -1146,54 +1045,103 @@ footer {
 
   <div class="objects-toolbar">
 
-    <div
-      id="objectsCount"
-      class="objects-count"
-    >
+    <div id="objectsCount" class="objects-count">
       Chargement…
     </div>
 
-    <button
-      class="secondary"
-      type="button"
-      onclick="ouvrirAjoutArticle()"
-    >
+    <button class="secondary" onclick="ouvrirAjoutArticle()">
       + Ajouter un objet
     </button>
 
   </div>
 
+  <div id="objectsMessage" class="message"></div>
 
-  <div
-    id="objectsMessage"
-    class="message"
-  ></div>
-
-
-  <div
-    id="objectsGrid"
-    class="objects-grid"
-  ></div>
+  <div id="objectsGrid" class="objects-grid"></div>
 
 </section>
-
 
 </main>
 
 
-
 <footer>
-
-  <div>
-    VIDE DECO
-  </div>
-
-  <div>
-    Boutique éphémère
-  </div>
-
+  <div>VIDE DECO</div>
+  <div>Boutique éphémère</div>
 </footer>
 
+
+<!-- QR CODE -->
+
+<div id="qrOverlay" class="qr-overlay hidden">
+
+  <div class="qr-modal">
+
+    <div class="qr-top">
+
+      <div>
+        <div class="eyebrow">ÉTIQUETTE OBJET</div>
+        <div id="qrNom" class="qr-title"></div>
+        <div id="qrReference" class="qr-reference"></div>
+      </div>
+
+      <button class="qr-close" onclick="fermerQR()">
+        ×
+      </button>
+
+    </div>
+
+    <div id="qrCode" class="qr-code"></div>
+
+    <div id="qrPrice" class="qr-price"></div>
+
+    <div class="qr-note">
+      Scanner ce QR code à la caisse pour identifier l'objet.
+    </div>
+
+    <div class="qr-buttons">
+
+      <button class="secondary" onclick="fermerQR()">
+        Fermer
+      </button>
+
+      <button class="primary" onclick="window.print()">
+        Imprimer
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CONFIRMATION RETRAIT -->
+
+<div id="confirmOverlay" class="qr-overlay hidden">
+
+  <div class="confirm-box">
+
+    <div class="confirm-title">
+      RETIRER L'OBJET ?
+    </div>
+
+    <div id="confirmText" class="confirm-text"></div>
+
+    <div class="confirm-actions">
+
+      <button class="secondary" onclick="annulerRetrait()">
+        Annuler
+      </button>
+
+      <button class="danger-button" onclick="confirmerRetrait()">
+        Retirer
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <script>
@@ -1208,8 +1156,7 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
 
-const db =
-supabase.createClient(
+const db = supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
@@ -1222,67 +1169,47 @@ supabase.createClient(
 let utilisateurActuel = null;
 let profilActuel = null;
 
+let articleEnEdition = null;
+let articleARetirer = null;
+
+let articlesActuels = [];
+
 
 /* =========================================================
    ÉLÉMENTS
 ========================================================= */
 
-const loginSection =
-document.getElementById("loginSection");
+const loginSection = document.getElementById("loginSection");
+const dashboardSection = document.getElementById("dashboardSection");
+const articleSection = document.getElementById("articleSection");
+const objectsSection = document.getElementById("objectsSection");
 
-const dashboardSection =
-document.getElementById("dashboardSection");
+const adminCards = document.getElementById("adminCards");
+const sellerCards = document.getElementById("sellerCards");
 
-const articleSection =
-document.getElementById("articleSection");
+const loginButton = document.getElementById("loginButton");
+const logoutButton = document.getElementById("logoutButton");
+const saveArticleButton = document.getElementById("saveArticleButton");
 
-const objectsSection =
-document.getElementById("objectsSection");
+const loginMessage = document.getElementById("loginMessage");
+const articleMessage = document.getElementById("articleMessage");
+const objectsMessage = document.getElementById("objectsMessage");
 
-const loginButton =
-document.getElementById("loginButton");
+const objectsGrid = document.getElementById("objectsGrid");
+const objectsCount = document.getElementById("objectsCount");
 
-const logoutButton =
-document.getElementById("logoutButton");
+const hello = document.getElementById("hello");
+const roleBadge = document.getElementById("roleBadge");
+const databaseStatus = document.getElementById("databaseStatus");
 
-const saveArticleButton =
-document.getElementById("saveArticleButton");
+const articlePhoto = document.getElementById("articlePhoto");
+const photoPreview = document.getElementById("photoPreview");
 
-const loginMessage =
-document.getElementById("loginMessage");
+const articleEyebrow = document.getElementById("articleEyebrow");
+const articlePageTitle = document.getElementById("articlePageTitle");
 
-const articleMessage =
-document.getElementById("articleMessage");
-
-const objectsMessage =
-document.getElementById("objectsMessage");
-
-const objectsGrid =
-document.getElementById("objectsGrid");
-
-const objectsCount =
-document.getElementById("objectsCount");
-
-const adminCards =
-document.getElementById("adminCards");
-
-const sellerCards =
-document.getElementById("sellerCards");
-
-const hello =
-document.getElementById("hello");
-
-const roleBadge =
-document.getElementById("roleBadge");
-
-const databaseStatus =
-document.getElementById("databaseStatus");
-
-const articlePhoto =
-document.getElementById("articlePhoto");
-
-const photoPreview =
-document.getElementById("photoPreview");
+const qrOverlay = document.getElementById("qrOverlay");
+const confirmOverlay = document.getElementById("confirmOverlay");
 
 
 /* =========================================================
@@ -1301,6 +1228,8 @@ function cacherToutesLesPages() {
 
 function retourDashboard() {
 
+  articleEnEdition = null;
+
   cacherToutesLesPages();
 
   dashboardSection.classList.remove("hidden");
@@ -1312,12 +1241,21 @@ function retourDashboard() {
 
 function ouvrirAjoutArticle() {
 
+  articleEnEdition = null;
+
+  reinitialiserFormulaire();
+
+  articleEyebrow.textContent = "NOUVEL OBJET";
+
+  articlePageTitle.innerHTML =
+  "AJOUTER<br>UN OBJET.";
+
+  saveArticleButton.textContent =
+  "ENREGISTRER L'OBJET";
+
   cacherToutesLesPages();
 
   articleSection.classList.remove("hidden");
-
-  articleMessage.textContent = "";
-  articleMessage.className = "message";
 
   window.scrollTo(0,0);
 
@@ -1337,29 +1275,29 @@ async function ouvrirMesObjets() {
 }
 
 
+function annulerEdition() {
+
+  articleEnEdition = null;
+
+  ouvrirMesObjets();
+
+}
+
+
 /* =========================================================
    CONNEXION
 ========================================================= */
 
 async function connexion() {
 
-  loginMessage.textContent =
-  "Connexion…";
-
-  loginMessage.className =
-  "message";
+  loginMessage.textContent = "Connexion…";
+  loginMessage.className = "message";
 
   const email =
-  document
-  .getElementById("email")
-  .value
-  .trim();
+  document.getElementById("email").value.trim();
 
   const password =
-  document
-  .getElementById("password")
-  .value;
-
+  document.getElementById("password").value;
 
   if (!email || !password) {
 
@@ -1370,22 +1308,15 @@ async function connexion() {
     "message error";
 
     return;
-
   }
-
 
   const {data,error} =
   await db.auth.signInWithPassword({
-
     email,
     password
-
   });
 
-
   if (error) {
-
-    console.error(error);
 
     loginMessage.textContent =
     "Connexion impossible : vérifie ton e-mail et ton mot de passe.";
@@ -1394,13 +1325,9 @@ async function connexion() {
     "message error";
 
     return;
-
   }
 
-
-  await afficherUtilisateur(
-    data.user
-  );
+  await afficherUtilisateur(data.user);
 
 }
 
@@ -1412,37 +1339,20 @@ async function connexion() {
 async function afficherUtilisateur(user) {
 
   if (!user) {
-
     afficherConnexion();
-
     return;
-
   }
 
-
-  utilisateurActuel =
-  user;
-
+  utilisateurActuel = user;
 
   const {data:profil,error} =
   await db
   .from("profils")
-  .select(
-    "id, role, nom, prenom, enseigne, commission, actif"
-  )
-  .eq(
-    "id",
-    user.id
-  )
+  .select("id, role, nom, prenom, enseigne, commission, actif")
+  .eq("id",user.id)
   .single();
 
-
   if (error || !profil) {
-
-    console.error(
-      "ERREUR PROFIL :",
-      error
-    );
 
     cacherToutesLesPages();
 
@@ -1457,38 +1367,29 @@ async function afficherUtilisateur(user) {
     "message error";
 
     return;
-
   }
 
-
-  profilActuel =
-  profil;
-
+  profilActuel = profil;
 
   cacherToutesLesPages();
 
   dashboardSection.classList.remove("hidden");
-
 
   const nomAffiche =
   profil.prenom ||
   profil.enseigne ||
   "VIDE DECO";
 
-
   hello.textContent =
   "BONJOUR " +
   nomAffiche.toUpperCase() +
   ".";
 
-
   databaseStatus.textContent =
   "Supabase connecté ✓";
 
-
   adminCards.classList.add("hidden");
   sellerCards.classList.add("hidden");
-
 
   if (profil.role === "admin") {
 
@@ -1497,9 +1398,7 @@ async function afficherUtilisateur(user) {
 
     adminCards.classList.remove("hidden");
 
-  }
-
-  else {
+  } else {
 
     roleBadge.textContent =
     "BROCANTEUR";
@@ -1512,65 +1411,38 @@ async function afficherUtilisateur(user) {
 
 
 /* =========================================================
-   PHOTO : APERÇU
+   PHOTO
 ========================================================= */
 
-articlePhoto.addEventListener(
-"change",
-function() {
+articlePhoto.addEventListener("change",function() {
 
   const fichier =
   articlePhoto.files[0];
 
-
   if (!fichier) {
-
-    photoPreview.src = "";
-
-    photoPreview.classList.add(
-      "hidden"
-    );
-
     return;
-
   }
 
-
   const url =
-  URL.createObjectURL(
-    fichier
-  );
+  URL.createObjectURL(fichier);
 
+  photoPreview.src = url;
 
-  photoPreview.src =
-  url;
-
-  photoPreview.classList.remove(
-    "hidden"
-  );
+  photoPreview.classList.remove("hidden");
 
 });
 
 
-/* =========================================================
-   ENVOYER PHOTO
-========================================================= */
-
-async function envoyerPhoto(
-  fichier,
-  articleId
-) {
+async function envoyerPhoto(fichier,articleId) {
 
   if (!fichier) {
     return null;
   }
 
-
   const extension =
   fichier.name.includes(".")
   ? fichier.name.split(".").pop().toLowerCase()
   : "jpg";
-
 
   const chemin =
   utilisateurActuel.id +
@@ -1578,7 +1450,6 @@ async function envoyerPhoto(
   articleId +
   "." +
   extension;
-
 
   const {error} =
   await db.storage
@@ -1592,28 +1463,126 @@ async function envoyerPhoto(
     }
   );
 
-
   if (error) {
-
-    console.error(
-      "ERREUR PHOTO :",
-      error
-    );
-
     throw error;
-
   }
-
 
   const {data} =
   db.storage
   .from("photos-articles")
-  .getPublicUrl(
-    chemin
+  .getPublicUrl(chemin);
+
+  /*
+    Le paramètre évite que Safari conserve
+    l'ancienne photo en cache après modification.
+  */
+
+  return data.publicUrl + "?v=" + Date.now();
+
+}
+
+
+/* =========================================================
+   FORMULAIRE
+========================================================= */
+
+function reinitialiserFormulaire() {
+
+  document.getElementById("articleNom").value = "";
+  document.getElementById("articleCategorie").value = "";
+  document.getElementById("articlePrix").value = "";
+  document.getElementById("articleQuantite").value = "1";
+  document.getElementById("articleDescription").value = "";
+
+  articlePhoto.value = "";
+
+  photoPreview.src = "";
+  photoPreview.classList.add("hidden");
+
+  articleMessage.textContent = "";
+  articleMessage.className = "message";
+
+}
+
+
+/* =========================================================
+   MODIFIER
+========================================================= */
+
+function modifierArticle(id) {
+
+  const article =
+  articlesActuels.find(
+    item => item.id === id
   );
 
+  if (!article) {
+    alert("Objet introuvable.");
+    return;
+  }
 
-  return data.publicUrl;
+  if (article.statut === "vendu") {
+    alert("Un objet vendu ne peut plus être modifié.");
+    return;
+  }
+
+  if (article.statut === "retire") {
+    alert("Cet objet a été retiré.");
+    return;
+  }
+
+  articleEnEdition = article;
+
+  document.getElementById("articleNom").value =
+  article.nom || "";
+
+  document.getElementById("articleCategorie").value =
+  article.categorie || "";
+
+  document.getElementById("articlePrix").value =
+  article.prix ?? "";
+
+  document.getElementById("articleQuantite").value =
+  article.quantite || 1;
+
+  document.getElementById("articleDescription").value =
+  article.description || "";
+
+  articlePhoto.value = "";
+
+  if (article.photo_url) {
+
+    photoPreview.src =
+    article.photo_url;
+
+    photoPreview.classList.remove("hidden");
+
+  } else {
+
+    photoPreview.src = "";
+    photoPreview.classList.add("hidden");
+
+  }
+
+  articleEyebrow.textContent =
+  article.reference
+  ? article.reference
+  : "MODIFICATION";
+
+  articlePageTitle.innerHTML =
+  "MODIFIER<br>L'OBJET.";
+
+  saveArticleButton.textContent =
+  "ENREGISTRER LES MODIFICATIONS";
+
+  articleMessage.textContent = "";
+  articleMessage.className = "message";
+
+  cacherToutesLesPages();
+
+  articleSection.classList.remove("hidden");
+
+  window.scrollTo(0,0);
 
 }
 
@@ -1625,10 +1594,7 @@ async function envoyerPhoto(
 async function enregistrerArticle() {
 
   articleMessage.textContent = "";
-
-  articleMessage.className =
-  "message";
-
+  articleMessage.className = "message";
 
   if (!utilisateurActuel) {
 
@@ -1639,45 +1605,27 @@ async function enregistrerArticle() {
     "message error";
 
     return;
-
   }
 
-
   const nom =
-  document
-  .getElementById("articleNom")
-  .value
-  .trim();
-
+  document.getElementById("articleNom").value.trim();
 
   const categorie =
-  document
-  .getElementById("articleCategorie")
-  .value;
+  document.getElementById("articleCategorie").value;
 
+  const prixTexte =
+  document.getElementById("articlePrix").value;
 
   const prix =
-  Number(
-    document
-    .getElementById("articlePrix")
-    .value
-  );
-
+  Number(prixTexte);
 
   const quantite =
   Number(
-    document
-    .getElementById("articleQuantite")
-    .value
+    document.getElementById("articleQuantite").value
   );
 
-
   const description =
-  document
-  .getElementById("articleDescription")
-  .value
-  .trim();
-
+  document.getElementById("articleDescription").value.trim();
 
   const fichierPhoto =
   articlePhoto.files[0] || null;
@@ -1692,11 +1640,11 @@ async function enregistrerArticle() {
     "message error";
 
     return;
-
   }
 
 
   if (
+    prixTexte === "" ||
     !Number.isFinite(prix) ||
     prix < 0
   ) {
@@ -1708,7 +1656,6 @@ async function enregistrerArticle() {
     "message error";
 
     return;
-
   }
 
 
@@ -1724,12 +1671,10 @@ async function enregistrerArticle() {
     "message error";
 
     return;
-
   }
 
 
-  saveArticleButton.disabled =
-  true;
+  saveArticleButton.disabled = true;
 
   saveArticleButton.textContent =
   "ENREGISTREMENT…";
@@ -1737,34 +1682,113 @@ async function enregistrerArticle() {
 
   try {
 
+    /*
+      =====================================================
+      MODIFICATION
+      =====================================================
+    */
 
-    /* CRÉATION ARTICLE */
+    if (articleEnEdition) {
+
+      const vendue =
+      Math.max(
+        0,
+        Number(articleEnEdition.quantite || 0) -
+        Number(articleEnEdition.quantite_disponible || 0)
+      );
+
+      if (quantite < vendue) {
+
+        throw new Error(
+          "La quantité ne peut pas être inférieure au nombre d'articles déjà vendus."
+        );
+
+      }
+
+      const nouvelleDisponibilite =
+      quantite - vendue;
+
+      let photoUrl =
+      articleEnEdition.photo_url || null;
+
+
+      if (fichierPhoto) {
+
+        articleMessage.textContent =
+        "Mise à jour de la photo…";
+
+        photoUrl =
+        await envoyerPhoto(
+          fichierPhoto,
+          articleEnEdition.id
+        );
+
+      }
+
+
+      const {error} =
+      await db
+      .from("articles")
+      .update({
+
+        nom,
+        categorie:categorie || null,
+        prix,
+        quantite,
+        quantite_disponible:nouvelleDisponibilite,
+        description:description || null,
+        photo_url:photoUrl,
+        updated_at:new Date().toISOString()
+
+      })
+      .eq("id",articleEnEdition.id)
+      .eq("vendeur_id",utilisateurActuel.id);
+
+
+      if (error) {
+        throw error;
+      }
+
+
+      articleMessage.textContent =
+      "MODIFICATIONS ENREGISTRÉES ✓";
+
+      articleMessage.className =
+      "message success";
+
+
+      articleEnEdition = null;
+
+
+      setTimeout(
+        () => ouvrirMesObjets(),
+        700
+      );
+
+      return;
+
+    }
+
+
+    /*
+      =====================================================
+      CRÉATION
+      =====================================================
+    */
 
     const {data:article,error:articleError} =
     await db
     .from("articles")
     .insert({
 
-      vendeur_id:
-      utilisateurActuel.id,
-
+      vendeur_id:utilisateurActuel.id,
       nom,
-
-      description:
-      description || null,
-
-      categorie:
-      categorie || null,
-
+      description:description || null,
+      categorie:categorie || null,
       prix,
-
       quantite,
-
-      quantite_disponible:
-      quantite,
-
-      statut:
-      "a_apporter"
+      quantite_disponible:quantite,
+      statut:"a_apporter"
 
     })
     .select()
@@ -1776,25 +1800,16 @@ async function enregistrerArticle() {
     }
 
 
-
-    /* PHOTO */
-
-    let photoUrl =
-    null;
-
-
     if (fichierPhoto) {
 
       articleMessage.textContent =
       "Envoi de la photo…";
 
-
-      photoUrl =
+      const photoUrl =
       await envoyerPhoto(
         fichierPhoto,
         article.id
       );
-
 
       const {error:updateError} =
       await db
@@ -1802,10 +1817,7 @@ async function enregistrerArticle() {
       .update({
         photo_url:photoUrl
       })
-      .eq(
-        "id",
-        article.id
-      );
+      .eq("id",article.id);
 
 
       if (updateError) {
@@ -1815,73 +1827,42 @@ async function enregistrerArticle() {
     }
 
 
-
     articleMessage.textContent =
     fichierPhoto
     ? "OBJET ET PHOTO ENREGISTRÉS ✓"
     : "OBJET ENREGISTRÉ ✓";
 
-
     articleMessage.className =
     "message success";
 
-
-    /* RESET */
-
-    document
-    .getElementById("articleNom")
-    .value = "";
-
-    document
-    .getElementById("articleCategorie")
-    .value = "";
-
-    document
-    .getElementById("articlePrix")
-    .value = "";
-
-    document
-    .getElementById("articleQuantite")
-    .value = "1";
-
-    document
-    .getElementById("articleDescription")
-    .value = "";
-
-    articlePhoto.value = "";
-
-    photoPreview.src = "";
-
-    photoPreview.classList.add(
-      "hidden"
-    );
+    reinitialiserFormulaire();
 
 
-  }
+  } catch(error) {
 
-  catch(error) {
-
-    console.error(
-      "ERREUR ENREGISTREMENT :",
-      error
-    );
+    console.error(error);
 
     articleMessage.textContent =
-    "Erreur : " +
-    error.message;
+    "Erreur : " + error.message;
 
     articleMessage.className =
     "message error";
 
-  }
+  } finally {
 
-  finally {
+    saveArticleButton.disabled = false;
 
-    saveArticleButton.disabled =
-    false;
+    if (articleEnEdition) {
 
-    saveArticleButton.textContent =
-    "ENREGISTRER L'OBJET";
+      saveArticleButton.textContent =
+      "ENREGISTRER LES MODIFICATIONS";
+
+    } else {
+
+      saveArticleButton.textContent =
+      "ENREGISTRER L'OBJET";
+
+    }
 
   }
 
@@ -1889,7 +1870,187 @@ async function enregistrerArticle() {
 
 
 /* =========================================================
-   MES OBJETS
+   RETIRER
+========================================================= */
+
+function demanderRetrait(id) {
+
+  const article =
+  articlesActuels.find(
+    item => item.id === id
+  );
+
+  if (!article) {
+    return;
+  }
+
+  if (article.statut === "vendu") {
+
+    alert(
+      "Impossible : cet objet est déjà vendu."
+    );
+
+    return;
+
+  }
+
+  if (article.statut === "retire") {
+
+    alert(
+      "Cet objet est déjà retiré."
+    );
+
+    return;
+
+  }
+
+  articleARetirer = article;
+
+  document.getElementById("confirmText").innerHTML =
+  "Tu vas retirer <strong>" +
+  echapperHTML(article.nom) +
+  "</strong> de la vente.<br><br>" +
+  "L'objet ne sera pas supprimé : il restera dans ton historique avec le statut <strong>RETIRÉ</strong>.";
+
+  confirmOverlay.classList.remove("hidden");
+
+}
+
+
+function annulerRetrait() {
+
+  articleARetirer = null;
+
+  confirmOverlay.classList.add("hidden");
+
+}
+
+
+async function confirmerRetrait() {
+
+  if (!articleARetirer) {
+    return;
+  }
+
+  const id =
+  articleARetirer.id;
+
+  const {error} =
+  await db
+  .from("articles")
+  .update({
+    statut:"retire",
+    updated_at:new Date().toISOString()
+  })
+  .eq("id",id)
+  .eq("vendeur_id",utilisateurActuel.id)
+  .neq("statut","vendu");
+
+
+  if (error) {
+
+    alert(
+      "Impossible de retirer l'objet : " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  articleARetirer = null;
+
+  confirmOverlay.classList.add("hidden");
+
+  await chargerMesObjets();
+
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+function afficherQR(id) {
+
+  const article =
+  articlesActuels.find(
+    item => item.id === id
+  );
+
+  if (!article) {
+    return;
+  }
+
+  document.getElementById("qrNom").textContent =
+  article.nom;
+
+  document.getElementById("qrReference").textContent =
+  article.reference
+  ? "RÉF. " + article.reference
+  : "OBJET VIDE DECO";
+
+  document.getElementById("qrPrice").textContent =
+  formatPrix(article.prix);
+
+  const zone =
+  document.getElementById("qrCode");
+
+  zone.innerHTML = "";
+
+
+  /*
+    IMPORTANT :
+    Le QR code contient uniquement l'identifiant immuable
+    de l'article.
+
+    Plus tard, la caisse scannera cet identifiant et
+    demandera à Supabase le prix ACTUEL.
+  */
+
+  const valeurQR =
+  "VIDEDECO:" + article.id;
+
+
+  try {
+
+    new QRCode(
+      zone,
+      {
+        text:valeurQR,
+        width:220,
+        height:220,
+        correctLevel:QRCode.CorrectLevel.H
+      }
+    );
+
+  } catch(error) {
+
+    console.error(error);
+
+    zone.innerHTML =
+    "<strong>Impossible de générer le QR code.</strong>";
+
+  }
+
+
+  qrOverlay.classList.remove("hidden");
+
+}
+
+
+function fermerQR() {
+
+  qrOverlay.classList.add("hidden");
+
+  document.getElementById("qrCode").innerHTML = "";
+
+}
+
+
+/* =========================================================
+   CHARGER MES OBJETS
 ========================================================= */
 
 async function chargerMesObjets() {
@@ -1899,24 +2060,8 @@ async function chargerMesObjets() {
   objectsMessage.textContent =
   "Chargement des objets…";
 
-  objectsMessage.className =
-  "message";
-
   objectsCount.textContent =
   "Chargement…";
-
-
-  if (!utilisateurActuel) {
-
-    objectsMessage.textContent =
-    "Utilisateur non connecté.";
-
-    objectsMessage.className =
-    "message error";
-
-    return;
-
-  }
 
 
   const {data:articles,error} =
@@ -1925,24 +2070,14 @@ async function chargerMesObjets() {
   .select(
     "id, reference, nom, description, categorie, prix, quantite, quantite_disponible, photo_url, statut, created_at"
   )
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
+  .eq("vendeur_id",utilisateurActuel.id)
   .order(
     "created_at",
-    {
-      ascending:false
-    }
+    {ascending:false}
   );
 
 
   if (error) {
-
-    console.error(
-      "ERREUR OBJETS :",
-      error
-    );
 
     objectsMessage.textContent =
     "Impossible de charger les objets : " +
@@ -1951,52 +2086,33 @@ async function chargerMesObjets() {
     objectsMessage.className =
     "message error";
 
-    objectsCount.textContent =
-    "Erreur";
-
     return;
-
   }
+
+
+  articlesActuels =
+  articles || [];
 
 
   objectsMessage.textContent = "";
 
-
-  const liste =
-  articles || [];
-
-
   objectsCount.textContent =
-  liste.length +
+  articlesActuels.length +
   (
-    liste.length > 1
+    articlesActuels.length > 1
     ? " OBJETS"
     : " OBJET"
   );
 
 
-  if (liste.length === 0) {
+  if (articlesActuels.length === 0) {
 
     objectsGrid.innerHTML = `
-      <div class="empty-state" style="grid-column:1/-1">
-
-        <div class="empty-title">
-          AUCUN OBJET.
-        </div>
-
-        <p>
-          Ton inventaire est encore vide.<br>
-          Ajoute ton premier objet pour commencer.
-        </p>
-
-        <button
-          class="primary"
-          type="button"
-          onclick="ouvrirAjoutArticle()"
-        >
+      <div style="grid-column:1/-1;border:2px solid #111;padding:40px;text-align:center">
+        <h2>AUCUN OBJET.</h2>
+        <button class="primary" onclick="ouvrirAjoutArticle()">
           Ajouter un objet
         </button>
-
       </div>
     `;
 
@@ -2005,8 +2121,7 @@ async function chargerMesObjets() {
   }
 
 
-  liste.forEach(
-  article => {
+  articlesActuels.forEach(article => {
 
     const carte =
     document.createElement("article");
@@ -2029,15 +2144,11 @@ async function chargerMesObjets() {
       article.photo_url;
 
       image.alt =
-      article.nom || "Objet";
+      article.nom;
 
-      carte.appendChild(
-        image
-      );
+      carte.appendChild(image);
 
-    }
-
-    else {
+    } else {
 
       const sansPhoto =
       document.createElement("div");
@@ -2048,12 +2159,9 @@ async function chargerMesObjets() {
       sansPhoto.textContent =
       "Pas de photo";
 
-      carte.appendChild(
-        sansPhoto
-      );
+      carte.appendChild(sansPhoto);
 
     }
-
 
 
     /* CONTENU */
@@ -2073,7 +2181,7 @@ async function chargerMesObjets() {
 
     reference.textContent =
     article.reference
-    ? "RÉF. " + article.reference
+    ? article.reference
     : "RÉFÉRENCE EN ATTENTE";
 
 
@@ -2112,15 +2220,7 @@ async function chargerMesObjets() {
     "object-price";
 
     prix.textContent =
-    Number(article.prix)
-    .toLocaleString(
-      "fr-FR",
-      {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      }
-    ) +
-    " €";
+    formatPrix(article.prix);
 
 
     const quantite =
@@ -2130,19 +2230,14 @@ async function chargerMesObjets() {
     "object-quantity";
 
     quantite.innerHTML =
-    "QTÉ " +
+    "QUANTITÉ : " +
     article.quantite +
-    "<br>DISPONIBLE " +
+    "<br>DISPONIBLE : " +
     article.quantite_disponible;
 
 
-    bas.appendChild(
-      prix
-    );
-
-    bas.appendChild(
-      quantite
-    );
+    bas.appendChild(prix);
+    bas.appendChild(quantite);
 
 
     const statut =
@@ -2150,46 +2245,98 @@ async function chargerMesObjets() {
 
     statut.className =
     "object-status " +
-    (
-      article.statut || ""
-    );
-
+    (article.statut || "");
 
     statut.textContent =
-    texteStatut(
-      article.statut
-    );
+    texteStatut(article.statut);
 
 
-    contenu.appendChild(
-      reference
-    );
+    contenu.appendChild(reference);
+    contenu.appendChild(nom);
+    contenu.appendChild(categorie);
+    contenu.appendChild(bas);
+    contenu.appendChild(statut);
 
-    contenu.appendChild(
-      nom
-    );
-
-    contenu.appendChild(
-      categorie
-    );
-
-    contenu.appendChild(
-      bas
-    );
-
-    contenu.appendChild(
-      statut
-    );
+    carte.appendChild(contenu);
 
 
-    carte.appendChild(
-      contenu
-    );
+    /* ACTIONS */
+
+    const actions =
+    document.createElement("div");
+
+    actions.className =
+    "object-actions";
 
 
-    objectsGrid.appendChild(
-      carte
-    );
+    const modifier =
+    document.createElement("button");
+
+    modifier.className =
+    "object-action";
+
+    modifier.textContent =
+    "Modifier";
+
+    modifier.onclick =
+    () => modifierArticle(article.id);
+
+
+    const qr =
+    document.createElement("button");
+
+    qr.className =
+    "object-action";
+
+    qr.textContent =
+    "QR CODE";
+
+    qr.onclick =
+    () => afficherQR(article.id);
+
+
+    const retirer =
+    document.createElement("button");
+
+    retirer.className =
+    "object-action danger";
+
+    retirer.textContent =
+    article.statut === "retire"
+    ? "Retiré"
+    : "Retirer";
+
+    retirer.onclick =
+    () => demanderRetrait(article.id);
+
+
+    if (
+      article.statut === "vendu" ||
+      article.statut === "retire"
+    ) {
+
+      modifier.disabled = true;
+
+    }
+
+
+    if (
+      article.statut === "vendu" ||
+      article.statut === "retire"
+    ) {
+
+      retirer.disabled = true;
+
+    }
+
+
+    actions.appendChild(modifier);
+    actions.appendChild(qr);
+    actions.appendChild(retirer);
+
+    carte.appendChild(actions);
+
+    objectsGrid.appendChild(carte);
 
   });
 
@@ -2197,7 +2344,7 @@ async function chargerMesObjets() {
 
 
 /* =========================================================
-   STATUT
+   OUTILS
 ========================================================= */
 
 function texteStatut(statut) {
@@ -2224,6 +2371,32 @@ function texteStatut(statut) {
 }
 
 
+function formatPrix(prix) {
+
+  return Number(prix).toLocaleString(
+    "fr-FR",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  ) + " €";
+
+}
+
+
+function echapperHTML(texte) {
+
+  const div =
+  document.createElement("div");
+
+  div.textContent =
+  texte || "";
+
+  return div.innerHTML;
+
+}
+
+
 /* =========================================================
    DÉCONNEXION
 ========================================================= */
@@ -2232,23 +2405,11 @@ function afficherConnexion() {
 
   cacherToutesLesPages();
 
-  loginSection.classList.remove(
-    "hidden"
-  );
+  loginSection.classList.remove("hidden");
 
-  adminCards.classList.add(
-    "hidden"
-  );
-
-  sellerCards.classList.add(
-    "hidden"
-  );
-
-  utilisateurActuel =
-  null;
-
-  profilActuel =
-  null;
+  utilisateurActuel = null;
+  profilActuel = null;
+  articlesActuels = [];
 
 }
 
@@ -2257,11 +2418,7 @@ async function deconnexion() {
 
   await db.auth.signOut();
 
-  document
-  .getElementById("password")
-  .value = "";
-
-  loginMessage.textContent = "";
+  document.getElementById("password").value = "";
 
   afficherConnexion();
 
@@ -2280,18 +2437,13 @@ async function verifierSession() {
   await db.auth.getSession();
 
 
-  if (
-    session &&
-    session.user
-  ) {
+  if (session && session.user) {
 
     await afficherUtilisateur(
       session.user
     );
 
-  }
-
-  else {
+  } else {
 
     afficherConnexion();
 
@@ -2305,38 +2457,32 @@ async function verifierSession() {
 ========================================================= */
 
 loginButton.addEventListener(
-"click",
-connexion
+  "click",
+  connexion
 );
-
 
 logoutButton.addEventListener(
-"click",
-deconnexion
+  "click",
+  deconnexion
 );
-
 
 saveArticleButton.addEventListener(
-"click",
-enregistrerArticle
+  "click",
+  enregistrerArticle
 );
-
 
 document
 .getElementById("password")
 .addEventListener(
-"keydown",
-function(event) {
+  "keydown",
+  function(event) {
 
-  if (
-    event.key === "Enter"
-  ) {
-
-    connexion();
+    if (event.key === "Enter") {
+      connexion();
+    }
 
   }
-
-});
+);
 
 
 function fonctionBientotDisponible(nom) {
