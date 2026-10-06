@@ -4,21 +4,12 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>VIDE DECO — POP-UP</title>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<!-- QR CODE -->
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
-<!-- SCANNER QR -->
 <script src="https://unpkg.com/html5-qrcode"></script>
 
 <style>
@@ -67,6 +58,7 @@ button {
 
 button:disabled {
   cursor:not-allowed;
+  opacity:.35;
 }
 
 .hidden {
@@ -98,8 +90,13 @@ header {
   letter-spacing:1.5px;
 }
 
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
 main {
-  width:min(1150px,90%);
+  width:min(1200px,90%);
   margin:auto;
   padding:55px 0 80px;
 }
@@ -124,10 +121,22 @@ h2 {
   letter-spacing:-1.5px;
 }
 
+.page-title,
+.hello {
+  font-size:clamp(42px,7vw,80px);
+  line-height:.9;
+  letter-spacing:-4px;
+  font-weight:900;
+}
 
-/* =========================================================
-   BOUTONS
-========================================================= */
+.page-header,
+.dashboard-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:25px;
+  margin-bottom:50px;
+}
 
 .primary {
   width:100%;
@@ -138,14 +147,6 @@ h2 {
   margin-top:22px;
   font-weight:900;
   text-transform:uppercase;
-}
-
-.primary:hover {
-  opacity:.85;
-}
-
-.primary:disabled {
-  opacity:.35;
 }
 
 .secondary {
@@ -161,15 +162,10 @@ h2 {
   color:white;
 }
 
-
-/* =========================================================
-   FORMULAIRES
-========================================================= */
-
 label {
   display:block;
   font-size:12px;
-  font-weight:800;
+  font-weight:900;
   text-transform:uppercase;
   margin:20px 0 8px;
 }
@@ -203,8 +199,17 @@ textarea {
 
 .message.success {
   background:var(--green);
-  color:var(--black);
   padding:12px;
+  color:var(--black);
+  font-weight:900;
+}
+
+.status {
+  display:inline-block;
+  margin-top:18px;
+  padding:7px 10px;
+  background:var(--green);
+  font-size:11px;
   font-weight:900;
 }
 
@@ -229,39 +234,11 @@ textarea {
    DASHBOARD
 ========================================================= */
 
-.dashboard-header,
-.page-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:25px;
-  margin-bottom:50px;
-}
-
-.hello,
-.page-title {
-  font-size:clamp(42px,7vw,80px);
-  line-height:.9;
-  letter-spacing:-4px;
-  margin-top:8px;
-  font-weight:900;
-}
-
 .logout {
   border:1px solid var(--black);
   background:transparent;
   padding:12px 18px;
-  font-weight:bold;
-}
-
-.status {
-  display:inline-block;
-  margin-top:18px;
-  padding:7px 10px;
-  background:var(--green);
-  font-size:11px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .cards {
@@ -277,8 +254,6 @@ textarea {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  background:transparent;
-  transition:.15s;
   cursor:pointer;
 }
 
@@ -300,8 +275,8 @@ textarea {
 }
 
 .card p {
-  line-height:1.45;
   font-size:14px;
+  line-height:1.45;
 }
 
 .arrow {
@@ -317,7 +292,7 @@ textarea {
 
 
 /* =========================================================
-   ARTICLE
+   FORMULAIRE ARTICLE
 ========================================================= */
 
 .article-page {
@@ -339,10 +314,6 @@ textarea {
   position:relative;
 }
 
-.price-wrapper input {
-  padding-right:50px;
-}
-
 .euro {
   position:absolute;
   right:17px;
@@ -354,56 +325,31 @@ textarea {
   margin-top:20px;
   padding:25px;
   border:2px dashed var(--black);
-  background:#efede8;
-}
-
-.photo-zone label {
-  margin-top:0;
-}
-
-.photo-help {
-  margin-top:12px;
-  font-size:12px;
-  text-align:center;
 }
 
 .photo-preview {
-  display:block;
   width:100%;
   max-height:350px;
   object-fit:contain;
   margin-top:18px;
-  border:1px solid #aaa;
   background:white;
-}
-
-.form-info {
-  margin-top:25px;
-  padding:18px;
-  border:1px solid #aaa;
-  font-size:13px;
-  line-height:1.5;
 }
 
 
 /* =========================================================
-   MES OBJETS
+   OBJETS / STOCK
 ========================================================= */
 
-.objects-toolbar {
+.toolbar {
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
   margin-bottom:25px;
-  padding-bottom:20px;
-  border-bottom:1px solid #bbb;
 }
 
-.objects-count {
-  font-size:13px;
-  font-weight:900;
-  text-transform:uppercase;
+.toolbar input {
+  max-width:420px;
 }
 
 .objects-grid {
@@ -414,7 +360,6 @@ textarea {
 
 .object-card {
   border:2px solid var(--black);
-  background:var(--background);
   display:flex;
   flex-direction:column;
 }
@@ -432,8 +377,8 @@ textarea {
   display:flex;
   align-items:center;
   justify-content:center;
+  background:#ddd9d2;
   border-bottom:2px solid var(--black);
-  background:#e2dfd8;
   font-size:12px;
   font-weight:900;
 }
@@ -441,58 +386,51 @@ textarea {
 .object-content {
   padding:20px;
   flex:1;
-  display:flex;
-  flex-direction:column;
 }
 
 .object-reference {
   font-size:11px;
   font-weight:900;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .object-name {
   font-size:25px;
   font-weight:900;
   letter-spacing:-1px;
-  line-height:1;
-  margin-bottom:12px;
+}
+
+.object-seller {
+  margin-top:8px;
+  font-size:12px;
+  font-weight:900;
 }
 
 .object-category {
-  font-size:12px;
+  font-size:11px;
   text-transform:uppercase;
-  margin-bottom:20px;
-}
-
-.object-bottom {
-  margin-top:auto;
-  padding-top:15px;
-  border-top:1px solid #aaa;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
+  margin-top:5px;
 }
 
 .object-price {
   font-size:28px;
   font-weight:900;
+  margin-top:20px;
 }
 
 .object-quantity {
+  margin-top:8px;
   font-size:11px;
-  font-weight:800;
-  text-align:right;
+  font-weight:900;
 }
 
 .object-status {
   display:inline-block;
-  align-self:flex-start;
   margin-top:15px;
   padding:7px 9px;
+  background:var(--green);
   font-size:10px;
   font-weight:900;
-  background:var(--green);
 }
 
 .object-status.vendu {
@@ -502,7 +440,7 @@ textarea {
 
 .object-actions {
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   border-top:2px solid var(--black);
 }
 
@@ -511,7 +449,6 @@ textarea {
   border-right:1px solid var(--black);
   background:transparent;
   min-height:48px;
-  padding:8px 4px;
   font-size:10px;
   font-weight:900;
 }
@@ -525,9 +462,113 @@ textarea {
   color:white;
 }
 
-.object-action.remove:hover {
-  background:var(--red);
-  color:white;
+
+/* =========================================================
+   STATISTIQUES
+========================================================= */
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:40px;
+}
+
+.stat {
+  min-height:150px;
+  border:2px solid var(--black);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.stat.green {
+  background:var(--green);
+}
+
+.stat-label {
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.stat-value {
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrap {
+  overflow-x:auto;
+  border-top:2px solid var(--black);
+}
+
+.data-table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:850px;
+}
+
+.data-table th {
+  text-align:left;
+  font-size:10px;
+  padding:13px 10px;
+  border-bottom:2px solid var(--black);
+}
+
+.data-table td {
+  padding:16px 10px;
+  border-bottom:1px solid #aaa;
+  font-size:13px;
+}
+
+.data-table .money {
+  font-weight:900;
+}
+
+
+/* =========================================================
+   MES VENTES
+========================================================= */
+
+.sales-list {
+  border-top:2px solid var(--black);
+}
+
+.sale-row {
+  display:grid;
+  grid-template-columns:130px 1fr 100px 120px 120px;
+  gap:15px;
+  align-items:center;
+  padding:20px 5px;
+  border-bottom:1px solid #aaa;
+}
+
+.sale-ref {
+  font-size:10px;
+  font-weight:900;
+}
+
+.sale-name {
+  font-size:18px;
+  font-weight:900;
+}
+
+.sale-net {
+  font-size:18px;
+  font-weight:900;
+}
+
+.sales-section-title {
+  font-size:30px;
+  font-weight:900;
+  margin:30px 0 20px;
 }
 
 
@@ -536,22 +577,15 @@ textarea {
 ========================================================= */
 
 .qr-box {
-  border:2px solid var(--black);
-  padding:30px;
   max-width:520px;
   margin:auto;
-}
-
-.qr-reference {
-  font-size:14px;
-  font-weight:900;
+  border:2px solid var(--black);
+  padding:30px;
 }
 
 .qr-name {
   font-size:36px;
   font-weight:900;
-  letter-spacing:-2px;
-  margin-top:10px;
 }
 
 .qr-price {
@@ -568,13 +602,6 @@ textarea {
   margin:25px 0;
 }
 
-.qr-help {
-  font-size:12px;
-  line-height:1.5;
-  border-top:1px solid #aaa;
-  padding-top:15px;
-}
-
 
 /* =========================================================
    CAISSE
@@ -584,7 +611,6 @@ textarea {
   display:grid;
   grid-template-columns:1fr 420px;
   gap:25px;
-  align-items:start;
 }
 
 .cashier-panel {
@@ -595,7 +621,6 @@ textarea {
 .cashier-title {
   font-size:28px;
   font-weight:900;
-  letter-spacing:-1px;
   margin-bottom:20px;
 }
 
@@ -605,32 +630,25 @@ textarea {
   gap:8px;
 }
 
-.reference-search input {
-  text-transform:uppercase;
-}
-
 .reference-search button {
-  border:0;
   background:var(--black);
   color:white;
+  border:0;
   padding:0 20px;
   font-weight:900;
 }
 
 .scan-button {
   width:100%;
+  padding:16px;
   margin-top:12px;
   border:2px solid var(--black);
   background:var(--green);
-  padding:16px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 #reader {
   margin-top:15px;
-  width:100%;
-  overflow:hidden;
   background:white;
 }
 
@@ -638,22 +656,11 @@ textarea {
   padding:40px 15px;
   text-align:center;
   border:1px dashed #999;
-  font-size:13px;
 }
 
 .cart-item {
-  border-top:1px solid #aaa;
   padding:16px 0;
-}
-
-.cart-item:first-child {
-  border-top:0;
-}
-
-.cart-ref {
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:4px;
+  border-bottom:1px solid #aaa;
 }
 
 .cart-name {
@@ -665,7 +672,6 @@ textarea {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
   margin-top:10px;
 }
 
@@ -676,7 +682,6 @@ textarea {
 
 .quantity-controls {
   display:flex;
-  align-items:center;
   border:1px solid var(--black);
 }
 
@@ -685,21 +690,12 @@ textarea {
   height:35px;
   border:0;
   background:transparent;
-  font-weight:900;
 }
 
 .quantity-controls span {
   width:30px;
   text-align:center;
-  font-weight:900;
-}
-
-.cart-remove {
-  border:0;
-  background:transparent;
-  text-decoration:underline;
-  font-size:11px;
-  margin-top:10px;
+  padding-top:8px;
 }
 
 .cart-total {
@@ -711,27 +707,16 @@ textarea {
   align-items:flex-end;
 }
 
-.cart-total-label {
-  font-size:12px;
-  font-weight:900;
-}
-
 .cart-total-value {
   font-size:42px;
   font-weight:900;
-  letter-spacing:-2px;
-}
-
-.payment-title {
-  font-size:12px;
-  font-weight:900;
-  margin:25px 0 10px;
 }
 
 .payment-methods {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
+  margin-top:10px;
 }
 
 .payment-button {
@@ -749,132 +734,22 @@ textarea {
 
 .validate-sale {
   width:100%;
-  border:0;
   background:var(--green);
-  color:var(--black);
+  border:0;
   padding:20px;
   margin-top:20px;
   font-weight:900;
-  font-size:15px;
-}
-
-.validate-sale:disabled {
-  opacity:.3;
-}
-
-.cash-warning {
-  margin-top:12px;
-  font-size:11px;
-  line-height:1.5;
 }
 
 
 /* =========================================================
-   MES VENTES
-========================================================= */
-
-.sales-stats {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:35px;
-}
-
-.sales-stat {
-  border:2px solid var(--black);
-  padding:20px;
-  min-height:155px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.sales-stat.highlight {
-  background:var(--green);
-}
-
-.sales-stat-label {
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
-  line-height:1.3;
-}
-
-.sales-stat-value {
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:-1.5px;
-}
-
-.sales-section-title {
-  font-size:30px;
-  font-weight:900;
-  letter-spacing:-1px;
-  margin-bottom:20px;
-}
-
-.sales-list {
-  border-top:2px solid var(--black);
-}
-
-.sale-row {
-  display:grid;
-  grid-template-columns:130px 1fr 110px 110px 130px;
-  gap:15px;
-  align-items:center;
-  padding:20px 5px;
-  border-bottom:1px solid #aaa;
-}
-
-.sale-date {
-  font-size:12px;
-  line-height:1.4;
-}
-
-.sale-ref {
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:5px;
-}
-
-.sale-name {
-  font-size:18px;
-  font-weight:900;
-}
-
-.sale-qty {
-  font-size:12px;
-  font-weight:800;
-}
-
-.sale-amount,
-.sale-net {
-  font-size:17px;
-  font-weight:900;
-  text-align:right;
-}
-
-.sale-net {
-  font-size:18px;
-}
-
-.sales-note {
-  margin-top:25px;
-  border:1px solid #aaa;
-  padding:16px;
-  font-size:12px;
-  line-height:1.5;
-}
-
-
-/* =========================================================
-   VENTE RÉUSSIE
+   SUCCÈS
 ========================================================= */
 
 .sale-success {
-  border:3px solid var(--black);
   max-width:650px;
   margin:auto;
+  border:3px solid var(--black);
   padding:40px;
   text-align:center;
 }
@@ -882,21 +757,20 @@ textarea {
 .sale-success-check {
   width:80px;
   height:80px;
-  background:var(--green);
   border-radius:50%;
+  background:var(--green);
   display:flex;
   align-items:center;
   justify-content:center;
+  margin:0 auto 25px;
   font-size:40px;
   font-weight:900;
-  margin:0 auto 25px;
 }
 
 .sale-success-title {
   font-size:50px;
-  font-weight:900;
-  letter-spacing:-3px;
   line-height:.9;
+  font-weight:900;
 }
 
 .sale-success-total {
@@ -905,21 +779,10 @@ textarea {
   margin:25px 0;
 }
 
-
-/* =========================================================
-   EMPTY
-========================================================= */
-
 .empty-state {
   border:2px solid var(--black);
-  padding:45px 25px;
+  padding:40px;
   text-align:center;
-}
-
-.empty-title {
-  font-size:32px;
-  font-weight:900;
-  margin-bottom:10px;
 }
 
 
@@ -933,7 +796,6 @@ footer {
   display:flex;
   justify-content:space-between;
   font-size:11px;
-  text-transform:uppercase;
 }
 
 
@@ -945,9 +807,14 @@ footer {
 
   .cards,
   .objects-grid,
-  .cashier-layout,
-  .sales-stats {
+  .stats,
+  .cashier-layout {
     grid-template-columns:1fr;
+  }
+
+  .page-header,
+  .dashboard-header {
+    flex-direction:column;
   }
 
   .form-grid {
@@ -958,68 +825,12 @@ footer {
     grid-column:auto;
   }
 
-  .dashboard-header,
-  .page-header {
-    flex-direction:column;
-  }
-
-  .card {
-    min-height:190px;
-  }
-
-  .cashier-layout {
-    gap:15px;
-  }
-
   .sale-row {
     grid-template-columns:1fr 1fr;
-    gap:10px;
   }
 
   .sale-row > div:nth-child(2) {
     grid-column:1/-1;
-  }
-
-  .sale-amount,
-  .sale-net {
-    text-align:left;
-  }
-
-}
-
-
-/* =========================================================
-   IMPRESSION QR
-========================================================= */
-
-@media print {
-
-  body * {
-    visibility:hidden;
-  }
-
-  #qrSection,
-  #qrSection * {
-    visibility:visible;
-  }
-
-  #qrSection {
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-  }
-
-  #qrSection .page-header,
-  #qrPrintButtons,
-  #qrHelp {
-    display:none !important;
-  }
-
-  .qr-box {
-    width:90mm;
-    border:2px solid black;
-    margin:0;
   }
 
 }
@@ -1028,857 +839,1231 @@ footer {
 
 </head>
 
+
 <body>
 
 <header>
 
-  <div class="logo">VIDE DECO</div>
+  <div class="logo">
+    VIDE DECO
+  </div>
 
-  <div class="tag">POP-UP MANAGEMENT</div>
+  <div class="tag">
+    POP-UP MANAGEMENT
+  </div>
 
 </header>
 
 
 <main>
 
-<!-- =====================================================
+
+<!-- =========================================================
      LOGIN
-===================================================== -->
+========================================================= -->
 
 <section id="loginSection" class="login">
 
-  <div class="eyebrow">
-    Boutique éphémère
-  </div>
+<div class="eyebrow">
+BOUTIQUE ÉPHÉMÈRE
+</div>
 
-  <h1>
-    GÉRER.<br>
-    VENDRE.<br>
-    SUIVRE.
-  </h1>
+<h1>
+GÉRER.<br>
+VENDRE.<br>
+SUIVRE.
+</h1>
 
-  <div class="login-box">
+<div class="login-box">
 
-    <h2>Connexion</h2>
+<h2>Connexion</h2>
 
-    <label>E-mail</label>
+<label>E-mail</label>
+<input id="email" type="email">
 
-    <input
-      id="email"
-      type="email"
-      autocomplete="email"
-    >
+<label>Mot de passe</label>
+<input id="password" type="password">
 
-    <label>Mot de passe</label>
+<button
+id="loginButton"
+class="primary">
+Se connecter
+</button>
 
-    <input
-      id="password"
-      type="password"
-      autocomplete="current-password"
-    >
+<div
+id="loginMessage"
+class="message">
+</div>
 
-    <button
-      id="loginButton"
-      class="primary"
-      type="button"
-    >
-      Se connecter
-    </button>
-
-    <div id="loginMessage" class="message"></div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      DASHBOARD
-===================================================== -->
+========================================================= -->
 
-<section id="dashboardSection" class="hidden">
+<section
+id="dashboardSection"
+class="hidden">
 
-  <div class="dashboard-header">
+<div class="dashboard-header">
 
-    <div>
+<div>
 
-      <div class="eyebrow">
-        VIDE DECO POP-UP
-      </div>
+<div class="eyebrow">
+VIDE DECO POP-UP
+</div>
 
-      <div id="hello" class="hello">
-        BONJOUR.
-      </div>
+<div
+id="hello"
+class="hello">
+BONJOUR.
+</div>
 
-      <div id="roleBadge" class="status">
-        CONNEXION
-      </div>
+<div
+id="roleBadge"
+class="status">
+CONNEXION
+</div>
 
-    </div>
-
-    <button
-      id="logoutButton"
-      class="logout"
-      type="button"
-    >
-      Déconnexion
-    </button>
-
-  </div>
+</div>
 
 
-  <!-- ADMIN -->
+<button
+id="logoutButton"
+class="logout">
+Déconnexion
+</button>
 
-  <div id="adminCards" class="cards hidden">
-
-    <div
-      class="card"
-      onclick="fonctionBientotDisponible('STOCK')"
-    >
-
-      <div class="number">01</div>
-
-      <div>
-        <div class="card-title">STOCK</div>
-        <p>
-          Articles en boutique<br>
-          Articles à apporter<br>
-          Stock général
-        </p>
-      </div>
-
-      <div class="arrow">→</div>
-
-    </div>
+</div>
 
 
-    <div
-      class="card"
-      onclick="ouvrirCaisse()"
-    >
 
-      <div class="number">02</div>
+<!-- ADMIN -->
 
-      <div>
-        <div class="card-title">CAISSE</div>
-        <p>
-          Scanner les QR codes<br>
-          Constituer le panier<br>
-          Enregistrer les paiements
-        </p>
-      </div>
-
-      <div class="arrow">→</div>
-
-    </div>
+<div
+id="adminCards"
+class="cards hidden">
 
 
-    <div
-      class="card"
-      onclick="fonctionBientotDisponible('ADMINISTRATION')"
-    >
+<div
+class="card"
+onclick="ouvrirStock()">
 
-      <div class="number">03</div>
+<div class="number">
+01
+</div>
 
-      <div>
-        <div class="card-title">ADMIN</div>
-        <p>
-          Brocanteurs<br>
-          Chiffre d'affaires<br>
-          Reversements
-        </p>
-      </div>
+<div>
 
-      <div class="arrow">→</div>
+<div class="card-title">
+STOCK
+</div>
 
-    </div>
+<p>
+Tous les objets<br>
+Quantités disponibles<br>
+Brocanteurs
+</p>
 
-  </div>
+</div>
 
+<div class="arrow">
+→
+</div>
 
-  <!-- BROCANTEUR -->
-
-  <div id="sellerCards" class="cards hidden">
-
-    <div
-      class="card"
-      onclick="ouvrirAjoutArticle()"
-    >
-
-      <div class="number">01</div>
-
-      <div>
-        <div class="card-title">AJOUTER</div>
-        <p>
-          Enregistrer un objet<br>
-          Ajouter sa photo<br>
-          Définir son prix
-        </p>
-      </div>
-
-      <div class="arrow">→</div>
-
-    </div>
+</div>
 
 
-    <div
-      class="card"
-      onclick="ouvrirMesObjets()"
-    >
 
-      <div class="number">02</div>
+<div
+class="card"
+onclick="ouvrirCaisse()">
 
-      <div>
-        <div class="card-title">MES OBJETS</div>
-        <p>
-          Voir les objets<br>
-          Modifier<br>
-          Imprimer les QR codes
-        </p>
-      </div>
+<div class="number">
+02
+</div>
 
-      <div class="arrow">→</div>
+<div>
 
-    </div>
+<div class="card-title">
+CAISSE
+</div>
 
+<p>
+Scanner les QR codes<br>
+Constituer le panier<br>
+Enregistrer les paiements
+</p>
 
-    <div
-      class="card"
-      onclick="ouvrirMesVentes()"
-    >
+</div>
 
-      <div class="number">03</div>
+<div class="arrow">
+→
+</div>
 
-      <div>
-        <div class="card-title">MES VENTES</div>
-        <p>
-          Historique<br>
-          Chiffre d'affaires<br>
-          Reversements
-        </p>
-      </div>
-
-      <div class="arrow">→</div>
-
-    </div>
-
-  </div>
+</div>
 
 
-  <div class="connection">
 
-    <strong>Base de données :</strong>
+<div
+class="card"
+onclick="ouvrirAdmin()">
 
-    <span id="databaseStatus">
-      connexion…
-    </span>
+<div class="number">
+03
+</div>
 
-  </div>
+<div>
+
+<div class="card-title">
+ADMIN
+</div>
+
+<p>
+Chiffre d'affaires<br>
+Commissions<br>
+Reversements
+</p>
+
+</div>
+
+<div class="arrow">
+→
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- BROCANTEUR -->
+
+<div
+id="sellerCards"
+class="cards hidden">
+
+
+<div
+class="card"
+onclick="ouvrirAjoutArticle()">
+
+<div class="number">
+01
+</div>
+
+<div>
+
+<div class="card-title">
+AJOUTER
+</div>
+
+<p>
+Enregistrer un objet<br>
+Ajouter sa photo<br>
+Définir son prix
+</p>
+
+</div>
+
+<div class="arrow">
+→
+</div>
+
+</div>
+
+
+
+<div
+class="card"
+onclick="ouvrirMesObjets()">
+
+<div class="number">
+02
+</div>
+
+<div>
+
+<div class="card-title">
+MES OBJETS
+</div>
+
+<p>
+Voir les objets<br>
+Modifier<br>
+QR codes
+</p>
+
+</div>
+
+<div class="arrow">
+→
+</div>
+
+</div>
+
+
+
+<div
+class="card"
+onclick="ouvrirMesVentes()">
+
+<div class="number">
+03
+</div>
+
+<div>
+
+<div class="card-title">
+MES VENTES
+</div>
+
+<p>
+Historique<br>
+Chiffre d'affaires<br>
+Net à recevoir
+</p>
+
+</div>
+
+<div class="arrow">
+→
+</div>
+
+</div>
+
+</div>
+
+
+<div class="connection">
+
+<strong>
+Base de données :
+</strong>
+
+<span id="databaseStatus">
+connexion…
+</span>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     AJOUT / MODIFICATION ARTICLE
-===================================================== -->
 
-<section id="articleSection" class="article-page hidden">
+<!-- =========================================================
+     AJOUT ARTICLE
+========================================================= -->
 
-  <div class="page-header">
+<section
+id="articleSection"
+class="article-page hidden">
 
-    <div>
+<div class="page-header">
 
-      <div id="articleEyebrow" class="eyebrow">
-        NOUVEL OBJET
-      </div>
+<div>
 
-      <div id="articlePageTitle" class="page-title">
-        AJOUTER<br>
-        UN OBJET.
-      </div>
+<div
+id="articleEyebrow"
+class="eyebrow">
+NOUVEL OBJET
+</div>
 
-    </div>
+<div
+id="articlePageTitle"
+class="page-title">
+AJOUTER<br>
+UN OBJET.
+</div>
 
-    <button
-      class="secondary"
-      onclick="annulerArticle()"
-    >
-      ← Retour
-    </button>
-
-  </div>
+</div>
 
 
-  <div class="form-box">
+<button
+class="secondary"
+onclick="annulerArticle()">
+← Retour
+</button>
 
-    <div class="form-grid">
-
-      <div class="full">
-
-        <label>
-          Nom de l'objet *
-        </label>
-
-        <input
-          id="articleNom"
-          type="text"
-        >
-
-      </div>
+</div>
 
 
-      <div>
+<div class="form-box">
 
-        <label>
-          Catégorie
-        </label>
-
-        <select id="articleCategorie">
-
-          <option value="">Choisir</option>
-          <option>Mobilier</option>
-          <option>Luminaire</option>
-          <option>Décoration</option>
-          <option>Vaisselle</option>
-          <option>Textile</option>
-          <option>Art</option>
-          <option>Livre</option>
-          <option>Divers</option>
-
-        </select>
-
-      </div>
+<div class="form-grid">
 
 
-      <div class="price-wrapper">
+<div class="full">
 
-        <label>
-          Prix *
-        </label>
+<label>
+Nom de l'objet *
+</label>
 
-        <input
-          id="articlePrix"
-          type="number"
-          min="0"
-          step="0.01"
-        >
+<input
+id="articleNom"
+type="text">
 
-        <span class="euro">€</span>
-
-      </div>
+</div>
 
 
-      <div>
 
-        <label>
-          Quantité *
-        </label>
+<div>
 
-        <input
-          id="articleQuantite"
-          type="number"
-          min="1"
-          value="1"
-        >
+<label>
+Catégorie
+</label>
 
-      </div>
+<select id="articleCategorie">
 
+<option value="">
+Choisir
+</option>
 
-      <div class="full">
+<option>Mobilier</option>
+<option>Luminaire</option>
+<option>Décoration</option>
+<option>Vaisselle</option>
+<option>Textile</option>
+<option>Art</option>
+<option>Livre</option>
+<option>Divers</option>
 
-        <label>
-          Description
-        </label>
+</select>
 
-        <textarea id="articleDescription"></textarea>
-
-      </div>
-
-
-      <div class="full photo-zone">
-
-        <label>
-          Photo
-        </label>
-
-        <input
-          id="articlePhoto"
-          type="file"
-          accept="image/*"
-        >
-
-        <div class="photo-help">
-          Prends une photo ou choisis une image.
-        </div>
-
-        <img
-          id="photoPreview"
-          class="photo-preview hidden"
-          alt="Aperçu"
-        >
-
-      </div>
-
-    </div>
+</div>
 
 
-    <button
-      id="saveArticleButton"
-      class="primary"
-      type="button"
-    >
-      Enregistrer l'objet
-    </button>
 
-    <div id="articleMessage" class="message"></div>
+<div class="price-wrapper">
 
-  </div>
+<label>
+Prix *
+</label>
+
+<input
+id="articlePrix"
+type="number"
+min="0"
+step="0.01">
+
+<span class="euro">
+€
+</span>
+
+</div>
+
+
+
+<div>
+
+<label>
+Quantité *
+</label>
+
+<input
+id="articleQuantite"
+type="number"
+min="1"
+value="1">
+
+</div>
+
+
+
+<div class="full">
+
+<label>
+Description
+</label>
+
+<textarea
+id="articleDescription">
+</textarea>
+
+</div>
+
+
+
+<div class="full photo-zone">
+
+<label>
+Photo
+</label>
+
+<input
+id="articlePhoto"
+type="file"
+accept="image/*">
+
+<img
+id="photoPreview"
+class="photo-preview hidden">
+
+</div>
+
+</div>
+
+
+<button
+id="saveArticleButton"
+class="primary">
+ENREGISTRER L'OBJET
+</button>
+
+
+<div
+id="articleMessage"
+class="message">
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      MES OBJETS
-===================================================== -->
+========================================================= -->
 
-<section id="objectsSection" class="hidden">
+<section
+id="objectsSection"
+class="hidden">
 
-  <div class="page-header">
+<div class="page-header">
 
-    <div>
+<div>
 
-      <div class="eyebrow">
-        INVENTAIRE PERSONNEL
-      </div>
+<div class="eyebrow">
+INVENTAIRE PERSONNEL
+</div>
 
-      <div class="page-title">
-        MES<br>
-        OBJETS.
-      </div>
+<div class="page-title">
+MES<br>
+OBJETS.
+</div>
 
-    </div>
+</div>
 
-    <button
-      class="secondary"
-      onclick="retourDashboard()"
-    >
-      ← Retour
-    </button>
+<button
+class="secondary"
+onclick="retourDashboard()">
+← Retour
+</button>
 
-  </div>
-
-
-  <div class="objects-toolbar">
-
-    <div id="objectsCount" class="objects-count">
-      Chargement…
-    </div>
-
-    <button
-      class="secondary"
-      onclick="ouvrirAjoutArticle()"
-    >
-      + Ajouter
-    </button>
-
-  </div>
-
-  <div id="objectsMessage" class="message"></div>
-
-  <div id="objectsGrid" class="objects-grid"></div>
-
-</section>
+</div>
 
 
-<!-- =====================================================
-     MES VENTES
-===================================================== -->
+<div class="toolbar">
 
-<section id="salesSection" class="hidden">
+<strong id="objectsCount">
+Chargement…
+</strong>
 
-  <div class="page-header">
+<button
+class="secondary"
+onclick="ouvrirAjoutArticle()">
++ Ajouter
+</button>
 
-    <div>
-
-      <div class="eyebrow">
-        ACTIVITÉ BROCANTEUR
-      </div>
-
-      <div class="page-title">
-        MES<br>
-        VENTES.
-      </div>
-
-    </div>
-
-    <button
-      class="secondary"
-      onclick="retourDashboard()"
-    >
-      ← Retour
-    </button>
-
-  </div>
+</div>
 
 
-  <div id="salesMessage" class="message"></div>
+<div
+id="objectsMessage"
+class="message">
+</div>
 
-
-  <div class="sales-stats">
-
-    <div class="sales-stat">
-
-      <div class="sales-stat-label">
-        CHIFFRE<br>D'AFFAIRES
-      </div>
-
-      <div id="salesGross" class="sales-stat-value">
-        0,00 €
-      </div>
-
-    </div>
-
-
-    <div class="sales-stat">
-
-      <div class="sales-stat-label">
-        COMMISSION<br>VIDE DECO
-      </div>
-
-      <div id="salesCommission" class="sales-stat-value">
-        0,00 €
-      </div>
-
-    </div>
-
-
-    <div class="sales-stat highlight">
-
-      <div class="sales-stat-label">
-        NET À<br>RECEVOIR
-      </div>
-
-      <div id="salesNet" class="sales-stat-value">
-        0,00 €
-      </div>
-
-    </div>
-
-
-    <div class="sales-stat">
-
-      <div class="sales-stat-label">
-        ARTICLES<br>VENDUS
-      </div>
-
-      <div id="salesQuantity" class="sales-stat-value">
-        0
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="sales-section-title">
-    HISTORIQUE
-  </div>
-
-  <div id="salesList" class="sales-list"></div>
-
-
-  <div class="sales-note">
-
-    Les montants affichés sont calculés à partir des ventes
-    enregistrées dans VIDE DECO. Le montant net correspond au
-    chiffre d'affaires après déduction de la commission VIDE DECO.
-
-  </div>
+<div
+id="objectsGrid"
+class="objects-grid">
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     QR CODE
-===================================================== -->
 
-<section id="qrSection" class="hidden">
+<!-- =========================================================
+     MES VENTES BROCANTEUR
+========================================================= -->
 
-  <div class="page-header">
+<section
+id="salesSection"
+class="hidden">
 
-    <div>
+<div class="page-header">
 
-      <div class="eyebrow">
-        ÉTIQUETTE ARTICLE
-      </div>
+<div>
 
-      <div class="page-title">
-        QR<br>
-        CODE.
-      </div>
+<div class="eyebrow">
+ACTIVITÉ BROCANTEUR
+</div>
 
-    </div>
+<div class="page-title">
+MES<br>
+VENTES.
+</div>
 
-    <button
-      class="secondary"
-      onclick="ouvrirMesObjets()"
-    >
-      ← Retour
-    </button>
+</div>
 
-  </div>
+<button
+class="secondary"
+onclick="retourDashboard()">
+← Retour
+</button>
+
+</div>
 
 
-  <div class="qr-box">
+<div
+id="salesMessage"
+class="message">
+</div>
 
-    <div id="qrReference" class="qr-reference"></div>
 
-    <div id="qrName" class="qr-name"></div>
+<div class="stats">
 
-    <div id="qrPrice" class="qr-price"></div>
+<div class="stat">
 
-    <div id="qrCode" class="qr-code"></div>
+<div class="stat-label">
+CHIFFRE D'AFFAIRES
+</div>
 
-    <div id="qrHelp" class="qr-help">
-      Le QR code contient l'identifiant unique de
-      l'article. Le prix est récupéré dans la base
-      au moment du passage en caisse.
-    </div>
+<div
+id="salesGross"
+class="stat-value">
+0,00 €
+</div>
 
-    <div id="qrPrintButtons">
+</div>
 
-      <button
-        class="primary"
-        onclick="window.print()"
-      >
-        Imprimer l'étiquette
-      </button>
 
-    </div>
+<div class="stat">
 
-  </div>
+<div class="stat-label">
+COMMISSION VIDE DECO
+</div>
+
+<div
+id="salesCommission"
+class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div class="stat-label">
+NET À RECEVOIR
+</div>
+
+<div
+id="salesNet"
+class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+ARTICLES VENDUS
+</div>
+
+<div
+id="salesQuantity"
+class="stat-value">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="sales-section-title">
+HISTORIQUE
+</div>
+
+<div
+id="salesList"
+class="sales-list">
+</div>
 
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
+     STOCK ADMIN
+========================================================= -->
+
+<section
+id="stockSection"
+class="hidden">
+
+<div class="page-header">
+
+<div>
+
+<div class="eyebrow">
+GESTION GÉNÉRALE
+</div>
+
+<div class="page-title">
+STOCK.
+</div>
+
+</div>
+
+<button
+class="secondary"
+onclick="retourDashboard()">
+← Retour
+</button>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-label">
+RÉFÉRENCES
+</div>
+
+<div
+id="stockReferences"
+class="stat-value">
+0
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div class="stat-label">
+UNITÉS DISPONIBLES
+</div>
+
+<div
+id="stockAvailable"
+class="stat-value">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+UNITÉS VENDUES
+</div>
+
+<div
+id="stockSold"
+class="stat-value">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+VALEUR STOCK DISPONIBLE
+</div>
+
+<div
+id="stockValue"
+class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<input
+id="stockSearch"
+type="search"
+placeholder="Rechercher référence, objet, brocanteur…">
+
+<select
+id="stockFilter"
+style="max-width:230px">
+
+<option value="all">
+Tous les articles
+</option>
+
+<option value="available">
+Disponibles
+</option>
+
+<option value="sold">
+Vendus
+</option>
+
+</select>
+
+</div>
+
+
+<div
+id="stockMessage"
+class="message">
+</div>
+
+<div
+id="stockGrid"
+class="objects-grid">
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ADMIN FINANCES
+========================================================= -->
+
+<section
+id="adminSection"
+class="hidden">
+
+<div class="page-header">
+
+<div>
+
+<div class="eyebrow">
+PILOTAGE VIDE DECO
+</div>
+
+<div class="page-title">
+ADMIN.
+</div>
+
+</div>
+
+<button
+class="secondary"
+onclick="retourDashboard()">
+← Retour
+</button>
+
+</div>
+
+
+<div
+id="adminMessage"
+class="message">
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-label">
+CHIFFRE D'AFFAIRES
+</div>
+
+<div
+id="adminGross"
+class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div class="stat-label">
+COMMISSIONS VIDE DECO
+</div>
+
+<div
+id="adminCommission"
+class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+À REVERSER
+</div>
+
+<div
+id="adminSellerNet"
+class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+ARTICLES VENDUS
+</div>
+
+<div
+id="adminSoldQuantity"
+class="stat-value">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="sales-section-title">
+BROCANTEURS
+</div>
+
+<div class="table-wrap">
+
+<table class="data-table">
+
+<thead>
+
+<tr>
+<th>Brocanteur</th>
+<th>Commission</th>
+<th>Articles vendus</th>
+<th>CA</th>
+<th>Commission VIDE DECO</th>
+<th>À reverser</th>
+</tr>
+
+</thead>
+
+<tbody id="adminSellerTable">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="sales-section-title">
+DERNIÈRES VENTES
+</div>
+
+<div
+id="adminSalesList"
+class="sales-list">
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     QR
+========================================================= -->
+
+<section
+id="qrSection"
+class="hidden">
+
+<div class="page-header">
+
+<div>
+
+<div class="eyebrow">
+ÉTIQUETTE ARTICLE
+</div>
+
+<div class="page-title">
+QR<br>
+CODE.
+</div>
+
+</div>
+
+<button
+class="secondary"
+onclick="ouvrirMesObjets()">
+← Retour
+</button>
+
+</div>
+
+
+<div class="qr-box">
+
+<div
+id="qrReference"
+class="object-reference">
+</div>
+
+<div
+id="qrName"
+class="qr-name">
+</div>
+
+<div
+id="qrPrice"
+class="qr-price">
+</div>
+
+<div
+id="qrCode"
+class="qr-code">
+</div>
+
+<button
+class="primary"
+onclick="window.print()">
+IMPRIMER
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
      CAISSE
-===================================================== -->
+========================================================= -->
 
-<section id="cashierSection" class="hidden">
+<section
+id="cashierSection"
+class="hidden">
 
-  <div class="page-header">
+<div class="page-header">
 
-    <div>
+<div>
 
-      <div class="eyebrow">
-        POINT DE VENTE
-      </div>
+<div class="eyebrow">
+POINT DE VENTE
+</div>
 
-      <div class="page-title">
-        CAISSE.
-      </div>
+<div class="page-title">
+CAISSE.
+</div>
 
-    </div>
+</div>
 
-    <button
-      class="secondary"
-      onclick="quitterCaisse()"
-    >
-      ← Retour
-    </button>
+<button
+class="secondary"
+onclick="quitterCaisse()">
+← Retour
+</button>
 
-  </div>
-
-
-  <div class="cashier-layout">
-
-    <div class="cashier-panel">
-
-      <div class="cashier-title">
-        AJOUTER UN ARTICLE
-      </div>
+</div>
 
 
-      <div class="reference-search">
-
-        <input
-          id="cashReference"
-          type="text"
-          placeholder="VD-000001"
-          autocomplete="off"
-        >
-
-        <button onclick="ajouterParReference()">
-          AJOUTER
-        </button>
-
-      </div>
+<div class="cashier-layout">
 
 
-      <button
-        id="scanButton"
-        class="scan-button"
-        onclick="demarrerScanner()"
-      >
-        📷 SCANNER UN QR CODE
-      </button>
+<div class="cashier-panel">
+
+<div class="cashier-title">
+AJOUTER UN ARTICLE
+</div>
 
 
-      <div id="reader" class="hidden"></div>
+<div class="reference-search">
 
-      <div id="cashMessage" class="message"></div>
+<input
+id="cashReference"
+placeholder="VD-000001">
 
+<button
+onclick="ajouterParReference()">
+AJOUTER
+</button>
 
-      <div class="form-info">
-
-        Scanne l'étiquette de l'objet ou saisis
-        directement sa référence, par exemple
-        <strong>VD-000001</strong>.
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="cashier-panel">
-
-      <div class="cashier-title">
-        PANIER
-      </div>
-
-      <div id="cartItems">
-
-        <div class="cart-empty">
-          Aucun article dans le panier.
-        </div>
-
-      </div>
+<button
+id="scanButton"
+class="scan-button"
+onclick="demarrerScanner()">
+📷 SCANNER UN QR CODE
+</button>
 
 
-      <div class="cart-total">
-
-        <div class="cart-total-label">
-          TOTAL
-        </div>
-
-        <div id="cartTotal" class="cart-total-value">
-          0,00 €
-        </div>
-
-      </div>
+<div
+id="reader"
+class="hidden">
+</div>
 
 
-      <div class="payment-title">
-        MODE DE PAIEMENT
-      </div>
+<div
+id="cashMessage"
+class="message">
+</div>
+
+</div>
 
 
-      <div class="payment-methods">
 
-        <button
-          id="paymentCarte"
-          class="payment-button"
-          onclick="choisirPaiement('carte')"
-        >
-          CARTE
-        </button>
+<div class="cashier-panel">
 
-        <button
-          id="paymentEspeces"
-          class="payment-button"
-          onclick="choisirPaiement('especes')"
-        >
-          ESPÈCES
-        </button>
+<div class="cashier-title">
+PANIER
+</div>
 
-        <button
-          id="paymentCheque"
-          class="payment-button"
-          onclick="choisirPaiement('cheque')"
-        >
-          CHÈQUE
-        </button>
+<div id="cartItems">
 
-      </div>
+<div class="cart-empty">
+Aucun article dans le panier.
+</div>
+
+</div>
 
 
-      <button
-        id="validateSaleButton"
-        class="validate-sale"
-        onclick="validerVente()"
-        disabled
-      >
-        VALIDER LE PAIEMENT
-      </button>
+<div class="cart-total">
+
+<div>
+TOTAL
+</div>
+
+<div
+id="cartTotal"
+class="cart-total-value">
+0,00 €
+</div>
+
+</div>
 
 
-      <div class="cash-warning">
+<label>
+MODE DE PAIEMENT
+</label>
 
-        Pour un paiement par carte, attends la confirmation
-        du TPE avant de valider la vente dans VIDE DECO.
 
-      </div>
+<div class="payment-methods">
 
-    </div>
+<button
+id="paymentCarte"
+class="payment-button"
+onclick="choisirPaiement('carte')">
+CARTE
+</button>
 
-  </div>
+<button
+id="paymentEspeces"
+class="payment-button"
+onclick="choisirPaiement('especes')">
+ESPÈCES
+</button>
+
+<button
+id="paymentCheque"
+class="payment-button"
+onclick="choisirPaiement('cheque')">
+CHÈQUE
+</button>
+
+</div>
+
+
+<button
+id="validateSaleButton"
+class="validate-sale"
+onclick="validerVente()"
+disabled>
+VALIDER LE PAIEMENT
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     VENTE RÉUSSIE
-===================================================== -->
 
-<section id="saleSuccessSection" class="hidden">
+<!-- =========================================================
+     SUCCÈS
+========================================================= -->
 
-  <div class="sale-success">
+<section
+id="saleSuccessSection"
+class="hidden">
 
-    <div class="sale-success-check">
-      ✓
-    </div>
+<div class="sale-success">
 
-    <div class="sale-success-title">
-      VENTE<br>
-      ENREGISTRÉE.
-    </div>
+<div class="sale-success-check">
+✓
+</div>
 
-    <div id="successTotal" class="sale-success-total">
-      0,00 €
-    </div>
+<div class="sale-success-title">
+VENTE<br>
+ENREGISTRÉE.
+</div>
 
-    <div id="successPayment"></div>
+<div
+id="successTotal"
+class="sale-success-total">
+0,00 €
+</div>
 
-    <button
-      class="primary"
-      onclick="nouvelleVente()"
-    >
-      Nouvelle vente
-    </button>
+<div id="successPayment">
+</div>
 
-    <button
-      class="secondary"
-      style="width:100%; margin-top:10px"
-      onclick="retourDashboard()"
-    >
-      Retour au tableau de bord
-    </button>
+<button
+class="primary"
+onclick="nouvelleVente()">
+NOUVELLE VENTE
+</button>
 
-  </div>
+<button
+class="secondary"
+style="width:100%;margin-top:10px"
+onclick="retourDashboard()">
+RETOUR
+</button>
+
+</div>
 
 </section>
+
 
 </main>
 
 
 <footer>
 
-  <div>VIDE DECO</div>
+<div>
+VIDE DECO
+</div>
 
-  <div>Boutique éphémère</div>
+<div>
+BOUTIQUE ÉPHÉMÈRE
+</div>
 
 </footer>
+
 
 
 <script>
@@ -1890,13 +2075,13 @@ footer {
 const SUPABASE_URL =
 "https://zxwvbfhkeszkcxcnijcp.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
+const SUPABASE_KEY =
 "sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
 
 const db =
 supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
@@ -1910,105 +2095,79 @@ let profilActuel = null;
 let articleEnModification = null;
 
 let panier = [];
-
 let modePaiement = null;
 
 let scanner = null;
 let scannerActif = false;
 
-
-/* =========================================================
-   ÉLÉMENTS
-========================================================= */
-
-const loginSection =
-document.getElementById("loginSection");
-
-const dashboardSection =
-document.getElementById("dashboardSection");
-
-const articleSection =
-document.getElementById("articleSection");
-
-const objectsSection =
-document.getElementById("objectsSection");
-
-const salesSection =
-document.getElementById("salesSection");
-
-const qrSection =
-document.getElementById("qrSection");
-
-const cashierSection =
-document.getElementById("cashierSection");
-
-const saleSuccessSection =
-document.getElementById("saleSuccessSection");
-
-const loginMessage =
-document.getElementById("loginMessage");
-
-const articleMessage =
-document.getElementById("articleMessage");
-
-const objectsMessage =
-document.getElementById("objectsMessage");
-
-const salesMessage =
-document.getElementById("salesMessage");
-
-const cashMessage =
-document.getElementById("cashMessage");
-
-const objectsGrid =
-document.getElementById("objectsGrid");
-
-const objectsCount =
-document.getElementById("objectsCount");
-
-const articlePhoto =
-document.getElementById("articlePhoto");
-
-const photoPreview =
-document.getElementById("photoPreview");
+let stockCache = [];
+let profilsCache = {};
 
 
 /* =========================================================
-   NAVIGATION
+   SECTIONS
 ========================================================= */
 
-function cacherToutesLesPages() {
+const sections = [
+"loginSection",
+"dashboardSection",
+"articleSection",
+"objectsSection",
+"salesSection",
+"stockSection",
+"adminSection",
+"qrSection",
+"cashierSection",
+"saleSuccessSection"
+];
 
-  loginSection.classList.add("hidden");
-  dashboardSection.classList.add("hidden");
-  articleSection.classList.add("hidden");
-  objectsSection.classList.add("hidden");
-  salesSection.classList.add("hidden");
-  qrSection.classList.add("hidden");
-  cashierSection.classList.add("hidden");
-  saleSuccessSection.classList.add("hidden");
+
+function cacherToutesLesPages(){
+
+sections.forEach(id=>{
+
+const element =
+document.getElementById(id);
+
+if(element){
+element.classList.add("hidden");
+}
+
+});
 
 }
 
 
-function retourDashboard() {
+function afficherPage(id){
 
-  arreterScanner();
+cacherToutesLesPages();
 
-  cacherToutesLesPages();
+document
+.getElementById(id)
+.classList.remove("hidden");
 
-  dashboardSection.classList.remove("hidden");
-
-  window.scrollTo(0,0);
+window.scrollTo(0,0);
 
 }
 
 
-function annulerArticle() {
+function retourDashboard(){
 
-  articleEnModification = null;
+arreterScanner();
 
-  ouvrirMesObjets();
+afficherPage(
+"dashboardSection"
+);
+
+}
+
+
+function estAdmin(){
+
+return (
+profilActuel &&
+profilActuel.role === "admin"
+);
 
 }
 
@@ -2017,217 +2176,322 @@ function annulerArticle() {
    CONNEXION
 ========================================================= */
 
-async function connexion() {
+async function connexion(){
 
-  loginMessage.textContent =
-  "Connexion…";
+const message =
+document.getElementById(
+"loginMessage"
+);
 
-  loginMessage.className =
-  "message";
+message.textContent =
+"Connexion…";
 
-
-  const email =
-  document.getElementById("email")
-  .value
-  .trim();
-
-
-  const password =
-  document.getElementById("password")
-  .value;
+message.className =
+"message";
 
 
-  if (!email || !password) {
-
-    loginMessage.textContent =
-    "Renseigne ton e-mail et ton mot de passe.";
-
-    loginMessage.className =
-    "message error";
-
-    return;
-
-  }
+const email =
+document
+.getElementById("email")
+.value
+.trim();
 
 
-  const {data,error} =
-  await db.auth.signInWithPassword({
-    email,
-    password
-  });
+const password =
+document
+.getElementById("password")
+.value;
 
 
-  if (error) {
+if(!email || !password){
 
-    loginMessage.textContent =
-    error.message;
+message.textContent =
+"Renseigne ton e-mail et ton mot de passe.";
 
-    loginMessage.className =
-    "message error";
+message.className =
+"message error";
 
-    return;
+return;
 
-  }
+}
 
 
-  await afficherUtilisateur(
-    data.user
-  );
+const {
+data,
+error
+} =
+await db.auth.signInWithPassword({
+email,
+password
+});
+
+
+if(error){
+
+message.textContent =
+error.message;
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+await afficherUtilisateur(
+data.user
+);
+
+}
+
+
+
+async function afficherUtilisateur(user){
+
+utilisateurActuel =
+user;
+
+
+const {
+data:profil,
+error
+} =
+await db
+.from("profils")
+.select("*")
+.eq("id",user.id)
+.single();
+
+
+if(error || !profil){
+
+await db.auth.signOut();
+
+utilisateurActuel = null;
+profilActuel = null;
+
+afficherPage(
+"loginSection"
+);
+
+document
+.getElementById("loginMessage")
+.textContent =
+"Profil introuvable.";
+
+return;
+
+}
+
+
+if(profil.actif === false){
+
+await db.auth.signOut();
+
+afficherPage(
+"loginSection"
+);
+
+document
+.getElementById("loginMessage")
+.textContent =
+"Ce compte est désactivé.";
+
+return;
+
+}
+
+
+profilActuel =
+profil;
+
+
+document
+.getElementById("hello")
+.textContent =
+"BONJOUR " +
+(
+profil.prenom ||
+profil.enseigne ||
+"VIDE DECO"
+)
+.toUpperCase() +
+".";
+
+
+document
+.getElementById(
+"databaseStatus"
+)
+.textContent =
+"Supabase connecté ✓";
+
+
+const adminCards =
+document.getElementById(
+"adminCards"
+);
+
+const sellerCards =
+document.getElementById(
+"sellerCards"
+);
+
+
+adminCards.classList.add(
+"hidden"
+);
+
+sellerCards.classList.add(
+"hidden"
+);
+
+
+if(estAdmin()){
+
+document
+.getElementById("roleBadge")
+.textContent =
+"ADMINISTRATEUR";
+
+adminCards.classList.remove(
+"hidden"
+);
+
+}
+
+else{
+
+document
+.getElementById("roleBadge")
+.textContent =
+"BROCANTEUR";
+
+sellerCards.classList.remove(
+"hidden"
+);
+
+}
+
+
+afficherPage(
+"dashboardSection"
+);
 
 }
 
 
 /* =========================================================
-   UTILISATEUR
+   DECONNEXION
 ========================================================= */
 
-async function afficherUtilisateur(user) {
+async function deconnexion(){
 
-  utilisateurActuel = user;
+await arreterScanner();
 
+await db.auth.signOut();
 
-  const {data:profil,error} =
-  await db
-  .from("profils")
-  .select("*")
-  .eq("id",user.id)
-  .single();
+utilisateurActuel = null;
+profilActuel = null;
+articleEnModification = null;
 
+panier = [];
+modePaiement = null;
 
-  if (error || !profil) {
-
-    cacherToutesLesPages();
-
-    loginSection.classList.remove("hidden");
-
-    loginMessage.textContent =
-    "Profil introuvable.";
-
-    loginMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  profilActuel = profil;
-
-
-  cacherToutesLesPages();
-
-  dashboardSection.classList.remove("hidden");
-
-
-  const nom =
-  profil.prenom ||
-  profil.enseigne ||
-  "VIDE DECO";
-
-
-  document.getElementById(
-    "hello"
-  ).textContent =
-  "BONJOUR " +
-  nom.toUpperCase() +
-  ".";
-
-
-  document.getElementById(
-    "databaseStatus"
-  ).textContent =
-  "Supabase connecté ✓";
-
-
-  const adminCards =
-  document.getElementById("adminCards");
-
-  const sellerCards =
-  document.getElementById("sellerCards");
-
-
-  adminCards.classList.add("hidden");
-  sellerCards.classList.add("hidden");
-
-
-  if (profil.role === "admin") {
-
-    document.getElementById(
-      "roleBadge"
-    ).textContent =
-    "ADMINISTRATEUR";
-
-    adminCards.classList.remove("hidden");
-
-  }
-
-  else {
-
-    document.getElementById(
-      "roleBadge"
-    ).textContent =
-    "BROCANTEUR";
-
-    sellerCards.classList.remove("hidden");
-
-  }
+afficherPage(
+"loginSection"
+);
 
 }
 
 
 /* =========================================================
-   AJOUT ARTICLE
+   ARTICLE
 ========================================================= */
 
-function resetArticleForm() {
+function resetArticleForm(){
 
-  document.getElementById("articleNom").value = "";
-  document.getElementById("articleCategorie").value = "";
-  document.getElementById("articlePrix").value = "";
-  document.getElementById("articleQuantite").value = 1;
-  document.getElementById("articleDescription").value = "";
+document
+.getElementById("articleNom")
+.value = "";
 
-  articlePhoto.value = "";
+document
+.getElementById("articleCategorie")
+.value = "";
 
-  photoPreview.src = "";
-  photoPreview.classList.add("hidden");
+document
+.getElementById("articlePrix")
+.value = "";
 
-  articleMessage.textContent = "";
-  articleMessage.className = "message";
+document
+.getElementById("articleQuantite")
+.value = 1;
+
+document
+.getElementById("articleDescription")
+.value = "";
+
+document
+.getElementById("articlePhoto")
+.value = "";
+
+const preview =
+document.getElementById(
+"photoPreview"
+);
+
+preview.src = "";
+preview.classList.add(
+"hidden"
+);
+
+document
+.getElementById("articleMessage")
+.textContent = "";
 
 }
 
 
-function ouvrirAjoutArticle() {
+function ouvrirAjoutArticle(){
 
-  articleEnModification = null;
+articleEnModification =
+null;
 
-  resetArticleForm();
-
-
-  document.getElementById(
-    "articleEyebrow"
-  ).textContent =
-  "NOUVEL OBJET";
+resetArticleForm();
 
 
-  document.getElementById(
-    "articlePageTitle"
-  ).innerHTML =
-  "AJOUTER<br>UN OBJET.";
+document
+.getElementById("articleEyebrow")
+.textContent =
+"NOUVEL OBJET";
 
 
-  document.getElementById(
-    "saveArticleButton"
-  ).textContent =
-  "ENREGISTRER L'OBJET";
+document
+.getElementById("articlePageTitle")
+.innerHTML =
+"AJOUTER<br>UN OBJET.";
 
 
-  cacherToutesLesPages();
+document
+.getElementById("saveArticleButton")
+.textContent =
+"ENREGISTRER L'OBJET";
 
-  articleSection.classList.remove("hidden");
 
-  window.scrollTo(0,0);
+afficherPage(
+"articleSection"
+);
+
+}
+
+
+function annulerArticle(){
+
+articleEnModification =
+null;
+
+ouvrirMesObjets();
 
 }
 
@@ -2236,73 +2500,97 @@ function ouvrirAjoutArticle() {
    PHOTO
 ========================================================= */
 
-articlePhoto.addEventListener(
+document
+.getElementById("articlePhoto")
+.addEventListener(
 "change",
-function() {
+function(){
 
-  const fichier =
-  articlePhoto.files[0];
+const fichier =
+this.files[0];
 
-  if (!fichier) {
-    return;
-  }
+if(!fichier){
+return;
+}
 
-  photoPreview.src =
-  URL.createObjectURL(fichier);
+const preview =
+document.getElementById(
+"photoPreview"
+);
 
-  photoPreview.classList.remove("hidden");
+preview.src =
+URL.createObjectURL(
+fichier
+);
 
-});
+preview.classList.remove(
+"hidden"
+);
+
+}
+);
+
 
 
 async function envoyerPhoto(
-  fichier,
-  articleId
-) {
+fichier,
+articleId
+){
 
-  if (!fichier) {
-    return null;
-  }
-
-
-  const extension =
-  fichier.name.split(".").pop() || "jpg";
+if(!fichier){
+return null;
+}
 
 
-  const chemin =
-  utilisateurActuel.id +
-  "/" +
-  articleId +
-  "." +
-  extension;
+const extension =
+fichier.name
+.split(".")
+.pop() ||
+"jpg";
 
 
-  const {error} =
-  await db.storage
-  .from("photos-articles")
-  .upload(
-    chemin,
-    fichier,
-    {
-      upsert:true
-    }
-  );
+const chemin =
+utilisateurActuel.id +
+"/" +
+articleId +
+"." +
+extension;
 
 
-  if (error) {
-    throw error;
-  }
+const {
+error
+} =
+await db.storage
+.from("photos-articles")
+.upload(
+chemin,
+fichier,
+{
+upsert:true
+}
+);
 
 
-  const {data} =
-  db.storage
-  .from("photos-articles")
-  .getPublicUrl(chemin);
+if(error){
+throw error;
+}
 
 
-  return data.publicUrl +
-  "?v=" +
-  Date.now();
+const {
+data
+} =
+db.storage
+.from("photos-articles")
+.getPublicUrl(
+chemin
+);
+
+
+return (
+data.publicUrl +
+"?v=" +
+Date.now()
+);
 
 }
 
@@ -2311,305 +2599,340 @@ async function envoyerPhoto(
    ENREGISTRER ARTICLE
 ========================================================= */
 
-async function enregistrerArticle() {
+async function enregistrerArticle(){
 
-  const nom =
-  document.getElementById("articleNom")
-  .value
-  .trim();
+const nom =
+document
+.getElementById("articleNom")
+.value
+.trim();
 
-  const categorie =
-  document.getElementById("articleCategorie")
-  .value;
 
-  const prix =
-  Number(
-    document.getElementById("articlePrix").value
-  );
+const categorie =
+document
+.getElementById("articleCategorie")
+.value;
 
-  const quantite =
-  Number(
-    document.getElementById("articleQuantite").value
-  );
 
-  const description =
-  document.getElementById("articleDescription")
-  .value
-  .trim();
+const prix =
+Number(
+document
+.getElementById("articlePrix")
+.value
+);
 
 
-  if (!nom) {
+const quantite =
+Number(
+document
+.getElementById("articleQuantite")
+.value
+);
 
-    afficherErreurArticle(
-      "Indique le nom de l'objet."
-    );
 
-    return;
+const description =
+document
+.getElementById("articleDescription")
+.value
+.trim();
 
-  }
 
+const message =
+document.getElementById(
+"articleMessage"
+);
 
-  if (
-    !Number.isFinite(prix) ||
-    prix < 0
-  ) {
 
-    afficherErreurArticle(
-      "Indique un prix valide."
-    );
+if(!nom){
 
-    return;
+message.textContent =
+"Indique le nom de l'objet.";
 
-  }
+message.className =
+"message error";
 
-
-  if (
-    !Number.isInteger(quantite) ||
-    quantite < 1
-  ) {
-
-    afficherErreurArticle(
-      "Quantité incorrecte."
-    );
-
-    return;
-
-  }
-
-
-  const bouton =
-  document.getElementById(
-    "saveArticleButton"
-  );
-
-  bouton.disabled = true;
-
-
-  try {
-
-    const fichier =
-    articlePhoto.files[0] || null;
-
-
-    /* =====================================================
-       MODIFICATION
-    ===================================================== */
-
-    if (articleEnModification) {
-
-      const ancienneQuantite =
-      Number(
-        articleEnModification.quantite
-      );
-
-      const ancienneDisponible =
-      Number(
-        articleEnModification.quantite_disponible
-      );
-
-      const dejaVendus =
-      Math.max(
-        0,
-        ancienneQuantite -
-        ancienneDisponible
-      );
-
-
-      if (quantite < dejaVendus) {
-
-        throw new Error(
-          "Cette quantité est inférieure au nombre déjà vendu."
-        );
-
-      }
-
-
-      let photo =
-      articleEnModification.photo_url;
-
-
-      if (fichier) {
-
-        photo =
-        await envoyerPhoto(
-          fichier,
-          articleEnModification.id
-        );
-
-      }
-
-
-      const nouvelleDisponible =
-      quantite - dejaVendus;
-
-
-      const nouveauStatut =
-      nouvelleDisponible <= 0
-      ? "vendu"
-      : (
-          articleEnModification.statut === "vendu"
-          ? "a_apporter"
-          : articleEnModification.statut
-        );
-
-
-      const {error} =
-      await db
-      .from("articles")
-      .update({
-
-        nom,
-
-        categorie:
-        categorie || null,
-
-        prix,
-
-        quantite,
-
-        quantite_disponible:
-        nouvelleDisponible,
-
-        description:
-        description || null,
-
-        photo_url:
-        photo,
-
-        statut:
-        nouveauStatut,
-
-        updated_at:
-        new Date().toISOString()
-
-      })
-      .eq(
-        "id",
-        articleEnModification.id
-      )
-      .eq(
-        "vendeur_id",
-        utilisateurActuel.id
-      );
-
-
-      if (error) {
-        throw error;
-      }
-
-
-      articleEnModification = null;
-
-      await ouvrirMesObjets();
-
-      return;
-
-    }
-
-
-    /* =====================================================
-       NOUVEAU
-    ===================================================== */
-
-    const {data:article,error} =
-    await db
-    .from("articles")
-    .insert({
-
-      vendeur_id:
-      utilisateurActuel.id,
-
-      nom,
-
-      description:
-      description || null,
-
-      categorie:
-      categorie || null,
-
-      prix,
-
-      quantite,
-
-      quantite_disponible:
-      quantite,
-
-      statut:
-      "a_apporter"
-
-    })
-    .select()
-    .single();
-
-
-    if (error) {
-      throw error;
-    }
-
-
-    if (fichier) {
-
-      const photo =
-      await envoyerPhoto(
-        fichier,
-        article.id
-      );
-
-
-      const {error:photoError} =
-      await db
-      .from("articles")
-      .update({
-        photo_url:photo
-      })
-      .eq("id",article.id)
-      .eq(
-        "vendeur_id",
-        utilisateurActuel.id
-      );
-
-
-      if (photoError) {
-        throw photoError;
-      }
-
-    }
-
-
-    resetArticleForm();
-
-    articleMessage.textContent =
-    "OBJET ET PHOTO ENREGISTRÉS ✓";
-
-    articleMessage.className =
-    "message success";
-
-  }
-
-  catch(error) {
-
-    afficherErreurArticle(
-      error.message
-    );
-
-  }
-
-  finally {
-
-    bouton.disabled = false;
-
-  }
+return;
 
 }
 
 
-function afficherErreurArticle(message) {
+if(
+!Number.isFinite(prix) ||
+prix < 0
+){
 
-  articleMessage.textContent =
-  "Erreur : " + message;
+message.textContent =
+"Indique un prix valide.";
 
-  articleMessage.className =
-  "message error";
+message.className =
+"message error";
+
+return;
+
+}
+
+
+if(
+!Number.isInteger(quantite) ||
+quantite < 1
+){
+
+message.textContent =
+"Quantité incorrecte.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+const bouton =
+document.getElementById(
+"saveArticleButton"
+);
+
+bouton.disabled = true;
+
+
+try{
+
+const fichier =
+document
+.getElementById("articlePhoto")
+.files[0] ||
+null;
+
+
+/* MODIFICATION */
+
+if(articleEnModification){
+
+const ancienneQuantite =
+Number(
+articleEnModification.quantite
+);
+
+const ancienneDisponible =
+Number(
+articleEnModification
+.quantite_disponible
+);
+
+const dejaVendus =
+Math.max(
+0,
+ancienneQuantite -
+ancienneDisponible
+);
+
+
+if(quantite < dejaVendus){
+
+throw new Error(
+"La quantité ne peut pas être inférieure au nombre déjà vendu."
+);
+
+}
+
+
+let photo =
+articleEnModification
+.photo_url;
+
+
+if(fichier){
+
+photo =
+await envoyerPhoto(
+fichier,
+articleEnModification.id
+);
+
+}
+
+
+const disponible =
+quantite -
+dejaVendus;
+
+
+const statut =
+disponible <= 0
+?
+"vendu"
+:
+(
+articleEnModification
+.statut === "vendu"
+?
+"a_apporter"
+:
+articleEnModification
+.statut
+);
+
+
+const {
+error
+} =
+await db
+.from("articles")
+.update({
+
+nom,
+
+categorie:
+categorie || null,
+
+prix,
+
+quantite,
+
+quantite_disponible:
+disponible,
+
+description:
+description || null,
+
+photo_url:
+photo,
+
+statut,
+
+updated_at:
+new Date().toISOString()
+
+})
+.eq(
+"id",
+articleEnModification.id
+)
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+);
+
+
+if(error){
+throw error;
+}
+
+
+articleEnModification =
+null;
+
+await ouvrirMesObjets();
+
+return;
+
+}
+
+
+/* NOUVEAU */
+
+const {
+data:article,
+error
+} =
+await db
+.from("articles")
+.insert({
+
+vendeur_id:
+utilisateurActuel.id,
+
+nom,
+
+description:
+description || null,
+
+categorie:
+categorie || null,
+
+prix,
+
+quantite,
+
+quantite_disponible:
+quantite,
+
+statut:
+"a_apporter"
+
+})
+.select()
+.single();
+
+
+if(error){
+throw error;
+}
+
+
+if(fichier){
+
+const photo =
+await envoyerPhoto(
+fichier,
+article.id
+);
+
+
+const {
+error:photoError
+} =
+await db
+.from("articles")
+.update({
+photo_url:photo
+})
+.eq(
+"id",
+article.id
+)
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+);
+
+
+if(photoError){
+throw photoError;
+}
+
+}
+
+
+resetArticleForm();
+
+
+message.textContent =
+"OBJET ENREGISTRÉ ✓";
+
+message.className =
+"message success";
+
+}
+
+catch(error){
+
+message.textContent =
+"Erreur : " +
+error.message;
+
+message.className =
+"message error";
+
+}
+
+finally{
+
+bouton.disabled =
+false;
+
+}
 
 }
 
@@ -2618,285 +2941,334 @@ function afficherErreurArticle(message) {
    MES OBJETS
 ========================================================= */
 
-async function ouvrirMesObjets() {
+async function ouvrirMesObjets(){
 
-  cacherToutesLesPages();
+afficherPage(
+"objectsSection"
+);
 
-  objectsSection.classList.remove("hidden");
-
-  window.scrollTo(0,0);
-
-  await chargerMesObjets();
+await chargerMesObjets();
 
 }
 
 
-async function chargerMesObjets() {
 
-  objectsGrid.innerHTML = "";
+async function chargerMesObjets(){
 
-  objectsMessage.textContent =
-  "Chargement…";
+const grid =
+document.getElementById(
+"objectsGrid"
+);
 
-  objectsMessage.className =
-  "message";
+const message =
+document.getElementById(
+"objectsMessage"
+);
 
+grid.innerHTML = "";
 
-  const {data,error} =
-  await db
-  .from("articles")
-  .select("*")
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
-  .neq(
-    "statut",
-    "retire"
-  )
-  .order(
-    "created_at",
-    {
-      ascending:false
-    }
-  );
+message.textContent =
+"Chargement…";
 
 
-  if (error) {
+const {
+data,
+error
+} =
+await db
+.from("articles")
+.select("*")
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+)
+.neq(
+"statut",
+"retire"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+);
 
-    objectsMessage.textContent =
-    error.message;
 
-    objectsMessage.className =
-    "message error";
+if(error){
 
-    return;
+message.textContent =
+error.message;
 
-  }
+message.className =
+"message error";
 
+return;
 
-  objectsMessage.textContent = "";
+}
 
 
-  const articles =
-  data || [];
+message.textContent = "";
 
 
-  objectsCount.textContent =
-  articles.length +
-  (
-    articles.length > 1
-    ? " OBJETS"
-    : " OBJET"
-  );
+document
+.getElementById("objectsCount")
+.textContent =
+(data || []).length +
+" OBJET(S)";
 
 
-  if (!articles.length) {
+if(!data || !data.length){
 
-    objectsGrid.innerHTML = `
+grid.innerHTML =
+`
+<div
+class="empty-state"
+style="grid-column:1/-1">
 
-      <div
-        class="empty-state"
-        style="grid-column:1/-1"
-      >
+AUCUN OBJET.
 
-        <div class="empty-title">
-          AUCUN OBJET.
-        </div>
+</div>
+`;
 
-        <button
-          class="primary"
-          onclick="ouvrirAjoutArticle()"
-        >
-          Ajouter un objet
-        </button>
+return;
 
-      </div>
-    `;
+}
 
-    return;
 
-  }
+data.forEach(article=>{
 
+grid.appendChild(
+creerCarteArticle(
+article,
+true
+)
+);
 
-  articles.forEach(article => {
+});
 
-    const card =
-    document.createElement("article");
+}
 
-    card.className =
-    "object-card";
 
+/* =========================================================
+   CARTE ARTICLE
+========================================================= */
 
-    if (article.photo_url) {
+function creerCarteArticle(
+article,
+actions=false,
+sellerName=""
+){
 
-      const image =
-      document.createElement("img");
+const card =
+document.createElement(
+"article"
+);
 
-      image.className =
-      "object-image";
+card.className =
+"object-card";
 
-      image.src =
-      article.photo_url;
 
-      image.alt =
-      article.nom || "Objet";
+if(article.photo_url){
 
-      card.appendChild(image);
+const img =
+document.createElement(
+"img"
+);
 
-    }
+img.className =
+"object-image";
 
-    else {
+img.src =
+article.photo_url;
 
-      const noImage =
-      document.createElement("div");
+card.appendChild(img);
 
-      noImage.className =
-      "object-no-image";
+}
 
-      noImage.textContent =
-      "Pas de photo";
+else{
 
-      card.appendChild(noImage);
+const vide =
+document.createElement(
+"div"
+);
 
-    }
+vide.className =
+"object-no-image";
 
+vide.textContent =
+"PAS DE PHOTO";
 
-    const content =
-    document.createElement("div");
+card.appendChild(vide);
 
-    content.className =
-    "object-content";
+}
 
 
-    content.innerHTML = `
+const content =
+document.createElement(
+"div"
+);
 
-      <div class="object-reference">
-        RÉF. ${echapperHTML(article.reference || "—")}
-      </div>
+content.className =
+"object-content";
 
-      <div class="object-name">
-        ${echapperHTML(article.nom)}
-      </div>
 
-      <div class="object-category">
-        ${echapperHTML(article.categorie || "Sans catégorie")}
-      </div>
+content.innerHTML =
+`
 
-      <div class="object-bottom">
+<div class="object-reference">
+RÉF. ${escapeHTML(article.reference || "—")}
+</div>
 
-        <div class="object-price">
-          ${formaterPrix(article.prix)}
-        </div>
+<div class="object-name">
+${escapeHTML(article.nom || "")}
+</div>
 
-        <div class="object-quantity">
-          QTÉ ${article.quantite}<br>
-          DISPONIBLE ${article.quantite_disponible}
-        </div>
+${sellerName
+?
+`
+<div class="object-seller">
+${escapeHTML(sellerName)}
+</div>
+`
+:
+""
+}
 
-      </div>
+<div class="object-category">
+${escapeHTML(article.categorie || "Sans catégorie")}
+</div>
 
-      <div class="object-status ${echapperHTML(article.statut || "")}">
-        ${texteStatut(article.statut)}
-      </div>
-    `;
+<div class="object-price">
+${formaterPrix(article.prix)}
+</div>
 
+<div class="object-quantity">
+QUANTITÉ : ${article.quantite}
+<br>
+DISPONIBLE : ${article.quantite_disponible}
+</div>
 
-    card.appendChild(content);
+<div class="object-status ${article.statut === "vendu" ? "vendu" : ""}">
+${texteStatut(article.statut)}
+</div>
 
+`;
 
-    const actions =
-    document.createElement("div");
 
-    actions.className =
-    "object-actions";
+card.appendChild(
+content
+);
 
 
-    const edit =
-    document.createElement("button");
+if(actions){
 
-    edit.className =
-    "object-action";
+const zone =
+document.createElement(
+"div"
+);
 
-    edit.textContent =
-    "MODIFIER";
+zone.className =
+"object-actions";
 
 
-    if (article.statut === "vendu") {
+const modifier =
+document.createElement(
+"button"
+);
 
-      edit.disabled = true;
-      edit.style.opacity = ".3";
+modifier.className =
+"object-action";
 
-    }
+modifier.textContent =
+"MODIFIER";
 
-    else {
 
-      edit.onclick =
-      () => modifierArticle(article.id);
+if(
+article.statut === "vendu"
+){
 
-    }
+modifier.disabled =
+true;
 
+}
 
-    const qr =
-    document.createElement("button");
+else{
 
-    qr.className =
-    "object-action";
+modifier.onclick =
+()=>modifierArticle(
+article.id
+);
 
-    qr.textContent =
-    "QR CODE";
+}
 
-    qr.onclick =
-    () => afficherQRCode(article.id);
 
+const qr =
+document.createElement(
+"button"
+);
 
-    const remove =
-    document.createElement("button");
+qr.className =
+"object-action";
 
-    remove.className =
-    "object-action remove";
+qr.textContent =
+"QR CODE";
 
+qr.onclick =
+()=>afficherQRCode(
+article.id
+);
 
-    if (article.statut === "vendu") {
 
-      remove.textContent =
-      "VENDU";
+const retirer =
+document.createElement(
+"button"
+);
 
-      remove.disabled = true;
+retirer.className =
+"object-action";
 
-      remove.style.opacity =
-      ".3";
+retirer.textContent =
+article.statut === "vendu"
+?
+"VENDU"
+:
+"RETIRER";
 
-    }
 
-    else {
+if(
+article.statut === "vendu"
+){
 
-      remove.textContent =
-      "RETIRER";
+retirer.disabled =
+true;
 
-      remove.onclick =
-      () =>
-      retirerArticle(
-        article.id,
-        article.nom,
-        article.photo_url
-      );
+}
 
-    }
+else{
 
+retirer.onclick =
+()=>retirerArticle(
+article.id,
+article.nom
+);
 
-    actions.append(
-      edit,
-      qr,
-      remove
-    );
+}
 
 
-    card.appendChild(actions);
+zone.append(
+modifier,
+qr,
+retirer
+);
 
-    objectsGrid.appendChild(card);
+card.appendChild(
+zone
+);
 
-  });
+}
+
+
+return card;
 
 }
 
@@ -2905,130 +3277,118 @@ async function chargerMesObjets() {
    MODIFIER ARTICLE
 ========================================================= */
 
-async function modifierArticle(id) {
+async function modifierArticle(id){
 
-  const {data,error} =
-  await db
-  .from("articles")
-  .select("*")
-  .eq("id",id)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
-  .single();
-
-
-  if (error) {
-
-    alert(error.message);
-
-    return;
-
-  }
+const {
+data,
+error
+} =
+await db
+.from("articles")
+.select("*")
+.eq("id",id)
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+)
+.single();
 
 
-  if (data.statut === "vendu") {
+if(error){
 
-    alert(
-      "Un article vendu ne peut plus être modifié."
-    );
+alert(
+error.message
+);
 
-    return;
+return;
 
-  }
-
-
-  articleEnModification =
-  data;
+}
 
 
-  document.getElementById(
-    "articleNom"
-  ).value =
-  data.nom || "";
+articleEnModification =
+data;
 
 
-  document.getElementById(
-    "articleCategorie"
-  ).value =
-  data.categorie || "";
+document
+.getElementById("articleNom")
+.value =
+data.nom || "";
 
 
-  document.getElementById(
-    "articlePrix"
-  ).value =
-  data.prix;
+document
+.getElementById("articleCategorie")
+.value =
+data.categorie || "";
 
 
-  document.getElementById(
-    "articleQuantite"
-  ).value =
-  data.quantite;
+document
+.getElementById("articlePrix")
+.value =
+data.prix;
 
 
-  document.getElementById(
-    "articleDescription"
-  ).value =
-  data.description || "";
+document
+.getElementById("articleQuantite")
+.value =
+data.quantite;
 
 
-  articlePhoto.value = "";
-
-  articleMessage.textContent = "";
-
-  articleMessage.className =
-  "message";
+document
+.getElementById("articleDescription")
+.value =
+data.description || "";
 
 
-  if (data.photo_url) {
-
-    photoPreview.src =
-    data.photo_url;
-
-    photoPreview.classList.remove(
-      "hidden"
-    );
-
-  }
-
-  else {
-
-    photoPreview.src = "";
-
-    photoPreview.classList.add(
-      "hidden"
-    );
-
-  }
+document
+.getElementById("articleEyebrow")
+.textContent =
+data.reference ||
+"MODIFICATION";
 
 
-  document.getElementById(
-    "articleEyebrow"
-  ).textContent =
-  data.reference ||
-  "MODIFICATION";
+document
+.getElementById("articlePageTitle")
+.innerHTML =
+"MODIFIER<br>UN OBJET.";
 
 
-  document.getElementById(
-    "articlePageTitle"
-  ).innerHTML =
-  "MODIFIER<br>UN OBJET.";
+document
+.getElementById("saveArticleButton")
+.textContent =
+"ENREGISTRER LES MODIFICATIONS";
 
 
-  document.getElementById(
-    "saveArticleButton"
-  ).textContent =
-  "ENREGISTRER LES MODIFICATIONS";
+const preview =
+document.getElementById(
+"photoPreview"
+);
 
 
-  cacherToutesLesPages();
+if(data.photo_url){
 
-  articleSection.classList.remove(
-    "hidden"
-  );
+preview.src =
+data.photo_url;
 
-  window.scrollTo(0,0);
+preview.classList.remove(
+"hidden"
+);
+
+}
+
+else{
+
+preview.src = "";
+
+preview.classList.add(
+"hidden"
+);
+
+}
+
+
+afficherPage(
+"articleSection"
+);
 
 }
 
@@ -3038,411 +3398,1018 @@ async function modifierArticle(id) {
 ========================================================= */
 
 async function retirerArticle(
-  id,
-  nom,
-  photoUrl
-) {
+id,
+nom
+){
 
-  const ok =
-  confirm(
-    "RETIRER CET OBJET ?\n\n" +
-    nom +
-    "\n\nL'objet disparaîtra de ton inventaire."
-  );
+if(
+!confirm(
+"RETIRER CET OBJET ?\n\n" +
+nom
+)
+){
 
+return;
 
-  if (!ok) {
-    return;
-  }
+}
 
 
-  const {error} =
-  await db
-  .from("articles")
-  .delete()
-  .eq("id",id)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  );
+const {
+error
+} =
+await db
+.from("articles")
+.delete()
+.eq("id",id)
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+);
 
 
-  if (error) {
+if(error){
 
-    alert(
-      "Impossible de retirer l'objet :\n" +
-      error.message
-    );
+alert(
+"Impossible de retirer l'objet :\n" +
+error.message
+);
 
-    return;
+return;
 
-  }
-
-
-  /*
-     Suppression de la photo :
-     elle est tentée après suppression de l'article.
-     Si elle échoue, cela ne bloque pas l'inventaire.
-  */
-
-  if (photoUrl) {
-
-    try {
-
-      const marqueur =
-      "/photos-articles/";
-
-      const position =
-      photoUrl.indexOf(marqueur);
+}
 
 
-      if (position !== -1) {
-
-        let chemin =
-        photoUrl.substring(
-          position +
-          marqueur.length
-        );
-
-        chemin =
-        chemin.split("?")[0];
-
-        chemin =
-        decodeURIComponent(
-          chemin
-        );
-
-
-        await db.storage
-        .from("photos-articles")
-        .remove([
-          chemin
-        ]);
-
-      }
-
-    }
-
-    catch(errorPhoto) {
-
-      console.log(
-        "Photo non supprimée :",
-        errorPhoto
-      );
-
-    }
-
-  }
-
-
-  await chargerMesObjets();
+await chargerMesObjets();
 
 }
 
 
 /* =========================================================
-   MES VENTES
+   MES VENTES BROCANTEUR
 ========================================================= */
 
-async function ouvrirMesVentes() {
+async function ouvrirMesVentes(){
 
-  if (!utilisateurActuel) {
-    return;
-  }
-
-
-  cacherToutesLesPages();
-
-  salesSection.classList.remove(
-    "hidden"
-  );
-
-  window.scrollTo(0,0);
+afficherPage(
+"salesSection"
+);
 
 
-  salesMessage.textContent =
-  "Chargement des ventes…";
-
-  salesMessage.className =
-  "message";
-
-
-  document.getElementById(
-    "salesList"
-  ).innerHTML = "";
+const message =
+document.getElementById(
+"salesMessage"
+);
 
 
-  const {data,error} =
-  await db
-  .from("lignes_vente")
-  .select(`
-    id,
-    vente_id,
-    article_id,
-    vendeur_id,
-    quantite,
-    prix_unitaire,
-    taux_commission,
-    reference_article,
-    nom_article,
-    montant_commission,
-    montant_vendeur,
-    created_at
-  `)
-  .eq(
-    "vendeur_id",
-    utilisateurActuel.id
-  )
-  .order(
-    "created_at",
-    {
-      ascending:false
-    }
-  );
+message.textContent =
+"Chargement des ventes…";
 
 
-  if (error) {
-
-    salesMessage.textContent =
-    "Impossible de charger les ventes : " +
-    error.message;
-
-    salesMessage.className =
-    "message error";
-
-    return;
-
-  }
-
-
-  const ventes =
-  data || [];
-
-
-  let chiffreAffaires = 0;
-  let commissions = 0;
-  let netVendeur = 0;
-  let quantiteVendue = 0;
+const {
+data,
+error
+} =
+await db
+.from("lignes_vente")
+.select("*")
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+);
 
 
-  ventes.forEach(ligne => {
+if(error){
 
-    const quantite =
-    Number(ligne.quantite) || 0;
+message.textContent =
+"Impossible de charger les ventes : " +
+error.message;
 
-    const prix =
-    Number(ligne.prix_unitaire) || 0;
+message.className =
+"message error";
 
-    const totalLigne =
-    prix * quantite;
+return;
 
-
-    chiffreAffaires +=
-    totalLigne;
+}
 
 
-    commissions +=
-    Number(
-      ligne.montant_commission
-    ) || 0;
+message.textContent = "";
 
 
-    netVendeur +=
-    Number(
-      ligne.montant_vendeur
-    ) || 0;
+const ventes =
+data || [];
 
 
-    quantiteVendue +=
-    quantite;
-
-  });
-
-
-  document.getElementById(
-    "salesGross"
-  ).textContent =
-  formaterPrix(
-    chiffreAffaires
-  );
+let ca = 0;
+let commission = 0;
+let net = 0;
+let quantite = 0;
 
 
-  document.getElementById(
-    "salesCommission"
-  ).textContent =
-  formaterPrix(
-    commissions
-  );
+ventes.forEach(ligne=>{
+
+const q =
+Number(
+ligne.quantite
+) || 0;
+
+const prix =
+Number(
+ligne.prix_unitaire
+) || 0;
 
 
-  document.getElementById(
-    "salesNet"
-  ).textContent =
-  formaterPrix(
-    netVendeur
-  );
+ca +=
+prix * q;
 
 
-  document.getElementById(
-    "salesQuantity"
-  ).textContent =
-  quantiteVendue;
+commission +=
+Number(
+ligne.montant_commission
+) || 0;
 
 
-  salesMessage.textContent = "";
+net +=
+Number(
+ligne.montant_vendeur
+) || 0;
 
 
-  afficherHistoriqueVentes(
-    ventes
-  );
+quantite +=
+q;
+
+});
+
+
+document
+.getElementById("salesGross")
+.textContent =
+formaterPrix(ca);
+
+
+document
+.getElementById("salesCommission")
+.textContent =
+formaterPrix(
+commission
+);
+
+
+document
+.getElementById("salesNet")
+.textContent =
+formaterPrix(net);
+
+
+document
+.getElementById("salesQuantity")
+.textContent =
+quantite;
+
+
+const zone =
+document.getElementById(
+"salesList"
+);
+
+zone.innerHTML = "";
+
+
+if(!ventes.length){
+
+zone.innerHTML =
+`
+<div class="empty-state">
+AUCUNE VENTE POUR LE MOMENT.
+</div>
+`;
+
+return;
+
+}
+
+
+ventes.forEach(ligne=>{
+
+const q =
+Number(
+ligne.quantite
+) || 0;
+
+
+const total =
+Number(
+ligne.prix_unitaire
+) * q;
+
+
+const element =
+document.createElement(
+"div"
+);
+
+
+element.className =
+"sale-row";
+
+
+element.innerHTML =
+`
+
+<div>
+${formaterDate(ligne.created_at)}
+</div>
+
+<div>
+
+<div class="sale-ref">
+${escapeHTML(ligne.reference_article || "—")}
+</div>
+
+<div class="sale-name">
+${escapeHTML(ligne.nom_article || "Article")}
+</div>
+
+</div>
+
+<div>
+QTÉ ${q}
+<br>
+${Number(ligne.taux_commission) || 0}% COMM.
+</div>
+
+<div>
+<strong>
+${formaterPrix(total)}
+</strong>
+
+<br>
+
+<small>
+− ${formaterPrix(ligne.montant_commission)}
+</small>
+
+</div>
+
+<div class="sale-net">
+${formaterPrix(ligne.montant_vendeur)}
+<br>
+<small>NET</small>
+</div>
+
+`;
+
+
+zone.appendChild(
+element
+);
+
+});
 
 }
 
 
 /* =========================================================
-   HISTORIQUE VENTES
+   STOCK ADMIN
 ========================================================= */
 
-function afficherHistoriqueVentes(
-  ventes
-) {
+async function ouvrirStock(){
 
-  const zone =
-  document.getElementById(
-    "salesList"
-  );
+if(!estAdmin()){
 
+alert(
+"Accès administrateur uniquement."
+);
 
-  zone.innerHTML = "";
+return;
 
-
-  if (!ventes.length) {
-
-    zone.innerHTML = `
-
-      <div class="empty-state">
-
-        <div class="empty-title">
-          AUCUNE VENTE.
-        </div>
-
-        <p>
-          Tes premières ventes apparaîtront ici
-          automatiquement après leur passage en caisse.
-        </p>
-
-      </div>
-    `;
-
-    return;
-
-  }
+}
 
 
-  ventes.forEach(ligne => {
-
-    const quantite =
-    Number(ligne.quantite) || 0;
-
-    const prix =
-    Number(ligne.prix_unitaire) || 0;
-
-    const total =
-    prix * quantite;
-
-    const commission =
-    Number(
-      ligne.montant_commission
-    ) || 0;
-
-    const net =
-    Number(
-      ligne.montant_vendeur
-    ) || 0;
+afficherPage(
+"stockSection"
+);
 
 
-    const element =
-    document.createElement("div");
+const message =
+document.getElementById(
+"stockMessage"
+);
 
-    element.className =
-    "sale-row";
-
-
-    element.innerHTML = `
-
-      <div class="sale-date">
-        ${formaterDate(ligne.created_at)}
-      </div>
+message.textContent =
+"Chargement du stock…";
 
 
-      <div>
+const [
+articlesResult,
+profilsResult
+] =
+await Promise.all([
 
-        <div class="sale-ref">
-          ${echapperHTML(
-            ligne.reference_article || "—"
-          )}
-        </div>
+db
+.from("articles")
+.select("*")
+.neq(
+"statut",
+"retire"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+),
 
-        <div class="sale-name">
-          ${echapperHTML(
-            ligne.nom_article || "Article"
-          )}
-        </div>
+db
+.from("profils")
+.select(
+"id,nom,prenom,enseigne,role,actif"
+)
 
-      </div>
-
-
-      <div class="sale-qty">
-
-        QTÉ ${quantite}<br>
-
-        ${Number(
-          ligne.taux_commission
-        ) || 0}% COMM.
-
-      </div>
-
-
-      <div class="sale-amount">
-
-        ${formaterPrix(total)}
-
-        <div
-          style="
-            font-size:10px;
-            font-weight:normal;
-            margin-top:4px;
-          "
-        >
-          − ${formaterPrix(commission)}
-        </div>
-
-      </div>
+]);
 
 
-      <div class="sale-net">
+if(articlesResult.error){
 
-        ${formaterPrix(net)}
+message.textContent =
+articlesResult.error.message;
 
-        <div
-          style="
-            font-size:9px;
-            font-weight:900;
-            margin-top:4px;
-          "
-        >
-          NET
-        </div>
+message.className =
+"message error";
 
-      </div>
-    `;
+return;
+
+}
 
 
-    zone.appendChild(
-      element
-    );
+stockCache =
+articlesResult.data || [];
 
-  });
+
+profilsCache = {};
+
+
+if(!profilsResult.error){
+
+(
+profilsResult.data || []
+)
+.forEach(profil=>{
+
+profilsCache[
+profil.id
+] =
+profil;
+
+});
+
+}
+
+
+let disponible = 0;
+let vendus = 0;
+let valeur = 0;
+
+
+stockCache.forEach(article=>{
+
+const q =
+Number(
+article.quantite
+) || 0;
+
+const d =
+Number(
+article.quantite_disponible
+) || 0;
+
+
+disponible += d;
+
+vendus +=
+Math.max(
+0,
+q - d
+);
+
+valeur +=
+d *
+(
+Number(
+article.prix
+) || 0
+);
+
+});
+
+
+document
+.getElementById(
+"stockReferences"
+)
+.textContent =
+stockCache.length;
+
+
+document
+.getElementById(
+"stockAvailable"
+)
+.textContent =
+disponible;
+
+
+document
+.getElementById(
+"stockSold"
+)
+.textContent =
+vendus;
+
+
+document
+.getElementById(
+"stockValue"
+)
+.textContent =
+formaterPrix(
+valeur
+);
+
+
+message.textContent = "";
+
+
+afficherStockFiltre();
+
+}
+
+
+/* =========================================================
+   FILTRE STOCK
+========================================================= */
+
+function afficherStockFiltre(){
+
+const recherche =
+document
+.getElementById(
+"stockSearch"
+)
+.value
+.trim()
+.toLowerCase();
+
+
+const filtre =
+document
+.getElementById(
+"stockFilter"
+)
+.value;
+
+
+const zone =
+document.getElementById(
+"stockGrid"
+);
+
+
+zone.innerHTML = "";
+
+
+const resultat =
+stockCache.filter(article=>{
+
+const profil =
+profilsCache[
+article.vendeur_id
+];
+
+
+const vendeur =
+nomProfil(
+profil
+);
+
+
+const texte =
+[
+article.reference,
+article.nom,
+article.categorie,
+vendeur
+]
+.join(" ")
+.toLowerCase();
+
+
+if(
+recherche &&
+!texte.includes(
+recherche
+)
+){
+
+return false;
+
+}
+
+
+const disponible =
+Number(
+article.quantite_disponible
+) > 0;
+
+
+if(
+filtre === "available" &&
+!disponible
+){
+
+return false;
+
+}
+
+
+if(
+filtre === "sold" &&
+disponible
+){
+
+return false;
+
+}
+
+
+return true;
+
+});
+
+
+if(!resultat.length){
+
+zone.innerHTML =
+`
+<div
+class="empty-state"
+style="grid-column:1/-1">
+AUCUN ARTICLE.
+</div>
+`;
+
+return;
+
+}
+
+
+resultat.forEach(article=>{
+
+const profil =
+profilsCache[
+article.vendeur_id
+];
+
+
+zone.appendChild(
+creerCarteArticle(
+article,
+false,
+nomProfil(profil)
+)
+);
+
+});
+
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+async function ouvrirAdmin(){
+
+if(!estAdmin()){
+
+alert(
+"Accès administrateur uniquement."
+);
+
+return;
+
+}
+
+
+afficherPage(
+"adminSection"
+);
+
+
+const message =
+document.getElementById(
+"adminMessage"
+);
+
+
+message.textContent =
+"Chargement des données…";
+
+
+const [
+lignesResult,
+profilsResult
+] =
+await Promise.all([
+
+db
+.from("lignes_vente")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+),
+
+db
+.from("profils")
+.select(
+"id,nom,prenom,enseigne,commission,role,actif"
+)
+
+]);
+
+
+if(lignesResult.error){
+
+message.textContent =
+"Impossible de charger les ventes : " +
+lignesResult.error.message;
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+if(profilsResult.error){
+
+message.textContent =
+"Impossible de charger les brocanteurs : " +
+profilsResult.error.message;
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+const lignes =
+lignesResult.data || [];
+
+
+const profils =
+profilsResult.data || [];
+
+
+const profilsMap = {};
+
+
+profils.forEach(p=>{
+
+profilsMap[p.id] = p;
+
+});
+
+
+let ca = 0;
+let commissions = 0;
+let reversements = 0;
+let quantite = 0;
+
+
+const vendeurs = {};
+
+
+lignes.forEach(ligne=>{
+
+const q =
+Number(
+ligne.quantite
+) || 0;
+
+
+const total =
+(
+Number(
+ligne.prix_unitaire
+) || 0
+) * q;
+
+
+const commission =
+Number(
+ligne.montant_commission
+) || 0;
+
+
+const net =
+Number(
+ligne.montant_vendeur
+) || 0;
+
+
+ca += total;
+commissions += commission;
+reversements += net;
+quantite += q;
+
+
+if(!vendeurs[
+ligne.vendeur_id
+]){
+
+vendeurs[
+ligne.vendeur_id
+] = {
+
+vendeur_id:
+ligne.vendeur_id,
+
+quantite:0,
+
+ca:0,
+
+commission:0,
+
+net:0
+
+};
+
+}
+
+
+vendeurs[
+ligne.vendeur_id
+].quantite += q;
+
+
+vendeurs[
+ligne.vendeur_id
+].ca += total;
+
+
+vendeurs[
+ligne.vendeur_id
+].commission += commission;
+
+
+vendeurs[
+ligne.vendeur_id
+].net += net;
+
+});
+
+
+document
+.getElementById(
+"adminGross"
+)
+.textContent =
+formaterPrix(ca);
+
+
+document
+.getElementById(
+"adminCommission"
+)
+.textContent =
+formaterPrix(
+commissions
+);
+
+
+document
+.getElementById(
+"adminSellerNet"
+)
+.textContent =
+formaterPrix(
+reversements
+);
+
+
+document
+.getElementById(
+"adminSoldQuantity"
+)
+.textContent =
+quantite;
+
+
+/* TABLE BROCANTEURS */
+
+const tbody =
+document.getElementById(
+"adminSellerTable"
+);
+
+
+tbody.innerHTML = "";
+
+
+const brocanteurs =
+profils.filter(
+p=>p.role === "brocanteur"
+);
+
+
+brocanteurs.forEach(profil=>{
+
+const valeurs =
+vendeurs[
+profil.id
+] ||
+{
+quantite:0,
+ca:0,
+commission:0,
+net:0
+};
+
+
+const tr =
+document.createElement(
+"tr"
+);
+
+
+tr.innerHTML =
+`
+
+<td>
+<strong>
+${escapeHTML(nomProfil(profil))}
+</strong>
+</td>
+
+<td>
+${Number(profil.commission) || 0} %
+</td>
+
+<td>
+${valeurs.quantite}
+</td>
+
+<td class="money">
+${formaterPrix(valeurs.ca)}
+</td>
+
+<td class="money">
+${formaterPrix(valeurs.commission)}
+</td>
+
+<td class="money">
+${formaterPrix(valeurs.net)}
+</td>
+
+`;
+
+
+tbody.appendChild(
+tr
+);
+
+});
+
+
+/* HISTORIQUE ADMIN */
+
+const historique =
+document.getElementById(
+"adminSalesList"
+);
+
+
+historique.innerHTML = "";
+
+
+if(!lignes.length){
+
+historique.innerHTML =
+`
+<div class="empty-state">
+AUCUNE VENTE.
+</div>
+`;
+
+}
+
+else{
+
+lignes
+.slice(0,50)
+.forEach(ligne=>{
+
+const profil =
+profilsMap[
+ligne.vendeur_id
+];
+
+
+const total =
+(
+Number(
+ligne.prix_unitaire
+) || 0
+) *
+(
+Number(
+ligne.quantite
+) || 0
+);
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"sale-row";
+
+
+row.innerHTML =
+`
+
+<div>
+${formaterDate(ligne.created_at)}
+</div>
+
+<div>
+
+<div class="sale-ref">
+${escapeHTML(ligne.reference_article || "—")}
+</div>
+
+<div class="sale-name">
+${escapeHTML(ligne.nom_article || "Article")}
+</div>
+
+<div style="font-size:11px;margin-top:5px">
+${escapeHTML(nomProfil(profil))}
+</div>
+
+</div>
+
+<div>
+QTÉ ${ligne.quantite}
+</div>
+
+<div>
+<strong>
+${formaterPrix(total)}
+</strong>
+
+<br>
+
+<small>
+Commission :
+${formaterPrix(ligne.montant_commission)}
+</small>
+
+</div>
+
+<div class="sale-net">
+${formaterPrix(ligne.montant_vendeur)}
+<br>
+<small>À REVERSER</small>
+</div>
+
+`;
+
+
+historique.appendChild(
+row
+);
+
+});
+
+}
+
+
+message.textContent = "";
 
 }
 
@@ -3451,617 +4418,583 @@ function afficherHistoriqueVentes(
    QR CODE
 ========================================================= */
 
-async function afficherQRCode(id) {
+async function afficherQRCode(id){
 
-  const {data,error} =
-  await db
-  .from("articles")
-  .select("*")
-  .eq("id",id)
-  .single();
-
-
-  if (error) {
-
-    alert(error.message);
-
-    return;
-
-  }
+const {
+data,
+error
+} =
+await db
+.from("articles")
+.select("*")
+.eq("id",id)
+.single();
 
 
-  cacherToutesLesPages();
+if(error){
 
-  qrSection.classList.remove(
-    "hidden"
-  );
+alert(
+error.message
+);
 
-  window.scrollTo(0,0);
+return;
 
-
-  document.getElementById(
-    "qrReference"
-  ).textContent =
-  "RÉF. " +
-  (data.reference || "—");
+}
 
 
-  document.getElementById(
-    "qrName"
-  ).textContent =
-  data.nom;
+afficherPage(
+"qrSection"
+);
 
 
-  document.getElementById(
-    "qrPrice"
-  ).textContent =
-  formaterPrix(
-    data.prix
-  );
+document
+.getElementById(
+"qrReference"
+)
+.textContent =
+"RÉF. " +
+(
+data.reference ||
+"—"
+);
 
 
-  const zone =
-  document.getElementById(
-    "qrCode"
-  );
+document
+.getElementById(
+"qrName"
+)
+.textContent =
+data.nom;
 
 
-  zone.innerHTML = "";
+document
+.getElementById(
+"qrPrice"
+)
+.textContent =
+formaterPrix(
+data.prix
+);
 
 
-  new QRCode(
-    zone,
-    {
+const zone =
+document.getElementById(
+"qrCode"
+);
 
-      text:
-      "VIDEDECO:" +
-      data.id,
 
-      width:240,
+zone.innerHTML = "";
 
-      height:240,
 
-      correctLevel:
-      QRCode.CorrectLevel.H
+new QRCode(
+zone,
+{
 
-    }
-  );
+text:
+"VIDEDECO:" +
+data.id,
+
+width:240,
+
+height:240,
+
+correctLevel:
+QRCode.CorrectLevel.H
+
+}
+);
 
 }
 
 
 /* =========================================================
-   OUVRIR CAISSE
+   CAISSE
 ========================================================= */
 
-async function ouvrirCaisse() {
+function ouvrirCaisse(){
 
-  if (
-    !profilActuel ||
-    profilActuel.role !== "admin"
-  ) {
+if(!estAdmin()){
 
-    alert(
-      "Accès caisse non autorisé."
-    );
+alert(
+"Accès caisse non autorisé."
+);
 
-    return;
+return;
 
-  }
+}
 
 
-  await arreterScanner();
+panier = [];
+modePaiement = null;
 
 
-  panier = [];
-
-  modePaiement = null;
-
-
-  cacherToutesLesPages();
-
-  cashierSection.classList.remove(
-    "hidden"
-  );
+afficherPage(
+"cashierSection"
+);
 
 
-  document.getElementById(
-    "cashReference"
-  ).value = "";
+document
+.getElementById(
+"cashReference"
+)
+.value = "";
 
 
-  cashMessage.textContent = "";
+document
+.getElementById(
+"cashMessage"
+)
+.textContent = "";
 
-  cashMessage.className =
-  "message";
 
+reinitialiserPaiements();
 
-  reinitialiserPaiements();
-
-  afficherPanier();
-
-  window.scrollTo(0,0);
+afficherPanier();
 
 }
 
 
 /* =========================================================
-   AJOUT PAR RÉFÉRENCE
+   ARTICLE PAR REFERENCE
 ========================================================= */
 
-async function ajouterParReference() {
+async function ajouterParReference(){
 
-  const input =
-  document.getElementById(
-    "cashReference"
-  );
-
-
-  const reference =
-  input.value
-  .trim()
-  .toUpperCase();
+const input =
+document.getElementById(
+"cashReference"
+);
 
 
-  if (!reference) {
-
-    erreurCaisse(
-      "Saisis une référence."
-    );
-
-    return;
-
-  }
+const reference =
+input.value
+.trim()
+.toUpperCase();
 
 
-  cashMessage.textContent =
-  "Recherche…";
+if(!reference){
 
-  cashMessage.className =
-  "message";
+erreurCaisse(
+"Saisis une référence."
+);
 
+return;
 
-  const {data,error} =
-  await db
-  .from("articles")
-  .select(
-    "id, reference, nom, prix, quantite_disponible, statut"
-  )
-  .eq(
-    "reference",
-    reference
-  )
-  .maybeSingle();
+}
 
 
-  if (error) {
-
-    erreurCaisse(
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  if (!data) {
-
-    erreurCaisse(
-      "Article introuvable : " +
-      reference
-    );
-
-    return;
-
-  }
+const {
+data,
+error
+} =
+await db
+.from("articles")
+.select(
+"id,reference,nom,prix,quantite_disponible,statut"
+)
+.eq(
+"reference",
+reference
+)
+.maybeSingle();
 
 
-  ajouterArticleAuPanier(
-    data
-  );
+if(error){
+
+erreurCaisse(
+error.message
+);
+
+return;
+
+}
 
 
-  input.value = "";
+if(!data){
+
+erreurCaisse(
+"Article introuvable : " +
+reference
+);
+
+return;
+
+}
+
+
+ajouterArticleAuPanier(
+data
+);
+
+
+input.value = "";
 
 }
 
 
 /* =========================================================
-   AJOUT PAR QR
+   ARTICLE QR
 ========================================================= */
 
 async function ajouterParQRCode(
-  texte
-) {
+texte
+){
 
-  const valeur =
-  String(
-    texte || ""
-  ).trim();
+if(
+!texte ||
+!texte.startsWith(
+"VIDEDECO:"
+)
+){
 
+erreurCaisse(
+"Ce QR code n'est pas un QR VIDE DECO."
+);
 
-  if (
-    !valeur.startsWith(
-      "VIDEDECO:"
-    )
-  ) {
+return;
 
-    erreurCaisse(
-      "Ce QR code n'est pas un QR VIDE DECO."
-    );
-
-    return;
-
-  }
+}
 
 
-  const id =
-  valeur.substring(
-    "VIDEDECO:".length
-  );
+const id =
+texte.substring(
+"VIDEDECO:".length
+);
 
 
-  if (!id) {
-
-    erreurCaisse(
-      "QR code invalide."
-    );
-
-    return;
-
-  }
-
-
-  cashMessage.textContent =
-  "Recherche de l'article…";
-
-  cashMessage.className =
-  "message";
+const {
+data,
+error
+} =
+await db
+.from("articles")
+.select(
+"id,reference,nom,prix,quantite_disponible,statut"
+)
+.eq(
+"id",
+id
+)
+.maybeSingle();
 
 
-  const {data,error} =
-  await db
-  .from("articles")
-  .select(
-    "id, reference, nom, prix, quantite_disponible, statut"
-  )
-  .eq(
-    "id",
-    id
-  )
-  .maybeSingle();
+if(error){
+
+erreurCaisse(
+error.message
+);
+
+return;
+
+}
 
 
-  if (error) {
+if(!data){
 
-    erreurCaisse(
-      error.message
-    );
+erreurCaisse(
+"Article introuvable."
+);
 
-    return;
+return;
 
-  }
-
-
-  if (!data) {
-
-    erreurCaisse(
-      "Article introuvable."
-    );
-
-    return;
-
-  }
+}
 
 
-  ajouterArticleAuPanier(
-    data
-  );
+ajouterArticleAuPanier(
+data
+);
 
 }
 
 
 /* =========================================================
-   AJOUTER AU PANIER
+   PANIER
 ========================================================= */
 
 function ajouterArticleAuPanier(
-  article
-) {
+article
+){
 
-  if (
-    article.statut === "retire"
-  ) {
+if(
+article.statut === "retire"
+){
 
-    erreurCaisse(
-      "Cet article a été retiré de la vente."
-    );
+erreurCaisse(
+"Cet article a été retiré."
+);
 
-    return;
-
-  }
-
-
-  if (
-    article.statut === "vendu" ||
-    Number(
-      article.quantite_disponible
-    ) <= 0
-  ) {
-
-    erreurCaisse(
-      "Cet article n'est plus disponible."
-    );
-
-    return;
-
-  }
-
-
-  const existant =
-  panier.find(
-    item =>
-    item.id === article.id
-  );
-
-
-  if (existant) {
-
-    if (
-      existant.quantite + 1 >
-      Number(
-        article.quantite_disponible
-      )
-    ) {
-
-      erreurCaisse(
-        "Stock insuffisant."
-      );
-
-      return;
-
-    }
-
-
-    existant.quantite++;
-
-  }
-
-  else {
-
-    panier.push({
-
-      ...article,
-
-      quantite:1
-
-    });
-
-  }
-
-
-  cashMessage.textContent =
-  "ARTICLE AJOUTÉ ✓";
-
-  cashMessage.className =
-  "message success";
-
-
-  afficherPanier();
+return;
 
 }
 
 
-/* =========================================================
-   AFFICHER PANIER
-========================================================= */
+if(
+article.statut === "vendu" ||
+Number(
+article.quantite_disponible
+) <= 0
+){
 
-function afficherPanier() {
+erreurCaisse(
+"Cet article n'est plus disponible."
+);
 
-  const zone =
-  document.getElementById(
-    "cartItems"
-  );
-
-
-  zone.innerHTML = "";
-
-
-  if (!panier.length) {
-
-    zone.innerHTML = `
-
-      <div class="cart-empty">
-        Aucun article dans le panier.
-      </div>
-    `;
-
-  }
-
-  else {
-
-    panier.forEach(
-    (item,index) => {
-
-      const ligne =
-      document.createElement("div");
-
-      ligne.className =
-      "cart-item";
-
-
-      ligne.innerHTML = `
-
-        <div class="cart-ref">
-          ${echapperHTML(
-            item.reference || ""
-          )}
-        </div>
-
-        <div class="cart-name">
-          ${echapperHTML(
-            item.nom
-          )}
-        </div>
-
-        <div class="cart-line">
-
-          <div class="cart-price">
-
-            ${formaterPrix(
-              Number(item.prix) *
-              item.quantite
-            )}
-
-          </div>
-
-          <div class="quantity-controls">
-
-            <button
-              type="button"
-              onclick="changerQuantite(${index},-1)"
-            >
-              −
-            </button>
-
-            <span>
-              ${item.quantite}
-            </span>
-
-            <button
-              type="button"
-              onclick="changerQuantite(${index},1)"
-            >
-              +
-            </button>
-
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="cart-remove"
-          onclick="supprimerDuPanier(${index})"
-        >
-          Retirer du panier
-        </button>
-      `;
-
-
-      zone.appendChild(
-        ligne
-      );
-
-    });
-
-  }
-
-
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-  formaterPrix(
-    calculerTotal()
-  );
-
-
-  actualiserBoutonVente();
+return;
 
 }
 
 
-/* =========================================================
-   QUANTITÉ PANIER
-========================================================= */
+const existant =
+panier.find(
+item=>
+item.id === article.id
+);
+
+
+if(existant){
+
+if(
+existant.quantite + 1 >
+Number(
+article.quantite_disponible
+)
+){
+
+erreurCaisse(
+"Stock insuffisant."
+);
+
+return;
+
+}
+
+
+existant.quantite++;
+
+}
+
+else{
+
+panier.push({
+...article,
+quantite:1
+});
+
+}
+
+
+const message =
+document.getElementById(
+"cashMessage"
+);
+
+
+message.textContent =
+"ARTICLE AJOUTÉ ✓";
+
+message.className =
+"message success";
+
+
+afficherPanier();
+
+}
+
+
+
+function afficherPanier(){
+
+const zone =
+document.getElementById(
+"cartItems"
+);
+
+
+zone.innerHTML = "";
+
+
+if(!panier.length){
+
+zone.innerHTML =
+`
+<div class="cart-empty">
+Aucun article dans le panier.
+</div>
+`;
+
+}
+
+else{
+
+panier.forEach(
+(item,index)=>{
+
+const ligne =
+document.createElement(
+"div"
+);
+
+
+ligne.className =
+"cart-item";
+
+
+ligne.innerHTML =
+`
+
+<div class="object-reference">
+${escapeHTML(item.reference || "")}
+</div>
+
+<div class="cart-name">
+${escapeHTML(item.nom)}
+</div>
+
+<div class="cart-line">
+
+<div class="cart-price">
+${formaterPrix(
+Number(item.prix) *
+item.quantite
+)}
+</div>
+
+<div class="quantity-controls">
+
+<button
+onclick="changerQuantite(${index},-1)">
+−
+</button>
+
+<span>
+${item.quantite}
+</span>
+
+<button
+onclick="changerQuantite(${index},1)">
++
+</button>
+
+</div>
+
+</div>
+
+<button
+style="border:0;background:none;text-decoration:underline;margin-top:10px"
+onclick="supprimerDuPanier(${index})">
+Retirer
+</button>
+
+`;
+
+
+zone.appendChild(
+ligne
+);
+
+});
+
+}
+
+
+document
+.getElementById(
+"cartTotal"
+)
+.textContent =
+formaterPrix(
+calculerTotal()
+);
+
+
+actualiserBoutonVente();
+
+}
+
+
 
 function changerQuantite(
-  index,
-  variation
-) {
+index,
+variation
+){
 
-  const item =
-  panier[index];
-
-
-  if (!item) {
-    return;
-  }
+const item =
+panier[index];
 
 
-  const nouvelle =
-  item.quantite +
-  variation;
+if(!item){
+return;
+}
 
 
-  if (nouvelle <= 0) {
-
-    supprimerDuPanier(
-      index
-    );
-
-    return;
-
-  }
+const nouvelle =
+item.quantite +
+variation;
 
 
-  if (
-    nouvelle >
-    Number(
-      item.quantite_disponible
-    )
-  ) {
+if(nouvelle <= 0){
 
-    erreurCaisse(
-      "Il n'y a que " +
-      item.quantite_disponible +
-      " exemplaire(s) disponible(s)."
-    );
+supprimerDuPanier(
+index
+);
 
-    return;
-
-  }
-
-
-  item.quantite =
-  nouvelle;
-
-
-  afficherPanier();
+return;
 
 }
 
 
-function supprimerDuPanier(index) {
+if(
+nouvelle >
+Number(
+item.quantite_disponible
+)
+){
 
-  panier.splice(
-    index,
-    1
-  );
+erreurCaisse(
+"Stock insuffisant."
+);
 
-  afficherPanier();
+return;
 
 }
 
 
-/* =========================================================
-   TOTAL
-========================================================= */
+item.quantite =
+nouvelle;
 
-function calculerTotal() {
 
-  return panier.reduce(
-    (total,item) =>
+afficherPanier();
 
-      total +
-      (
-        Number(item.prix) *
-        Number(item.quantite)
-      ),
+}
 
-    0
-  );
+
+
+function supprimerDuPanier(
+index
+){
+
+panier.splice(
+index,
+1
+);
+
+afficherPanier();
+
+}
+
+
+
+function calculerTotal(){
+
+return panier.reduce(
+(total,item)=>
+total +
+(
+Number(item.prix) *
+item.quantite
+),
+0
+);
 
 }
 
@@ -4070,674 +5003,488 @@ function calculerTotal() {
    PAIEMENT
 ========================================================= */
 
-function choisirPaiement(mode) {
+function choisirPaiement(
+mode
+){
 
-  if (
-    ![
-      "carte",
-      "especes",
-      "cheque"
-    ].includes(mode)
-  ) {
+if(
+![
+"carte",
+"especes",
+"cheque"
+].includes(mode)
+){
 
-    return;
-
-  }
-
-
-  modePaiement =
-  mode;
-
-
-  document
-  .querySelectorAll(
-    ".payment-button"
-  )
-  .forEach(
-    bouton =>
-    bouton.classList.remove(
-      "active"
-    )
-  );
-
-
-  const ids = {
-
-    carte:
-    "paymentCarte",
-
-    especes:
-    "paymentEspeces",
-
-    cheque:
-    "paymentCheque"
-
-  };
-
-
-  document.getElementById(
-    ids[mode]
-  )
-  .classList.add(
-    "active"
-  );
-
-
-  actualiserBoutonVente();
+return;
 
 }
 
 
-function reinitialiserPaiements() {
-
-  modePaiement = null;
-
-  document
-  .querySelectorAll(
-    ".payment-button"
-  )
-  .forEach(
-    bouton =>
-    bouton.classList.remove(
-      "active"
-    )
-  );
-
-}
+modePaiement =
+mode;
 
 
-function actualiserBoutonVente() {
+document
+.querySelectorAll(
+".payment-button"
+)
+.forEach(
+button=>
+button.classList.remove(
+"active"
+)
+);
 
-  const bouton =
-  document.getElementById(
-    "validateSaleButton"
-  );
+
+const ids = {
+
+carte:
+"paymentCarte",
+
+especes:
+"paymentEspeces",
+
+cheque:
+"paymentCheque"
+
+};
 
 
-  bouton.disabled =
-  !panier.length ||
-  !modePaiement;
+document
+.getElementById(
+ids[mode]
+)
+.classList.add(
+"active"
+);
 
 
-  if (
-    panier.length &&
-    modePaiement
-  ) {
-
-    bouton.textContent =
-    "VALIDER LE PAIEMENT — " +
-    formaterPrix(
-      calculerTotal()
-    );
-
-  }
-
-  else {
-
-    bouton.textContent =
-    "VALIDER LE PAIEMENT";
-
-  }
+actualiserBoutonVente();
 
 }
 
 
-/* =========================================================
-   MODE PAIEMENT
-========================================================= */
 
-function nomPaiement(mode) {
+function reinitialiserPaiements(){
 
-  if (mode === "carte") {
-    return "CARTE";
-  }
+modePaiement =
+null;
 
-  if (mode === "especes") {
-    return "ESPÈCES";
-  }
 
-  if (mode === "cheque") {
-    return "CHÈQUE";
-  }
-
-  return "";
+document
+.querySelectorAll(
+".payment-button"
+)
+.forEach(
+button=>
+button.classList.remove(
+"active"
+)
+);
 
 }
 
 
-/*
-   La base accepte actuellement :
-   carte / especes / autre
 
-   L'interface affiche "CHÈQUE",
-   mais transmet "autre" à la base.
-*/
+function actualiserBoutonVente(){
 
-function modePaiementSupabase(
-  mode
-) {
+const bouton =
+document.getElementById(
+"validateSaleButton"
+);
 
-  if (mode === "cheque") {
-    return "autre";
-  }
 
-  return mode;
+bouton.disabled =
+(
+!panier.length ||
+!modePaiement
+);
+
+
+if(
+panier.length &&
+modePaiement
+){
+
+bouton.textContent =
+"VALIDER LE PAIEMENT — " +
+formaterPrix(
+calculerTotal()
+);
+
+}
+
+else{
+
+bouton.textContent =
+"VALIDER LE PAIEMENT";
+
+}
+
+}
+
+
+
+function nomPaiement(mode){
+
+if(mode === "carte"){
+return "CARTE";
+}
+
+if(mode === "especes"){
+return "ESPÈCES";
+}
+
+if(mode === "cheque"){
+return "CHÈQUE";
+}
+
+return mode || "";
 
 }
 
 
 /* =========================================================
-   RAFRAÎCHIR LE PANIER AVANT VENTE
+   VALIDATION VENTE
 ========================================================= */
 
-async function verifierPanierAvantVente() {
+async function validerVente(){
 
-  for (
-    const item of panier
-  ) {
+if(
+!panier.length ||
+!modePaiement
+){
 
-    const {data,error} =
-    await db
-    .from("articles")
-    .select(
-      "id, reference, nom, prix, quantite_disponible, statut"
-    )
-    .eq(
-      "id",
-      item.id
-    )
-    .maybeSingle();
+return;
+
+}
 
 
-    if (error) {
-      throw error;
-    }
+const total =
+calculerTotal();
 
 
-    if (!data) {
+const confirmation =
+confirm(
 
-      throw new Error(
-        "L'article " +
-        (
-          item.reference ||
-          item.nom
-        ) +
-        " n'existe plus."
-      );
+"CONFIRMER LE PAIEMENT ?\n\n" +
 
-    }
+"Total : " +
+formaterPrix(total) +
+"\n" +
 
+"Paiement : " +
+nomPaiement(modePaiement) +
+"\n\n" +
 
-    if (
-      data.statut === "vendu" ||
-      data.statut === "retire" ||
-      Number(
-        data.quantite_disponible
-      ) <
-      Number(
-        item.quantite
-      )
-    ) {
+"Confirme uniquement si le paiement a bien été encaissé."
 
-      throw new Error(
-        "L'article " +
-        (
-          data.reference ||
-          data.nom
-        ) +
-        " n'est plus disponible dans la quantité demandée."
-      );
-
-    }
+);
 
 
-    /*
-       On remet à jour le nom,
-       le prix et le stock depuis Supabase.
-    */
-
-    item.reference =
-    data.reference;
-
-    item.nom =
-    data.nom;
-
-    item.prix =
-    Number(
-      data.prix
-    );
-
-    item.quantite_disponible =
-    Number(
-      data.quantite_disponible
-    );
-
-    item.statut =
-    data.statut;
-
-  }
+if(!confirmation){
+return;
+}
 
 
-  afficherPanier();
+const bouton =
+document.getElementById(
+"validateSaleButton"
+);
+
+
+bouton.disabled =
+true;
+
+
+bouton.textContent =
+"ENREGISTREMENT…";
+
+
+const articlesRPC =
+panier.map(
+item=>({
+
+article_id:
+item.id,
+
+quantite:
+item.quantite
+
+})
+);
+
+
+try{
+
+
+const {
+data,
+error
+} =
+await db.rpc(
+"valider_vente",
+{
+
+p_articles:
+articlesRPC,
+
+p_mode_paiement:
+modePaiement
+
+}
+);
+
+
+if(error){
+throw error;
+}
+
+
+const paiement =
+modePaiement;
+
+
+panier = [];
+modePaiement = null;
+
+
+afficherPage(
+"saleSuccessSection"
+);
+
+
+document
+.getElementById(
+"successTotal"
+)
+.textContent =
+formaterPrix(
+total
+);
+
+
+document
+.getElementById(
+"successPayment"
+)
+.textContent =
+"Paiement : " +
+nomPaiement(
+paiement
+);
+
+
+console.log(
+"Vente :",
+data
+);
+
+
+}
+
+catch(error){
+
+erreurCaisse(
+"La vente n'a pas été enregistrée : " +
+error.message
+);
+
+
+actualiserBoutonVente();
+
+}
 
 }
 
 
 /* =========================================================
-   VALIDER VENTE
+   SCANNER
 ========================================================= */
 
-async function validerVente() {
+async function demarrerScanner(){
 
-  if (
-    !panier.length ||
-    !modePaiement
-  ) {
-    return;
-  }
+const reader =
+document.getElementById(
+"reader"
+);
 
 
-  const bouton =
-  document.getElementById(
-    "validateSaleButton"
-  );
+if(scannerActif){
 
+await arreterScanner();
 
-  bouton.disabled = true;
-
-
-  cashMessage.textContent =
-  "Vérification du panier…";
-
-  cashMessage.className =
-  "message";
-
-
-  try {
-
-    /*
-       On vérifie une dernière fois
-       les prix et disponibilités.
-    */
-
-    await verifierPanierAvantVente();
-
-
-    const total =
-    calculerTotal();
-
-
-    const confirmation =
-    confirm(
-      "CONFIRMER LE PAIEMENT ?\n\n" +
-      "Total : " +
-      formaterPrix(total) +
-      "\n" +
-      "Paiement : " +
-      nomPaiement(modePaiement) +
-      "\n\n" +
-      "Confirme uniquement si le paiement a bien été encaissé."
-    );
-
-
-    if (!confirmation) {
-
-      actualiserBoutonVente();
-
-      cashMessage.textContent = "";
-
-      return;
-
-    }
-
-
-    bouton.disabled = true;
-
-    bouton.textContent =
-    "ENREGISTREMENT…";
-
-
-    cashMessage.textContent =
-    "Enregistrement de la vente…";
-
-    cashMessage.className =
-    "message";
-
-
-    const articlesRPC =
-    panier.map(
-      item => ({
-
-        article_id:
-        item.id,
-
-        quantite:
-        item.quantite
-
-      })
-    );
-
-
-    const paiementAffiche =
-    modePaiement;
-
-
-    const paiementBase =
-    modePaiementSupabase(
-      modePaiement
-    );
-
-
-    const {data,error} =
-    await db.rpc(
-      "valider_vente",
-      {
-
-        p_articles:
-        articlesRPC,
-
-        p_mode_paiement:
-        paiementBase
-
-      }
-    );
-
-
-    if (error) {
-      throw error;
-    }
-
-
-    const totalFinal =
-    total;
-
-
-    panier = [];
-
-    modePaiement = null;
-
-
-    cacherToutesLesPages();
-
-    saleSuccessSection.classList.remove(
-      "hidden"
-    );
-
-
-    document.getElementById(
-      "successTotal"
-    ).textContent =
-    formaterPrix(
-      totalFinal
-    );
-
-
-    document.getElementById(
-      "successPayment"
-    ).textContent =
-    "Paiement : " +
-    nomPaiement(
-      paiementAffiche
-    );
-
-
-    console.log(
-      "VENTE ENREGISTRÉE :",
-      data
-    );
-
-
-    window.scrollTo(0,0);
-
-  }
-
-  catch(error) {
-
-    console.error(
-      error
-    );
-
-
-    erreurCaisse(
-      "La vente n'a pas été enregistrée : " +
-      error.message
-    );
-
-
-    actualiserBoutonVente();
-
-  }
+return;
 
 }
 
 
-/* =========================================================
-   NOUVELLE VENTE
-========================================================= */
+if(
+typeof Html5Qrcode ===
+"undefined"
+){
 
-function nouvelleVente() {
+erreurCaisse(
+"Le module caméra n'est pas disponible."
+);
 
-  ouvrirCaisse();
-
-}
-
-
-/* =========================================================
-   SCANNER QR
-========================================================= */
-
-async function demarrerScanner() {
-
-  const reader =
-  document.getElementById(
-    "reader"
-  );
-
-
-  if (scannerActif) {
-
-    await arreterScanner();
-
-    return;
-
-  }
-
-
-  if (
-    typeof Html5Qrcode ===
-    "undefined"
-  ) {
-
-    erreurCaisse(
-      "Le lecteur QR n'a pas pu être chargé. Utilise la référence manuelle."
-    );
-
-    return;
-
-  }
-
-
-  reader.classList.remove(
-    "hidden"
-  );
-
-
-  cashMessage.textContent =
-  "Autorise l'accès à la caméra si ton appareil le demande.";
-
-  cashMessage.className =
-  "message";
-
-
-  try {
-
-    scanner =
-    new Html5Qrcode(
-      "reader"
-    );
-
-
-    scannerActif =
-    true;
-
-
-    await scanner.start(
-
-      {
-        facingMode:
-        "environment"
-      },
-
-      {
-        fps:10,
-
-        qrbox:{
-          width:250,
-          height:250
-        }
-      },
-
-      async texte => {
-
-        if (!scannerActif) {
-          return;
-        }
-
-
-        await arreterScanner();
-
-        await ajouterParQRCode(
-          texte
-        );
-
-      },
-
-      () => {}
-
-    );
-
-
-    document.getElementById(
-      "scanButton"
-    ).textContent =
-    "FERMER LA CAMÉRA";
-
-  }
-
-  catch(error) {
-
-    console.error(
-      error
-    );
-
-
-    scannerActif =
-    false;
-
-    scanner =
-    null;
-
-
-    reader.classList.add(
-      "hidden"
-    );
-
-
-    erreurCaisse(
-      "Impossible d'ouvrir la caméra. Tu peux saisir la référence manuellement."
-    );
-
-  }
+return;
 
 }
 
 
-async function arreterScanner() {
-
-  if (
-    scanner &&
-    scannerActif
-  ) {
-
-    try {
-
-      await scanner.stop();
-
-    }
-
-    catch(error) {
-
-      console.log(
-        "Arrêt scanner :",
-        error
-      );
-
-    }
+reader.classList.remove(
+"hidden"
+);
 
 
-    try {
+try{
 
-      scanner.clear();
-
-    }
-
-    catch(error) {
-
-      console.log(
-        "Nettoyage scanner :",
-        error
-      );
-
-    }
-
-  }
+scanner =
+new Html5Qrcode(
+"reader"
+);
 
 
-  scannerActif =
-  false;
+await scanner.start(
 
-  scanner =
-  null;
+{
+facingMode:
+"environment"
+},
+
+{
+fps:10,
+qrbox:{
+width:250,
+height:250
+}
+},
+
+async texte=>{
+
+await arreterScanner();
+
+await ajouterParQRCode(
+texte
+);
+
+},
+
+()=>{}
+
+);
 
 
-  const reader =
-  document.getElementById(
-    "reader"
-  );
+scannerActif =
+true;
 
 
-  if (reader) {
+document
+.getElementById(
+"scanButton"
+)
+.textContent =
+"ARRÊTER LE SCANNER";
 
-    reader.innerHTML = "";
+}
 
-    reader.classList.add(
-      "hidden"
-    );
+catch(error){
 
-  }
+scannerActif =
+false;
+
+scanner =
+null;
+
+reader.classList.add(
+"hidden"
+);
 
 
-  const bouton =
-  document.getElementById(
-    "scanButton"
-  );
+erreurCaisse(
+"Impossible d'ouvrir la caméra. Vérifie l'autorisation caméra dans Safari."
+);
 
-
-  if (bouton) {
-
-    bouton.textContent =
-    "📷 SCANNER UN QR CODE";
-
-  }
+}
 
 }
 
 
-function quitterCaisse() {
 
-  arreterScanner();
+async function arreterScanner(){
 
-  retourDashboard();
+if(
+scanner &&
+scannerActif
+){
+
+try{
+
+await scanner.stop();
+
+}
+catch(error){}
+
+try{
+
+await scanner.clear();
+
+}
+catch(error){}
+
+}
+
+
+scanner = null;
+scannerActif = false;
+
+
+const reader =
+document.getElementById(
+"reader"
+);
+
+
+if(reader){
+
+reader.classList.add(
+"hidden"
+);
+
+}
+
+
+const bouton =
+document.getElementById(
+"scanButton"
+);
+
+
+if(bouton){
+
+bouton.textContent =
+"📷 SCANNER UN QR CODE";
+
+}
+
+}
+
+
+
+async function quitterCaisse(){
+
+await arreterScanner();
+
+retourDashboard();
+
+}
+
+
+
+function nouvelleVente(){
+
+ouvrirCaisse();
 
 }
 
@@ -4747,282 +5494,295 @@ function quitterCaisse() {
 ========================================================= */
 
 function erreurCaisse(
-  message
-) {
+texte
+){
 
-  cashMessage.textContent =
-  message;
+const message =
+document.getElementById(
+"cashMessage"
+);
 
-  cashMessage.className =
-  "message error";
+
+message.textContent =
+texte;
+
+message.className =
+"message error";
 
 }
 
 
 /* =========================================================
-   OUTILS
+   UTILITAIRES
 ========================================================= */
 
 function formaterPrix(
-  prix
-) {
+valeur
+){
 
-  return Number(
-    prix || 0
-  )
-  .toLocaleString(
-    "fr-FR",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  ) +
-  " €";
+return new Intl.NumberFormat(
+"fr-FR",
+{
+style:"currency",
+currency:"EUR"
+}
+)
+.format(
+Number(valeur) || 0
+);
 
 }
+
 
 
 function formaterDate(
-  date
-) {
+date
+){
 
-  if (!date) {
-    return "—";
-  }
-
-
-  const objetDate =
-  new Date(date);
+if(!date){
+return "—";
+}
 
 
-  return objetDate.toLocaleDateString(
-    "fr-FR",
-    {
-      day:"2-digit",
-      month:"2-digit",
-      year:"numeric"
-    }
-  ) +
-  "<br>" +
-  objetDate.toLocaleTimeString(
-    "fr-FR",
-    {
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
+return new Intl.DateTimeFormat(
+"fr-FR",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+)
+.format(
+new Date(date)
+);
 
 }
+
 
 
 function texteStatut(
-  statut
-) {
+statut
+){
 
-  switch(statut) {
+const noms = {
 
-    case "a_apporter":
-      return "À APPORTER";
+a_apporter:
+"À APPORTER",
 
-    case "en_boutique":
-      return "EN BOUTIQUE";
+en_boutique:
+"EN BOUTIQUE",
 
-    case "vendu":
-      return "VENDU";
+vendu:
+"VENDU",
 
-    case "retire":
-      return "RETIRÉ";
+retire:
+"RETIRÉ"
 
-    default:
-      return statut || "—";
+};
 
-  }
+
+return (
+noms[statut] ||
+String(statut || "ACTIF")
+.toUpperCase()
+);
 
 }
 
 
-function echapperHTML(
-  texte
-) {
 
-  const div =
-  document.createElement(
-    "div"
-  );
+function nomProfil(
+profil
+){
 
-  div.textContent =
-  texte || "";
+if(!profil){
+return "Brocanteur";
+}
 
-  return div.innerHTML;
+
+if(
+profil.enseigne
+){
+
+return profil.enseigne;
+}
+
+
+return [
+profil.prenom,
+profil.nom
+]
+.filter(Boolean)
+.join(" ") ||
+"Brocanteur";
+
+}
+
+
+
+function escapeHTML(
+valeur
+){
+
+return String(
+valeur ?? ""
+)
+.replaceAll(
+"&",
+"&amp;"
+)
+.replaceAll(
+"<",
+"&lt;"
+)
+.replaceAll(
+">",
+"&gt;"
+)
+.replaceAll(
+'"',
+"&quot;"
+)
+.replaceAll(
+"'",
+"&#039;"
+);
 
 }
 
 
 /* =========================================================
-   DÉCONNEXION
+   EVENEMENTS
 ========================================================= */
 
-async function deconnexion() {
-
-  await arreterScanner();
-
-  await db.auth.signOut();
-
-  afficherConnexion();
-
-}
-
-
-function afficherConnexion() {
-
-  cacherToutesLesPages();
-
-  loginSection.classList.remove(
-    "hidden"
-  );
-
-
-  utilisateurActuel = null;
-
-  profilActuel = null;
-
-  articleEnModification = null;
-
-  panier = [];
-
-  modePaiement = null;
-
-
-  loginMessage.textContent = "";
-
-  loginMessage.className =
-  "message";
-
-}
-
-
-/* =========================================================
-   SESSION
-========================================================= */
-
-async function verifierSession() {
-
-  const {
-    data:{session}
-  } =
-  await db.auth.getSession();
-
-
-  if (
-    session &&
-    session.user
-  ) {
-
-    await afficherUtilisateur(
-      session.user
-    );
-
-  }
-
-  else {
-
-    afficherConnexion();
-
-  }
-
-}
-
-
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
-
-function fonctionBientotDisponible(
-  nom
-) {
-
-  alert(
-    nom +
-    "\n\nCette partie sera construite ensuite."
-  );
-
-}
-
-
-/* =========================================================
-   ÉVÉNEMENTS
-========================================================= */
-
-document.getElementById(
-  "loginButton"
+document
+.getElementById(
+"loginButton"
 )
 .addEventListener(
-  "click",
-  connexion
+"click",
+connexion
 );
 
 
-document.getElementById(
-  "logoutButton"
+document
+.getElementById(
+"logoutButton"
 )
 .addEventListener(
-  "click",
-  deconnexion
+"click",
+deconnexion
 );
 
 
-document.getElementById(
-  "saveArticleButton"
+document
+.getElementById(
+"saveArticleButton"
 )
 .addEventListener(
-  "click",
-  enregistrerArticle
+"click",
+enregistrerArticle
 );
 
 
-document.getElementById(
-  "password"
+document
+.getElementById(
+"password"
 )
 .addEventListener(
-  "keydown",
-  event => {
+"keydown",
+event=>{
 
-    if (
-      event.key === "Enter"
-    ) {
+if(
+event.key === "Enter"
+){
 
-      connexion();
+connexion();
 
-    }
+}
 
-  }
+}
 );
 
 
-document.getElementById(
-  "cashReference"
+document
+.getElementById(
+"cashReference"
 )
 .addEventListener(
-  "keydown",
-  event => {
+"keydown",
+event=>{
 
-    if (
-      event.key === "Enter"
-    ) {
+if(
+event.key === "Enter"
+){
 
-      ajouterParReference();
+ajouterParReference();
 
-    }
+}
 
-  }
+}
+);
+
+
+document
+.getElementById(
+"stockSearch"
+)
+.addEventListener(
+"input",
+afficherStockFiltre
+);
+
+
+document
+.getElementById(
+"stockFilter"
+)
+.addEventListener(
+"change",
+afficherStockFiltre
 );
 
 
 /* =========================================================
-   DÉMARRAGE
+   SESSION AU CHARGEMENT
 ========================================================= */
 
-verifierSession();
+async function initialiser(){
+
+const {
+data,
+error
+} =
+await db.auth.getSession();
+
+
+if(
+!error &&
+data.session
+){
+
+await afficherUtilisateur(
+data.session.user
+);
+
+}
+
+else{
+
+afficherPage(
+"loginSection"
+);
+
+}
+
+}
+
+
+initialiser();
 
 </script>
 
