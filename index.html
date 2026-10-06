@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VIDE DECO</title>
+  <title>VIDE DECO — POP-UP</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
@@ -14,304 +15,758 @@
       padding: 0;
     }
 
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --background: #f4f2ed;
+      --grey: #d6d3cc;
+      --green: #b7ff00;
+      --red: #e34b3f;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #f4f2ed;
-      color: #111;
+      background: var(--background);
+      color: var(--black);
       min-height: 100vh;
     }
 
-    /* HEADER */
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
 
     header {
-      padding: 35px 6%;
+      padding: 26px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #c8c5bf;
     }
 
     .logo {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 900;
       letter-spacing: -1px;
     }
 
     .tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    main {
+      width: min(1100px, 90%);
+      margin: auto;
+      padding: 55px 0 80px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LOGIN */
+
+    .login {
+      max-width: 520px;
+      margin: 40px auto;
+    }
+
+    .eyebrow {
       font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 1px;
-    }
-
-    /* HERO */
-
-    .hero {
-      padding: 70px 6% 45px;
-    }
-
-    .hero-small {
-      font-size: 13px;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(50px, 9vw, 120px);
+      font-size: clamp(50px, 8vw, 90px);
       line-height: .85;
       letter-spacing: -5px;
-      max-width: 1000px;
+      margin-bottom: 35px;
     }
 
-    .hero-text {
-      margin-top: 30px;
-      font-size: 18px;
-      max-width: 550px;
-      line-height: 1.5;
+    h2 {
+      font-size: 34px;
+      letter-spacing: -1.5px;
     }
 
-    /* ESPACES */
+    .login-box {
+      border: 2px solid var(--black);
+      padding: 28px;
+    }
 
-    .spaces {
-      padding: 20px 6% 70px;
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 20px 0 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #999;
+      background: white;
+      border-radius: 0;
+      font-size: 16px;
+    }
+
+    .primary {
+      width: 100%;
+      border: 0;
+      background: var(--black);
+      color: white;
+      padding: 17px 20px;
+      margin-top: 22px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .primary:hover {
+      opacity: .85;
+    }
+
+    .message {
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .message.error {
+      color: #b52222;
+    }
+
+    /* DASHBOARD */
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .hello {
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: .9;
+      letter-spacing: -4px;
+      margin-top: 8px;
+    }
+
+    .logout {
+      border: 1px solid var(--black);
+      background: transparent;
+      padding: 12px 18px;
+      font-weight: bold;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 7px 10px;
+      background: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      gap: 14px;
     }
 
     .card {
-      min-height: 300px;
-      padding: 30px;
-      border: 2px solid #111;
+      min-height: 270px;
+      border: 2px solid var(--black);
+      padding: 25px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      cursor: pointer;
-      transition: .2s;
       background: transparent;
+      transition: .15s;
     }
 
     .card:hover {
-      background: #111;
+      background: var(--black);
       color: white;
     }
 
     .number {
-      font-size: 13px;
-      font-weight: bold;
+      font-size: 11px;
+      font-weight: 900;
     }
 
-    .card h2 {
-      font-size: 35px;
+    .card-title {
+      font-size: 30px;
+      font-weight: 900;
       letter-spacing: -1px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .card p {
-      font-size: 15px;
-      line-height: 1.4;
+      line-height: 1.45;
+      font-size: 14px;
     }
 
     .arrow {
-      font-size: 35px;
+      font-size: 30px;
     }
 
-    /* FOOTER */
+    .connection {
+      margin-top: 35px;
+      border-top: 1px solid #bbb;
+      padding-top: 18px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
 
     footer {
-      padding: 25px 6%;
       border-top: 1px solid #ccc;
+      padding: 22px 5%;
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
+      font-size: 11px;
+      text-transform: uppercase;
     }
 
-    /* MOBILE */
-
     @media (max-width: 800px) {
-
-      header {
-        padding: 25px 5%;
+      main {
+        width: 90%;
+        padding-top: 35px;
       }
 
-      .hero {
-        padding: 50px 5% 35px;
+      header {
+        padding: 22px 5%;
       }
 
       h1 {
         letter-spacing: -3px;
       }
 
-      .spaces {
+      .cards {
         grid-template-columns: 1fr;
-        padding: 10px 5% 50px;
       }
 
       .card {
-        min-height: 220px;
+        min-height: 190px;
       }
 
-      footer {
-        padding: 25px 5%;
+      .dashboard-header {
+        flex-direction: column;
       }
     }
-
   </style>
 </head>
 
 <body>
 
 <header>
-
-  <div class="logo">
-    VIDE DECO
-  </div>
-
-  <div class="tag">
-    POP-UP STORE
-  </div>
-
+  <div class="logo">VIDE DECO</div>
+  <div class="tag">POP-UP MANAGEMENT</div>
 </header>
 
+<main>
 
-<section class="hero">
+  <!-- =====================================================
+       CONNEXION
+       ===================================================== -->
 
-  <div class="hero-small">
-    Gestion de la boutique
-  </div>
+  <section id="loginSection" class="login">
 
-  <h1>
-    OBJETS.<br>
-    VENDEURS.<br>
-    HISTOIRES.
-  </h1>
+    <div class="eyebrow">Boutique éphémère</div>
 
-  <div class="hero-text">
-    Une plateforme simple pour enregistrer les objets,
-    gérer les vendeurs et fluidifier l'encaissement
-    de la boutique.
-  </div>
+    <h1>GÉRER.<br>VENDRE.<br>SUIVRE.</h1>
 
-</section>
+    <div class="login-box">
 
+      <h2>Connexion</h2>
 
-<section class="spaces">
+      <label for="email">Adresse e-mail</label>
 
-  <!-- VENDEUR -->
+      <input
+        type="email"
+        id="email"
+        autocomplete="email"
+        placeholder="votre@email.fr"
+      >
 
-  <div class="card" onclick="ouvrirVendeur()">
+      <label for="password">Mot de passe</label>
 
-    <div class="number">
-      01
-    </div>
+      <input
+        type="password"
+        id="password"
+        autocomplete="current-password"
+        placeholder="••••••••"
+      >
 
-    <div>
+      <button
+        class="primary"
+        id="loginButton"
+        type="button"
+      >
+        Se connecter
+      </button>
 
-      <h2>
-        VENDEUR
-      </h2>
-
-      <p>
-        Ajouter mes objets<br>
-        Gérer mes prix<br>
-        Suivre mes ventes
-      </p>
-
-    </div>
-
-    <div class="arrow">
-      →
-    </div>
-
-  </div>
-
-
-  <!-- CAISSE -->
-
-  <div class="card" onclick="ouvrirCaisse()">
-
-    <div class="number">
-      02
-    </div>
-
-    <div>
-
-      <h2>
-        CAISSE
-      </h2>
-
-      <p>
-        Scanner les articles<br>
-        Créer le panier<br>
-        Valider les ventes
-      </p>
+      <div id="loginMessage" class="message"></div>
 
     </div>
 
-    <div class="arrow">
-      →
+  </section>
+
+
+  <!-- =====================================================
+       ESPACE CONNECTÉ
+       ===================================================== -->
+
+  <section id="dashboardSection" class="hidden">
+
+    <div class="dashboard-header">
+
+      <div>
+
+        <div class="eyebrow">
+          VIDE DECO POP-UP
+        </div>
+
+        <div id="hello" class="hello">
+          BONJOUR.
+        </div>
+
+        <div id="roleBadge" class="status">
+          CONNEXION
+        </div>
+
+      </div>
+
+      <button
+        id="logoutButton"
+        class="logout"
+        type="button"
+      >
+        Déconnexion
+      </button>
+
     </div>
 
-  </div>
+
+    <div id="adminCards" class="cards hidden">
+
+      <div class="card" onclick="fonctionBientotDisponible('STOCK')">
+        <div class="number">01</div>
+
+        <div>
+          <div class="card-title">STOCK</div>
+          <p>
+            Articles en boutique<br>
+            Articles à apporter<br>
+            Retraits et retours
+          </p>
+        </div>
+
+        <div class="arrow">→</div>
+      </div>
 
 
-  <!-- ADMIN -->
+      <div class="card" onclick="fonctionBientotDisponible('CAISSE')">
+        <div class="number">02</div>
 
-  <div class="card" onclick="ouvrirAdmin()">
+        <div>
+          <div class="card-title">CAISSE</div>
+          <p>
+            Scanner les articles<br>
+            Constituer le panier<br>
+            Valider les ventes
+          </p>
+        </div>
 
-    <div class="number">
-      03
+        <div class="arrow">→</div>
+      </div>
+
+
+      <div class="card" onclick="fonctionBientotDisponible('ADMINISTRATION')">
+        <div class="number">03</div>
+
+        <div>
+          <div class="card-title">ADMIN</div>
+          <p>
+            Brocanteurs<br>
+            Chiffre d'affaires<br>
+            Commissions et reversements
+          </p>
+        </div>
+
+        <div class="arrow">→</div>
+      </div>
+
     </div>
 
-    <div>
 
-      <h2>
-        ADMIN
-      </h2>
+    <div id="sellerCards" class="cards hidden">
 
-      <p>
-        Vendeurs & stocks<br>
-        Chiffre d'affaires<br>
-        Commissions
-      </p>
+      <div class="card" onclick="fonctionBientotDisponible('AJOUTER UN ARTICLE')">
+        <div class="number">01</div>
+
+        <div>
+          <div class="card-title">AJOUTER</div>
+          <p>
+            Enregistrer un objet<br>
+            Définir son prix<br>
+            Préparer son arrivée
+          </p>
+        </div>
+
+        <div class="arrow">→</div>
+      </div>
+
+
+      <div class="card" onclick="fonctionBientotDisponible('MES ARTICLES')">
+        <div class="number">02</div>
+
+        <div>
+          <div class="card-title">MES OBJETS</div>
+          <p>
+            À apporter<br>
+            En boutique<br>
+            Vendus ou retirés
+          </p>
+        </div>
+
+        <div class="arrow">→</div>
+      </div>
+
+
+      <div class="card" onclick="fonctionBientotDisponible('MES VENTES')">
+        <div class="number">03</div>
+
+        <div>
+          <div class="card-title">MES VENTES</div>
+          <p>
+            Suivre les ventes<br>
+            Chiffre d'affaires<br>
+            Historique
+          </p>
+        </div>
+
+        <div class="arrow">→</div>
+      </div>
 
     </div>
 
-    <div class="arrow">
-      →
+
+    <div class="connection">
+      <strong>Base de données :</strong>
+      <span id="databaseStatus">connexion en cours…</span>
     </div>
 
-  </div>
+  </section>
 
-</section>
+</main>
 
 
 <footer>
-
-  <div>
-    VIDE DECO
-  </div>
-
-  <div>
-    Boutique éphémère
-  </div>
-
+  <div>VIDE DECO</div>
+  <div>Boutique éphémère</div>
 </footer>
 
 
 <script>
 
-function ouvrirVendeur() {
-  alert("ESPACE VENDEUR — bientôt disponible");
-}
+  /* =========================================================
+     CONNEXION SUPABASE
+     ========================================================= */
 
-function ouvrirCaisse() {
-  alert("CAISSE — bientôt disponible");
-}
+  const SUPABASE_URL =
+    "https://zxwvbfhkeszkcxcnijcp.supabase.co";
 
-function ouvrirAdmin() {
-  alert("ADMINISTRATION — bientôt disponible");
-}
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
+
+  const db = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+  /* =========================================================
+     ÉLÉMENTS
+     ========================================================= */
+
+  const loginSection =
+    document.getElementById("loginSection");
+
+  const dashboardSection =
+    document.getElementById("dashboardSection");
+
+  const loginButton =
+    document.getElementById("loginButton");
+
+  const logoutButton =
+    document.getElementById("logoutButton");
+
+  const loginMessage =
+    document.getElementById("loginMessage");
+
+  const adminCards =
+    document.getElementById("adminCards");
+
+  const sellerCards =
+    document.getElementById("sellerCards");
+
+  const hello =
+    document.getElementById("hello");
+
+  const roleBadge =
+    document.getElementById("roleBadge");
+
+  const databaseStatus =
+    document.getElementById("databaseStatus");
+
+
+  /* =========================================================
+     CONNEXION
+     ========================================================= */
+
+  async function connexion() {
+
+    loginMessage.textContent = "Connexion…";
+    loginMessage.className = "message";
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    const password =
+      document.getElementById("password").value;
+
+    if (!email || !password) {
+
+      loginMessage.textContent =
+        "Renseigne ton adresse e-mail et ton mot de passe.";
+
+      loginMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    const { data, error } =
+      await db.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+
+    if (error) {
+
+      console.error(error);
+
+      loginMessage.textContent =
+        "Connexion impossible : vérifie ton e-mail et ton mot de passe.";
+
+      loginMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    await afficherUtilisateur(data.user);
+
+  }
+
+
+  /* =========================================================
+     AFFICHAGE UTILISATEUR
+     ========================================================= */
+
+  async function afficherUtilisateur(user) {
+
+    if (!user) {
+      afficherConnexion();
+      return;
+    }
+
+
+    const { data: profil, error } =
+      await db
+        .from("profils")
+        .select(
+          "id, role, nom, prenom, enseigne, commission, actif"
+        )
+        .eq("id", user.id)
+        .single();
+
+
+    if (error || !profil) {
+
+      console.error(error);
+
+      await db.auth.signOut();
+
+      afficherConnexion();
+
+      loginMessage.textContent =
+        "Le profil utilisateur est introuvable.";
+
+      loginMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    loginSection.classList.add("hidden");
+    dashboardSection.classList.remove("hidden");
+
+
+    const nomAffiche =
+      profil.prenom ||
+      profil.enseigne ||
+      "VIDE DECO";
+
+
+    hello.textContent =
+      "BONJOUR " + nomAffiche.toUpperCase() + ".";
+
+
+    databaseStatus.textContent =
+      "Supabase connecté ✓";
+
+
+    adminCards.classList.add("hidden");
+    sellerCards.classList.add("hidden");
+
+
+    if (profil.role === "admin") {
+
+      roleBadge.textContent =
+        "ADMINISTRATEUR";
+
+      adminCards.classList.remove("hidden");
+
+    } else {
+
+      roleBadge.textContent =
+        "BROCANTEUR";
+
+      sellerCards.classList.remove("hidden");
+
+    }
+
+  }
+
+
+  /* =========================================================
+     ÉCRAN CONNEXION
+     ========================================================= */
+
+  function afficherConnexion() {
+
+    dashboardSection.classList.add("hidden");
+    loginSection.classList.remove("hidden");
+
+    adminCards.classList.add("hidden");
+    sellerCards.classList.add("hidden");
+
+    databaseStatus.textContent = "";
+  }
+
+
+  /* =========================================================
+     DÉCONNEXION
+     ========================================================= */
+
+  async function deconnexion() {
+
+    await db.auth.signOut();
+
+    document.getElementById("password").value = "";
+
+    loginMessage.textContent = "";
+
+    afficherConnexion();
+
+  }
+
+
+  /* =========================================================
+     SESSION EXISTANTE
+     ========================================================= */
+
+  async function verifierSession() {
+
+    const {
+      data: { session }
+    } = await db.auth.getSession();
+
+
+    if (session && session.user) {
+
+      await afficherUtilisateur(session.user);
+
+    } else {
+
+      afficherConnexion();
+
+    }
+
+  }
+
+
+  /* =========================================================
+     BOUTONS
+     ========================================================= */
+
+  loginButton.addEventListener(
+    "click",
+    connexion
+  );
+
+
+  logoutButton.addEventListener(
+    "click",
+    deconnexion
+  );
+
+
+  document
+    .getElementById("password")
+    .addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+          connexion();
+        }
+
+      }
+    );
+
+
+  function fonctionBientotDisponible(nom) {
+
+    alert(
+      nom +
+      "\n\nCette fonction sera construite à l'étape suivante."
+    );
+
+  }
+
+
+  /* =========================================================
+     DÉMARRAGE
+     ========================================================= */
+
+  verifierSession();
 
 </script>
 
