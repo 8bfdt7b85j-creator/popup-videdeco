@@ -15,8 +15,8 @@
 <style>
 
 /* =========================================================
-   BASE
-========================================================= */
+   VIDE DECO
+   ========================================================= */
 
 * {
   box-sizing:border-box;
@@ -25,13 +25,13 @@
 }
 
 :root {
-  --black:#111111;
+  --black:#080808;
   --white:#ffffff;
-  --background:#f4f2ed;
-  --grey:#d6d3cc;
+  --bg:#f4f2ed;
+  --grey:#d8d6d0;
   --green:#b7ff00;
-  --red:#e34b3f;
-  --blue:#2f86ff;
+  --red:#e84a3a;
+  --orange:#ffb800;
 }
 
 html {
@@ -39,9 +39,10 @@ html {
 }
 
 body {
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--background);
+  margin:0;
+  background:var(--bg);
   color:var(--black);
+  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
 }
 
@@ -49,7 +50,7 @@ button,
 input,
 textarea,
 select {
-  font:inherit;
+  font-family:inherit;
 }
 
 button {
@@ -57,8 +58,8 @@ button {
 }
 
 button:disabled {
-  cursor:not-allowed;
   opacity:.35;
+  cursor:not-allowed;
 }
 
 .hidden {
@@ -68,49 +69,51 @@ button:disabled {
 
 /* =========================================================
    HEADER
-========================================================= */
+   ========================================================= */
 
 header {
-  padding:26px 5%;
+  width:100%;
+  padding:24px 5vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid #c8c5bf;
+  gap:20px;
+  border-bottom:1px solid #bbb;
 }
 
 .logo {
-  font-size:24px;
+  font-size:25px;
   font-weight:900;
   letter-spacing:-1px;
 }
 
 .tag {
-  font-size:11px;
-  font-weight:700;
+  font-size:10px;
+  font-weight:900;
   letter-spacing:1.5px;
 }
 
 
 /* =========================================================
-   GENERAL
-========================================================= */
+   STRUCTURE
+   ========================================================= */
 
 main {
   width:min(1200px,90%);
   margin:auto;
-  padding:55px 0 80px;
+  padding:55px 0 90px;
 }
 
 .eyebrow {
-  font-size:12px;
+  font-size:11px;
   font-weight:900;
+  letter-spacing:1.2px;
   text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:18px;
+  margin-bottom:15px;
 }
 
 h1 {
-  font-size:clamp(50px,8vw,90px);
+  font-size:clamp(52px,8vw,92px);
   line-height:.85;
   letter-spacing:-5px;
   margin-bottom:35px;
@@ -118,13 +121,14 @@ h1 {
 
 h2 {
   font-size:34px;
+  line-height:1;
   letter-spacing:-1.5px;
 }
 
 .page-title,
 .hello {
-  font-size:clamp(42px,7vw,80px);
-  line-height:.9;
+  font-size:clamp(45px,7vw,80px);
+  line-height:.88;
   letter-spacing:-4px;
   font-weight:900;
 }
@@ -135,7 +139,7 @@ h2 {
   justify-content:space-between;
   align-items:flex-start;
   gap:25px;
-  margin-bottom:50px;
+  margin-bottom:45px;
 }
 
 .primary {
@@ -150,10 +154,11 @@ h2 {
 }
 
 .secondary {
-  border:1px solid var(--black);
+  border:2px solid var(--black);
   background:transparent;
-  padding:12px 18px;
-  font-weight:800;
+  color:var(--black);
+  padding:12px 17px;
+  font-weight:900;
   text-transform:uppercase;
 }
 
@@ -162,9 +167,17 @@ h2 {
   color:white;
 }
 
+.danger {
+  border:2px solid var(--black);
+  background:var(--red);
+  color:white;
+  padding:12px 17px;
+  font-weight:900;
+}
+
 label {
   display:block;
-  font-size:12px;
+  font-size:11px;
   font-weight:900;
   text-transform:uppercase;
   margin:20px 0 8px;
@@ -174,60 +187,61 @@ input,
 textarea,
 select {
   width:100%;
-  padding:15px;
   border:1px solid #999;
-  background:white;
   border-radius:0;
+  background:white;
+  padding:14px;
   font-size:16px;
 }
 
 textarea {
-  min-height:120px;
+  min-height:110px;
   resize:vertical;
 }
 
 .message {
   margin-top:18px;
-  font-size:14px;
-  line-height:1.4;
+  font-size:13px;
+  line-height:1.5;
 }
 
 .message.error {
-  color:#b52222;
-  font-weight:700;
+  color:#b11d14;
+  font-weight:900;
 }
 
 .message.success {
+  padding:13px;
   background:var(--green);
-  padding:12px;
   color:var(--black);
   font-weight:900;
 }
 
 .status {
   display:inline-block;
-  margin-top:18px;
   padding:7px 10px;
+  margin-top:17px;
   background:var(--green);
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
 }
 
 .empty-state {
   border:2px solid var(--black);
-  padding:40px;
+  padding:35px;
   text-align:center;
+  font-weight:700;
 }
 
 
 /* =========================================================
-   LOGIN / INSCRIPTION
-========================================================= */
+   LOGIN
+   ========================================================= */
 
 .login,
 .signup {
-  max-width:520px;
-  margin:40px auto;
+  width:min(520px,100%);
+  margin:30px auto;
 }
 
 .login-box,
@@ -238,30 +252,23 @@ textarea {
 
 .signup-link {
   width:100%;
-  margin-top:12px;
   border:2px solid var(--black);
   background:var(--green);
-  color:var(--black);
-  padding:17px 20px;
+  padding:16px;
+  margin-top:10px;
   font-weight:900;
-  text-transform:uppercase;
-}
-
-.signup-link:hover {
-  background:var(--black);
-  color:white;
 }
 
 .signup-intro {
-  font-size:14px;
-  line-height:1.5;
   margin:18px 0 25px;
+  line-height:1.5;
+  font-size:14px;
 }
 
 .signup-note {
-  margin-top:18px;
-  padding:15px;
   border:1px solid var(--black);
+  padding:14px;
+  margin-top:20px;
   font-size:12px;
   line-height:1.5;
 }
@@ -272,40 +279,36 @@ textarea {
   text-align:center;
 }
 
-.signup-success-mark {
-  width:75px;
-  height:75px;
+.signup-success-mark,
+.sale-success-check {
+  width:78px;
+  height:78px;
   margin:0 auto 25px;
   border-radius:50%;
   background:var(--green);
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:35px;
+  align-items:center;
+  font-size:38px;
   font-weight:900;
 }
 
 .signup-success-title {
-  font-size:42px;
+  font-size:44px;
   line-height:.9;
-  font-weight:900;
   letter-spacing:-2px;
-}
-
-.signup-success p {
-  margin-top:22px;
-  line-height:1.5;
+  font-weight:900;
 }
 
 
 /* =========================================================
    DASHBOARD
-========================================================= */
+   ========================================================= */
 
 .logout {
-  border:1px solid var(--black);
+  border:2px solid var(--black);
   background:transparent;
-  padding:12px 18px;
+  padding:12px 17px;
   font-weight:900;
 }
 
@@ -316,9 +319,9 @@ textarea {
 }
 
 .card {
-  min-height:270px;
+  min-height:260px;
   border:2px solid var(--black);
-  padding:25px;
+  padding:24px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -331,40 +334,40 @@ textarea {
 }
 
 .number {
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
 }
 
 .card-title {
-  font-size:30px;
+  font-size:29px;
   font-weight:900;
   letter-spacing:-1px;
-  margin-bottom:8px;
 }
 
 .card p {
-  font-size:14px;
+  margin-top:8px;
+  font-size:13px;
   line-height:1.45;
 }
 
 .arrow {
-  font-size:30px;
+  font-size:28px;
 }
 
 .connection {
   margin-top:35px;
-  border-top:1px solid #bbb;
   padding-top:18px;
-  font-size:12px;
+  border-top:1px solid #aaa;
+  font-size:11px;
 }
 
 
 /* =========================================================
    FORMULAIRE ARTICLE
-========================================================= */
+   ========================================================= */
 
 .article-page {
-  max-width:760px;
+  width:min(760px,100%);
   margin:auto;
 }
 
@@ -385,13 +388,13 @@ textarea {
 .euro {
   position:absolute;
   right:17px;
-  bottom:15px;
+  bottom:14px;
   font-weight:900;
 }
 
 .photo-zone {
   margin-top:20px;
-  padding:25px;
+  padding:22px;
   border:2px dashed var(--black);
 }
 
@@ -399,37 +402,48 @@ textarea {
   width:100%;
   max-height:350px;
   object-fit:contain;
-  margin-top:18px;
   background:white;
+  margin-top:17px;
 }
 
 
 /* =========================================================
-   OBJETS
-========================================================= */
+   STOCK
+   ========================================================= */
 
 .toolbar {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
-  margin-bottom:25px;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
 }
 
-.toolbar input {
-  max-width:420px;
+.toolbar input,
+.toolbar select {
+  width:auto;
+  min-width:220px;
+  flex:1;
 }
 
 .objects-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  gap:15px;
 }
 
 .object-card {
+  position:relative;
   border:2px solid var(--black);
   display:flex;
   flex-direction:column;
+  background:var(--bg);
+}
+
+.object-card.selected {
+  outline:5px solid var(--green);
+  outline-offset:-5px;
 }
 
 .object-image {
@@ -442,82 +456,93 @@ textarea {
 .object-no-image {
   width:100%;
   aspect-ratio:4/3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   background:#ddd9d2;
   border-bottom:2px solid var(--black);
-  font-size:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:11px;
   font-weight:900;
 }
 
 .object-content {
-  padding:20px;
+  padding:19px;
   flex:1;
 }
 
 .object-reference {
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .object-name {
-  font-size:25px;
+  font-size:24px;
+  line-height:1;
   font-weight:900;
   letter-spacing:-1px;
 }
 
 .object-seller {
-  margin-top:8px;
-  font-size:12px;
+  font-size:11px;
   font-weight:900;
+  margin-top:9px;
 }
 
 .object-category {
-  font-size:11px;
+  font-size:10px;
   text-transform:uppercase;
   margin-top:5px;
 }
 
 .object-price {
+  margin-top:18px;
   font-size:28px;
   font-weight:900;
-  margin-top:20px;
 }
 
 .object-quantity {
   margin-top:8px;
   font-size:11px;
   font-weight:900;
+  line-height:1.5;
 }
 
 .object-status {
   display:inline-block;
-  margin-top:15px;
+  margin-top:13px;
   padding:7px 9px;
-  background:var(--green);
-  font-size:10px;
+  font-size:9px;
   font-weight:900;
+  background:var(--green);
 }
 
-.object-status.vendu {
+.object-status.waiting {
+  background:white;
+  border:1px solid var(--black);
+}
+
+.object-status.difference {
+  background:var(--orange);
+}
+
+.object-status.sold {
   background:var(--black);
   color:white;
 }
 
 .object-actions {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
   border-top:2px solid var(--black);
 }
 
 .object-action {
+  min-height:48px;
   border:0;
   border-right:1px solid var(--black);
   background:transparent;
-  min-height:48px;
-  font-size:10px;
+  font-size:9px;
   font-weight:900;
 }
 
@@ -531,14 +556,207 @@ textarea {
 
 
 /* =========================================================
-   STATISTIQUES
-========================================================= */
+   QR SELECTION
+   ========================================================= */
+
+.label-selector {
+  position:absolute;
+  z-index:5;
+  top:10px;
+  left:10px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 9px;
+  background:white;
+  border:2px solid var(--black);
+  font-size:9px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.label-selector input {
+  width:17px;
+  height:17px;
+  margin:0;
+  padding:0;
+  accent-color:var(--black);
+}
+
+.label-toolbar {
+  border:2px solid var(--black);
+  background:white;
+  padding:16px;
+  margin-bottom:22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.label-toolbar-left {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.label-count {
+  font-size:12px;
+  font-weight:900;
+}
+
+.label-print-button {
+  border:0;
+  background:var(--green);
+  padding:14px 18px;
+  font-size:11px;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   INVENTAIRE
+   ========================================================= */
+
+.inventory-sellers {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.inventory-seller {
+  border:2px solid var(--black);
+  padding:22px;
+  cursor:pointer;
+}
+
+.inventory-seller:hover {
+  background:var(--green);
+}
+
+.inventory-seller-name {
+  font-size:24px;
+  line-height:1;
+  font-weight:900;
+}
+
+.inventory-seller-company {
+  margin-top:7px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.inventory-seller-stats {
+  margin-top:20px;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.inventory-summary {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:30px;
+}
+
+.inventory-stat {
+  border:2px solid var(--black);
+  min-height:130px;
+  padding:17px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.inventory-stat.highlight {
+  background:var(--green);
+}
+
+.inventory-stat.warning {
+  background:var(--orange);
+}
+
+.inventory-stat-label {
+  font-size:9px;
+  font-weight:900;
+}
+
+.inventory-stat-value {
+  font-size:30px;
+  font-weight:900;
+}
+
+.inventory-list {
+  display:grid;
+  gap:10px;
+}
+
+.inventory-item {
+  border:2px solid var(--black);
+  padding:18px;
+  display:grid;
+  grid-template-columns:1.5fr .7fr .7fr auto;
+  align-items:center;
+  gap:15px;
+}
+
+.inventory-item.received {
+  border-left:9px solid var(--green);
+}
+
+.inventory-item.difference {
+  border-left:9px solid var(--orange);
+}
+
+.inventory-item-name {
+  font-size:18px;
+  font-weight:900;
+}
+
+.inventory-item-ref {
+  font-size:10px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.inventory-quantity {
+  font-size:11px;
+}
+
+.inventory-quantity strong {
+  display:block;
+  font-size:22px;
+  margin-top:4px;
+}
+
+.inventory-action {
+  border:0;
+  background:var(--black);
+  color:white;
+  padding:12px 15px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.inventory-note {
+  grid-column:1/-1;
+  font-size:11px;
+  background:white;
+  padding:9px;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
 
 .stats {
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:40px;
+  gap:10px;
+  margin-bottom:35px;
 }
 
 .stats-5 {
@@ -546,9 +764,9 @@ textarea {
 }
 
 .stat {
-  min-height:150px;
+  min-height:145px;
   border:2px solid var(--black);
-  padding:20px;
+  padding:18px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -559,21 +777,19 @@ textarea {
 }
 
 .stat-label {
-  font-size:11px;
+  font-size:9px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .stat-value {
-  font-size:32px;
+  font-size:31px;
   font-weight:900;
-  letter-spacing:-1px;
 }
 
 
 /* =========================================================
-   TABLES
-========================================================= */
+   TABLE
+   ========================================================= */
 
 .table-wrap {
   overflow-x:auto;
@@ -582,25 +798,24 @@ textarea {
 
 .data-table {
   width:100%;
+  min-width:1050px;
   border-collapse:collapse;
-  min-width:1100px;
 }
 
 .data-table th {
+  padding:12px 9px;
   text-align:left;
-  font-size:10px;
-  padding:13px 10px;
   border-bottom:2px solid var(--black);
+  font-size:9px;
 }
 
 .data-table td {
-  padding:16px 10px;
+  padding:15px 9px;
   border-bottom:1px solid #aaa;
-  font-size:13px;
-  vertical-align:middle;
+  font-size:12px;
 }
 
-.data-table .money {
+.money {
   font-weight:900;
 }
 
@@ -608,11 +823,9 @@ textarea {
 .accept-button,
 .refuse-button {
   border:0;
-  padding:10px 13px;
-  font-size:10px;
+  padding:10px 12px;
+  font-size:9px;
   font-weight:900;
-  text-transform:uppercase;
-  white-space:nowrap;
 }
 
 .reverse-button,
@@ -622,50 +835,54 @@ textarea {
 }
 
 .refuse-button {
-  background:transparent;
   border:1px solid var(--black);
-}
-
-.request-list {
-  display:grid;
-  gap:12px;
-  margin-bottom:45px;
-}
-
-.request-card {
-  border:2px solid var(--black);
-  padding:22px;
-  display:grid;
-  grid-template-columns:1.5fr 1fr auto;
-  gap:20px;
-  align-items:center;
-}
-
-.request-name {
-  font-size:22px;
-  font-weight:900;
-}
-
-.request-details {
-  margin-top:7px;
-  font-size:12px;
-  line-height:1.5;
-}
-
-.request-commission {
-  max-width:140px;
-}
-
-.request-actions {
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
+  background:transparent;
 }
 
 
 /* =========================================================
-   VENTES / REVERSEMENTS
-========================================================= */
+   DEMANDES BROCANTEURS
+   ========================================================= */
+
+.request-list {
+  display:grid;
+  gap:10px;
+  margin-bottom:40px;
+}
+
+.request-card {
+  border:2px solid var(--black);
+  padding:20px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr auto;
+  align-items:center;
+  gap:18px;
+}
+
+.request-name {
+  font-size:21px;
+  font-weight:900;
+}
+
+.request-details {
+  margin-top:6px;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.request-commission {
+  max-width:130px;
+}
+
+.request-actions {
+  display:flex;
+  gap:6px;
+}
+
+
+/* =========================================================
+   VENTES
+   ========================================================= */
 
 .sales-list,
 .repayment-list {
@@ -675,233 +892,257 @@ textarea {
 .sale-row {
   display:grid;
   grid-template-columns:130px 1fr 100px 120px 120px;
-  gap:15px;
+  gap:14px;
   align-items:center;
-  padding:20px 5px;
+  padding:18px 4px;
   border-bottom:1px solid #aaa;
 }
 
 .sale-ref {
-  font-size:10px;
+  font-size:9px;
   font-weight:900;
 }
 
 .sale-name,
 .sale-net {
-  font-size:18px;
+  font-size:17px;
   font-weight:900;
 }
 
 .sales-section-title {
-  font-size:30px;
+  margin:38px 0 18px;
+  font-size:29px;
   font-weight:900;
-  margin:40px 0 20px;
 }
 
 .repayment-row {
   display:grid;
   grid-template-columns:150px 1fr 160px 160px;
-  gap:20px;
+  gap:18px;
   align-items:center;
-  padding:18px 5px;
+  padding:17px 4px;
   border-bottom:1px solid #aaa;
 }
 
 .repayment-seller {
   font-weight:900;
-  font-size:16px;
 }
 
 .repayment-mode {
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .repayment-amount {
-  font-size:20px;
+  font-size:19px;
   font-weight:900;
 }
 
 .repayment-note {
-  font-size:12px;
-  margin-top:5px;
+  margin-top:4px;
+  font-size:11px;
 }
 
 
 /* =========================================================
-   MODAL
-========================================================= */
-
-.modal-overlay {
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(0,0,0,.72);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal-box {
-  width:min(560px,100%);
-  max-height:90vh;
-  overflow-y:auto;
-  background:var(--background);
-  border:3px solid var(--black);
-  padding:30px;
-}
-
-.modal-top {
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.modal-title {
-  font-size:36px;
-  line-height:.9;
-  letter-spacing:-2px;
-  font-weight:900;
-}
-
-.modal-close {
-  border:1px solid var(--black);
-  background:transparent;
-  width:42px;
-  height:42px;
-  font-weight:900;
-}
-
-.modal-summary {
-  margin-top:25px;
-  border:2px solid var(--black);
-  padding:18px;
-}
-
-.modal-summary-line {
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:6px 0;
-  font-size:13px;
-}
-
-.modal-summary-line.total {
-  border-top:2px solid var(--black);
-  margin-top:8px;
-  padding-top:13px;
-  font-size:18px;
-  font-weight:900;
-}
-
-.modal-actions {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:22px;
-}
-
-.modal-actions .primary,
-.modal-actions .secondary {
-  margin:0;
-}
-
-
-/* =========================================================
-   QR
-========================================================= */
+   QR UNIQUE
+   ========================================================= */
 
 .qr-box {
-  max-width:520px;
+  width:min(500px,100%);
   margin:auto;
-  border:2px solid var(--black);
   padding:30px;
+  border:2px solid var(--black);
+  background:var(--bg);
 }
 
 .qr-name {
-  font-size:36px;
+  font-size:34px;
+  line-height:1;
   font-weight:900;
 }
 
 .qr-price {
-  font-size:42px;
+  margin:13px 0;
+  font-size:40px;
   font-weight:900;
-  margin:15px 0;
 }
 
 .qr-code {
-  background:white;
-  padding:20px;
+  margin:22px 0;
+  padding:18px;
   display:flex;
   justify-content:center;
-  margin:25px 0;
+  background:white;
+}
+
+
+/* =========================================================
+   ÉTIQUETTES
+   ========================================================= */
+
+.labels-screen-info {
+  border:2px solid var(--black);
+  background:var(--green);
+  padding:15px;
+  margin-bottom:25px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.print-pages {
+  background:#ddd;
+  padding:20px;
+}
+
+.print-page {
+  width:210mm;
+  height:297mm;
+  margin:0 auto 20px;
+  padding:10mm;
+  background:white;
+  display:grid;
+  grid-template-columns:repeat(2,70mm);
+  grid-template-rows:repeat(6,45mm);
+  gap:2mm 5mm;
+  justify-content:center;
+  align-content:start;
+  overflow:hidden;
+}
+
+.sale-label {
+  width:70mm;
+  height:45mm;
+  border:.4mm solid #111;
+  padding:3mm;
+  display:grid;
+  grid-template-columns:1fr 27mm;
+  gap:2.5mm;
+  background:white;
+  color:black;
+  overflow:hidden;
+}
+
+.sale-label-info {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.sale-label-brand {
+  font-size:7pt;
+  font-weight:900;
+  letter-spacing:.5pt;
+  margin-bottom:1.5mm;
+}
+
+.sale-label-name {
+  font-size:9pt;
+  line-height:1.05;
+  font-weight:900;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+
+.sale-label-category {
+  margin-top:1mm;
+  font-size:5.8pt;
+  text-transform:uppercase;
+}
+
+.sale-label-reference {
+  margin-top:auto;
+  font-size:6pt;
+  font-weight:900;
+}
+
+.sale-label-price {
+  margin-top:1mm;
+  font-size:15pt;
+  line-height:1;
+  font-weight:900;
+}
+
+.sale-label-qr {
+  width:27mm;
+  height:27mm;
+  align-self:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.sale-label-qr img,
+.sale-label-qr canvas {
+  width:27mm !important;
+  height:27mm !important;
 }
 
 
 /* =========================================================
    CAISSE
-========================================================= */
+   ========================================================= */
 
 .cashier-layout {
   display:grid;
   grid-template-columns:1fr 420px;
-  gap:25px;
+  gap:22px;
 }
 
 .cashier-panel {
   border:2px solid var(--black);
-  padding:25px;
+  padding:22px;
 }
 
 .cashier-title {
-  font-size:28px;
+  font-size:27px;
   font-weight:900;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .reference-search {
   display:grid;
   grid-template-columns:1fr auto;
-  gap:8px;
+  gap:7px;
 }
 
 .reference-search button {
+  border:0;
   background:var(--black);
   color:white;
-  border:0;
-  padding:0 20px;
+  padding:0 18px;
   font-weight:900;
 }
 
 .scan-button {
   width:100%;
-  padding:16px;
-  margin-top:12px;
   border:2px solid var(--black);
   background:var(--green);
+  padding:15px;
+  margin-top:10px;
   font-weight:900;
 }
 
 #reader {
-  margin-top:15px;
+  margin-top:14px;
   background:white;
 }
 
 .cart-empty {
-  padding:40px 15px;
-  text-align:center;
+  padding:35px 10px;
   border:1px dashed #999;
+  text-align:center;
 }
 
 .cart-item {
-  padding:16px 0;
+  padding:14px 0;
   border-bottom:1px solid #aaa;
 }
 
 .cart-name {
-  font-size:19px;
+  font-size:18px;
   font-weight:900;
 }
 
@@ -909,11 +1150,11 @@ textarea {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top:10px;
+  margin-top:9px;
 }
 
 .cart-price {
-  font-size:20px;
+  font-size:19px;
   font-weight:900;
 }
 
@@ -923,8 +1164,8 @@ textarea {
 }
 
 .quantity-controls button {
-  width:35px;
-  height:35px;
+  width:34px;
+  height:34px;
   border:0;
   background:transparent;
 }
@@ -932,35 +1173,35 @@ textarea {
 .quantity-controls span {
   width:30px;
   text-align:center;
-  padding-top:8px;
+  padding-top:7px;
 }
 
 .cart-total {
   border-top:3px solid var(--black);
-  margin-top:20px;
-  padding-top:20px;
+  margin-top:18px;
+  padding-top:18px;
   display:flex;
   justify-content:space-between;
-  align-items:flex-end;
+  align-items:end;
 }
 
 .cart-total-value {
-  font-size:42px;
+  font-size:40px;
   font-weight:900;
 }
 
 .payment-methods {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:6px;
-  margin-top:10px;
+  gap:5px;
+  margin-top:9px;
 }
 
 .payment-button {
   border:2px solid var(--black);
   background:transparent;
-  padding:14px 5px;
-  font-size:11px;
+  padding:13px 4px;
+  font-size:10px;
   font-weight:900;
 }
 
@@ -971,60 +1212,214 @@ textarea {
 
 .validate-sale {
   width:100%;
-  background:var(--green);
   border:0;
-  padding:20px;
-  margin-top:20px;
+  background:var(--green);
+  padding:19px;
+  margin-top:18px;
   font-weight:900;
 }
 
 
 /* =========================================================
-   SUCCÈS
-========================================================= */
+   MODAL
+   ========================================================= */
 
-.sale-success {
-  max-width:650px;
-  margin:auto;
-  border:3px solid var(--black);
-  padding:40px;
-  text-align:center;
+.modal-overlay {
+  position:fixed;
+  z-index:9999;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.sale-success-check {
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:var(--green);
+.modal-box {
+  width:min(560px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  border:3px solid var(--black);
+  background:var(--bg);
+  padding:28px;
+}
+
+.modal-top {
   display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 25px;
-  font-size:40px;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.modal-title {
+  font-size:34px;
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-1.5px;
+}
+
+.modal-close {
+  width:40px;
+  height:40px;
+  border:1px solid var(--black);
+  background:transparent;
   font-weight:900;
 }
 
+.modal-summary {
+  border:2px solid var(--black);
+  padding:16px;
+  margin-top:22px;
+}
+
+.modal-summary-line {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:5px 0;
+  font-size:12px;
+}
+
+.modal-summary-line.total {
+  border-top:2px solid var(--black);
+  margin-top:8px;
+  padding-top:12px;
+  font-size:17px;
+  font-weight:900;
+}
+
+.modal-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:20px;
+}
+
+.modal-actions .primary {
+  margin:0;
+}
+
+
+/* =========================================================
+   SUCCÈS VENTE
+   ========================================================= */
+
+.sale-success {
+  width:min(650px,100%);
+  margin:auto;
+  border:3px solid var(--black);
+  padding:38px;
+  text-align:center;
+}
+
 .sale-success-title {
-  font-size:50px;
+  font-size:48px;
   line-height:.9;
   font-weight:900;
 }
 
 .sale-success-total {
-  font-size:45px;
+  margin:22px 0;
+  font-size:42px;
   font-weight:900;
-  margin:25px 0;
 }
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer {
-  border-top:1px solid #ccc;
-  padding:22px 5%;
+  border-top:1px solid #bbb;
+  padding:20px 5vw;
   display:flex;
   justify-content:space-between;
-  font-size:11px;
+  gap:15px;
+  font-size:10px;
 }
 
-@media(max-width:1000px) {
+
+/* =========================================================
+   IMPRESSION
+   ========================================================= */
+
+@media print {
+
+  @page {
+    size:A4 portrait;
+    margin:0;
+  }
+
+  body.print-labels {
+    background:white;
+  }
+
+  body.print-labels > header,
+  body.print-labels > footer,
+  body.print-labels main > section:not(#labelsSection) {
+    display:none !important;
+  }
+
+  body.print-labels main {
+    width:100%;
+    margin:0;
+    padding:0;
+  }
+
+  body.print-labels #labelsSection {
+    display:block !important;
+  }
+
+  body.print-labels #labelsSection .page-header,
+  body.print-labels #labelsSection .labels-screen-info,
+  body.print-labels #labelsSection .labels-actions {
+    display:none !important;
+  }
+
+  body.print-labels .print-pages {
+    padding:0;
+    background:white;
+  }
+
+  body.print-labels .print-page {
+    margin:0;
+    page-break-after:always;
+    break-after:page;
+  }
+
+  body.print-labels .print-page:last-child {
+    page-break-after:auto;
+    break-after:auto;
+  }
+
+
+  body.print-single > header,
+  body.print-single > footer,
+  body.print-single main > section:not(#qrSection) {
+    display:none !important;
+  }
+
+  body.print-single main {
+    width:100%;
+    padding:0;
+  }
+
+  body.print-single #qrSection {
+    display:block !important;
+  }
+
+  body.print-single #qrSection .page-header,
+  body.print-single #qrSection .qr-print-actions {
+    display:none !important;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:950px) {
 
   .stats-5 {
     grid-template-columns:repeat(2,1fr);
@@ -1034,14 +1429,19 @@ footer {
     grid-template-columns:1fr;
   }
 
+  .inventory-summary {
+    grid-template-columns:repeat(2,1fr);
+  }
+
 }
 
-@media(max-width:850px) {
+@media(max-width:820px) {
 
   .cards,
   .objects-grid,
   .stats,
   .stats-5,
+  .inventory-sellers,
   .cashier-layout {
     grid-template-columns:1fr;
   }
@@ -1064,8 +1464,14 @@ footer {
     grid-template-columns:1fr 1fr;
   }
 
-  .modal-actions {
-    grid-template-columns:1fr;
+  .inventory-item {
+    grid-template-columns:1fr 1fr;
+  }
+
+  .inventory-item > div:first-child,
+  .inventory-item .inventory-action,
+  .inventory-note {
+    grid-column:1/-1;
   }
 
 }
@@ -1077,5414 +1483,5039 @@ footer {
 <body>
 
 <header>
-<div class="logo">VIDE DECO</div>
-<div class="tag">POP-UP MANAGEMENT</div>
+  <div class="logo">VIDE DECO</div>
+  <div class="tag">POP-UP MANAGEMENT</div>
 </header>
 
 <main>
 
 
-<!-- LOGIN -->
+<!-- ======================================================
+     CONNEXION
+====================================================== -->
 
 <section id="loginSection" class="login">
 
-<div class="eyebrow">BOUTIQUE ÉPHÉMÈRE</div>
+  <div class="eyebrow">BOUTIQUE ÉPHÉMÈRE</div>
 
-<h1>
-GÉRER.<br>
-VENDRE.<br>
-SUIVRE.
-</h1>
+  <h1>
+    GÉRER.<br>
+    VENDRE.<br>
+    SUIVRE.
+  </h1>
 
-<div class="login-box">
+  <div class="login-box">
 
-<h2>Connexion</h2>
+    <h2>Connexion</h2>
 
-<label>E-mail</label>
-<input id="email" type="email">
+    <label>E-mail</label>
+    <input id="email" type="email" autocomplete="email">
 
-<label>Mot de passe</label>
-<input id="password" type="password">
+    <label>Mot de passe</label>
+    <input id="password" type="password" autocomplete="current-password">
 
-<button id="loginButton" class="primary">
-SE CONNECTER
-</button>
+    <button id="loginButton" class="primary">
+      SE CONNECTER
+    </button>
 
-<button class="signup-link" onclick="ouvrirInscription()">
-DEVENIR BROCANTEUR →
-</button>
+    <button class="signup-link" onclick="ouvrirInscription()">
+      DEVENIR BROCANTEUR →
+    </button>
 
-<div id="loginMessage" class="message"></div>
+    <div id="loginMessage" class="message"></div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- INSCRIPTION -->
+<!-- ======================================================
+     INSCRIPTION
+====================================================== -->
 
 <section id="signupSection" class="signup hidden">
 
-<div class="page-header">
+  <div class="page-header">
 
-<div>
-<div class="eyebrow">REJOINDRE VIDE DECO</div>
-<div class="page-title">DEVENIR<br>BROCANTEUR.</div>
-</div>
+    <div>
+      <div class="eyebrow">REJOINDRE VIDE DECO</div>
+      <div class="page-title">DEVENIR<br>BROCANTEUR.</div>
+    </div>
 
-<button class="secondary" onclick="retourConnexion()">
-← Retour
-</button>
+    <button class="secondary" onclick="retourConnexion()">
+      ← RETOUR
+    </button>
 
-</div>
+  </div>
 
-<div class="form-box">
+  <div class="form-box">
 
-<h2>Demande d'inscription</h2>
+    <h2>Demande d'inscription</h2>
 
-<p class="signup-intro">
-Crée ton compte brocanteur. Ta demande sera ensuite vérifiée et validée par VIDE DECO.
-</p>
+    <p class="signup-intro">
+      Crée ton compte brocanteur. La demande sera ensuite validée par VIDE DECO.
+    </p>
 
-<div class="form-grid">
+    <div class="form-grid">
 
-<div>
-<label>Prénom *</label>
-<input id="signupPrenom">
-</div>
+      <div>
+        <label>Prénom *</label>
+        <input id="signupPrenom">
+      </div>
 
-<div>
-<label>Nom *</label>
-<input id="signupNom">
-</div>
+      <div>
+        <label>Nom *</label>
+        <input id="signupNom">
+      </div>
 
-<div class="full">
-<label>Enseigne / nom de brocante *</label>
-<input id="signupEnseigne">
-</div>
+      <div class="full">
+        <label>Enseigne *</label>
+        <input id="signupEnseigne">
+      </div>
 
-<div class="full">
-<label>Téléphone *</label>
-<input id="signupTelephone" type="tel">
-</div>
+      <div class="full">
+        <label>Téléphone *</label>
+        <input id="signupTelephone" type="tel">
+      </div>
 
-<div class="full">
-<label>E-mail *</label>
-<input id="signupEmail" type="email">
-</div>
+      <div class="full">
+        <label>E-mail *</label>
+        <input id="signupEmail" type="email">
+      </div>
 
-<div>
-<label>Mot de passe *</label>
-<input id="signupPassword" type="password">
-</div>
+      <div>
+        <label>Mot de passe *</label>
+        <input id="signupPassword" type="password">
+      </div>
 
-<div>
-<label>Confirmer le mot de passe *</label>
-<input id="signupPasswordConfirm" type="password">
-</div>
+      <div>
+        <label>Confirmation *</label>
+        <input id="signupPasswordConfirm" type="password">
+      </div>
 
-</div>
+    </div>
 
-<div class="signup-note">
-Le compte ne sera pas utilisable immédiatement. VIDE DECO doit d'abord valider la demande.
-</div>
+    <div class="signup-note">
+      Ton compte devra être validé par VIDE DECO avant de pouvoir être utilisé.
+    </div>
 
-<button id="signupButton" class="primary" onclick="inscriptionBrocanteur()">
-ENVOYER MA DEMANDE
-</button>
+    <button id="signupButton" class="primary" onclick="inscriptionBrocanteur()">
+      ENVOYER MA DEMANDE
+    </button>
 
-<div id="signupMessage" class="message"></div>
+    <div id="signupMessage" class="message"></div>
 
-</div>
+  </div>
 
 </section>
 
 
 <section id="signupSuccessSection" class="signup hidden">
 
-<div class="signup-success">
+  <div class="signup-success">
 
-<div class="signup-success-mark">✓</div>
+    <div class="signup-success-mark">✓</div>
 
-<div class="signup-success-title">
-DEMANDE<br>ENVOYÉE.
-</div>
+    <div class="signup-success-title">
+      DEMANDE<br>ENVOYÉE.
+    </div>
 
-<p>
-Ton inscription a bien été enregistrée.<br><br>
-<strong>VIDE DECO doit maintenant valider ton compte.</strong>
-</p>
+    <p style="margin-top:22px;line-height:1.5">
+      Ton inscription a bien été enregistrée.<br><br>
+      <strong>VIDE DECO doit maintenant valider ton compte.</strong>
+    </p>
 
-<button class="primary" onclick="retourConnexion()">
-RETOUR À LA CONNEXION
-</button>
+    <button class="primary" onclick="retourConnexion()">
+      RETOUR À LA CONNEXION
+    </button>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- DASHBOARD -->
+<!-- ======================================================
+     DASHBOARD
+====================================================== -->
 
 <section id="dashboardSection" class="hidden">
 
-<div class="dashboard-header">
+  <div class="dashboard-header">
 
-<div>
-<div class="eyebrow">VIDE DECO POP-UP</div>
-<div id="hello" class="hello">BONJOUR.</div>
-<div id="roleBadge" class="status">CONNEXION</div>
-</div>
+    <div>
+      <div class="eyebrow">VIDE DECO POP-UP</div>
+      <div id="hello" class="hello">BONJOUR.</div>
+      <div id="roleBadge" class="status">CONNEXION</div>
+    </div>
 
-<button id="logoutButton" class="logout">
-Déconnexion
-</button>
+    <button id="logoutButton" class="logout">
+      DÉCONNEXION
+    </button>
 
-</div>
-
-
-<div id="adminCards" class="cards hidden">
-
-<div class="card" onclick="ouvrirStock()">
-<div class="number">01</div>
-<div>
-<div class="card-title">STOCK</div>
-<p>
-Tous les objets<br>
-Modifier les objets<br>
-Créer les QR codes
-</p>
-</div>
-<div class="arrow">→</div>
-</div>
-
-<div class="card" onclick="ouvrirCaisse()">
-<div class="number">02</div>
-<div>
-<div class="card-title">CAISSE</div>
-<p>
-Scanner les QR codes<br>
-Constituer le panier<br>
-Enregistrer les paiements
-</p>
-</div>
-<div class="arrow">→</div>
-</div>
-
-<div class="card" onclick="ouvrirAdmin()">
-<div class="number">03</div>
-<div>
-<div class="card-title">ADMIN</div>
-<p>
-Demandes brocanteurs<br>
-Chiffre d'affaires<br>
-Commissions & reversements
-</p>
-</div>
-<div class="arrow">→</div>
-</div>
-
-</div>
+  </div>
 
 
-<div id="sellerCards" class="cards hidden">
+  <!-- ADMIN -->
 
-<div class="card" onclick="ouvrirAjoutArticle()">
-<div class="number">01</div>
-<div>
-<div class="card-title">AJOUTER</div>
-<p>Enregistrer un objet<br>Ajouter sa photo<br>Définir son prix</p>
-</div>
-<div class="arrow">→</div>
-</div>
+  <div id="adminCards" class="cards hidden">
 
-<div class="card" onclick="ouvrirMesObjets()">
-<div class="number">02</div>
-<div>
-<div class="card-title">MES OBJETS</div>
-<p>Voir les objets<br>Modifier<br>QR codes</p>
-</div>
-<div class="arrow">→</div>
-</div>
+    <div class="card" onclick="ouvrirStock()">
+      <div class="number">01</div>
+      <div>
+        <div class="card-title">STOCK</div>
+        <p>
+          Voir tous les objets.<br>
+          Modifier les fiches.<br>
+          Imprimer les étiquettes QR.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
 
-<div class="card" onclick="ouvrirMesVentes()">
-<div class="number">03</div>
-<div>
-<div class="card-title">MES VENTES</div>
-<p>Historique<br>Chiffre d'affaires<br>Reversements</p>
-</div>
-<div class="arrow">→</div>
-</div>
 
-</div>
+    <div class="card" onclick="ouvrirInventaire()">
+      <div class="number">02</div>
+      <div>
+        <div class="card-title">INVENTAIRE</div>
+        <p>
+          Réceptionner les objets.<br>
+          Comparer déclaré / reçu.<br>
+          Enregistrer les écarts.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
 
-<div class="connection">
-<strong>Base de données :</strong>
-<span id="databaseStatus">connexion…</span>
-</div>
+
+    <div class="card" onclick="ouvrirCaisse()">
+      <div class="number">03</div>
+      <div>
+        <div class="card-title">CAISSE</div>
+        <p>
+          Scanner les QR codes.<br>
+          Constituer le panier.<br>
+          Valider les ventes.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
+
+    <div class="card" onclick="ouvrirAdmin()">
+      <div class="number">04</div>
+      <div>
+        <div class="card-title">FINANCES</div>
+        <p>
+          Ventes par brocanteur.<br>
+          Commissions.<br>
+          Reversements.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
+  </div>
+
+
+  <!-- BROCANTEUR -->
+
+  <div id="sellerCards" class="cards hidden">
+
+    <div class="card" onclick="ouvrirNouvelArticle()">
+      <div class="number">01</div>
+      <div>
+        <div class="card-title">AJOUTER</div>
+        <p>
+          Déclarer un nouvel objet destiné à la boutique.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
+
+    <div class="card" onclick="ouvrirMesObjets()">
+      <div class="number">02</div>
+      <div>
+        <div class="card-title">MES OBJETS</div>
+        <p>
+          Suivre les objets déclarés, réceptionnés et vendus.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
+
+    <div class="card" onclick="ouvrirMesVentes()">
+      <div class="number">03</div>
+      <div>
+        <div class="card-title">MES VENTES</div>
+        <p>
+          Consulter les ventes, commissions et reversements.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
+  </div>
+
+
+  <div id="connectionInfo" class="connection"></div>
 
 </section>
 
 
-<!-- ARTICLE -->
+<!-- ======================================================
+     ARTICLE
+====================================================== -->
 
 <section id="articleSection" class="article-page hidden">
 
-<div class="page-header">
+  <div class="page-header">
 
-<div>
-<div id="articleEyebrow" class="eyebrow">NOUVEL OBJET</div>
-<div id="articlePageTitle" class="page-title">
-AJOUTER<br>UN OBJET.
-</div>
-</div>
+    <div>
+      <div id="articleEyebrow" class="eyebrow">NOUVEL OBJET</div>
+      <div id="articleTitle" class="page-title">AJOUTER<br>UN OBJET.</div>
+    </div>
 
-<button class="secondary" onclick="annulerArticle()">
-← Retour
-</button>
+    <button class="secondary" onclick="retourDepuisArticle()">
+      ← RETOUR
+    </button>
 
-</div>
-
-<div class="form-box">
-
-<div id="articleOwnerInfo" class="message hidden"></div>
-
-<div class="form-grid">
-
-<div class="full">
-<label>Nom de l'objet *</label>
-<input id="articleNom">
-</div>
-
-<div>
-<label>Catégorie</label>
-<select id="articleCategorie">
-<option value="">Choisir</option>
-<option>Mobilier</option>
-<option>Luminaire</option>
-<option>Décoration</option>
-<option>Vaisselle</option>
-<option>Textile</option>
-<option>Art</option>
-<option>Livre</option>
-<option>Divers</option>
-</select>
-</div>
-
-<div class="price-wrapper">
-<label>Prix *</label>
-<input id="articlePrix" type="number" min="0" step="0.01">
-<span class="euro">€</span>
-</div>
-
-<div>
-<label>Quantité *</label>
-<input id="articleQuantite" type="number" min="1" value="1">
-</div>
-
-<div class="full">
-<label>Description</label>
-<textarea id="articleDescription"></textarea>
-</div>
-
-<div class="full photo-zone">
-<label>Photo</label>
-<input id="articlePhoto" type="file" accept="image/*">
-<img id="photoPreview" class="photo-preview hidden">
-</div>
-
-</div>
-
-<button id="saveArticleButton" class="primary">
-ENREGISTRER L'OBJET
-</button>
-
-<div id="articleMessage" class="message"></div>
-
-</div>
-
-</section>
+  </div>
 
 
-<!-- MES OBJETS -->
+  <div class="form-box">
 
-<section id="objectsSection" class="hidden">
+    <div class="form-grid">
 
-<div class="page-header">
+      <div>
+        <label>Référence *</label>
+        <input id="articleReference">
+      </div>
 
-<div>
-<div class="eyebrow">INVENTAIRE PERSONNEL</div>
-<div class="page-title">MES<br>OBJETS.</div>
-</div>
+      <div>
+        <label>Catégorie</label>
 
-<button class="secondary" onclick="retourDashboard()">
-← Retour
-</button>
+        <select id="articleCategorie">
+          <option value="">Choisir</option>
+          <option>Mobilier</option>
+          <option>Décoration</option>
+          <option>Luminaire</option>
+          <option>Vaisselle</option>
+          <option>Textile</option>
+          <option>Art</option>
+          <option>Objet vintage</option>
+          <option>Autre</option>
+        </select>
 
-</div>
+      </div>
 
-<div class="toolbar">
 
-<strong id="objectsCount">Chargement…</strong>
+      <div class="full">
+        <label>Nom de l'objet *</label>
+        <input id="articleNom">
+      </div>
 
-<button class="secondary" onclick="ouvrirAjoutArticle()">
-+ Ajouter
-</button>
 
-</div>
+      <div class="full">
+        <label>Description</label>
+        <textarea id="articleDescription"></textarea>
+      </div>
 
-<div id="objectsMessage" class="message"></div>
-<div id="objectsGrid" class="objects-grid"></div>
+
+      <div>
+        <label>Prix *</label>
+
+        <div class="price-wrapper">
+          <input id="articlePrix" type="number" min="0" step="0.01">
+          <span class="euro">€</span>
+        </div>
+
+      </div>
+
+
+      <div>
+        <label>Quantité déclarée *</label>
+        <input id="articleQuantite" type="number" min="1" step="1" value="1">
+      </div>
+
+    </div>
+
+
+    <div class="photo-zone">
+
+      <div class="eyebrow">PHOTO</div>
+
+      <input id="articlePhoto" type="file" accept="image/*">
+
+      <img id="articlePhotoPreview" class="photo-preview hidden">
+
+    </div>
+
+
+    <button id="saveArticleButton" class="primary" onclick="enregistrerArticle()">
+      ENREGISTRER L'OBJET
+    </button>
+
+    <div id="articleMessage" class="message"></div>
+
+  </div>
 
 </section>
 
 
-<!-- MES VENTES -->
-
-<section id="salesSection" class="hidden">
-
-<div class="page-header">
-
-<div>
-<div class="eyebrow">ACTIVITÉ BROCANTEUR</div>
-<div class="page-title">MES<br>VENTES.</div>
-</div>
-
-<button class="secondary" onclick="retourDashboard()">
-← Retour
-</button>
-
-</div>
-
-<div id="salesMessage" class="message"></div>
-
-<div class="stats stats-5">
-
-<div class="stat">
-<div class="stat-label">CHIFFRE D'AFFAIRES</div>
-<div id="salesGross" class="stat-value">0,00 €</div>
-</div>
-
-<div class="stat">
-<div class="stat-label">COMMISSION VIDE DECO</div>
-<div id="salesCommission" class="stat-value">0,00 €</div>
-</div>
-
-<div class="stat">
-<div class="stat-label">NET GAGNÉ</div>
-<div id="salesNet" class="stat-value">0,00 €</div>
-</div>
-
-<div class="stat">
-<div class="stat-label">DÉJÀ REÇU</div>
-<div id="salesPaid" class="stat-value">0,00 €</div>
-</div>
-
-<div class="stat green">
-<div class="stat-label">RESTE À RECEVOIR</div>
-<div id="salesRemaining" class="stat-value">0,00 €</div>
-</div>
-
-</div>
-
-<div class="sales-section-title">HISTORIQUE DES VENTES</div>
-<div id="salesList" class="sales-list"></div>
-
-<div class="sales-section-title">MES REVERSEMENTS</div>
-<div id="sellerRepaymentsList" class="repayment-list"></div>
-
-</section>
-
-
-<!-- STOCK ADMIN -->
+<!-- ======================================================
+     STOCK / MES OBJETS
+====================================================== -->
 
 <section id="stockSection" class="hidden">
 
-<div class="page-header">
+  <div class="page-header">
 
-<div>
-<div class="eyebrow">GESTION GÉNÉRALE</div>
-<div class="page-title">STOCK.</div>
-</div>
+    <div>
+      <div id="stockEyebrow" class="eyebrow">GESTION</div>
+      <div id="stockTitle" class="page-title">STOCK.</div>
+    </div>
 
-<button class="secondary" onclick="retourDashboard()">
-← Retour
-</button>
+    <button class="secondary" onclick="ouvrirDashboard()">
+      ← ACCUEIL
+    </button>
 
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<div class="stat-label">RÉFÉRENCES</div>
-<div id="stockReferences" class="stat-value">0</div>
-</div>
-
-<div class="stat green">
-<div class="stat-label">UNITÉS DISPONIBLES</div>
-<div id="stockAvailable" class="stat-value">0</div>
-</div>
-
-<div class="stat">
-<div class="stat-label">UNITÉS VENDUES</div>
-<div id="stockSold" class="stat-value">0</div>
-</div>
-
-<div class="stat">
-<div class="stat-label">VALEUR STOCK DISPONIBLE</div>
-<div id="stockValue" class="stat-value">0,00 €</div>
-</div>
-
-</div>
-
-<div class="toolbar">
-
-<input
-id="stockSearch"
-type="search"
-placeholder="Rechercher référence, objet, brocanteur…">
-
-<select id="stockFilter" style="max-width:230px">
-<option value="all">Tous les articles</option>
-<option value="available">Disponibles</option>
-<option value="sold">Vendus</option>
-</select>
-
-</div>
-
-<div id="stockMessage" class="message"></div>
-<div id="stockGrid" class="objects-grid"></div>
-
-</section>
+  </div>
 
 
-<!-- ADMIN -->
+  <div id="adminLabelToolbar" class="label-toolbar hidden">
 
-<section id="adminSection" class="hidden">
+    <div class="label-toolbar-left">
 
-<div class="page-header">
+      <button class="secondary" onclick="selectionnerTousQR()">
+        TOUT SÉLECTIONNER
+      </button>
 
-<div>
-<div class="eyebrow">PILOTAGE VIDE DECO</div>
-<div class="page-title">ADMIN.</div>
-</div>
+      <button class="secondary" onclick="deselectionnerTousQR()">
+        TOUT DÉSÉLECTIONNER
+      </button>
 
-<button class="secondary" onclick="retourDashboard()">
-← Retour
-</button>
+      <div id="qrSelectionCount" class="label-count">
+        0 ÉTIQUETTE SÉLECTIONNÉE
+      </div>
 
-</div>
+    </div>
 
-<div id="adminMessage" class="message"></div>
+    <button
+      id="printSelectedLabelsButton"
+      class="label-print-button"
+      onclick="preparerEtiquettesSelectionnees()"
+      disabled
+    >
+      IMPRIMER LES ÉTIQUETTES
+    </button>
 
-<div class="sales-section-title">
-DEMANDES BROCANTEURS
-</div>
+  </div>
 
-<div id="pendingCount" class="eyebrow">
-0 DEMANDE EN ATTENTE
-</div>
 
-<div id="pendingSellers" class="request-list"></div>
+  <div class="toolbar">
 
-<div class="stats stats-5">
+    <input
+      id="stockSearch"
+      placeholder="Rechercher un objet, une référence..."
+      oninput="afficherStockFiltre()"
+    >
 
-<div class="stat">
-<div class="stat-label">CHIFFRE D'AFFAIRES</div>
-<div id="adminGross" class="stat-value">0,00 €</div>
-</div>
+    <select id="stockReceptionFilter" onchange="afficherStockFiltre()">
 
-<div class="stat green">
-<div class="stat-label">COMMISSIONS VIDE DECO</div>
-<div id="adminCommission" class="stat-value">0,00 €</div>
-</div>
+      <option value="">Tous les statuts</option>
+      <option value="a_apporter">À apporter</option>
+      <option value="receptionne">Réceptionné</option>
+      <option value="ecart">Écart</option>
+      <option value="refuse">Refusé</option>
 
-<div class="stat">
-<div class="stat-label">NET VENDEURS</div>
-<div id="adminSellerNet" class="stat-value">0,00 €</div>
-</div>
+    </select>
 
-<div class="stat">
-<div class="stat-label">DÉJÀ REVERSÉ</div>
-<div id="adminAlreadyPaid" class="stat-value">0,00 €</div>
-</div>
+  </div>
 
-<div class="stat green">
-<div class="stat-label">RESTE À REVERSER</div>
-<div id="adminRemaining" class="stat-value">0,00 €</div>
-</div>
 
-</div>
-
-<div class="sales-section-title">BROCANTEURS ACTIFS</div>
-
-<div class="table-wrap">
-
-<table class="data-table">
-
-<thead>
-<tr>
-<th>Brocanteur</th>
-<th>Taux</th>
-<th>Vendus</th>
-<th>CA</th>
-<th>Commission</th>
-<th>Net vendeur</th>
-<th>Déjà reversé</th>
-<th>Reste</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody id="adminSellerTable"></tbody>
-
-</table>
-
-</div>
-
-<div class="sales-section-title">
-HISTORIQUE DES REVERSEMENTS
-</div>
-
-<div id="adminRepaymentsList" class="repayment-list"></div>
-
-<div class="sales-section-title">
-DERNIÈRES VENTES
-</div>
-
-<div id="adminSalesList" class="sales-list"></div>
+  <div id="objectsGrid" class="objects-grid"></div>
 
 </section>
 
 
-<!-- MODAL REVERSEMENT -->
+<!-- ======================================================
+     INVENTAIRE : BROCANTEURS
+====================================================== -->
 
-<div id="repaymentModal" class="modal-overlay hidden">
+<section id="inventorySection" class="hidden">
 
-<div class="modal-box">
+  <div class="page-header">
 
-<div class="modal-top">
+    <div>
+      <div class="eyebrow">CONTRÔLE DES ENTRÉES</div>
+      <div class="page-title">INVENTAIRE.</div>
+    </div>
 
-<div>
-<div class="eyebrow">VERSEMENT BROCANTEUR</div>
-<div class="modal-title">
-ENREGISTRER<br>UN REVERSEMENT.
-</div>
-</div>
+    <button class="secondary" onclick="ouvrirDashboard()">
+      ← ACCUEIL
+    </button>
 
-<button class="modal-close" onclick="fermerReversement()">×</button>
+  </div>
 
-</div>
+  <div class="toolbar">
+    <input
+      id="inventorySellerSearch"
+      placeholder="Rechercher un brocanteur..."
+      oninput="afficherBrocanteursInventaire()"
+    >
+  </div>
 
-<div class="modal-summary">
+  <div id="inventorySellers" class="inventory-sellers"></div>
 
-<div class="modal-summary-line">
-<span>Brocanteur</span>
-<strong id="repaymentSeller">—</strong>
-</div>
-
-<div class="modal-summary-line">
-<span>Net vendeur</span>
-<strong id="repaymentNet">0,00 €</strong>
-</div>
-
-<div class="modal-summary-line">
-<span>Déjà reversé</span>
-<strong id="repaymentAlready">0,00 €</strong>
-</div>
-
-<div class="modal-summary-line total">
-<span>RESTE À REVERSER</span>
-<strong id="repaymentRemaining">0,00 €</strong>
-</div>
-
-</div>
-
-<label>Montant du reversement *</label>
-<input id="repaymentAmount" type="number" min="0.01" step="0.01">
-
-<label>Mode de règlement *</label>
-
-<select id="repaymentMode">
-<option value="virement">Virement</option>
-<option value="especes">Espèces</option>
-<option value="cheque">Chèque</option>
-<option value="autre">Autre</option>
-</select>
-
-<label>Note</label>
-<textarea id="repaymentNote" placeholder="Facultatif"></textarea>
-
-<div id="repaymentMessage" class="message"></div>
-
-<div class="modal-actions">
-
-<button class="secondary" onclick="fermerReversement()">
-ANNULER
-</button>
-
-<button id="saveRepaymentButton" class="primary" onclick="enregistrerReversement()">
-ENREGISTRER
-</button>
-
-</div>
-
-</div>
-
-</div>
+</section>
 
 
-<!-- QR -->
+<!-- ======================================================
+     INVENTAIRE D'UN BROCANTEUR
+====================================================== -->
+
+<section id="inventorySellerSection" class="hidden">
+
+  <div class="page-header">
+
+    <div>
+      <div class="eyebrow">INVENTAIRE D'ENTRÉE</div>
+      <div id="inventorySellerTitle" class="page-title">
+        BROCANTEUR.
+      </div>
+    </div>
+
+    <button class="secondary" onclick="ouvrirInventaire()">
+      ← BROCANTEURS
+    </button>
+
+  </div>
+
+
+  <div id="inventorySummary" class="inventory-summary"></div>
+
+
+  <div class="toolbar">
+
+    <input
+      id="inventoryArticleSearch"
+      placeholder="Référence ou nom de l'objet..."
+      oninput="afficherArticlesInventaire()"
+    >
+
+    <select
+      id="inventoryArticleFilter"
+      onchange="afficherArticlesInventaire()"
+    >
+
+      <option value="">Tous</option>
+      <option value="a_apporter">À contrôler</option>
+      <option value="receptionne">Réceptionnés</option>
+      <option value="ecart">Écarts</option>
+
+    </select>
+
+  </div>
+
+
+  <div id="inventoryList" class="inventory-list"></div>
+
+</section>
+
+
+<!-- ======================================================
+     QR INDIVIDUEL
+====================================================== -->
 
 <section id="qrSection" class="hidden">
 
-<div class="page-header">
+  <div class="page-header">
 
-<div>
-<div class="eyebrow">ÉTIQUETTE ARTICLE</div>
-<div class="page-title">QR<br>CODE.</div>
-</div>
+    <div>
+      <div class="eyebrow">ÉTIQUETTE</div>
+      <div class="page-title">QR CODE.</div>
+    </div>
 
-<button class="secondary" onclick="retourQRCode()">
-← Retour
-</button>
+    <button class="secondary" onclick="retourDepuisQR()">
+      ← RETOUR
+    </button>
 
-</div>
+  </div>
 
-<div class="qr-box">
 
-<div id="qrSeller" class="object-seller"></div>
-<div id="qrReference" class="object-reference"></div>
-<div id="qrName" class="qr-name"></div>
-<div id="qrPrice" class="qr-price"></div>
-<div id="qrCode" class="qr-code"></div>
+  <div class="qr-box">
 
-<button class="primary" onclick="window.print()">
-IMPRIMER
-</button>
+    <div class="logo">VIDE DECO</div>
 
-</div>
+    <div id="qrName" class="qr-name"></div>
+
+    <div id="qrReference" class="eyebrow" style="margin-top:12px"></div>
+
+    <div id="qrPrice" class="qr-price"></div>
+
+    <div id="qrCode" class="qr-code"></div>
+
+    <div id="qrStatus" class="message"></div>
+
+    <div class="qr-print-actions">
+
+      <button class="primary" onclick="imprimerQRCodeUnique()">
+        IMPRIMER
+      </button>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- CAISSE -->
+<!-- ======================================================
+     PLANCHE ÉTIQUETTES
+====================================================== -->
+
+<section id="labelsSection" class="hidden">
+
+  <div class="page-header">
+
+    <div>
+      <div class="eyebrow">IMPRESSION A4</div>
+      <div class="page-title">ÉTIQUETTES.</div>
+    </div>
+
+    <button class="secondary" onclick="ouvrirStock()">
+      ← STOCK
+    </button>
+
+  </div>
+
+
+  <div class="labels-screen-info">
+    PETITES ÉTIQUETTES 70 × 45 MM — 12 ÉTIQUETTES MAXIMUM PAR PAGE A4.
+  </div>
+
+
+  <div class="labels-actions" style="margin-bottom:25px">
+
+    <button class="primary" style="width:auto;margin:0" onclick="imprimerPlancheEtiquettes()">
+      IMPRIMER LA PLANCHE
+    </button>
+
+  </div>
+
+
+  <div id="printPages" class="print-pages"></div>
+
+</section>
+
+
+<!-- ======================================================
+     CAISSE
+====================================================== -->
 
 <section id="cashierSection" class="hidden">
 
-<div class="page-header">
+  <div class="page-header">
 
-<div>
-<div class="eyebrow">POINT DE VENTE</div>
-<div class="page-title">CAISSE.</div>
-</div>
+    <div>
+      <div class="eyebrow">VENTE</div>
+      <div class="page-title">CAISSE.</div>
+    </div>
 
-<button class="secondary" onclick="quitterCaisse()">
-← Retour
-</button>
+    <button class="secondary" onclick="fermerScanner();ouvrirDashboard()">
+      ← ACCUEIL
+    </button>
 
-</div>
-
-<div class="cashier-layout">
-
-<div class="cashier-panel">
-
-<div class="cashier-title">AJOUTER UN ARTICLE</div>
-
-<div class="reference-search">
-
-<input id="cashReference" placeholder="VD-000001">
-
-<button onclick="ajouterParReference()">
-AJOUTER
-</button>
-
-</div>
-
-<button id="scanButton" class="scan-button" onclick="demarrerScanner()">
-📷 SCANNER UN QR CODE
-</button>
-
-<div id="reader" class="hidden"></div>
-<div id="cashMessage" class="message"></div>
-
-</div>
+  </div>
 
 
-<div class="cashier-panel">
+  <div class="cashier-layout">
 
-<div class="cashier-title">PANIER</div>
 
-<div id="cartItems">
-<div class="cart-empty">Aucun article dans le panier.</div>
-</div>
+    <div class="cashier-panel">
 
-<div class="cart-total">
+      <div class="cashier-title">
+        AJOUTER UN OBJET
+      </div>
 
-<div>TOTAL</div>
-<div id="cartTotal" class="cart-total-value">0,00 €</div>
+      <div class="reference-search">
 
-</div>
+        <input
+          id="cashierReference"
+          placeholder="Référence de l'objet"
+          onkeydown="if(event.key==='Enter') rechercherArticleCaisse()"
+        >
 
-<label>MODE DE PAIEMENT</label>
+        <button onclick="rechercherArticleCaisse()">
+          AJOUTER
+        </button>
 
-<div class="payment-methods">
+      </div>
 
-<button id="paymentCarte" class="payment-button" onclick="choisirPaiement('carte')">
-CARTE
-</button>
+      <button class="scan-button" onclick="basculerScanner()">
+        SCANNER UN QR CODE
+      </button>
 
-<button id="paymentEspeces" class="payment-button" onclick="choisirPaiement('especes')">
-ESPÈCES
-</button>
+      <div id="reader" class="hidden"></div>
 
-<button id="paymentCheque" class="payment-button" onclick="choisirPaiement('cheque')">
-CHÈQUE
-</button>
+      <div id="cashierMessage" class="message"></div>
 
-</div>
+    </div>
 
-<button id="validateSaleButton" class="validate-sale" onclick="validerVente()" disabled>
-VALIDER LE PAIEMENT
-</button>
 
-</div>
+    <div class="cashier-panel">
 
-</div>
+      <div class="cashier-title">
+        PANIER
+      </div>
+
+      <div id="cartContent"></div>
+
+      <div id="cartTotals" class="hidden">
+
+        <div class="cart-total">
+
+          <div>
+            <div class="eyebrow">TOTAL</div>
+          </div>
+
+          <div id="cartTotalValue" class="cart-total-value">
+            0,00 €
+          </div>
+
+        </div>
+
+
+        <label>Mode de paiement</label>
+
+        <div class="payment-methods">
+
+          <button
+            class="payment-button"
+            data-payment="carte"
+            onclick="choisirPaiement('carte')"
+          >
+            CARTE
+          </button>
+
+          <button
+            class="payment-button"
+            data-payment="especes"
+            onclick="choisirPaiement('especes')"
+          >
+            ESPÈCES
+          </button>
+
+          <button
+            class="payment-button"
+            data-payment="autre"
+            onclick="choisirPaiement('autre')"
+          >
+            AUTRE
+          </button>
+
+        </div>
+
+
+        <button
+          id="validateSaleButton"
+          class="validate-sale"
+          onclick="validerVente()"
+        >
+          VALIDER LA VENTE
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </div>
 
 </section>
 
+
+<!-- ======================================================
+     SUCCÈS VENTE
+====================================================== -->
 
 <section id="saleSuccessSection" class="hidden">
 
-<div class="sale-success">
+  <div class="sale-success">
 
-<div class="sale-success-check">✓</div>
+    <div class="sale-success-check">✓</div>
 
-<div class="sale-success-title">
-VENTE<br>ENREGISTRÉE.
-</div>
+    <div class="sale-success-title">
+      VENTE<br>VALIDÉE.
+    </div>
 
-<div id="successTotal" class="sale-success-total">0,00 €</div>
+    <div id="saleSuccessNumber" class="eyebrow" style="margin-top:25px"></div>
 
-<div id="successPayment"></div>
+    <div id="saleSuccessTotal" class="sale-success-total"></div>
 
-<button class="primary" onclick="nouvelleVente()">
-NOUVELLE VENTE
-</button>
+    <button class="primary" onclick="nouvelleVente()">
+      NOUVELLE VENTE
+    </button>
 
-<button
-class="secondary"
-style="width:100%;margin-top:10px"
-onclick="retourDashboard()">
-RETOUR
-</button>
+    <button class="secondary" style="width:100%;margin-top:10px" onclick="ouvrirDashboard()">
+      RETOUR À L'ACCUEIL
+    </button>
 
-</div>
+  </div>
 
 </section>
+
+
+<!-- ======================================================
+     MES VENTES BROCANTEUR
+====================================================== -->
+
+<section id="sellerSalesSection" class="hidden">
+
+  <div class="page-header">
+
+    <div>
+      <div class="eyebrow">ESPACE BROCANTEUR</div>
+      <div class="page-title">MES<br>VENTES.</div>
+    </div>
+
+    <button class="secondary" onclick="ouvrirDashboard()">
+      ← ACCUEIL
+    </button>
+
+  </div>
+
+
+  <div id="sellerSalesStats" class="stats"></div>
+
+
+  <div class="sales-section-title">
+    VENTES
+  </div>
+
+  <div id="sellerSalesList" class="sales-list"></div>
+
+
+  <div class="sales-section-title">
+    REVERSEMENTS
+  </div>
+
+  <div id="sellerRepaymentsList" class="repayment-list"></div>
+
+</section>
+
+
+<!-- ======================================================
+     ADMIN FINANCES
+====================================================== -->
+
+<section id="adminSection" class="hidden">
+
+  <div class="page-header">
+
+    <div>
+      <div class="eyebrow">ADMINISTRATION</div>
+      <div class="page-title">FINANCES.</div>
+    </div>
+
+    <button class="secondary" onclick="ouvrirDashboard()">
+      ← ACCUEIL
+    </button>
+
+  </div>
+
+
+  <div id="pendingSellersBlock">
+
+    <div class="sales-section-title">
+      DEMANDES BROCANTEURS
+    </div>
+
+    <div id="pendingSellers" class="request-list"></div>
+
+  </div>
+
+
+  <div id="adminStats" class="stats stats-5"></div>
+
+
+  <div class="sales-section-title">
+    BROCANTEURS
+  </div>
+
+  <div class="table-wrap">
+
+    <table class="data-table">
+
+      <thead>
+
+        <tr>
+          <th>BROCANTEUR</th>
+          <th>COMMISSION</th>
+          <th>VENTES</th>
+          <th>CA TOTAL</th>
+          <th>COMMISSION VIDE DECO</th>
+          <th>DÛ AU BROCANTEUR</th>
+          <th>DÉJÀ REVERSÉ</th>
+          <th>RESTE À REVERSER</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody id="adminFinanceBody"></tbody>
+
+    </table>
+
+  </div>
+
+
+  <div class="sales-section-title">
+    HISTORIQUE DES REVERSEMENTS
+  </div>
+
+  <div id="adminRepaymentsList" class="repayment-list"></div>
+
+</section>
+
 
 </main>
 
 
 <footer>
-<div>VIDE DECO</div>
-<div>BOUTIQUE ÉPHÉMÈRE</div>
+  <span>VIDE DECO</span>
+  <span>GESTION POP-UP</span>
 </footer>
+
+
+<!-- ======================================================
+     MODAL GÉNÉRIQUE
+====================================================== -->
+
+<div id="modalOverlay" class="modal-overlay hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-top">
+
+      <div id="modalTitle" class="modal-title">
+        VIDE DECO
+      </div>
+
+      <button class="modal-close" onclick="fermerModal()">
+        ×
+      </button>
+
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
 
 
 <script>
 
 /* =========================================================
    SUPABASE
-========================================================= */
+   ========================================================= */
 
 const SUPABASE_URL =
-"https://zxwvbfhkeszkcxcnijcp.supabase.co";
+  "https://zxwvbfhkeszkcxcnijcp.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
+  "sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
 
-const db =
-supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+const db = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 
 /* =========================================================
    VARIABLES
-========================================================= */
+   ========================================================= */
 
-let utilisateurActuel = null;
-let profilActuel = null;
-let articleEnModification = null;
+let utilisateur = null;
+let profil = null;
 
-/*
-NOUVEAU :
-on mémorise d'où vient la modification
-et d'où vient l'ouverture du QR.
-*/
+let stockCache = [];
+let stockAfficheCache = [];
+let profilsCache = [];
 
-let origineArticle = "objects";
-let origineQRCode = "objects";
+let editingArticleId = null;
+let editingArticlePhotoUrl = null;
+let articleReturnDestination = "stock";
+
+let qrArticle = null;
+let qrReturnDestination = "stock";
+
+let qrSelection = new Set();
+
+let inventorySellerId = null;
+let inventorySellerArticles = [];
 
 let panier = [];
 let modePaiement = null;
 
-let scanner = null;
+let html5QrCode = null;
 let scannerActif = false;
-
-let stockCache = [];
-let profilsCache = {};
-
-let vendeurReversement = null;
 
 
 /* =========================================================
-   SECTIONS
-========================================================= */
+   OUTILS
+   ========================================================= */
 
-const sections = [
-"loginSection",
-"signupSection",
-"signupSuccessSection",
-"dashboardSection",
-"articleSection",
-"objectsSection",
-"salesSection",
-"stockSection",
-"adminSection",
-"qrSection",
-"cashierSection",
-"saleSuccessSection"
-];
+function cacherSections() {
 
-
-function cacherToutesLesPages(){
-
-sections.forEach(id=>{
-
-const element =
-document.getElementById(id);
-
-if(element){
-element.classList.add("hidden");
-}
-
-});
+  document.querySelectorAll("main > section").forEach(section => {
+    section.classList.add("hidden");
+  });
 
 }
 
 
-function afficherPage(id){
+function afficherSection(id) {
 
-cacherToutesLesPages();
+  cacherSections();
 
-document
-.getElementById(id)
-.classList.remove("hidden");
+  const section = document.getElementById(id);
 
-window.scrollTo(0,0);
+  if (section) {
+    section.classList.remove("hidden");
+  }
 
-}
-
-
-function retourDashboard(){
-
-arreterScanner();
-fermerReversement();
-
-afficherPage("dashboardSection");
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
-function estAdmin(){
+function formaterPrix(valeur) {
 
-return (
-profilActuel &&
-profilActuel.role === "admin"
-);
+  return Number(valeur || 0).toLocaleString(
+    "fr-FR",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  ) + " €";
+
+}
+
+
+function formaterDate(date) {
+
+  if (!date) return "—";
+
+  return new Date(date).toLocaleDateString(
+    "fr-FR",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function echapperHTML(texte) {
+
+  if (texte === null || texte === undefined) {
+    return "";
+  }
+
+  return String(texte)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function nomBrocanteur(vendeurId) {
+
+  const p = profilsCache.find(x => x.id === vendeurId);
+
+  if (!p) return "Brocanteur";
+
+  return p.enseigne ||
+         `${p.prenom || ""} ${p.nom || ""}`.trim() ||
+         "Brocanteur";
+
+}
+
+
+function statutReceptionTexte(statut) {
+
+  switch (statut) {
+
+    case "a_apporter":
+      return "À APPORTER";
+
+    case "receptionne":
+      return "RÉCEPTIONNÉ";
+
+    case "ecart":
+      return "ÉCART";
+
+    case "refuse":
+      return "REFUSÉ";
+
+    default:
+      return "À APPORTER";
+
+  }
+
+}
+
+
+function classeStatutReception(statut) {
+
+  if (statut === "a_apporter") {
+    return "waiting";
+  }
+
+  if (statut === "ecart") {
+    return "difference";
+  }
+
+  if (statut === "refuse") {
+    return "sold";
+  }
+
+  return "";
 
 }
 
 
 /* =========================================================
    INSCRIPTION
-========================================================= */
+   ========================================================= */
 
-function ouvrirInscription(){
+function ouvrirInscription() {
 
-document.getElementById("signupMessage").textContent = "";
+  document.getElementById("signupMessage").textContent = "";
 
-afficherPage("signupSection");
-
-}
-
-
-async function retourConnexion(){
-
-try{
-await db.auth.signOut();
-}catch(error){}
-
-utilisateurActuel = null;
-profilActuel = null;
-
-document.getElementById("loginMessage").textContent = "";
-
-afficherPage("loginSection");
+  afficherSection("signupSection");
 
 }
 
 
-async function inscriptionBrocanteur(){
+function retourConnexion() {
 
-const prenom =
-document.getElementById("signupPrenom").value.trim();
-
-const nom =
-document.getElementById("signupNom").value.trim();
-
-const enseigne =
-document.getElementById("signupEnseigne").value.trim();
-
-const telephone =
-document.getElementById("signupTelephone").value.trim();
-
-const email =
-document.getElementById("signupEmail").value.trim();
-
-const password =
-document.getElementById("signupPassword").value;
-
-const confirmation =
-document.getElementById("signupPasswordConfirm").value;
-
-const message =
-document.getElementById("signupMessage");
-
-const bouton =
-document.getElementById("signupButton");
-
-
-message.textContent = "";
-message.className = "message";
-
-
-if(
-!prenom ||
-!nom ||
-!enseigne ||
-!telephone ||
-!email ||
-!password
-){
-
-message.textContent =
-"Merci de remplir tous les champs obligatoires.";
-
-message.className =
-"message error";
-
-return;
+  afficherSection("loginSection");
 
 }
 
 
-if(password.length < 6){
+async function inscriptionBrocanteur() {
 
-message.textContent =
-"Le mot de passe doit contenir au moins 6 caractères.";
+  const prenom =
+    document.getElementById("signupPrenom").value.trim();
 
-message.className =
-"message error";
+  const nom =
+    document.getElementById("signupNom").value.trim();
 
-return;
+  const enseigne =
+    document.getElementById("signupEnseigne").value.trim();
 
-}
+  const telephone =
+    document.getElementById("signupTelephone").value.trim();
 
+  const email =
+    document.getElementById("signupEmail").value.trim();
 
-if(password !== confirmation){
+  const password =
+    document.getElementById("signupPassword").value;
 
-message.textContent =
-"Les deux mots de passe ne correspondent pas.";
+  const confirmation =
+    document.getElementById("signupPasswordConfirm").value;
 
-message.className =
-"message error";
+  const message =
+    document.getElementById("signupMessage");
 
-return;
-
-}
-
-
-bouton.disabled = true;
-bouton.textContent = "ENVOI…";
-
-
-try{
-
-const {
-data,
-error
-} =
-await db.auth.signUp({
-
-email,
-password,
-
-options:{
-
-data:{
-prenom,
-nom,
-enseigne,
-telephone
-}
-
-}
-
-});
+  message.className = "message";
+  message.textContent = "";
 
 
-if(error){
-throw error;
-}
+  if (
+    !prenom ||
+    !nom ||
+    !enseigne ||
+    !telephone ||
+    !email ||
+    !password
+  ) {
+
+    message.className = "message error";
+    message.textContent =
+      "Merci de remplir tous les champs obligatoires.";
+
+    return;
+
+  }
 
 
-if(data && data.session){
-await db.auth.signOut();
-}
+  if (password.length < 6) {
+
+    message.className = "message error";
+    message.textContent =
+      "Le mot de passe doit contenir au moins 6 caractères.";
+
+    return;
+
+  }
 
 
-document.getElementById("signupPrenom").value = "";
-document.getElementById("signupNom").value = "";
-document.getElementById("signupEnseigne").value = "";
-document.getElementById("signupTelephone").value = "";
-document.getElementById("signupEmail").value = "";
-document.getElementById("signupPassword").value = "";
-document.getElementById("signupPasswordConfirm").value = "";
+  if (password !== confirmation) {
 
-afficherPage("signupSuccessSection");
+    message.className = "message error";
+    message.textContent =
+      "Les deux mots de passe ne correspondent pas.";
 
-}
+    return;
 
-catch(error){
+  }
 
-message.textContent =
-"Impossible d'envoyer la demande : " +
-traduireErreurAuth(error.message);
 
-message.className =
-"message error";
+  const bouton =
+    document.getElementById("signupButton");
 
-}
+  bouton.disabled = true;
+  bouton.textContent = "ENVOI...";
 
-finally{
 
-bouton.disabled = false;
-bouton.textContent = "ENVOYER MA DEMANDE";
+  const { error } = await db.auth.signUp({
 
-}
+    email,
+    password,
+
+    options: {
+
+      data: {
+        prenom,
+        nom,
+        enseigne,
+        telephone
+      }
+
+    }
+
+  });
+
+
+  bouton.disabled = false;
+  bouton.textContent = "ENVOYER MA DEMANDE";
+
+
+  if (error) {
+
+    message.className = "message error";
+    message.textContent = error.message;
+
+    return;
+
+  }
+
+
+  await db.auth.signOut();
+
+  afficherSection("signupSuccessSection");
 
 }
 
 
 /* =========================================================
    CONNEXION
-========================================================= */
+   ========================================================= */
 
-async function connexion(){
-
-const message =
-document.getElementById("loginMessage");
-
-message.textContent = "Connexion…";
-message.className = "message";
-
-const email =
-document.getElementById("email").value.trim();
-
-const password =
-document.getElementById("password").value;
+document.getElementById("loginButton")
+.addEventListener("click", connexion);
 
 
-if(!email || !password){
+document.getElementById("password")
+.addEventListener("keydown", event => {
 
-message.textContent =
-"Renseigne ton e-mail et ton mot de passe.";
+  if (event.key === "Enter") {
+    connexion();
+  }
 
-message.className =
-"message error";
-
-return;
-
-}
-
-
-const {
-data,
-error
-} =
-await db.auth.signInWithPassword({
-email,
-password
 });
 
 
-if(error){
-
-message.textContent =
-traduireErreurAuth(error.message);
-
-message.className =
-"message error";
-
-return;
-
-}
+document.getElementById("logoutButton")
+.addEventListener("click", deconnexion);
 
 
-await afficherUtilisateur(data.user);
+async function connexion() {
 
-}
+  const email =
+    document.getElementById("email").value.trim();
 
+  const password =
+    document.getElementById("password").value;
 
-async function afficherUtilisateur(user){
+  const message =
+    document.getElementById("loginMessage");
 
-utilisateurActuel = user;
-
-const {
-data:profil,
-error
-} =
-await db
-.from("profils")
-.select("*")
-.eq("id",user.id)
-.single();
+  message.className = "message";
+  message.textContent = "";
 
 
-if(error || !profil){
+  if (!email || !password) {
 
-await db.auth.signOut();
+    message.className = "message error";
+    message.textContent =
+      "Entre ton e-mail et ton mot de passe.";
 
-utilisateurActuel = null;
-profilActuel = null;
+    return;
 
-afficherPage("loginSection");
-
-const message =
-document.getElementById("loginMessage");
-
-message.textContent =
-"Profil introuvable.";
-
-message.className =
-"message error";
-
-return;
-
-}
+  }
 
 
-if(profil.statut_compte === "en_attente"){
+  const bouton =
+    document.getElementById("loginButton");
 
-await db.auth.signOut();
+  bouton.disabled = true;
+  bouton.textContent = "CONNEXION...";
 
-utilisateurActuel = null;
-profilActuel = null;
 
-afficherPage("loginSection");
+  const { data, error } =
+    await db.auth.signInWithPassword({
+      email,
+      password
+    });
 
-const message =
-document.getElementById("loginMessage");
 
-message.textContent =
-"TA DEMANDE EST EN ATTENTE DE VALIDATION PAR VIDE DECO.";
+  bouton.disabled = false;
+  bouton.textContent = "SE CONNECTER";
 
-message.className =
-"message success";
 
-return;
+  if (error) {
+
+    message.className = "message error";
+    message.textContent =
+      "Connexion impossible : " + error.message;
+
+    return;
+
+  }
+
+
+  utilisateur = data.user;
+
+  await afficherUtilisateur();
 
 }
 
 
-if(profil.statut_compte === "refuse"){
+async function deconnexion() {
 
-await db.auth.signOut();
+  fermerScanner();
 
-utilisateurActuel = null;
-profilActuel = null;
+  await db.auth.signOut();
 
-afficherPage("loginSection");
+  utilisateur = null;
+  profil = null;
+  panier = [];
+  qrSelection.clear();
 
-const message =
-document.getElementById("loginMessage");
-
-message.textContent =
-"Cette demande n'a pas été validée. Contacte VIDE DECO si nécessaire.";
-
-message.className =
-"message error";
-
-return;
-
-}
-
-
-if(profil.actif === false){
-
-await db.auth.signOut();
-
-utilisateurActuel = null;
-profilActuel = null;
-
-afficherPage("loginSection");
-
-const message =
-document.getElementById("loginMessage");
-
-message.textContent =
-"Ce compte est désactivé.";
-
-message.className =
-"message error";
-
-return;
-
-}
-
-
-profilActuel = profil;
-
-
-document.getElementById("hello").textContent =
-"BONJOUR " +
-(
-profil.prenom ||
-profil.enseigne ||
-"VIDE DECO"
-).toUpperCase() +
-".";
-
-
-document.getElementById("databaseStatus").textContent =
-"Supabase connecté ✓";
-
-
-const adminCards =
-document.getElementById("adminCards");
-
-const sellerCards =
-document.getElementById("sellerCards");
-
-
-adminCards.classList.add("hidden");
-sellerCards.classList.add("hidden");
-
-
-if(estAdmin()){
-
-document.getElementById("roleBadge").textContent =
-"ADMINISTRATEUR";
-
-adminCards.classList.remove("hidden");
-
-}
-
-else{
-
-document.getElementById("roleBadge").textContent =
-"BROCANTEUR";
-
-sellerCards.classList.remove("hidden");
-
-}
-
-
-afficherPage("dashboardSection");
+  afficherSection("loginSection");
 
 }
 
 
 /* =========================================================
-   DÉCONNEXION
-========================================================= */
+   PROFIL
+   ========================================================= */
 
-async function deconnexion(){
+async function afficherUtilisateur() {
 
-await arreterScanner();
+  const {
+    data:sessionData
+  } = await db.auth.getSession();
 
-fermerReversement();
 
-await db.auth.signOut();
+  if (!sessionData.session) {
 
-utilisateurActuel = null;
-profilActuel = null;
-articleEnModification = null;
+    utilisateur = null;
+    profil = null;
 
-panier = [];
-modePaiement = null;
+    afficherSection("loginSection");
 
-document.getElementById("password").value = "";
+    return;
 
-afficherPage("loginSection");
+  }
+
+
+  utilisateur =
+    sessionData.session.user;
+
+
+  const { data, error } =
+    await db
+      .from("profils")
+      .select("*")
+      .eq("id", utilisateur.id)
+      .single();
+
+
+  if (error || !data) {
+
+    await db.auth.signOut();
+
+    document.getElementById("loginMessage").className =
+      "message error";
+
+    document.getElementById("loginMessage").textContent =
+      "Profil introuvable.";
+
+    afficherSection("loginSection");
+
+    return;
+
+  }
+
+
+  profil = data;
+
+
+  if (profil.statut_compte === "en_attente") {
+
+    await db.auth.signOut();
+
+    document.getElementById("loginMessage").className =
+      "message";
+
+    document.getElementById("loginMessage").innerHTML =
+      "<strong>Ta demande est encore en attente de validation par VIDE DECO.</strong>";
+
+    afficherSection("loginSection");
+
+    return;
+
+  }
+
+
+  if (
+    profil.statut_compte === "refuse" ||
+    profil.actif === false
+  ) {
+
+    await db.auth.signOut();
+
+    document.getElementById("loginMessage").className =
+      "message error";
+
+    document.getElementById("loginMessage").textContent =
+      "Ce compte n'est pas actif.";
+
+    afficherSection("loginSection");
+
+    return;
+
+  }
+
+
+  await chargerProfils();
+
+  ouvrirDashboard();
 
 }
 
 
 /* =========================================================
-   ARTICLE
-========================================================= */
+   PROFILS CACHE
+   ========================================================= */
 
-function resetArticleForm(){
+async function chargerProfils() {
 
-document.getElementById("articleNom").value = "";
-document.getElementById("articleCategorie").value = "";
-document.getElementById("articlePrix").value = "";
-document.getElementById("articleQuantite").value = 1;
-document.getElementById("articleDescription").value = "";
-document.getElementById("articlePhoto").value = "";
+  const { data } =
+    await db
+      .from("profils")
+      .select("*");
 
-const preview =
-document.getElementById("photoPreview");
-
-preview.src = "";
-preview.classList.add("hidden");
-
-const owner =
-document.getElementById("articleOwnerInfo");
-
-owner.textContent = "";
-owner.classList.add("hidden");
-
-document.getElementById("articleMessage").textContent = "";
+  profilsCache = data || [];
 
 }
 
 
-function ouvrirAjoutArticle(){
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
 
-articleEnModification = null;
-origineArticle = "objects";
+function ouvrirDashboard() {
 
-resetArticleForm();
+  fermerScanner();
 
-document.getElementById("articleEyebrow").textContent =
-"NOUVEL OBJET";
+  afficherSection("dashboardSection");
 
-document.getElementById("articlePageTitle").innerHTML =
-"AJOUTER<br>UN OBJET.";
 
-document.getElementById("saveArticleButton").textContent =
-"ENREGISTRER L'OBJET";
+  const nom =
+    profil?.prenom ||
+    profil?.enseigne ||
+    "";
 
-afficherPage("articleSection");
+
+  document.getElementById("hello").textContent =
+    `BONJOUR${nom ? " " + nom.toUpperCase() : ""}.`;
+
+
+  document.getElementById("roleBadge").textContent =
+    profil?.role === "admin"
+      ? "ADMINISTRATEUR"
+      : "BROCANTEUR";
+
+
+  document.getElementById("connectionInfo").textContent =
+    utilisateur?.email
+      ? `Connecté avec ${utilisateur.email}`
+      : "";
+
+
+  if (profil?.role === "admin") {
+
+    document
+      .getElementById("adminCards")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("sellerCards")
+      .classList.add("hidden");
+
+  } else {
+
+    document
+      .getElementById("sellerCards")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("adminCards")
+      .classList.add("hidden");
+
+  }
 
 }
 
 
-/*
-NOUVEAU :
-si l'admin modifie depuis STOCK,
-le bouton retour revient dans STOCK.
-*/
+/* =========================================================
+   ARTICLE : OUVERTURE
+   ========================================================= */
 
-async function annulerArticle(){
+function ouvrirNouvelArticle() {
 
-articleEnModification = null;
+  editingArticleId = null;
+  editingArticlePhotoUrl = null;
+  articleReturnDestination = "stock";
 
-if(
-estAdmin() &&
-origineArticle === "stock"
-){
+  viderFormulaireArticle();
 
-await ouvrirStock();
+  document.getElementById("articleEyebrow").textContent =
+    "NOUVEL OBJET";
+
+  document.getElementById("articleTitle").innerHTML =
+    "AJOUTER<br>UN OBJET.";
+
+  document.getElementById("saveArticleButton").textContent =
+    "ENREGISTRER L'OBJET";
+
+  afficherSection("articleSection");
 
 }
-else{
 
-await ouvrirMesObjets();
+
+function viderFormulaireArticle() {
+
+  document.getElementById("articleReference").value = "";
+  document.getElementById("articleCategorie").value = "";
+  document.getElementById("articleNom").value = "";
+  document.getElementById("articleDescription").value = "";
+  document.getElementById("articlePrix").value = "";
+  document.getElementById("articleQuantite").value = 1;
+  document.getElementById("articlePhoto").value = "";
+  document.getElementById("articleMessage").textContent = "";
+
+  const preview =
+    document.getElementById("articlePhotoPreview");
+
+  preview.src = "";
+  preview.classList.add("hidden");
 
 }
+
+
+function retourDepuisArticle() {
+
+  if (articleReturnDestination === "stock") {
+    ouvrirStock();
+  } else {
+    ouvrirMesObjets();
+  }
 
 }
 
 
 /* =========================================================
    PHOTO
-========================================================= */
+   ========================================================= */
 
-document
-.getElementById("articlePhoto")
-.addEventListener(
-"change",
-function(){
+document.getElementById("articlePhoto")
+.addEventListener("change", event => {
 
-const fichier = this.files[0];
+  const fichier =
+    event.target.files?.[0];
 
-if(!fichier){
-return;
-}
-
-const preview =
-document.getElementById("photoPreview");
-
-preview.src =
-URL.createObjectURL(fichier);
-
-preview.classList.remove("hidden");
-
-}
-);
+  const preview =
+    document.getElementById("articlePhotoPreview");
 
 
-async function envoyerPhoto(
-fichier,
-articleId
-){
+  if (!fichier) {
 
-if(!fichier){
-return null;
-}
+    if (!editingArticlePhotoUrl) {
+      preview.classList.add("hidden");
+    }
 
-const extension =
-fichier.name.split(".").pop() || "jpg";
+    return;
 
-/*
-On conserve ici le dossier de l'utilisateur connecté.
-Ainsi, lorsqu'un admin remplace une photo,
-elle peut être enregistrée dans son dossier Storage
-sans modifier le vendeur propriétaire de l'article.
-*/
-
-const chemin =
-utilisateurActuel.id +
-"/" +
-articleId +
-"." +
-extension;
+  }
 
 
-const {
-error
-} =
-await db.storage
-.from("photos-articles")
-.upload(
-chemin,
-fichier,
-{
-upsert:true
-}
-);
+  preview.src =
+    URL.createObjectURL(fichier);
+
+  preview.classList.remove("hidden");
+
+});
 
 
-if(error){
-throw error;
-}
+async function uploaderPhotoArticle(fichier) {
+
+  if (!fichier) {
+    return editingArticlePhotoUrl || null;
+  }
 
 
-const {
-data
-} =
-db.storage
-.from("photos-articles")
-.getPublicUrl(chemin);
+  const extension =
+    fichier.name.split(".").pop() || "jpg";
+
+  const chemin =
+    `${utilisateur.id}/${Date.now()}-${crypto.randomUUID()}.${extension}`;
 
 
-return (
-data.publicUrl +
-"?v=" +
-Date.now()
-);
+  const { error } =
+    await db.storage
+      .from("photos-articles")
+      .upload(
+        chemin,
+        fichier,
+        {
+          upsert:false
+        }
+      );
+
+
+  if (error) {
+    throw error;
+  }
+
+
+  const { data } =
+    db.storage
+      .from("photos-articles")
+      .getPublicUrl(chemin);
+
+
+  return data.publicUrl;
 
 }
 
 
 /* =========================================================
    ENREGISTRER ARTICLE
-========================================================= */
+   ========================================================= */
 
-async function enregistrerArticle(){
+async function enregistrerArticle() {
 
-const nom =
-document.getElementById("articleNom").value.trim();
+  const reference =
+    document.getElementById("articleReference").value.trim();
 
-const categorie =
-document.getElementById("articleCategorie").value;
+  const nom =
+    document.getElementById("articleNom").value.trim();
 
-const prix =
-Number(document.getElementById("articlePrix").value);
+  const description =
+    document.getElementById("articleDescription").value.trim();
 
-const quantite =
-Number(document.getElementById("articleQuantite").value);
+  const categorie =
+    document.getElementById("articleCategorie").value;
 
-const description =
-document.getElementById("articleDescription").value.trim();
+  const prix =
+    Number(document.getElementById("articlePrix").value);
 
-const message =
-document.getElementById("articleMessage");
+  const quantite =
+    Number(document.getElementById("articleQuantite").value);
 
+  const fichier =
+    document.getElementById("articlePhoto").files?.[0];
 
-if(!nom){
+  const message =
+    document.getElementById("articleMessage");
 
-message.textContent =
-"Indique le nom de l'objet.";
 
-message.className =
-"message error";
+  message.className = "message";
+  message.textContent = "";
 
-return;
 
-}
+  if (
+    !reference ||
+    !nom ||
+    !Number.isFinite(prix) ||
+    prix < 0 ||
+    !Number.isInteger(quantite) ||
+    quantite < 1
+  ) {
 
+    message.className = "message error";
+    message.textContent =
+      "Vérifie la référence, le nom, le prix et la quantité.";
 
-if(!Number.isFinite(prix) || prix < 0){
+    return;
 
-message.textContent =
-"Indique un prix valide.";
+  }
 
-message.className =
-"message error";
 
-return;
+  const bouton =
+    document.getElementById("saveArticleButton");
 
-}
+  bouton.disabled = true;
+  bouton.textContent = "ENREGISTREMENT...";
 
 
-if(!Number.isInteger(quantite) || quantite < 1){
+  try {
 
-message.textContent =
-"Quantité incorrecte.";
+    const photoUrl =
+      await uploaderPhotoArticle(fichier);
 
-message.className =
-"message error";
 
-return;
+    if (editingArticleId) {
 
-}
+      const articleExistant =
+        stockCache.find(a => a.id === editingArticleId);
 
 
-const bouton =
-document.getElementById("saveArticleButton");
+      const modifications = {
 
-bouton.disabled = true;
+        reference,
+        nom,
+        description,
+        categorie,
+        prix,
+        photo_url:photoUrl,
+        updated_at:new Date().toISOString()
 
+      };
 
-try{
 
-const fichier =
-document.getElementById("articlePhoto").files[0] || null;
+      /*
+       * Avant réception :
+       * le vendeur/admin peut encore modifier
+       * la quantité déclarée.
+       *
+       * Après réception :
+       * on ne modifie pas silencieusement
+       * le stock réel depuis cette fiche.
+       */
 
+      if (
+        !articleExistant ||
+        articleExistant.statut_reception === "a_apporter"
+      ) {
 
-/* =========================================================
-   MODIFICATION
-========================================================= */
+        modifications.quantite_declaree = quantite;
+        modifications.quantite = quantite;
 
-if(articleEnModification){
+      }
 
-const ancienneQuantite =
-Number(articleEnModification.quantite);
 
-const ancienneDisponible =
-Number(articleEnModification.quantite_disponible);
+      const { error } =
+        await db
+          .from("articles")
+          .update(modifications)
+          .eq("id", editingArticleId);
 
-const dejaVendus =
-Math.max(
-0,
-ancienneQuantite -
-ancienneDisponible
-);
 
+      if (error) {
+        throw error;
+      }
 
-if(quantite < dejaVendus){
 
-throw new Error(
-"La quantité ne peut pas être inférieure au nombre déjà vendu."
-);
+      message.className = "message success";
+      message.textContent =
+        "Objet modifié avec succès.";
 
-}
 
+    } else {
 
-let photo =
-articleEnModification.photo_url;
+      const { error } =
+        await db
+          .from("articles")
+          .insert({
 
+            vendeur_id:utilisateur.id,
 
-if(fichier){
+            reference,
+            nom,
+            description,
+            categorie,
+            prix,
 
-photo =
-await envoyerPhoto(
-fichier,
-articleEnModification.id
-);
+            /*
+             * Le brocanteur déclare la quantité.
+             * Elle n'est PAS encore considérée
+             * comme présente physiquement.
+             */
 
-}
+            quantite:quantite,
+            quantite_declaree:quantite,
+            quantite_recue:0,
+            quantite_disponible:0,
 
+            photo_url:photoUrl,
 
-const disponible =
-quantite -
-dejaVendus;
+            statut:"actif",
+            statut_reception:"a_apporter"
 
+          });
 
-const statut =
-disponible <= 0
-?
-"vendu"
-:
-(
-articleEnModification.statut === "vendu"
-?
-"a_apporter"
-:
-articleEnModification.statut
-);
 
+      if (error) {
+        throw error;
+      }
 
-/*
-IMPORTANT :
-on ne modifie jamais vendeur_id.
 
-Pour le brocanteur :
-on ajoute le filtre vendeur_id.
+      message.className = "message success";
+      message.textContent =
+        "Objet déclaré. Il doit maintenant être réceptionné par VIDE DECO.";
 
-Pour l'admin :
-la règle RLS Admin modification articles
-autorise la modification par ID.
-*/
+    }
 
-let requeteModification =
-db
-.from("articles")
-.update({
 
-nom,
+    setTimeout(() => {
 
-categorie:
-categorie || null,
+      if (profil.role === "admin") {
+        ouvrirStock();
+      } else {
+        ouvrirMesObjets();
+      }
 
-prix,
+    },700);
 
-quantite,
 
-quantite_disponible:
-disponible,
+  } catch (error) {
 
-description:
-description || null,
+    message.className = "message error";
+    message.textContent =
+      "Erreur : " + error.message;
 
-photo_url:
-photo,
+  }
 
-statut,
 
-updated_at:
-new Date().toISOString()
+  bouton.disabled = false;
 
-})
-.eq(
-"id",
-articleEnModification.id
-);
-
-
-if(!estAdmin()){
-
-requeteModification =
-requeteModification.eq(
-"vendeur_id",
-utilisateurActuel.id
-);
-
-}
-
-
-const {
-error
-} =
-await requeteModification;
-
-
-if(error){
-throw error;
-}
-
-
-articleEnModification = null;
-
-
-/*
-NOUVEAU :
-retour vers STOCK si l'admin venait du stock.
-*/
-
-if(
-estAdmin() &&
-origineArticle === "stock"
-){
-
-await ouvrirStock();
-
-}
-else{
-
-await ouvrirMesObjets();
-
-}
-
-
-return;
+  bouton.textContent =
+    editingArticleId
+      ? "ENREGISTRER LES MODIFICATIONS"
+      : "ENREGISTRER L'OBJET";
 
 }
 
 
 /* =========================================================
-   NOUVEAU
-========================================================= */
+   STOCK
+   ========================================================= */
 
-const {
-data:article,
-error
-} =
-await db
-.from("articles")
-.insert({
+async function chargerStock() {
 
-vendeur_id:
-utilisateurActuel.id,
-
-nom,
-
-description:
-description || null,
-
-categorie:
-categorie || null,
-
-prix,
-
-quantite,
-
-quantite_disponible:
-quantite,
-
-statut:
-"a_apporter"
-
-})
-.select()
-.single();
+  let requete =
+    db
+      .from("articles")
+      .select("*")
+      .order("created_at", {
+        ascending:false
+      });
 
 
-if(error){
-throw error;
-}
+  if (profil.role !== "admin") {
+
+    requete =
+      requete.eq(
+        "vendeur_id",
+        utilisateur.id
+      );
+
+  }
 
 
-if(fichier){
-
-const photo =
-await envoyerPhoto(
-fichier,
-article.id
-);
+  const { data, error } =
+    await requete;
 
 
-const {
-error:photoError
-} =
-await db
-.from("articles")
-.update({
-photo_url:photo
-})
-.eq("id",article.id)
-.eq("vendeur_id",utilisateurActuel.id);
+  if (error) {
+
+    document.getElementById("objectsGrid").innerHTML =
+      `<div class="empty-state">${echapperHTML(error.message)}</div>`;
+
+    return;
+
+  }
 
 
-if(photoError){
-throw photoError;
-}
+  stockCache = data || [];
 
 }
 
 
-resetArticleForm();
+async function ouvrirStock() {
 
-message.textContent =
-"OBJET ENREGISTRÉ ✓";
+  articleReturnDestination = "stock";
 
-message.className =
-"message success";
-
-}
-
-catch(error){
-
-message.textContent =
-"Erreur : " +
-error.message;
-
-message.className =
-"message error";
-
-}
-
-finally{
-
-bouton.disabled = false;
-
-}
-
-}
+  await chargerProfils();
+  await chargerStock();
 
 
-/* =========================================================
-   MES OBJETS
-========================================================= */
+  document.getElementById("stockEyebrow").textContent =
+    "ADMINISTRATION";
 
-async function ouvrirMesObjets(){
+  document.getElementById("stockTitle").textContent =
+    "STOCK.";
 
-afficherPage("objectsSection");
-await chargerMesObjets();
+
+  document
+    .getElementById("adminLabelToolbar")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("stockReceptionFilter")
+    .classList.remove("hidden");
+
+
+  afficherSection("stockSection");
+
+  afficherStockFiltre();
+  actualiserCompteurQR();
 
 }
 
 
-async function chargerMesObjets(){
+async function ouvrirMesObjets() {
 
-const grid =
-document.getElementById("objectsGrid");
+  articleReturnDestination = "seller";
 
-const message =
-document.getElementById("objectsMessage");
-
-grid.innerHTML = "";
-
-message.textContent =
-"Chargement…";
+  await chargerStock();
 
 
-const {
-data,
-error
-} =
-await db
-.from("articles")
-.select("*")
-.eq("vendeur_id",utilisateurActuel.id)
-.neq("statut","retire")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
+  document.getElementById("stockEyebrow").textContent =
+    "ESPACE BROCANTEUR";
+
+  document.getElementById("stockTitle").textContent =
+    "MES OBJETS.";
 
 
-if(error){
-
-message.textContent =
-error.message;
-
-message.className =
-"message error";
-
-return;
-
-}
+  document
+    .getElementById("adminLabelToolbar")
+    .classList.add("hidden");
 
 
-message.textContent = "";
+  document
+    .getElementById("stockReceptionFilter")
+    .classList.remove("hidden");
 
 
-document.getElementById("objectsCount").textContent =
-(data || []).length +
-" OBJET(S)";
+  afficherSection("stockSection");
 
-
-if(!data || !data.length){
-
-grid.innerHTML =
-`
-<div
-class="empty-state"
-style="grid-column:1/-1">
-AUCUN OBJET.
-</div>
-`;
-
-return;
-
-}
-
-
-data.forEach(article=>{
-
-grid.appendChild(
-creerCarteArticle(
-article,
-"seller"
-)
-);
-
-});
+  afficherStockFiltre();
 
 }
 
 
 /* =========================================================
-   CARTE ARTICLE
-========================================================= */
+   AFFICHAGE STOCK
+   ========================================================= */
 
-/*
-mode :
-""       = aucune action
-"seller" = actions brocanteur
-"admin"  = actions administrateur
-*/
+function afficherStockFiltre() {
 
-function creerCarteArticle(
-article,
-mode="",
-sellerName=""
-){
-
-const card =
-document.createElement("article");
-
-card.className =
-"object-card";
+  const recherche =
+    document
+      .getElementById("stockSearch")
+      .value
+      .trim()
+      .toLowerCase();
 
 
-if(article.photo_url){
+  const statut =
+    document
+      .getElementById("stockReceptionFilter")
+      .value;
 
-const img =
-document.createElement("img");
 
-img.className =
-"object-image";
+  stockAfficheCache =
+    stockCache.filter(article => {
 
-img.src =
-article.photo_url;
+      const texte = [
+        article.reference,
+        article.nom,
+        article.categorie,
+        nomBrocanteur(article.vendeur_id)
+      ]
+      .join(" ")
+      .toLowerCase();
 
-card.appendChild(img);
 
-}
+      const rechercheOk =
+        !recherche ||
+        texte.includes(recherche);
 
-else{
 
-const vide =
-document.createElement("div");
+      const statutOk =
+        !statut ||
+        article.statut_reception === statut;
 
-vide.className =
-"object-no-image";
 
-vide.textContent =
-"PAS DE PHOTO";
+      return rechercheOk && statutOk;
 
-card.appendChild(vide);
+    });
+
+
+  afficherCartesStock(stockAfficheCache);
 
 }
 
 
-const content =
-document.createElement("div");
+function afficherCartesStock(articles) {
 
-content.className =
-"object-content";
+  const grille =
+    document.getElementById("objectsGrid");
 
+  grille.innerHTML = "";
 
-content.innerHTML =
-`
 
-<div class="object-reference">
-RÉF. ${escapeHTML(article.reference || "—")}
-</div>
+  if (!articles.length) {
 
-<div class="object-name">
-${escapeHTML(article.nom || "")}
-</div>
+    grille.innerHTML =
+      `<div class="empty-state">Aucun objet.</div>`;
 
-${sellerName
-?
-`
-<div class="object-seller">
-${escapeHTML(sellerName)}
-</div>
-`
-:
-""
-}
+    return;
 
-<div class="object-category">
-${escapeHTML(article.categorie || "Sans catégorie")}
-</div>
+  }
 
-<div class="object-price">
-${formaterPrix(article.prix)}
-</div>
 
-<div class="object-quantity">
-QUANTITÉ : ${article.quantite}
-<br>
-DISPONIBLE : ${article.quantite_disponible}
-</div>
+  articles.forEach(article => {
 
-<div class="object-status ${article.statut === "vendu" ? "vendu" : ""}">
-${texteStatut(article.statut)}
-</div>
+    const carte =
+      document.createElement("article");
 
-`;
+    carte.className =
+      "object-card" +
+      (qrSelection.has(article.id)
+        ? " selected"
+        : "");
 
 
-card.appendChild(content);
+    /*
+     * Sélection impression :
+     * uniquement admin + article physiquement reçu.
+     */
 
+    if (
+      profil.role === "admin" &&
+      (
+        article.statut_reception === "receptionne" ||
+        article.statut_reception === "ecart"
+      ) &&
+      Number(article.quantite_recue || 0) > 0
+    ) {
 
-/* =========================================================
-   ACTIONS BROCANTEUR
-========================================================= */
+      const selecteur =
+        document.createElement("label");
 
-if(mode === "seller"){
+      selecteur.className =
+        "label-selector";
 
-const zone =
-document.createElement("div");
+      selecteur.innerHTML = `
+        <input
+          type="checkbox"
+          ${qrSelection.has(article.id) ? "checked" : ""}
+        >
+        ÉTIQUETTE
+      `;
 
-zone.className =
-"object-actions";
 
+      const checkbox =
+        selecteur.querySelector("input");
 
-const modifier =
-document.createElement("button");
 
-modifier.className =
-"object-action";
+      checkbox.addEventListener(
+        "change",
+        event => {
 
-modifier.textContent =
-"MODIFIER";
+          if (event.target.checked) {
+            qrSelection.add(article.id);
+          } else {
+            qrSelection.delete(article.id);
+          }
 
+          afficherStockFiltre();
+          actualiserCompteurQR();
 
-if(article.statut === "vendu"){
+        }
+      );
 
-modifier.disabled = true;
 
-}
-else{
+      carte.appendChild(selecteur);
 
-modifier.onclick =
-()=>modifierArticle(
-article.id,
-"objects"
-);
+    }
 
-}
 
+    if (article.photo_url) {
 
-const qr =
-document.createElement("button");
+      const image =
+        document.createElement("img");
 
-qr.className =
-"object-action";
+      image.className =
+        "object-image";
 
-qr.textContent =
-"QR CODE";
+      image.src =
+        article.photo_url;
 
-qr.onclick =
-()=>afficherQRCode(
-article.id,
-"objects"
-);
+      image.alt =
+        article.nom || "";
 
+      carte.appendChild(image);
 
-const retirer =
-document.createElement("button");
+    } else {
 
-retirer.className =
-"object-action";
+      const sansPhoto =
+        document.createElement("div");
 
-retirer.textContent =
-article.statut === "vendu"
-?
-"VENDU"
-:
-"RETIRER";
+      sansPhoto.className =
+        "object-no-image";
 
+      sansPhoto.textContent =
+        "AUCUNE PHOTO";
 
-if(article.statut === "vendu"){
+      carte.appendChild(sansPhoto);
 
-retirer.disabled = true;
+    }
 
-}
-else{
 
-retirer.onclick =
-()=>retirerArticle(
-article.id,
-article.nom
-);
+    const contenu =
+      document.createElement("div");
 
-}
+    contenu.className =
+      "object-content";
 
 
-zone.append(
-modifier,
-qr,
-retirer
-);
+    const declaree =
+      Number(
+        article.quantite_declaree ??
+        article.quantite ??
+        0
+      );
 
-card.appendChild(zone);
 
-}
+    const recue =
+      Number(
+        article.quantite_recue ??
+        0
+      );
 
 
-/* =========================================================
-   ACTIONS ADMIN
-========================================================= */
+    const disponible =
+      Number(
+        article.quantite_disponible ??
+        0
+      );
 
-if(mode === "admin"){
 
-const zone =
-document.createElement("div");
+    contenu.innerHTML = `
 
-zone.className =
-"object-actions";
+      <div class="object-reference">
+        RÉF. ${echapperHTML(article.reference || "—")}
+      </div>
 
+      <div class="object-name">
+        ${echapperHTML(article.nom || "Objet")}
+      </div>
 
-const modifier =
-document.createElement("button");
+      ${
+        profil.role === "admin"
+        ? `
+          <div class="object-seller">
+            ${echapperHTML(nomBrocanteur(article.vendeur_id))}
+          </div>
+        `
+        : ""
+      }
 
-modifier.className =
-"object-action";
+      <div class="object-category">
+        ${echapperHTML(article.categorie || "Sans catégorie")}
+      </div>
 
-modifier.textContent =
-"MODIFIER";
+      <div class="object-price">
+        ${formaterPrix(article.prix)}
+      </div>
 
+      <div class="object-quantity">
+        DÉCLARÉ : ${declaree}<br>
+        REÇU : ${recue}<br>
+        DISPONIBLE : ${disponible}
+      </div>
 
-/*
-On évite de modifier un article totalement vendu.
-Le QR reste néanmoins disponible.
-*/
+      <div class="object-status ${classeStatutReception(article.statut_reception)}">
+        ${statutReceptionTexte(article.statut_reception)}
+      </div>
 
-if(article.statut === "vendu"){
+    `;
 
-modifier.disabled = true;
 
-}
-else{
+    carte.appendChild(contenu);
 
-modifier.onclick =
-()=>modifierArticle(
-article.id,
-"stock"
-);
 
-}
+    const actions =
+      document.createElement("div");
 
+    actions.className =
+      "object-actions";
 
-const qr =
-document.createElement("button");
 
-qr.className =
-"object-action";
+    const modifier =
+      document.createElement("button");
 
-qr.textContent =
-"QR CODE";
+    modifier.className =
+      "object-action";
 
-qr.onclick =
-()=>afficherQRCode(
-article.id,
-"stock"
-);
+    modifier.textContent =
+      "MODIFIER";
 
 
-const vendeur =
-document.createElement("button");
+    modifier.onclick =
+      () => modifierArticle(article.id);
 
-vendeur.className =
-"object-action";
 
-vendeur.textContent =
-"VENDEUR";
+    /*
+     * Brocanteur :
+     * après réception, la quantité réelle ne doit plus
+     * être modifiée depuis la fiche.
+     *
+     * Il peut toujours modifier les informations descriptives.
+     */
 
-vendeur.disabled = true;
 
+    const qr =
+      document.createElement("button");
 
-zone.append(
-modifier,
-qr,
-vendeur
-);
+    qr.className =
+      "object-action";
 
-card.appendChild(zone);
+    qr.textContent =
+      "QR CODE";
 
-}
 
+    const qrAutorise =
+      article.statut_reception === "receptionne" ||
+      article.statut_reception === "ecart";
 
-return card;
+
+    qr.disabled =
+      !qrAutorise ||
+      Number(article.quantite_recue || 0) <= 0;
+
+
+    qr.onclick =
+      () => ouvrirQR(article.id);
+
+
+    actions.appendChild(modifier);
+    actions.appendChild(qr);
+
+    carte.appendChild(actions);
+
+    grille.appendChild(carte);
+
+  });
 
 }
 
 
 /* =========================================================
    MODIFIER ARTICLE
-========================================================= */
+   ========================================================= */
 
-async function modifierArticle(
-id,
-origine="objects"
-){
+async function modifierArticle(id) {
 
-origineArticle =
-origine;
+  let article =
+    stockCache.find(a => a.id === id);
 
 
-/*
-Admin :
-recherche simplement l'article par son ID.
+  if (!article) {
 
-Brocanteur :
-on vérifie aussi qu'il en est propriétaire.
-*/
-
-let requete =
-db
-.from("articles")
-.select("*")
-.eq("id",id);
+    const { data, error } =
+      await db
+        .from("articles")
+        .select("*")
+        .eq("id", id)
+        .single();
 
 
-if(!estAdmin()){
+    if (error || !data) {
+      alert("Article introuvable.");
+      return;
+    }
 
-requete =
-requete.eq(
-"vendeur_id",
-utilisateurActuel.id
-);
+    article = data;
 
-}
-
-
-const {
-data,
-error
-} =
-await requete.single();
+  }
 
 
-if(error){
+  editingArticleId =
+    article.id;
 
-alert(error.message);
-
-return;
-
-}
+  editingArticlePhotoUrl =
+    article.photo_url || null;
 
 
-articleEnModification =
-data;
+  articleReturnDestination =
+    profil.role === "admin"
+      ? "stock"
+      : "seller";
 
 
-document.getElementById("articleNom").value =
-data.nom || "";
+  document.getElementById("articleEyebrow").textContent =
+    "MODIFICATION";
 
-document.getElementById("articleCategorie").value =
-data.categorie || "";
+  document.getElementById("articleTitle").innerHTML =
+    "MODIFIER<br>L'OBJET.";
 
-document.getElementById("articlePrix").value =
-data.prix;
-
-document.getElementById("articleQuantite").value =
-data.quantite;
-
-document.getElementById("articleDescription").value =
-data.description || "";
-
-document.getElementById("articlePhoto").value = "";
+  document.getElementById("saveArticleButton").textContent =
+    "ENREGISTRER LES MODIFICATIONS";
 
 
-document.getElementById("articleEyebrow").textContent =
-data.reference || "MODIFICATION";
+  document.getElementById("articleReference").value =
+    article.reference || "";
 
-document.getElementById("articlePageTitle").innerHTML =
-"MODIFIER<br>UN OBJET.";
+  document.getElementById("articleCategorie").value =
+    article.categorie || "";
 
-document.getElementById("saveArticleButton").textContent =
-"ENREGISTRER LES MODIFICATIONS";
+  document.getElementById("articleNom").value =
+    article.nom || "";
 
+  document.getElementById("articleDescription").value =
+    article.description || "";
 
-const preview =
-document.getElementById("photoPreview");
+  document.getElementById("articlePrix").value =
+    article.prix ?? "";
 
-
-if(data.photo_url){
-
-preview.src =
-data.photo_url;
-
-preview.classList.remove("hidden");
-
-}
-else{
-
-preview.src = "";
-preview.classList.add("hidden");
-
-}
+  document.getElementById("articleQuantite").value =
+    article.quantite_declaree ??
+    article.quantite ??
+    1;
 
 
-/*
-NOUVEAU :
-l'admin voit clairement à quel brocanteur
-appartient l'article.
-*/
-
-const owner =
-document.getElementById("articleOwnerInfo");
+  const preview =
+    document.getElementById("articlePhotoPreview");
 
 
-if(
-estAdmin() &&
-origine === "stock"
-){
+  if (article.photo_url) {
 
-let profil =
-profilsCache[data.vendeur_id];
+    preview.src =
+      article.photo_url;
 
+    preview.classList.remove("hidden");
 
-if(!profil){
+  } else {
 
-const {
-data:profilCharge
-} =
-await db
-.from("profils")
-.select("id,nom,prenom,enseigne")
-.eq("id",data.vendeur_id)
-.maybeSingle();
+    preview.src = "";
+    preview.classList.add("hidden");
 
-profil =
-profilCharge;
-
-}
+  }
 
 
-owner.textContent =
-"OBJET DU BROCANTEUR : " +
-nomProfil(profil);
+  document.getElementById("articlePhoto").value = "";
+  document.getElementById("articleMessage").textContent = "";
 
-owner.className =
-"message success";
-
-}
-else{
-
-owner.textContent = "";
-owner.classList.add("hidden");
-
-}
-
-
-afficherPage("articleSection");
+  afficherSection("articleSection");
 
 }
 
 
 /* =========================================================
-   RETIRER ARTICLE
-========================================================= */
+   QR UNIQUE
+   ========================================================= */
 
-async function retirerArticle(
-id,
-nom
-){
+async function ouvrirQR(articleId) {
 
-if(
-!confirm(
-"RETIRER CET OBJET ?\n\n" +
-nom
-)
-){
+  let article =
+    stockCache.find(a => a.id === articleId);
 
-return;
+
+  if (!article) {
+
+    const { data, error } =
+      await db
+        .from("articles")
+        .select("*")
+        .eq("id", articleId)
+        .single();
+
+
+    if (error || !data) {
+
+      alert("Article introuvable.");
+
+      return;
+
+    }
+
+    article = data;
+
+  }
+
+
+  qrArticle = article;
+
+
+  qrReturnDestination =
+    profil.role === "admin"
+      ? "stock"
+      : "seller";
+
+
+  document.getElementById("qrName").textContent =
+    article.nom || "Objet";
+
+  document.getElementById("qrReference").textContent =
+    `RÉF. ${article.reference || "—"}`;
+
+  document.getElementById("qrPrice").textContent =
+    formaterPrix(article.prix);
+
+
+  const zone =
+    document.getElementById("qrCode");
+
+  zone.innerHTML = "";
+
+
+  new QRCode(
+    zone,
+    {
+      text:`VIDEDECO:${article.id}`,
+      width:230,
+      height:230,
+      correctLevel:QRCode.CorrectLevel.H
+    }
+  );
+
+
+  document.getElementById("qrStatus").textContent =
+    "Ce QR code reste associé à cet objet, même si son prix est modifié.";
+
+
+  afficherSection("qrSection");
 
 }
 
 
-const {
-error
-} =
-await db
-.from("articles")
-.delete()
-.eq("id",id)
-.eq("vendeur_id",utilisateurActuel.id);
+function retourDepuisQR() {
+
+  if (qrReturnDestination === "stock") {
+    ouvrirStock();
+  } else {
+    ouvrirMesObjets();
+  }
+
+}
 
 
-if(error){
+function imprimerQRCodeUnique() {
 
-alert(
-"Impossible de retirer l'objet :\n" +
-error.message
+  document.body.classList.remove("print-labels");
+  document.body.classList.add("print-single");
+
+  window.print();
+
+}
+
+
+window.addEventListener(
+  "afterprint",
+  () => {
+
+    document.body.classList.remove(
+      "print-labels",
+      "print-single"
+    );
+
+  }
 );
 
-return;
+
+/* =========================================================
+   SÉLECTION QR
+   ========================================================= */
+
+function actualiserCompteurQR() {
+
+  const n =
+    qrSelection.size;
+
+
+  const compteur =
+    document.getElementById("qrSelectionCount");
+
+
+  compteur.textContent =
+    `${n} ÉTIQUETTE${n > 1 ? "S" : ""} SÉLECTIONNÉE${n > 1 ? "S" : ""}`;
+
+
+  document.getElementById(
+    "printSelectedLabelsButton"
+  ).disabled = n === 0;
 
 }
 
 
-await chargerMesObjets();
+function selectionnerTousQR() {
+
+  stockAfficheCache.forEach(article => {
+
+    if (
+      (
+        article.statut_reception === "receptionne" ||
+        article.statut_reception === "ecart"
+      ) &&
+      Number(article.quantite_recue || 0) > 0
+    ) {
+
+      qrSelection.add(article.id);
+
+    }
+
+  });
+
+
+  afficherStockFiltre();
+  actualiserCompteurQR();
+
+}
+
+
+function deselectionnerTousQR() {
+
+  qrSelection.clear();
+
+  afficherStockFiltre();
+  actualiserCompteurQR();
 
 }
 
 
 /* =========================================================
-   MES VENTES BROCANTEUR
-========================================================= */
+   PLANCHE ÉTIQUETTES
+   ========================================================= */
 
-async function ouvrirMesVentes(){
+async function preparerEtiquettesSelectionnees() {
 
-afficherPage("salesSection");
-
-
-const message =
-document.getElementById("salesMessage");
-
-message.textContent =
-"Chargement des ventes…";
-
-message.className =
-"message";
+  if (!qrSelection.size) {
+    return;
+  }
 
 
-const [
-ventesResult,
-reversementsResult
-] =
-await Promise.all([
+  /*
+   * On recharge les articles pour être certain
+   * d'imprimer les données les plus récentes.
+   */
 
-db
-.from("lignes_vente")
-.select("*")
-.eq("vendeur_id",utilisateurActuel.id)
-.order("created_at",{ascending:false}),
-
-db
-.from("reversements")
-.select("*")
-.eq("vendeur_id",utilisateurActuel.id)
-.order("created_at",{ascending:false})
-
-]);
+  const ids =
+    Array.from(qrSelection);
 
 
-if(ventesResult.error){
+  const { data, error } =
+    await db
+      .from("articles")
+      .select("*")
+      .in("id", ids)
+      .order("reference");
 
-message.textContent =
-"Impossible de charger les ventes : " +
-ventesResult.error.message;
 
-message.className =
-"message error";
+  if (error) {
 
-return;
+    alert(
+      "Impossible de préparer les étiquettes : " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  const articles =
+    (data || []).filter(article =>
+      (
+        article.statut_reception === "receptionne" ||
+        article.statut_reception === "ecart"
+      ) &&
+      Number(article.quantite_recue || 0) > 0
+    );
+
+
+  if (!articles.length) {
+
+    alert(
+      "Aucun objet réceptionné parmi la sélection."
+    );
+
+    return;
+
+  }
+
+
+  construirePlancheEtiquettes(articles);
+
+  afficherSection("labelsSection");
+
+}
+
+
+function construirePlancheEtiquettes(articles) {
+
+  const conteneur =
+    document.getElementById("printPages");
+
+  conteneur.innerHTML = "";
+
+
+  /*
+   * 12 petites étiquettes par A4 :
+   * 2 colonnes × 6 lignes.
+   */
+
+  const taillePage = 12;
+
+
+  for (
+    let debut = 0;
+    debut < articles.length;
+    debut += taillePage
+  ) {
+
+    const page =
+      document.createElement("div");
+
+    page.className =
+      "print-page";
+
+
+    const lot =
+      articles.slice(
+        debut,
+        debut + taillePage
+      );
+
+
+    lot.forEach(article => {
+
+      const etiquette =
+        document.createElement("div");
+
+      etiquette.className =
+        "sale-label";
+
+
+      const infos =
+        document.createElement("div");
+
+      infos.className =
+        "sale-label-info";
+
+
+      infos.innerHTML = `
+
+        <div class="sale-label-brand">
+          VIDE DECO
+        </div>
+
+        <div class="sale-label-name">
+          ${echapperHTML(article.nom || "Objet")}
+        </div>
+
+        <div class="sale-label-category">
+          ${echapperHTML(article.categorie || "")}
+        </div>
+
+        <div class="sale-label-reference">
+          RÉF. ${echapperHTML(article.reference || "—")}
+        </div>
+
+        <div class="sale-label-price">
+          ${formaterPrix(article.prix)}
+        </div>
+
+      `;
+
+
+      const qr =
+        document.createElement("div");
+
+      qr.className =
+        "sale-label-qr";
+
+
+      etiquette.appendChild(infos);
+      etiquette.appendChild(qr);
+
+      page.appendChild(etiquette);
+
+
+      new QRCode(
+        qr,
+        {
+          text:`VIDEDECO:${article.id}`,
+          width:160,
+          height:160,
+          correctLevel:QRCode.CorrectLevel.H
+        }
+      );
+
+    });
+
+
+    conteneur.appendChild(page);
+
+  }
 
 }
 
 
-if(reversementsResult.error){
-
-message.textContent =
-"Impossible de charger les reversements : " +
-reversementsResult.error.message;
-
-message.className =
-"message error";
-
-return;
-
-}
-
-
-message.textContent = "";
-
-
-const ventes =
-ventesResult.data || [];
-
-const reversements =
-reversementsResult.data || [];
-
-
-let ca = 0;
-let commission = 0;
-let net = 0;
-
-
-ventes.forEach(ligne=>{
-
-const q =
-Number(ligne.quantite) || 0;
-
-const prix =
-Number(ligne.prix_unitaire) || 0;
-
-ca += prix * q;
-
-commission +=
-Number(ligne.montant_commission) || 0;
-
-net +=
-Number(ligne.montant_vendeur) || 0;
-
-});
-
-
-const dejaRecu =
-reversements.reduce(
-(total,r)=>
-total +
-(Number(r.montant) || 0),
-0
-);
-
-
-const reste =
-Math.max(
-0,
-net - dejaRecu
-);
-
-
-document.getElementById("salesGross").textContent =
-formaterPrix(ca);
-
-document.getElementById("salesCommission").textContent =
-formaterPrix(commission);
-
-document.getElementById("salesNet").textContent =
-formaterPrix(net);
-
-document.getElementById("salesPaid").textContent =
-formaterPrix(dejaRecu);
-
-document.getElementById("salesRemaining").textContent =
-formaterPrix(reste);
-
-
-const zone =
-document.getElementById("salesList");
-
-zone.innerHTML = "";
-
-
-if(!ventes.length){
-
-zone.innerHTML =
-`
-<div class="empty-state">
-AUCUNE VENTE POUR LE MOMENT.
-</div>
-`;
-
-}
-else{
-
-ventes.forEach(ligne=>{
-
-const q =
-Number(ligne.quantite) || 0;
-
-const total =
-Number(ligne.prix_unitaire) * q;
-
-const element =
-document.createElement("div");
-
-element.className =
-"sale-row";
-
-
-element.innerHTML =
-`
-
-<div>
-${formaterDate(ligne.created_at)}
-</div>
-
-<div>
-
-<div class="sale-ref">
-${escapeHTML(ligne.reference_article || "—")}
-</div>
-
-<div class="sale-name">
-${escapeHTML(ligne.nom_article || "Article")}
-</div>
-
-</div>
-
-<div>
-QTÉ ${q}
-<br>
-${Number(ligne.taux_commission) || 0}% COMM.
-</div>
-
-<div>
-
-<strong>
-${formaterPrix(total)}
-</strong>
-
-<br>
-
-<small>
-− ${formaterPrix(ligne.montant_commission)}
-</small>
-
-</div>
-
-<div class="sale-net">
-${formaterPrix(ligne.montant_vendeur)}
-<br>
-<small>NET</small>
-</div>
-
-`;
-
-
-zone.appendChild(element);
-
-});
-
-}
-
-
-const reversementZone =
-document.getElementById("sellerRepaymentsList");
-
-reversementZone.innerHTML = "";
-
-
-if(!reversements.length){
-
-reversementZone.innerHTML =
-`
-<div class="empty-state">
-AUCUN REVERSEMENT POUR LE MOMENT.
-</div>
-`;
-
-}
-else{
-
-reversements.forEach(r=>{
-
-const row =
-document.createElement("div");
-
-row.className =
-"repayment-row";
-
-
-row.innerHTML =
-`
-
-<div>
-${formaterDate(r.created_at)}
-</div>
-
-<div>
-
-<div class="repayment-mode">
-${escapeHTML(nomModeReversement(r.mode_paiement))}
-</div>
-
-${r.note
-?
-`
-<div class="repayment-note">
-${escapeHTML(r.note)}
-</div>
-`
-:
-""
-}
-
-</div>
-
-<div></div>
-
-<div class="repayment-amount">
-${formaterPrix(r.montant)}
-</div>
-
-`;
-
-
-reversementZone.appendChild(row);
-
-});
-
-}
+function imprimerPlancheEtiquettes() {
+
+  document.body.classList.remove("print-single");
+  document.body.classList.add("print-labels");
+
+  setTimeout(
+    () => window.print(),
+    100
+  );
 
 }
 
 
 /* =========================================================
-   STOCK ADMIN
-========================================================= */
+   INVENTAIRE : OUVERTURE
+   ========================================================= */
 
-async function ouvrirStock(){
+async function ouvrirInventaire() {
 
-if(!estAdmin()){
-
-alert(
-"Accès administrateur uniquement."
-);
-
-return;
-
-}
+  if (profil.role !== "admin") {
+    return;
+  }
 
 
-afficherPage("stockSection");
+  await chargerProfils();
 
 
-const message =
-document.getElementById("stockMessage");
-
-message.textContent =
-"Chargement du stock…";
-
-
-const [
-articlesResult,
-profilsResult
-] =
-await Promise.all([
-
-db
-.from("articles")
-.select("*")
-.neq("statut","retire")
-.order("created_at",{ascending:false}),
-
-db
-.from("profils")
-.select("id,nom,prenom,enseigne,role,actif,statut_compte")
-
-]);
+  const { data, error } =
+    await db
+      .from("articles")
+      .select("*")
+      .order("created_at", {
+        ascending:false
+      });
 
 
-if(articlesResult.error){
+  if (error) {
 
-message.textContent =
-articlesResult.error.message;
+    alert(error.message);
 
-message.className =
-"message error";
+    return;
 
-return;
-
-}
+  }
 
 
-stockCache =
-articlesResult.data || [];
+  stockCache =
+    data || [];
 
 
-profilsCache = {};
+  afficherSection("inventorySection");
 
-
-if(!profilsResult.error){
-
-(profilsResult.data || [])
-.forEach(profil=>{
-
-profilsCache[profil.id] =
-profil;
-
-});
-
-}
-
-
-let disponible = 0;
-let vendus = 0;
-let valeur = 0;
-
-
-stockCache.forEach(article=>{
-
-const q =
-Number(article.quantite) || 0;
-
-const d =
-Number(article.quantite_disponible) || 0;
-
-disponible += d;
-
-vendus +=
-Math.max(
-0,
-q - d
-);
-
-valeur +=
-d *
-(Number(article.prix) || 0);
-
-});
-
-
-document.getElementById("stockReferences").textContent =
-stockCache.length;
-
-document.getElementById("stockAvailable").textContent =
-disponible;
-
-document.getElementById("stockSold").textContent =
-vendus;
-
-document.getElementById("stockValue").textContent =
-formaterPrix(valeur);
-
-message.textContent = "";
-
-afficherStockFiltre();
+  afficherBrocanteursInventaire();
 
 }
 
 
 /* =========================================================
-   FILTRE STOCK
-========================================================= */
+   BROCANTEURS INVENTAIRE
+   ========================================================= */
 
-function afficherStockFiltre(){
+function afficherBrocanteursInventaire() {
 
-const recherche =
-document
-.getElementById("stockSearch")
-.value
-.trim()
-.toLowerCase();
-
-const filtre =
-document.getElementById("stockFilter").value;
-
-const zone =
-document.getElementById("stockGrid");
-
-zone.innerHTML = "";
+  const recherche =
+    document
+      .getElementById("inventorySellerSearch")
+      .value
+      .trim()
+      .toLowerCase();
 
 
-const resultat =
-stockCache.filter(article=>{
-
-const profil =
-profilsCache[article.vendeur_id];
-
-const vendeur =
-nomProfil(profil);
-
-const texte =
-[
-article.reference,
-article.nom,
-article.categorie,
-vendeur
-]
-.join(" ")
-.toLowerCase();
+  const vendeurs =
+    profilsCache.filter(p =>
+      p.role === "brocanteur" &&
+      p.actif === true &&
+      (
+        !p.statut_compte ||
+        p.statut_compte === "actif"
+      )
+    );
 
 
-if(
-recherche &&
-!texte.includes(recherche)
-){
+  const zone =
+    document.getElementById("inventorySellers");
 
-return false;
-
-}
+  zone.innerHTML = "";
 
 
-const disponible =
-Number(article.quantite_disponible) > 0;
+  const filtres =
+    vendeurs.filter(vendeur => {
+
+      const texte = [
+        vendeur.prenom,
+        vendeur.nom,
+        vendeur.enseigne
+      ]
+      .join(" ")
+      .toLowerCase();
 
 
-if(
-filtre === "available" &&
-!disponible
-){
+      return (
+        !recherche ||
+        texte.includes(recherche)
+      );
 
-return false;
-
-}
+    });
 
 
-if(
-filtre === "sold" &&
-disponible
-){
+  if (!filtres.length) {
 
-return false;
+    zone.innerHTML =
+      `<div class="empty-state">Aucun brocanteur.</div>`;
 
-}
+    return;
 
-
-return true;
-
-});
+  }
 
 
-if(!resultat.length){
+  filtres.forEach(vendeur => {
 
-zone.innerHTML =
-`
-<div
-class="empty-state"
-style="grid-column:1/-1">
-AUCUN ARTICLE.
-</div>
-`;
-
-return;
-
-}
+    const articles =
+      stockCache.filter(
+        a => a.vendeur_id === vendeur.id
+      );
 
 
-/*
-NOUVEAU :
-le STOCK admin utilise maintenant mode="admin".
-*/
+    const referencesDeclarees =
+      articles.length;
 
-resultat.forEach(article=>{
 
-const profil =
-profilsCache[article.vendeur_id];
+    const objetsDeclares =
+      articles.reduce(
+        (somme,a) =>
+          somme +
+          Number(
+            a.quantite_declaree ??
+            a.quantite ??
+            0
+          ),
+        0
+      );
 
-zone.appendChild(
-creerCarteArticle(
-article,
-"admin",
-nomProfil(profil)
-)
-);
 
-});
+    const objetsRecus =
+      articles.reduce(
+        (somme,a) =>
+          somme +
+          Number(a.quantite_recue || 0),
+        0
+      );
+
+
+    const aControler =
+      articles.filter(
+        a =>
+          !a.statut_reception ||
+          a.statut_reception === "a_apporter"
+      ).length;
+
+
+    const ecarts =
+      articles.filter(
+        a => a.statut_reception === "ecart"
+      ).length;
+
+
+    const carte =
+      document.createElement("div");
+
+    carte.className =
+      "inventory-seller";
+
+
+    carte.innerHTML = `
+
+      <div class="inventory-seller-name">
+        ${echapperHTML(
+          vendeur.enseigne ||
+          `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+        )}
+      </div>
+
+      <div class="inventory-seller-company">
+        ${echapperHTML(
+          `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+        )}
+      </div>
+
+      <div class="inventory-seller-stats">
+        ${referencesDeclarees} référence(s)<br>
+        ${objetsDeclares} objet(s) déclaré(s)<br>
+        ${objetsRecus} objet(s) reçu(s)<br>
+        <strong>${aControler} à contrôler</strong><br>
+        ${ecarts ? `<strong>⚠ ${ecarts} écart(s)</strong>` : "Aucun écart"}
+      </div>
+
+    `;
+
+
+    carte.onclick =
+      () => ouvrirInventaireBrocanteur(vendeur.id);
+
+
+    zone.appendChild(carte);
+
+  });
 
 }
 
 
 /* =========================================================
-   ADMIN
-========================================================= */
+   INVENTAIRE BROCANTEUR
+   ========================================================= */
 
-async function ouvrirAdmin(){
+async function ouvrirInventaireBrocanteur(vendeurId) {
 
-if(!estAdmin()){
+  inventorySellerId =
+    vendeurId;
 
-alert(
-"Accès administrateur uniquement."
-);
 
-return;
+  const vendeur =
+    profilsCache.find(
+      p => p.id === vendeurId
+    );
 
-}
 
+  document.getElementById(
+    "inventorySellerTitle"
+  ).textContent =
+    (
+      vendeur?.enseigne ||
+      vendeur?.nom ||
+      "BROCANTEUR"
+    ).toUpperCase() + ".";
 
-afficherPage("adminSection");
 
+  const { data, error } =
+    await db
+      .from("articles")
+      .select("*")
+      .eq("vendeur_id", vendeurId)
+      .order("created_at", {
+        ascending:false
+      });
 
-const message =
-document.getElementById("adminMessage");
 
-message.textContent =
-"Chargement des données…";
+  if (error) {
 
-message.className =
-"message";
+    alert(error.message);
 
+    return;
 
-const [
-lignesResult,
-profilsResult,
-reversementsResult
-] =
-await Promise.all([
+  }
 
-db
-.from("lignes_vente")
-.select("*")
-.order("created_at",{ascending:false}),
 
-db
-.from("profils")
-.select(
-"id,nom,prenom,enseigne,telephone,commission,role,actif,statut_compte,created_at"
-)
-.order("created_at",{ascending:false}),
+  inventorySellerArticles =
+    data || [];
 
-db
-.from("reversements")
-.select("*")
-.order("created_at",{ascending:false})
 
-]);
+  afficherSection("inventorySellerSection");
 
-
-if(lignesResult.error){
-
-message.textContent =
-"Impossible de charger les ventes : " +
-lignesResult.error.message;
-
-message.className =
-"message error";
-
-return;
-
-}
-
-
-if(profilsResult.error){
-
-message.textContent =
-"Impossible de charger les brocanteurs : " +
-profilsResult.error.message;
-
-message.className =
-"message error";
-
-return;
-
-}
-
-
-if(reversementsResult.error){
-
-message.textContent =
-"Impossible de charger les reversements : " +
-reversementsResult.error.message;
-
-message.className =
-"message error";
-
-return;
-
-}
-
-
-const lignes =
-lignesResult.data || [];
-
-const profils =
-profilsResult.data || [];
-
-const reversements =
-reversementsResult.data || [];
-
-
-profilsCache = {};
-
-profils.forEach(p=>{
-
-profilsCache[p.id] = p;
-
-});
-
-
-const demandes =
-profils.filter(
-p=>
-p.role === "brocanteur" &&
-p.statut_compte === "en_attente"
-);
-
-
-document.getElementById("pendingCount").textContent =
-demandes.length +
-(
-demandes.length > 1
-?
-" DEMANDES EN ATTENTE"
-:
-" DEMANDE EN ATTENTE"
-);
-
-
-const demandesZone =
-document.getElementById("pendingSellers");
-
-demandesZone.innerHTML = "";
-
-
-if(!demandes.length){
-
-demandesZone.innerHTML =
-`
-<div class="empty-state">
-AUCUNE NOUVELLE DEMANDE.
-</div>
-`;
-
-}
-else{
-
-demandes.forEach(profil=>{
-
-const carte =
-document.createElement("div");
-
-carte.className =
-"request-card";
-
-
-carte.innerHTML =
-`
-
-<div>
-
-<div class="request-name">
-${escapeHTML(nomProfil(profil))}
-</div>
-
-<div class="request-details">
-
-${escapeHTML(
-[
-profil.prenom,
-profil.nom
-]
-.filter(Boolean)
-.join(" ")
-)}
-
-${profil.telephone
-?
-`
-<br>
-TÉL. ${escapeHTML(profil.telephone)}
-`
-:
-""
-}
-
-<br>
-DEMANDE DU ${formaterDate(profil.created_at)}
-
-</div>
-
-</div>
-
-
-<div class="request-commission">
-
-<label style="margin-top:0">
-Commission %
-</label>
-
-<input
-id="commission-${profil.id}"
-type="number"
-min="0"
-max="100"
-step="0.1"
-value="${Number(profil.commission) || 20}">
-
-</div>
-
-
-<div class="request-actions">
-
-<button
-class="accept-button"
-onclick="accepterBrocanteur('${profil.id}')">
-ACCEPTER
-</button>
-
-<button
-class="refuse-button"
-onclick="refuserBrocanteur('${profil.id}')">
-REFUSER
-</button>
-
-</div>
-
-`;
-
-
-demandesZone.appendChild(carte);
-
-});
-
-}
-
-
-/* CALCUL FINANCES */
-
-let ca = 0;
-let commissions = 0;
-let netVendeurs = 0;
-let totalDejaReverse = 0;
-
-const vendeurs = {};
-
-
-lignes.forEach(ligne=>{
-
-const q =
-Number(ligne.quantite) || 0;
-
-const total =
-(Number(ligne.prix_unitaire) || 0) * q;
-
-const commission =
-Number(ligne.montant_commission) || 0;
-
-const net =
-Number(ligne.montant_vendeur) || 0;
-
-
-ca += total;
-commissions += commission;
-netVendeurs += net;
-
-
-if(!vendeurs[ligne.vendeur_id]){
-
-vendeurs[ligne.vendeur_id] = {
-
-vendeur_id:
-ligne.vendeur_id,
-
-quantite:0,
-ca:0,
-commission:0,
-net:0,
-reverse:0
-
-};
-
-}
-
-
-vendeurs[ligne.vendeur_id].quantite += q;
-vendeurs[ligne.vendeur_id].ca += total;
-vendeurs[ligne.vendeur_id].commission += commission;
-vendeurs[ligne.vendeur_id].net += net;
-
-});
-
-
-reversements.forEach(r=>{
-
-const montant =
-Number(r.montant) || 0;
-
-totalDejaReverse += montant;
-
-
-if(!vendeurs[r.vendeur_id]){
-
-vendeurs[r.vendeur_id] = {
-
-vendeur_id:
-r.vendeur_id,
-
-quantite:0,
-ca:0,
-commission:0,
-net:0,
-reverse:0
-
-};
-
-}
-
-
-vendeurs[r.vendeur_id].reverse += montant;
-
-});
-
-
-const totalReste =
-Math.max(
-0,
-netVendeurs -
-totalDejaReverse
-);
-
-
-document.getElementById("adminGross").textContent =
-formaterPrix(ca);
-
-document.getElementById("adminCommission").textContent =
-formaterPrix(commissions);
-
-document.getElementById("adminSellerNet").textContent =
-formaterPrix(netVendeurs);
-
-document.getElementById("adminAlreadyPaid").textContent =
-formaterPrix(totalDejaReverse);
-
-document.getElementById("adminRemaining").textContent =
-formaterPrix(totalReste);
-
-
-/* TABLE BROCANTEURS */
-
-const tbody =
-document.getElementById("adminSellerTable");
-
-tbody.innerHTML = "";
-
-
-const brocanteurs =
-profils.filter(
-p=>
-p.role === "brocanteur" &&
-p.actif === true &&
-p.statut_compte === "actif"
-);
-
-
-if(!brocanteurs.length){
-
-tbody.innerHTML =
-`
-<tr>
-<td colspan="9">
-AUCUN BROCANTEUR ACTIF.
-</td>
-</tr>
-`;
-
-}
-
-
-brocanteurs.forEach(profil=>{
-
-const valeurs =
-vendeurs[profil.id] ||
-{
-quantite:0,
-ca:0,
-commission:0,
-net:0,
-reverse:0
-};
-
-
-const reste =
-Math.max(
-0,
-valeurs.net -
-valeurs.reverse
-);
-
-
-const tr =
-document.createElement("tr");
-
-
-tr.innerHTML =
-`
-
-<td>
-<strong>
-${escapeHTML(nomProfil(profil))}
-</strong>
-</td>
-
-<td>
-${Number(profil.commission) || 0} %
-</td>
-
-<td>${valeurs.quantite}</td>
-
-<td class="money">
-${formaterPrix(valeurs.ca)}
-</td>
-
-<td class="money">
-${formaterPrix(valeurs.commission)}
-</td>
-
-<td class="money">
-${formaterPrix(valeurs.net)}
-</td>
-
-<td class="money">
-${formaterPrix(valeurs.reverse)}
-</td>
-
-<td class="money">
-${formaterPrix(reste)}
-</td>
-
-<td>
-
-<button
-class="reverse-button"
-${reste <= 0 ? "disabled" : ""}
-onclick="ouvrirReversement(
-'${profil.id}',
-${valeurs.net},
-${valeurs.reverse}
-)">
-${reste <= 0 ? "PAYÉ" : "REVERSER"}
-</button>
-
-</td>
-
-`;
-
-
-tbody.appendChild(tr);
-
-});
-
-
-/* HISTORIQUE REVERSEMENTS */
-
-const zoneReversements =
-document.getElementById("adminRepaymentsList");
-
-zoneReversements.innerHTML = "";
-
-
-if(!reversements.length){
-
-zoneReversements.innerHTML =
-`
-<div class="empty-state">
-AUCUN REVERSEMENT ENREGISTRÉ.
-</div>
-`;
-
-}
-else{
-
-reversements.forEach(r=>{
-
-const profil =
-profilsCache[r.vendeur_id];
-
-const row =
-document.createElement("div");
-
-row.className =
-"repayment-row";
-
-
-row.innerHTML =
-`
-
-<div>
-${formaterDate(r.created_at)}
-</div>
-
-<div>
-
-<div class="repayment-seller">
-${escapeHTML(nomProfil(profil))}
-</div>
-
-${r.note
-?
-`
-<div class="repayment-note">
-${escapeHTML(r.note)}
-</div>
-`
-:
-""
-}
-
-</div>
-
-<div class="repayment-mode">
-${escapeHTML(nomModeReversement(r.mode_paiement))}
-</div>
-
-<div class="repayment-amount">
-${formaterPrix(r.montant)}
-</div>
-
-`;
-
-
-zoneReversements.appendChild(row);
-
-});
-
-}
-
-
-/* HISTORIQUE VENTES */
-
-const historique =
-document.getElementById("adminSalesList");
-
-historique.innerHTML = "";
-
-
-if(!lignes.length){
-
-historique.innerHTML =
-`
-<div class="empty-state">
-AUCUNE VENTE.
-</div>
-`;
-
-}
-else{
-
-lignes
-.slice(0,50)
-.forEach(ligne=>{
-
-const profil =
-profilsCache[ligne.vendeur_id];
-
-const total =
-(Number(ligne.prix_unitaire) || 0) *
-(Number(ligne.quantite) || 0);
-
-const row =
-document.createElement("div");
-
-row.className =
-"sale-row";
-
-
-row.innerHTML =
-`
-
-<div>
-${formaterDate(ligne.created_at)}
-</div>
-
-<div>
-
-<div class="sale-ref">
-${escapeHTML(ligne.reference_article || "—")}
-</div>
-
-<div class="sale-name">
-${escapeHTML(ligne.nom_article || "Article")}
-</div>
-
-<div style="font-size:11px;margin-top:5px">
-${escapeHTML(nomProfil(profil))}
-</div>
-
-</div>
-
-<div>
-QTÉ ${ligne.quantite}
-</div>
-
-<div>
-
-<strong>
-${formaterPrix(total)}
-</strong>
-
-<br>
-
-<small>
-Commission :
-${formaterPrix(ligne.montant_commission)}
-</small>
-
-</div>
-
-<div class="sale-net">
-${formaterPrix(ligne.montant_vendeur)}
-<br>
-<small>NET VENDEUR</small>
-</div>
-
-`;
-
-
-historique.appendChild(row);
-
-});
-
-}
-
-
-message.textContent = "";
+  actualiserResumeInventaire();
+  afficherArticlesInventaire();
 
 }
 
 
 /* =========================================================
-   ACCEPTER / REFUSER BROCANTEUR
-========================================================= */
+   RÉSUMÉ INVENTAIRE
+   ========================================================= */
 
-async function accepterBrocanteur(id){
+function actualiserResumeInventaire() {
 
-if(!estAdmin()){
-return;
-}
-
-
-const input =
-document.getElementById(
-"commission-" + id
-);
+  const articles =
+    inventorySellerArticles;
 
 
-const commission =
-Number(input.value);
+  const references =
+    articles.length;
 
 
-if(
-!Number.isFinite(commission) ||
-commission < 0 ||
-commission > 100
-){
-
-alert(
-"Le taux de commission doit être compris entre 0 et 100 %."
-);
-
-return;
-
-}
+  const declares =
+    articles.reduce(
+      (somme,a) =>
+        somme +
+        Number(
+          a.quantite_declaree ??
+          a.quantite ??
+          0
+        ),
+      0
+    );
 
 
-const profil =
-profilsCache[id];
+  const recus =
+    articles.reduce(
+      (somme,a) =>
+        somme +
+        Number(a.quantite_recue || 0),
+      0
+    );
 
 
-if(
-!confirm(
-"ACCEPTER CE BROCANTEUR ?\n\n" +
-nomProfil(profil) +
-"\nCommission VIDE DECO : " +
-commission +
-" %"
-)
-){
-
-return;
-
-}
+  const aControler =
+    articles.filter(
+      a =>
+        !a.statut_reception ||
+        a.statut_reception === "a_apporter"
+    ).length;
 
 
-try{
-
-const {
-error
-} =
-await db.rpc(
-"valider_brocanteur",
-{
-
-p_vendeur_id:
-id,
-
-p_accepter:
-true,
-
-p_commission:
-commission
-
-}
-);
+  const ecarts =
+    articles.filter(
+      a => a.statut_reception === "ecart"
+    ).length;
 
 
-if(error){
-throw error;
-}
+  document.getElementById(
+    "inventorySummary"
+  ).innerHTML = `
+
+    <div class="inventory-stat">
+
+      <div class="inventory-stat-label">
+        RÉFÉRENCES DÉCLARÉES
+      </div>
+
+      <div class="inventory-stat-value">
+        ${references}
+      </div>
+
+    </div>
 
 
-await ouvrirAdmin();
+    <div class="inventory-stat">
+
+      <div class="inventory-stat-label">
+        OBJETS DÉCLARÉS
+      </div>
+
+      <div class="inventory-stat-value">
+        ${declares}
+      </div>
+
+    </div>
 
 
-const message =
-document.getElementById("adminMessage");
+    <div class="inventory-stat highlight">
 
-message.textContent =
-"BROCANTEUR ACCEPTÉ ✓";
+      <div class="inventory-stat-label">
+        OBJETS RÉCEPTIONNÉS
+      </div>
 
-message.className =
-"message success";
+      <div class="inventory-stat-value">
+        ${recus}
+      </div>
 
-}
-
-catch(error){
-
-alert(
-"Impossible de valider le brocanteur :\n" +
-error.message
-);
-
-}
-
-}
+    </div>
 
 
-async function refuserBrocanteur(id){
+    <div class="inventory-stat ${ecarts ? "warning" : ""}">
 
-if(!estAdmin()){
-return;
-}
+      <div class="inventory-stat-label">
+        À CONTRÔLER / ÉCARTS
+      </div>
 
+      <div class="inventory-stat-value">
+        ${aControler} / ${ecarts}
+      </div>
 
-const profil =
-profilsCache[id];
+    </div>
 
-
-if(
-!confirm(
-"REFUSER CETTE DEMANDE ?\n\n" +
-nomProfil(profil)
-)
-){
-
-return;
-
-}
-
-
-try{
-
-const {
-error
-} =
-await db.rpc(
-"valider_brocanteur",
-{
-
-p_vendeur_id:id,
-p_accepter:false,
-p_commission:
-Number(profil?.commission) || 20
-
-}
-);
-
-
-if(error){
-throw error;
-}
-
-
-await ouvrirAdmin();
-
-
-const message =
-document.getElementById("adminMessage");
-
-message.textContent =
-"DEMANDE REFUSÉE.";
-
-message.className =
-"message success";
-
-}
-
-catch(error){
-
-alert(
-"Impossible de refuser la demande :\n" +
-error.message
-);
-
-}
+  `;
 
 }
 
 
 /* =========================================================
-   REVERSEMENTS
-========================================================= */
+   ARTICLES INVENTAIRE
+   ========================================================= */
 
-function ouvrirReversement(
-vendeurId,
-net,
-dejaReverse
-){
+function afficherArticlesInventaire() {
 
-if(!estAdmin()){
-return;
-}
+  const recherche =
+    document
+      .getElementById("inventoryArticleSearch")
+      .value
+      .trim()
+      .toLowerCase();
 
 
-const profil =
-profilsCache[vendeurId] || null;
+  const filtre =
+    document
+      .getElementById("inventoryArticleFilter")
+      .value;
 
 
-vendeurReversement = {
+  const articles =
+    inventorySellerArticles.filter(article => {
 
-id:vendeurId,
+      const texte = [
+        article.reference,
+        article.nom
+      ]
+      .join(" ")
+      .toLowerCase();
 
-net:
-Number(net) || 0,
 
-dejaReverse:
-Number(dejaReverse) || 0
+      const rechercheOk =
+        !recherche ||
+        texte.includes(recherche);
 
-};
 
+      const filtreOk =
+        !filtre ||
+        article.statut_reception === filtre;
 
-const reste =
-Math.max(
-0,
-vendeurReversement.net -
-vendeurReversement.dejaReverse
-);
 
+      return rechercheOk && filtreOk;
 
-document.getElementById("repaymentSeller").textContent =
-nomProfil(profil);
+    });
 
-document.getElementById("repaymentNet").textContent =
-formaterPrix(vendeurReversement.net);
 
-document.getElementById("repaymentAlready").textContent =
-formaterPrix(vendeurReversement.dejaReverse);
+  const zone =
+    document.getElementById("inventoryList");
 
-document.getElementById("repaymentRemaining").textContent =
-formaterPrix(reste);
+  zone.innerHTML = "";
 
-document.getElementById("repaymentAmount").value =
-reste.toFixed(2);
 
-document.getElementById("repaymentAmount").max =
-reste.toFixed(2);
+  if (!articles.length) {
 
-document.getElementById("repaymentMode").value =
-"virement";
+    zone.innerHTML =
+      `<div class="empty-state">Aucun objet.</div>`;
 
-document.getElementById("repaymentNote").value = "";
+    return;
 
-document.getElementById("repaymentMessage").textContent = "";
+  }
 
-document
-.getElementById("repaymentModal")
-.classList.remove("hidden");
 
-}
+  articles.forEach(article => {
 
+    const declaree =
+      Number(
+        article.quantite_declaree ??
+        article.quantite ??
+        0
+      );
 
-function fermerReversement(){
 
-document
-.getElementById("repaymentModal")
-.classList.add("hidden");
+    const recue =
+      Number(article.quantite_recue || 0);
 
-vendeurReversement = null;
 
-}
+    const ligne =
+      document.createElement("div");
 
 
-async function enregistrerReversement(){
+    let classe =
+      "inventory-item";
 
-if(
-!estAdmin() ||
-!vendeurReversement
-){
 
-return;
+    if (article.statut_reception === "receptionne") {
+      classe += " received";
+    }
 
-}
 
+    if (article.statut_reception === "ecart") {
+      classe += " difference";
+    }
 
-const message =
-document.getElementById("repaymentMessage");
 
-const montant =
-Number(
-document.getElementById("repaymentAmount").value
-);
+    ligne.className =
+      classe;
 
-const mode =
-document.getElementById("repaymentMode").value;
 
-const note =
-document.getElementById("repaymentNote").value.trim();
+    ligne.innerHTML = `
 
-const reste =
-Math.max(
-0,
-vendeurReversement.net -
-vendeurReversement.dejaReverse
-);
+      <div>
 
+        <div class="inventory-item-name">
+          ${echapperHTML(article.nom)}
+        </div>
 
-if(
-!Number.isFinite(montant) ||
-montant <= 0
-){
+        <div class="inventory-item-ref">
+          RÉF. ${echapperHTML(article.reference || "—")}
+        </div>
 
-message.textContent =
-"Indique un montant valide.";
+        <div class="object-status ${classeStatutReception(article.statut_reception)}">
+          ${statutReceptionTexte(article.statut_reception)}
+        </div>
 
-message.className =
-"message error";
+      </div>
 
-return;
 
-}
+      <div class="inventory-quantity">
+        DÉCLARÉ
+        <strong>${declaree}</strong>
+      </div>
 
 
-if(montant > reste + 0.001){
+      <div class="inventory-quantity">
+        REÇU
+        <strong>${recue}</strong>
+      </div>
 
-message.textContent =
-"Le montant ne peut pas dépasser " +
-formaterPrix(reste) +
-".";
 
-message.className =
-"message error";
+      <button
+        class="inventory-action"
+        onclick="ouvrirReceptionArticle('${article.id}')"
+      >
+        ${
+          article.statut_reception === "a_apporter"
+            ? "RÉCEPTIONNER"
+            : "CONTRÔLER / CORRIGER"
+        }
+      </button>
 
-return;
+      ${
+        article.note_reception
+        ? `
+          <div class="inventory-note">
+            <strong>NOTE :</strong>
+            ${echapperHTML(article.note_reception)}
+          </div>
+        `
+        : ""
+      }
 
-}
+    `;
 
 
-if(
-!confirm(
-"CONFIRMER LE REVERSEMENT ?\n\n" +
-"Montant : " +
-formaterPrix(montant)
-)
-){
+    zone.appendChild(ligne);
 
-return;
-
-}
-
-
-const bouton =
-document.getElementById("saveRepaymentButton");
-
-bouton.disabled = true;
-bouton.textContent = "ENREGISTREMENT…";
-
-
-try{
-
-const {
-error
-} =
-await db.rpc(
-"enregistrer_reversement",
-{
-
-p_vendeur_id:
-vendeurReversement.id,
-
-p_montant:
-montant,
-
-p_mode_paiement:
-mode,
-
-p_note:
-note || null
-
-}
-);
-
-
-if(error){
-throw error;
-}
-
-
-fermerReversement();
-
-await ouvrirAdmin();
-
-
-const adminMessage =
-document.getElementById("adminMessage");
-
-adminMessage.textContent =
-"REVERSEMENT ENREGISTRÉ ✓";
-
-adminMessage.className =
-"message success";
-
-}
-
-catch(error){
-
-message.textContent =
-"Impossible d'enregistrer le reversement : " +
-error.message;
-
-message.className =
-"message error";
-
-}
-
-finally{
-
-bouton.disabled = false;
-bouton.textContent = "ENREGISTRER";
-
-}
+  });
 
 }
 
 
 /* =========================================================
-   QR CODE
-========================================================= */
+   MODAL RÉCEPTION
+   ========================================================= */
 
-/*
-NOUVEAU :
-origine permet de savoir si le QR a été ouvert
-depuis STOCK ou MES OBJETS.
-*/
+function ouvrirReceptionArticle(articleId) {
 
-async function afficherQRCode(
-id,
-origine="objects"
-){
-
-origineQRCode =
-origine;
+  const article =
+    inventorySellerArticles.find(
+      a => a.id === articleId
+    );
 
 
-const {
-data,
-error
-} =
-await db
-.from("articles")
-.select("*")
-.eq("id",id)
-.single();
+  if (!article) {
+    return;
+  }
 
 
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-
-afficherPage("qrSection");
+  const declaree =
+    Number(
+      article.quantite_declaree ??
+      article.quantite ??
+      0
+    );
 
 
-document.getElementById("qrReference").textContent =
-"RÉF. " +
-(data.reference || "—");
-
-document.getElementById("qrName").textContent =
-data.nom;
-
-document.getElementById("qrPrice").textContent =
-formaterPrix(data.prix);
+  const valeurInitiale =
+    article.statut_reception === "a_apporter"
+      ? declaree
+      : Number(article.quantite_recue || 0);
 
 
-/*
-L'admin voit aussi le nom du brocanteur.
-*/
-
-const qrSeller =
-document.getElementById("qrSeller");
-
-qrSeller.textContent = "";
+  document.getElementById("modalTitle").innerHTML =
+    "RÉCEPTION<br>OBJET.";
 
 
-if(estAdmin()){
+  document.getElementById("modalContent").innerHTML = `
 
-let profil =
-profilsCache[data.vendeur_id];
+    <div class="modal-summary">
 
+      <div class="modal-summary-line">
+        <span>Objet</span>
+        <strong>${echapperHTML(article.nom)}</strong>
+      </div>
 
-if(!profil){
+      <div class="modal-summary-line">
+        <span>Référence</span>
+        <strong>${echapperHTML(article.reference || "—")}</strong>
+      </div>
 
-const {
-data:profilCharge
-} =
-await db
-.from("profils")
-.select("id,nom,prenom,enseigne")
-.eq("id",data.vendeur_id)
-.maybeSingle();
+      <div class="modal-summary-line total">
+        <span>Quantité déclarée</span>
+        <strong>${declaree}</strong>
+      </div>
 
-profil =
-profilCharge;
-
-}
-
-
-qrSeller.textContent =
-"BROCANTEUR : " +
-nomProfil(profil);
-
-}
+    </div>
 
 
-const zone =
-document.getElementById("qrCode");
+    <label>Quantité réellement reçue</label>
 
-zone.innerHTML = "";
+    <input
+      id="receptionQuantity"
+      type="number"
+      min="0"
+      step="1"
+      value="${valeurInitiale}"
+      oninput="actualiserEcartReception(${declaree})"
+    >
 
 
-/*
-IMPORTANT :
-on conserve exactement le QR utilisé par la caisse.
-*/
+    <div
+      id="receptionDifference"
+      class="message"
+    ></div>
 
-new QRCode(
-zone,
-{
 
-text:
-"VIDEDECO:" +
-data.id,
+    <label>Observation / écart éventuel</label>
 
-width:240,
-height:240,
+    <textarea
+      id="receptionNote"
+      placeholder="Ex. 2 objets non apportés, objet différent, emballage abîmé..."
+    >${echapperHTML(article.note_reception || "")}</textarea>
 
-correctLevel:
-QRCode.CorrectLevel.H
 
-}
-);
+    <div class="modal-actions">
+
+      <button
+        class="secondary"
+        onclick="fermerModal()"
+      >
+        ANNULER
+      </button>
+
+      <button
+        id="receptionValidateButton"
+        class="primary"
+        onclick="validerReceptionArticle('${article.id}')"
+      >
+        VALIDER LA RÉCEPTION
+      </button>
+
+    </div>
+
+  `;
+
+
+  actualiserEcartReception(declaree);
+
+  document
+    .getElementById("modalOverlay")
+    .classList.remove("hidden");
 
 }
 
 
-/*
-NOUVEAU :
-retour intelligent.
-*/
+function actualiserEcartReception(declaree) {
 
-async function retourQRCode(){
+  const champ =
+    document.getElementById("receptionQuantity");
 
-if(
-estAdmin() &&
-origineQRCode === "stock"
-){
+  const zone =
+    document.getElementById("receptionDifference");
 
-await ouvrirStock();
+
+  if (!champ || !zone) {
+    return;
+  }
+
+
+  const recue =
+    Number(champ.value);
+
+
+  if (!Number.isInteger(recue) || recue < 0) {
+
+    zone.className =
+      "message error";
+
+    zone.textContent =
+      "Quantité invalide.";
+
+    return;
+
+  }
+
+
+  const ecart =
+    recue - declaree;
+
+
+  if (ecart === 0) {
+
+    zone.className =
+      "message success";
+
+    zone.textContent =
+      "✓ CONFORME — quantité reçue identique à la quantité déclarée.";
+
+  } else {
+
+    zone.className =
+      "message";
+
+    zone.innerHTML =
+      `<strong>⚠ ÉCART : ${ecart > 0 ? "+" : ""}${ecart}</strong>`;
+
+  }
 
 }
-else{
 
-await ouvrirMesObjets();
+
+async function validerReceptionArticle(articleId) {
+
+  const quantite =
+    Number(
+      document.getElementById("receptionQuantity").value
+    );
+
+
+  const note =
+    document.getElementById("receptionNote").value.trim();
+
+
+  if (
+    !Number.isInteger(quantite) ||
+    quantite < 0
+  ) {
+
+    alert(
+      "La quantité reçue doit être un nombre entier positif ou égal à zéro."
+    );
+
+    return;
+
+  }
+
+
+  const bouton =
+    document.getElementById("receptionValidateButton");
+
+  bouton.disabled = true;
+  bouton.textContent = "ENREGISTREMENT...";
+
+
+  const { error } =
+    await db.rpc(
+      "receptionner_article",
+      {
+        p_article_id:articleId,
+        p_quantite_recue:quantite,
+        p_note:note || null
+      }
+    );
+
+
+  if (error) {
+
+    bouton.disabled = false;
+    bouton.textContent = "VALIDER LA RÉCEPTION";
+
+    alert(
+      "Erreur : " + error.message
+    );
+
+    return;
+
+  }
+
+
+  fermerModal();
+
+  await ouvrirInventaireBrocanteur(
+    inventorySellerId
+  );
 
 }
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+function fermerModal() {
+
+  document
+    .getElementById("modalOverlay")
+    .classList.add("hidden");
 
 }
 
 
 /* =========================================================
    CAISSE
-========================================================= */
+   ========================================================= */
 
-function ouvrirCaisse(){
+async function ouvrirCaisse() {
 
-if(!estAdmin()){
+  panier = [];
+  modePaiement = null;
 
-alert(
-"Accès caisse non autorisé."
-);
+  fermerScanner();
 
-return;
+  afficherSection("cashierSection");
 
-}
-
-
-panier = [];
-modePaiement = null;
-
-afficherPage("cashierSection");
-
-document.getElementById("cashReference").value = "";
-document.getElementById("cashMessage").textContent = "";
-
-reinitialiserPaiements();
-afficherPanier();
+  afficherPanier();
 
 }
 
 
-/* =========================================================
-   ARTICLE PAR RÉFÉRENCE
-========================================================= */
+function choisirPaiement(mode) {
 
-async function ajouterParReference(){
-
-const input =
-document.getElementById("cashReference");
-
-const reference =
-input.value
-.trim()
-.toUpperCase();
+  modePaiement = mode;
 
 
-if(!reference){
+  document
+    .querySelectorAll(".payment-button")
+    .forEach(bouton => {
 
-erreurCaisse(
-"Saisis une référence."
-);
+      bouton.classList.toggle(
+        "active",
+        bouton.dataset.payment === mode
+      );
 
-return;
+    });
 
 }
 
 
-const {
-data,
-error
-} =
-await db
-.from("articles")
-.select(
-"id,reference,nom,prix,quantite_disponible,statut"
-)
-.eq("reference",reference)
-.maybeSingle();
+async function rechercherArticleCaisse() {
+
+  const valeur =
+    document
+      .getElementById("cashierReference")
+      .value
+      .trim();
 
 
-if(error){
-
-erreurCaisse(error.message);
-
-return;
-
-}
+  if (!valeur) {
+    return;
+  }
 
 
-if(!data){
+  await ajouterArticleCaisseParRecherche(valeur);
 
-erreurCaisse(
-"Article introuvable : " +
-reference
-);
-
-return;
+  document.getElementById(
+    "cashierReference"
+  ).value = "";
 
 }
 
 
-ajouterArticleAuPanier(data);
+async function ajouterArticleCaisseParRecherche(valeur) {
 
-input.value = "";
+  const message =
+    document.getElementById("cashierMessage");
 
-}
-
-
-/* =========================================================
-   ARTICLE QR
-========================================================= */
-
-async function ajouterParQRCode(
-texte
-){
-
-if(
-!texte ||
-!texte.startsWith("VIDEDECO:")
-){
-
-erreurCaisse(
-"Ce QR code n'est pas un QR VIDE DECO."
-);
-
-return;
-
-}
+  message.className = "message";
+  message.textContent = "";
 
 
-const id =
-texte.substring(
-"VIDEDECO:".length
-);
+  let requete =
+    db
+      .from("articles")
+      .select("*");
 
 
-const {
-data,
-error
-} =
-await db
-.from("articles")
-.select(
-"id,reference,nom,prix,quantite_disponible,statut"
-)
-.eq("id",id)
-.maybeSingle();
+  if (valeur.startsWith("VIDEDECO:")) {
+
+    const id =
+      valeur.replace("VIDEDECO:","");
+
+    requete =
+      requete.eq("id",id);
+
+  } else {
+
+    requete =
+      requete.eq("reference",valeur);
+
+  }
 
 
-if(error){
-
-erreurCaisse(error.message);
-
-return;
-
-}
+  const { data, error } =
+    await requete.maybeSingle();
 
 
-if(!data){
+  if (error || !data) {
 
-erreurCaisse(
-"Article introuvable."
-);
+    message.className =
+      "message error";
 
-return;
+    message.textContent =
+      "Objet introuvable.";
 
-}
+    return;
+
+  }
 
 
-ajouterArticleAuPanier(data);
+  /*
+   * SÉCURITÉ :
+   * seuls les objets réellement réceptionnés
+   * peuvent être vendus.
+   */
+
+  if (
+    data.statut_reception !== "receptionne" &&
+    data.statut_reception !== "ecart"
+  ) {
+
+    message.className =
+      "message error";
+
+    message.textContent =
+      "Cet objet n'a pas encore été réceptionné en boutique.";
+
+    return;
+
+  }
+
+
+  if (
+    Number(data.quantite_disponible || 0) <= 0
+  ) {
+
+    message.className =
+      "message error";
+
+    message.textContent =
+      "Cet objet n'est plus disponible.";
+
+    return;
+
+  }
+
+
+  ajouterAuPanier(data);
 
 }
 
 
 /* =========================================================
    PANIER
-========================================================= */
+   ========================================================= */
 
-function ajouterArticleAuPanier(
-article
-){
+function ajouterAuPanier(article) {
 
-if(article.statut === "retire"){
-
-erreurCaisse(
-"Cet article a été retiré."
-);
-
-return;
-
-}
+  const existant =
+    panier.find(
+      ligne => ligne.id === article.id
+    );
 
 
-if(
-article.statut === "vendu" ||
-Number(article.quantite_disponible) <= 0
-){
+  if (existant) {
 
-erreurCaisse(
-"Cet article n'est plus disponible."
-);
+    if (
+      existant.quantitePanier >=
+      Number(article.quantite_disponible || 0)
+    ) {
 
-return;
+      document.getElementById(
+        "cashierMessage"
+      ).className = "message error";
 
-}
+      document.getElementById(
+        "cashierMessage"
+      ).textContent =
+        "Quantité disponible insuffisante.";
 
+      return;
 
-const existant =
-panier.find(
-item=>
-item.id === article.id
-);
-
-
-if(existant){
-
-if(
-existant.quantite + 1 >
-Number(article.quantite_disponible)
-){
-
-erreurCaisse(
-"Stock insuffisant."
-);
-
-return;
-
-}
+    }
 
 
-existant.quantite++;
+    existant.quantitePanier += 1;
 
-}
-else{
+  } else {
 
-panier.push({
-...article,
-quantite:1
-});
+    panier.push({
+      ...article,
+      quantitePanier:1
+    });
+
+  }
+
+
+  document.getElementById(
+    "cashierMessage"
+  ).className = "message success";
+
+  document.getElementById(
+    "cashierMessage"
+  ).textContent =
+    `${article.nom} ajouté au panier.`;
+
+
+  afficherPanier();
 
 }
 
 
-const message =
-document.getElementById("cashMessage");
+function modifierQuantitePanier(articleId, delta) {
 
-message.textContent =
-"ARTICLE AJOUTÉ ✓";
-
-message.className =
-"message success";
-
-afficherPanier();
-
-}
+  const ligne =
+    panier.find(
+      x => x.id === articleId
+    );
 
 
-function afficherPanier(){
-
-const zone =
-document.getElementById("cartItems");
-
-zone.innerHTML = "";
+  if (!ligne) {
+    return;
+  }
 
 
-if(!panier.length){
-
-zone.innerHTML =
-`
-<div class="cart-empty">
-Aucun article dans le panier.
-</div>
-`;
-
-}
-else{
-
-panier.forEach(
-(item,index)=>{
-
-const ligne =
-document.createElement("div");
-
-ligne.className =
-"cart-item";
+  const nouvelle =
+    ligne.quantitePanier + delta;
 
 
-ligne.innerHTML =
-`
+  if (nouvelle <= 0) {
 
-<div class="object-reference">
-${escapeHTML(item.reference || "")}
-</div>
+    panier =
+      panier.filter(
+        x => x.id !== articleId
+      );
 
-<div class="cart-name">
-${escapeHTML(item.nom)}
-</div>
+  } else if (
+    nouvelle <=
+    Number(ligne.quantite_disponible || 0)
+  ) {
 
-<div class="cart-line">
+    ligne.quantitePanier =
+      nouvelle;
 
-<div class="cart-price">
-${formaterPrix(
-Number(item.prix) *
-item.quantite
-)}
-</div>
-
-<div class="quantity-controls">
-
-<button onclick="changerQuantite(${index},-1)">
-−
-</button>
-
-<span>
-${item.quantite}
-</span>
-
-<button onclick="changerQuantite(${index},1)">
-+
-</button>
-
-</div>
-
-</div>
-
-<button
-style="border:0;background:none;text-decoration:underline;margin-top:10px"
-onclick="supprimerDuPanier(${index})">
-Retirer
-</button>
-
-`;
+  }
 
 
-zone.appendChild(ligne);
-
-});
+  afficherPanier();
 
 }
 
 
-document.getElementById("cartTotal").textContent =
-formaterPrix(
-calculerTotal()
-);
+function afficherPanier() {
 
+  const zone =
+    document.getElementById("cartContent");
 
-actualiserBoutonVente();
+  const totals =
+    document.getElementById("cartTotals");
 
-}
 
+  zone.innerHTML = "";
 
-function changerQuantite(
-index,
-variation
-){
 
-const item =
-panier[index];
+  if (!panier.length) {
 
+    zone.innerHTML = `
+      <div class="cart-empty">
+        AUCUN OBJET DANS LE PANIER
+      </div>
+    `;
 
-if(!item){
-return;
-}
+    totals.classList.add("hidden");
 
+    return;
 
-const nouvelle =
-item.quantite +
-variation;
+  }
 
 
-if(nouvelle <= 0){
+  panier.forEach(ligne => {
 
-supprimerDuPanier(index);
+    const div =
+      document.createElement("div");
 
-return;
+    div.className =
+      "cart-item";
 
-}
 
+    div.innerHTML = `
 
-if(
-nouvelle >
-Number(item.quantite_disponible)
-){
+      <div class="sale-ref">
+        ${echapperHTML(ligne.reference || "")}
+      </div>
 
-erreurCaisse(
-"Stock insuffisant."
-);
+      <div class="cart-name">
+        ${echapperHTML(ligne.nom)}
+      </div>
 
-return;
+      <div class="cart-line">
 
-}
+        <div class="cart-price">
+          ${formaterPrix(
+            Number(ligne.prix) *
+            ligne.quantitePanier
+          )}
+        </div>
 
+        <div class="quantity-controls">
 
-item.quantite =
-nouvelle;
+          <button
+            onclick="modifierQuantitePanier('${ligne.id}',-1)"
+          >
+            −
+          </button>
 
-afficherPanier();
+          <span>
+            ${ligne.quantitePanier}
+          </span>
 
-}
+          <button
+            onclick="modifierQuantitePanier('${ligne.id}',1)"
+          >
+            +
+          </button>
 
+        </div>
 
-function supprimerDuPanier(
-index
-){
+      </div>
 
-panier.splice(
-index,
-1
-);
+    `;
 
-afficherPanier();
 
-}
+    zone.appendChild(div);
 
+  });
 
-function calculerTotal(){
 
-return panier.reduce(
-(total,item)=>
-total +
-(
-Number(item.prix) *
-item.quantite
-),
-0
-);
+  const total =
+    panier.reduce(
+      (somme,ligne) =>
+        somme +
+        Number(ligne.prix) *
+        ligne.quantitePanier,
+      0
+    );
 
-}
 
+  document.getElementById(
+    "cartTotalValue"
+  ).textContent =
+    formaterPrix(total);
 
-/* =========================================================
-   PAIEMENT
-========================================================= */
 
-function choisirPaiement(
-mode
-){
-
-if(
-![
-"carte",
-"especes",
-"cheque"
-].includes(mode)
-){
-
-return;
-
-}
-
-
-modePaiement =
-mode;
-
-
-document
-.querySelectorAll(".payment-button")
-.forEach(
-button=>
-button.classList.remove("active")
-);
-
-
-const ids = {
-
-carte:
-"paymentCarte",
-
-especes:
-"paymentEspeces",
-
-cheque:
-"paymentCheque"
-
-};
-
-
-document.getElementById(
-ids[mode]
-)
-.classList.add("active");
-
-
-actualiserBoutonVente();
-
-}
-
-
-function reinitialiserPaiements(){
-
-modePaiement = null;
-
-document
-.querySelectorAll(".payment-button")
-.forEach(
-button=>
-button.classList.remove("active")
-);
-
-}
-
-
-function actualiserBoutonVente(){
-
-const bouton =
-document.getElementById("validateSaleButton");
-
-bouton.disabled =
-(
-!panier.length ||
-!modePaiement
-);
-
-
-if(
-panier.length &&
-modePaiement
-){
-
-bouton.textContent =
-"VALIDER LE PAIEMENT — " +
-formaterPrix(
-calculerTotal()
-);
-
-}
-else{
-
-bouton.textContent =
-"VALIDER LE PAIEMENT";
-
-}
-
-}
-
-
-function nomPaiement(mode){
-
-if(mode === "carte"){
-return "CARTE";
-}
-
-if(mode === "especes"){
-return "ESPÈCES";
-}
-
-if(mode === "cheque"){
-return "CHÈQUE";
-}
-
-return mode || "";
-
-}
-
-
-/* =========================================================
-   VALIDATION VENTE
-========================================================= */
-
-async function validerVente(){
-
-if(
-!panier.length ||
-!modePaiement
-){
-
-return;
-
-}
-
-
-const total =
-calculerTotal();
-
-
-const confirmation =
-confirm(
-
-"CONFIRMER LE PAIEMENT ?\n\n" +
-
-"Total : " +
-formaterPrix(total) +
-"\n" +
-
-"Paiement : " +
-nomPaiement(modePaiement) +
-"\n\n" +
-
-"Confirme uniquement si le paiement a bien été encaissé."
-
-);
-
-
-if(!confirmation){
-return;
-}
-
-
-const bouton =
-document.getElementById("validateSaleButton");
-
-bouton.disabled = true;
-bouton.textContent = "ENREGISTREMENT…";
-
-
-const articlesRPC =
-panier.map(
-item=>({
-
-article_id:
-item.id,
-
-quantite:
-item.quantite
-
-})
-);
-
-
-try{
-
-const {
-data,
-error
-} =
-await db.rpc(
-"valider_vente",
-{
-
-p_articles:
-articlesRPC,
-
-p_mode_paiement:
-modePaiement
-
-}
-);
-
-
-if(error){
-throw error;
-}
-
-
-const paiement =
-modePaiement;
-
-
-panier = [];
-modePaiement = null;
-
-
-afficherPage("saleSuccessSection");
-
-
-document.getElementById("successTotal").textContent =
-formaterPrix(total);
-
-document.getElementById("successPayment").textContent =
-"Paiement : " +
-nomPaiement(paiement);
-
-
-console.log(
-"Vente :",
-data
-);
-
-}
-
-catch(error){
-
-erreurCaisse(
-"La vente n'a pas été enregistrée : " +
-error.message
-);
-
-actualiserBoutonVente();
-
-}
+  totals.classList.remove("hidden");
 
 }
 
 
 /* =========================================================
    SCANNER
-========================================================= */
+   ========================================================= */
 
-async function demarrerScanner(){
+async function basculerScanner() {
 
-const reader =
-document.getElementById("reader");
+  if (scannerActif) {
 
+    fermerScanner();
 
-if(scannerActif){
+    return;
 
-await arreterScanner();
-
-return;
-
-}
+  }
 
 
-if(typeof Html5Qrcode === "undefined"){
+  const zone =
+    document.getElementById("reader");
 
-erreurCaisse(
-"Le module caméra n'est pas disponible."
-);
-
-return;
-
-}
+  zone.classList.remove("hidden");
 
 
-reader.classList.remove("hidden");
+  try {
+
+    html5QrCode =
+      new Html5Qrcode("reader");
 
 
-try{
+    await html5QrCode.start(
 
-scanner =
-new Html5Qrcode("reader");
+      {
+        facingMode:"environment"
+      },
 
+      {
+        fps:10,
+        qrbox:{
+          width:250,
+          height:250
+        }
+      },
 
-await scanner.start(
+      async texte => {
 
-{
-facingMode:
-"environment"
-},
+        await fermerScanner();
 
-{
-fps:10,
+        await ajouterArticleCaisseParRecherche(
+          texte
+        );
 
-qrbox:{
-width:250,
-height:250
-}
-},
+      },
 
-async texte=>{
+      () => {}
 
-await arreterScanner();
-
-await ajouterParQRCode(
-texte
-);
-
-},
-
-()=>{}
-
-);
+    );
 
 
-scannerActif = true;
+    scannerActif = true;
 
 
-document.getElementById("scanButton").textContent =
-"ARRÊTER LE SCANNER";
+  } catch (error) {
 
-}
+    zone.classList.add("hidden");
 
-catch(error){
+    document.getElementById(
+      "cashierMessage"
+    ).className = "message error";
 
-scannerActif = false;
-scanner = null;
+    document.getElementById(
+      "cashierMessage"
+    ).textContent =
+      "Impossible d'ouvrir la caméra : " +
+      error.message;
 
-reader.classList.add("hidden");
-
-
-erreurCaisse(
-"Impossible d'ouvrir la caméra. Vérifie l'autorisation caméra dans Safari."
-);
-
-}
+  }
 
 }
 
 
-async function arreterScanner(){
+async function fermerScanner() {
 
-if(
-scanner &&
-scannerActif
-){
+  if (
+    html5QrCode &&
+    scannerActif
+  ) {
 
-try{
-await scanner.stop();
-}
-catch(error){}
+    try {
+      await html5QrCode.stop();
+    } catch (_) {}
 
-try{
-await scanner.clear();
-}
-catch(error){}
+    try {
+      await html5QrCode.clear();
+    } catch (_) {}
 
-}
+  }
 
 
-scanner = null;
-scannerActif = false;
+  html5QrCode = null;
+  scannerActif = false;
 
 
-const reader =
-document.getElementById("reader");
+  const zone =
+    document.getElementById("reader");
 
+  if (zone) {
 
-if(reader){
-reader.classList.add("hidden");
-}
+    zone.innerHTML = "";
+    zone.classList.add("hidden");
 
-
-const bouton =
-document.getElementById("scanButton");
-
-
-if(bouton){
-
-bouton.textContent =
-"📷 SCANNER UN QR CODE";
-
-}
-
-}
-
-
-async function quitterCaisse(){
-
-await arreterScanner();
-
-retourDashboard();
-
-}
-
-
-function nouvelleVente(){
-
-ouvrirCaisse();
+  }
 
 }
 
 
 /* =========================================================
-   ERREUR CAISSE
-========================================================= */
+   VALIDER VENTE
+   ========================================================= */
 
-function erreurCaisse(
-texte
-){
+async function validerVente() {
 
-const message =
-document.getElementById("cashMessage");
+  if (!panier.length) {
 
-message.textContent =
-texte;
+    alert("Le panier est vide.");
 
-message.className =
-"message error";
+    return;
+
+  }
+
+
+  if (!modePaiement) {
+
+    alert(
+      "Choisis le mode de paiement."
+    );
+
+    return;
+
+  }
+
+
+  const bouton =
+    document.getElementById("validateSaleButton");
+
+  bouton.disabled = true;
+  bouton.textContent = "VALIDATION...";
+
+
+  const payload =
+    panier.map(ligne => ({
+      article_id:ligne.id,
+      quantite:ligne.quantitePanier
+    }));
+
+
+  const { data, error } =
+    await db.rpc(
+      "valider_vente",
+      {
+        p_articles:payload,
+        p_mode_paiement:modePaiement
+      }
+    );
+
+
+  bouton.disabled = false;
+  bouton.textContent = "VALIDER LA VENTE";
+
+
+  if (error) {
+
+    alert(
+      "Vente impossible : " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  const total =
+    panier.reduce(
+      (somme,ligne) =>
+        somme +
+        Number(ligne.prix) *
+        ligne.quantitePanier,
+      0
+    );
+
+
+  document.getElementById(
+    "saleSuccessTotal"
+  ).textContent =
+    formaterPrix(total);
+
+
+  document.getElementById(
+    "saleSuccessNumber"
+  ).textContent =
+    data
+      ? `VENTE ${data}`
+      : "VENTE ENREGISTRÉE";
+
+
+  panier = [];
+  modePaiement = null;
+
+  afficherSection("saleSuccessSection");
+
+}
+
+
+function nouvelleVente() {
+
+  ouvrirCaisse();
 
 }
 
 
 /* =========================================================
-   UTILITAIRES
-========================================================= */
+   MES VENTES BROCANTEUR
+   ========================================================= */
 
-function formaterPrix(
-valeur
-){
+async function ouvrirMesVentes() {
 
-return new Intl.NumberFormat(
-"fr-FR",
-{
-style:"currency",
-currency:"EUR"
-}
-)
-.format(
-Number(valeur) || 0
-);
+  afficherSection("sellerSalesSection");
 
-}
 
+  const { data:lignes, error } =
+    await db
+      .from("lignes_vente")
+      .select("*")
+      .eq("vendeur_id",utilisateur.id)
+      .order("created_at",{
+        ascending:false
+      });
 
-function formaterDate(
-date
-){
 
-if(!date){
-return "—";
-}
+  if (error) {
 
+    document.getElementById(
+      "sellerSalesList"
+    ).innerHTML =
+      `<div class="empty-state">${echapperHTML(error.message)}</div>`;
 
-return new Intl.DateTimeFormat(
-"fr-FR",
-{
-day:"2-digit",
-month:"2-digit",
-year:"numeric",
-hour:"2-digit",
-minute:"2-digit"
-}
-)
-.format(
-new Date(date)
-);
+    return;
 
-}
+  }
 
 
-function texteStatut(
-statut
-){
+  const { data:reversements } =
+    await db
+      .from("reversements")
+      .select("*")
+      .eq("vendeur_id",utilisateur.id)
+      .order("created_at",{
+        ascending:false
+      });
 
-const noms = {
 
-a_apporter:
-"À APPORTER",
+  const ventes =
+    lignes || [];
 
-en_boutique:
-"EN BOUTIQUE",
 
-vendu:
-"VENDU",
+  const totalCA =
+    ventes.reduce(
+      (s,a) =>
+        s +
+        Number(a.prix_unitaire) *
+        Number(a.quantite),
+      0
+    );
 
-retire:
-"RETIRÉ"
 
-};
+  const commission =
+    ventes.reduce(
+      (s,a) =>
+        s +
+        Number(a.montant_commission || 0),
+      0
+    );
 
 
-return (
-noms[statut] ||
-String(statut || "ACTIF")
-.toUpperCase()
-);
+  const du =
+    ventes.reduce(
+      (s,a) =>
+        s +
+        Number(a.montant_vendeur || 0),
+      0
+    );
 
-}
 
+  const reverse =
+    (reversements || []).reduce(
+      (s,r) =>
+        s +
+        Number(r.montant || 0),
+      0
+    );
 
-function nomProfil(
-profil
-){
 
-if(!profil){
-return "Brocanteur";
-}
+  const reste =
+    du - reverse;
 
 
-if(profil.enseigne){
-return profil.enseigne;
-}
+  document.getElementById(
+    "sellerSalesStats"
+  ).innerHTML = `
 
+    <div class="stat">
+      <div class="stat-label">CHIFFRE D'AFFAIRES</div>
+      <div class="stat-value">${formaterPrix(totalCA)}</div>
+    </div>
 
-return [
-profil.prenom,
-profil.nom
-]
-.filter(Boolean)
-.join(" ") ||
-"Brocanteur";
+    <div class="stat">
+      <div class="stat-label">COMMISSION VIDE DECO</div>
+      <div class="stat-value">${formaterPrix(commission)}</div>
+    </div>
 
-}
+    <div class="stat">
+      <div class="stat-label">DÉJÀ REVERSÉ</div>
+      <div class="stat-value">${formaterPrix(reverse)}</div>
+    </div>
 
+    <div class="stat green">
+      <div class="stat-label">RESTE À RECEVOIR</div>
+      <div class="stat-value">${formaterPrix(reste)}</div>
+    </div>
 
-function nomModeReversement(
-mode
-){
+  `;
 
-const modes = {
 
-virement:
-"VIREMENT",
+  const liste =
+    document.getElementById("sellerSalesList");
 
-especes:
-"ESPÈCES",
+  liste.innerHTML = "";
 
-cheque:
-"CHÈQUE",
 
-autre:
-"AUTRE"
+  if (!ventes.length) {
 
-};
+    liste.innerHTML =
+      `<div class="empty-state">Aucune vente pour le moment.</div>`;
 
+  } else {
 
-return (
-modes[mode] ||
-String(mode || "—")
-.toUpperCase()
-);
+    ventes.forEach(ligne => {
 
-}
+      const div =
+        document.createElement("div");
 
+      div.className =
+        "sale-row";
 
-function traduireErreurAuth(
-texte
-){
 
-const erreur =
-String(texte || "");
+      div.innerHTML = `
 
+        <div class="sale-ref">
+          ${formaterDate(ligne.created_at)}<br>
+          ${echapperHTML(ligne.reference_article || "")}
+        </div>
 
-if(
-erreur.toLowerCase().includes(
-"invalid login credentials"
-)
-){
+        <div class="sale-name">
+          ${echapperHTML(ligne.nom_article || "Objet")}
+        </div>
 
-return "E-mail ou mot de passe incorrect.";
+        <div>
+          Qté ${ligne.quantite}
+        </div>
 
-}
+        <div>
+          ${formaterPrix(
+            Number(ligne.prix_unitaire) *
+            Number(ligne.quantite)
+          )}
+        </div>
 
+        <div class="sale-net">
+          ${formaterPrix(ligne.montant_vendeur)}
+        </div>
 
-if(
-erreur.toLowerCase().includes(
-"user already registered"
-)
-){
+      `;
 
-return "Un compte existe déjà avec cette adresse e-mail.";
 
-}
+      liste.appendChild(div);
 
+    });
 
-if(
-erreur.toLowerCase().includes(
-"password should be"
-)
-){
+  }
 
-return "Le mot de passe n'est pas assez long.";
 
-}
-
-
-if(
-erreur.toLowerCase().includes(
-"email not confirmed"
-)
-){
-
-return "Ton adresse e-mail doit d'abord être confirmée. Vérifie ta boîte mail.";
-
-}
-
-
-return erreur;
-
-}
-
-
-function escapeHTML(
-valeur
-){
-
-return String(
-valeur ?? ""
-)
-.replaceAll(
-"&",
-"&amp;"
-)
-.replaceAll(
-"<",
-"&lt;"
-)
-.replaceAll(
-">",
-"&gt;"
-)
-.replaceAll(
-'"',
-"&quot;"
-)
-.replaceAll(
-"'",
-"&#039;"
-);
+  afficherReversements(
+    "sellerRepaymentsList",
+    reversements || [],
+    false
+  );
 
 }
 
 
 /* =========================================================
-   ÉVÉNEMENTS
-========================================================= */
+   ADMIN FINANCES
+   ========================================================= */
 
-document
-.getElementById("loginButton")
-.addEventListener(
-"click",
-connexion
-);
+async function ouvrirAdmin() {
 
-
-document
-.getElementById("logoutButton")
-.addEventListener(
-"click",
-deconnexion
-);
+  if (profil.role !== "admin") {
+    return;
+  }
 
 
-document
-.getElementById("saveArticleButton")
-.addEventListener(
-"click",
-enregistrerArticle
-);
+  afficherSection("adminSection");
 
 
-document
-.getElementById("password")
-.addEventListener(
-"keydown",
-event=>{
-
-if(event.key === "Enter"){
-connexion();
-}
-
-}
-);
+  await chargerProfils();
 
 
-document
-.getElementById("signupPasswordConfirm")
-.addEventListener(
-"keydown",
-event=>{
+  const [
+    lignesResult,
+    reversementsResult
+  ] = await Promise.all([
 
-if(event.key === "Enter"){
-inscriptionBrocanteur();
-}
+    db
+      .from("lignes_vente")
+      .select("*")
+      .order("created_at",{
+        ascending:false
+      }),
 
-}
-);
+    db
+      .from("reversements")
+      .select("*")
+      .order("created_at",{
+        ascending:false
+      })
+
+  ]);
 
 
-document
-.getElementById("cashReference")
-.addEventListener(
-"keydown",
-event=>{
+  const lignes =
+    lignesResult.data || [];
 
-if(event.key === "Enter"){
-ajouterParReference();
-}
+  const reversements =
+    reversementsResult.data || [];
+
+
+  afficherDemandesBrocanteurs();
+
+  afficherFinancesAdmin(
+    lignes,
+    reversements
+  );
+
+  afficherReversements(
+    "adminRepaymentsList",
+    reversements,
+    true
+  );
 
 }
-);
-
-
-document
-.getElementById("stockSearch")
-.addEventListener(
-"input",
-afficherStockFiltre
-);
-
-
-document
-.getElementById("stockFilter")
-.addEventListener(
-"change",
-afficherStockFiltre
-);
 
 
 /* =========================================================
-   SESSION AU CHARGEMENT
-========================================================= */
+   DEMANDES BROCANTEURS
+   ========================================================= */
 
-async function initialiser(){
+function afficherDemandesBrocanteurs() {
 
-const {
-data,
-error
-} =
-await db.auth.getSession();
+  const demandes =
+    profilsCache.filter(
+      p =>
+        p.role === "brocanteur" &&
+        p.statut_compte === "en_attente"
+    );
 
 
-if(
-!error &&
-data.session
-){
+  const zone =
+    document.getElementById("pendingSellers");
 
-await afficherUtilisateur(
-data.session.user
+  zone.innerHTML = "";
+
+
+  if (!demandes.length) {
+
+    zone.innerHTML =
+      `<div class="empty-state">Aucune demande en attente.</div>`;
+
+    return;
+
+  }
+
+
+  demandes.forEach(vendeur => {
+
+    const carte =
+      document.createElement("div");
+
+    carte.className =
+      "request-card";
+
+
+    carte.innerHTML = `
+
+      <div>
+
+        <div class="request-name">
+          ${echapperHTML(
+            vendeur.enseigne ||
+            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+          )}
+        </div>
+
+        <div class="request-details">
+          ${echapperHTML(
+            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+          )}<br>
+          ${echapperHTML(vendeur.telephone || "")}
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <label style="margin-top:0">
+          Commission VIDE DECO %
+        </label>
+
+        <input
+          id="commission-${vendeur.id}"
+          class="request-commission"
+          type="number"
+          min="0"
+          max="100"
+          step="0.1"
+          value="${Number(vendeur.commission ?? 20)}"
+        >
+
+      </div>
+
+
+      <div class="request-actions">
+
+        <button
+          class="accept-button"
+          onclick="validerBrocanteur('${vendeur.id}',true)"
+        >
+          ACCEPTER
+        </button>
+
+        <button
+          class="refuse-button"
+          onclick="validerBrocanteur('${vendeur.id}',false)"
+        >
+          REFUSER
+        </button>
+
+      </div>
+
+    `;
+
+
+    zone.appendChild(carte);
+
+  });
+
+}
+
+
+async function validerBrocanteur(
+  vendeurId,
+  accepter
+) {
+
+  const champ =
+    document.getElementById(
+      `commission-${vendeurId}`
+    );
+
+
+  const commission =
+    Number(champ?.value || 20);
+
+
+  if (
+    accepter &&
+    (
+      !Number.isFinite(commission) ||
+      commission < 0 ||
+      commission > 100
+    )
+  ) {
+
+    alert(
+      "La commission doit être comprise entre 0 et 100 %."
+    );
+
+    return;
+
+  }
+
+
+  const { error } =
+    await db.rpc(
+      "valider_brocanteur",
+      {
+        p_vendeur_id:vendeurId,
+        p_accepter:accepter,
+        p_commission:commission
+      }
+    );
+
+
+  if (error) {
+
+    alert(
+      "Erreur : " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await ouvrirAdmin();
+
+}
+
+
+/* =========================================================
+   FINANCES ADMIN
+   ========================================================= */
+
+function afficherFinancesAdmin(
+  lignes,
+  reversements
+) {
+
+  const vendeurs =
+    profilsCache.filter(
+      p =>
+        p.role === "brocanteur" &&
+        p.actif === true &&
+        (
+          !p.statut_compte ||
+          p.statut_compte === "actif"
+        )
+    );
+
+
+  const totalCA =
+    lignes.reduce(
+      (s,l) =>
+        s +
+        Number(l.prix_unitaire) *
+        Number(l.quantite),
+      0
+    );
+
+
+  const totalCommission =
+    lignes.reduce(
+      (s,l) =>
+        s +
+        Number(l.montant_commission || 0),
+      0
+    );
+
+
+  const totalDu =
+    lignes.reduce(
+      (s,l) =>
+        s +
+        Number(l.montant_vendeur || 0),
+      0
+    );
+
+
+  const totalReverse =
+    reversements.reduce(
+      (s,r) =>
+        s +
+        Number(r.montant || 0),
+      0
+    );
+
+
+  const totalReste =
+    totalDu - totalReverse;
+
+
+  document.getElementById(
+    "adminStats"
+  ).innerHTML = `
+
+    <div class="stat">
+      <div class="stat-label">CA TOTAL</div>
+      <div class="stat-value">${formaterPrix(totalCA)}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">COMMISSION VIDE DECO</div>
+      <div class="stat-value">${formaterPrix(totalCommission)}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">DÛ AUX BROCANTEURS</div>
+      <div class="stat-value">${formaterPrix(totalDu)}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">DÉJÀ REVERSÉ</div>
+      <div class="stat-value">${formaterPrix(totalReverse)}</div>
+    </div>
+
+    <div class="stat green">
+      <div class="stat-label">RESTE À REVERSER</div>
+      <div class="stat-value">${formaterPrix(totalReste)}</div>
+    </div>
+
+  `;
+
+
+  const tbody =
+    document.getElementById("adminFinanceBody");
+
+  tbody.innerHTML = "";
+
+
+  vendeurs.forEach(vendeur => {
+
+    const ventesVendeur =
+      lignes.filter(
+        l => l.vendeur_id === vendeur.id
+      );
+
+
+    const reversementsVendeur =
+      reversements.filter(
+        r => r.vendeur_id === vendeur.id
+      );
+
+
+    const ca =
+      ventesVendeur.reduce(
+        (s,l) =>
+          s +
+          Number(l.prix_unitaire) *
+          Number(l.quantite),
+        0
+      );
+
+
+    const commission =
+      ventesVendeur.reduce(
+        (s,l) =>
+          s +
+          Number(l.montant_commission || 0),
+        0
+      );
+
+
+    const du =
+      ventesVendeur.reduce(
+        (s,l) =>
+          s +
+          Number(l.montant_vendeur || 0),
+        0
+      );
+
+
+    const reverse =
+      reversementsVendeur.reduce(
+        (s,r) =>
+          s +
+          Number(r.montant || 0),
+        0
+      );
+
+
+    const reste =
+      du - reverse;
+
+
+    const tr =
+      document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td>
+        <strong>
+          ${echapperHTML(
+            vendeur.enseigne ||
+            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+          )}
+        </strong>
+      </td>
+
+      <td>
+        ${Number(vendeur.commission ?? 20)} %
+      </td>
+
+      <td>
+        ${ventesVendeur.length}
+      </td>
+
+      <td class="money">
+        ${formaterPrix(ca)}
+      </td>
+
+      <td class="money">
+        ${formaterPrix(commission)}
+      </td>
+
+      <td class="money">
+        ${formaterPrix(du)}
+      </td>
+
+      <td class="money">
+        ${formaterPrix(reverse)}
+      </td>
+
+      <td class="money">
+        ${formaterPrix(reste)}
+      </td>
+
+      <td>
+        <button
+          class="reverse-button"
+          ${reste <= 0 ? "disabled" : ""}
+          onclick="ouvrirModalReversement('${vendeur.id}',${reste})"
+        >
+          REVERSER
+        </button>
+      </td>
+
+    `;
+
+
+    tbody.appendChild(tr);
+
+  });
+
+}
+
+
+/* =========================================================
+   REVERSEMENTS
+   ========================================================= */
+
+function afficherReversements(
+  elementId,
+  reversements,
+  afficherVendeur
+) {
+
+  const zone =
+    document.getElementById(elementId);
+
+  zone.innerHTML = "";
+
+
+  if (!reversements.length) {
+
+    zone.innerHTML =
+      `<div class="empty-state">Aucun reversement enregistré.</div>`;
+
+    return;
+
+  }
+
+
+  reversements.forEach(reversement => {
+
+    const ligne =
+      document.createElement("div");
+
+    ligne.className =
+      "repayment-row";
+
+
+    ligne.innerHTML = `
+
+      <div>
+        ${formaterDate(reversement.created_at)}
+      </div>
+
+      <div>
+
+        ${
+          afficherVendeur
+          ? `
+            <div class="repayment-seller">
+              ${echapperHTML(
+                nomBrocanteur(reversement.vendeur_id)
+              )}
+            </div>
+          `
+          : ""
+        }
+
+        <div class="repayment-mode">
+          ${echapperHTML(
+            String(reversement.mode_paiement || "")
+            .toUpperCase()
+          )}
+        </div>
+
+        ${
+          reversement.note
+          ? `
+            <div class="repayment-note">
+              ${echapperHTML(reversement.note)}
+            </div>
+          `
+          : ""
+        }
+
+      </div>
+
+      <div class="repayment-amount">
+        ${formaterPrix(reversement.montant)}
+      </div>
+
+      <div>
+        EFFECTUÉ
+      </div>
+
+    `;
+
+
+    zone.appendChild(ligne);
+
+  });
+
+}
+
+
+function ouvrirModalReversement(
+  vendeurId,
+  reste
+) {
+
+  const vendeur =
+    profilsCache.find(
+      p => p.id === vendeurId
+    );
+
+
+  document.getElementById("modalTitle").innerHTML =
+    "NOUVEAU<br>VERSEMENT.";
+
+
+  document.getElementById("modalContent").innerHTML = `
+
+    <div class="modal-summary">
+
+      <div class="modal-summary-line">
+        <span>Brocanteur</span>
+        <strong>
+          ${echapperHTML(
+            vendeur?.enseigne ||
+            vendeur?.nom ||
+            "Brocanteur"
+          )}
+        </strong>
+      </div>
+
+      <div class="modal-summary-line total">
+        <span>Reste à reverser</span>
+        <strong>${formaterPrix(reste)}</strong>
+      </div>
+
+    </div>
+
+
+    <label>Montant</label>
+
+    <input
+      id="repaymentAmount"
+      type="number"
+      min="0.01"
+      step="0.01"
+      max="${reste}"
+      value="${Number(reste).toFixed(2)}"
+    >
+
+
+    <label>Mode de paiement</label>
+
+    <select id="repaymentMode">
+      <option value="virement">Virement</option>
+      <option value="especes">Espèces</option>
+      <option value="cheque">Chèque</option>
+      <option value="autre">Autre</option>
+    </select>
+
+
+    <label>Note</label>
+
+    <textarea
+      id="repaymentNote"
+      placeholder="Facultatif"
+    ></textarea>
+
+
+    <div class="modal-actions">
+
+      <button
+        class="secondary"
+        onclick="fermerModal()"
+      >
+        ANNULER
+      </button>
+
+      <button
+        id="repaymentValidateButton"
+        class="primary"
+        onclick="enregistrerReversement('${vendeurId}')"
+      >
+        ENREGISTRER
+      </button>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById("modalOverlay")
+    .classList.remove("hidden");
+
+}
+
+
+async function enregistrerReversement(
+  vendeurId
+) {
+
+  const montant =
+    Number(
+      document.getElementById(
+        "repaymentAmount"
+      ).value
+    );
+
+
+  const mode =
+    document.getElementById(
+      "repaymentMode"
+    ).value;
+
+
+  const note =
+    document.getElementById(
+      "repaymentNote"
+    ).value.trim();
+
+
+  if (
+    !Number.isFinite(montant) ||
+    montant <= 0
+  ) {
+
+    alert(
+      "Entre un montant valide."
+    );
+
+    return;
+
+  }
+
+
+  const bouton =
+    document.getElementById(
+      "repaymentValidateButton"
+    );
+
+  bouton.disabled = true;
+  bouton.textContent = "ENREGISTREMENT...";
+
+
+  const { error } =
+    await db.rpc(
+      "enregistrer_reversement",
+      {
+        p_vendeur_id:vendeurId,
+        p_montant:montant,
+        p_mode_paiement:mode,
+        p_note:note || null
+      }
+    );
+
+
+  if (error) {
+
+    bouton.disabled = false;
+    bouton.textContent = "ENREGISTRER";
+
+    alert(
+      "Erreur : " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  fermerModal();
+
+  await ouvrirAdmin();
+
+}
+
+
+/* =========================================================
+   DÉMARRAGE
+   ========================================================= */
+
+async function initialiserApplication() {
+
+  const {
+    data
+  } = await db.auth.getSession();
+
+
+  if (
+    data.session &&
+    data.session.user
+  ) {
+
+    utilisateur =
+      data.session.user;
+
+    await afficherUtilisateur();
+
+  } else {
+
+    afficherSection("loginSection");
+
+  }
+
+}
+
+
+db.auth.onAuthStateChange(
+  (event, session) => {
+
+    if (
+      event === "SIGNED_OUT" &&
+      !session
+    ) {
+
+      utilisateur = null;
+      profil = null;
+
+    }
+
+  }
 );
 
-}
-else{
 
-afficherPage("loginSection");
-
-}
-
-}
-
-
-initialiser();
+initialiserApplication();
 
 </script>
 
 </body>
-
 </html>
