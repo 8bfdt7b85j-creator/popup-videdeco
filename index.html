@@ -847,7 +847,8 @@ textarea {
   font-weight:800;
 }
 
-.sale-amount {
+.sale-amount,
+.sale-net {
   font-size:17px;
   font-weight:900;
   text-align:right;
@@ -855,8 +856,6 @@ textarea {
 
 .sale-net {
   font-size:18px;
-  font-weight:900;
-  text-align:right;
 }
 
 .sales-note {
@@ -1029,24 +1028,18 @@ footer {
 
 </head>
 
-
 <body>
 
 <header>
 
-  <div class="logo">
-    VIDE DECO
-  </div>
+  <div class="logo">VIDE DECO</div>
 
-  <div class="tag">
-    POP-UP MANAGEMENT
-  </div>
+  <div class="tag">POP-UP MANAGEMENT</div>
 
 </header>
 
 
 <main>
-
 
 <!-- =====================================================
      LOGIN
@@ -1092,10 +1085,7 @@ footer {
       Se connecter
     </button>
 
-    <div
-      id="loginMessage"
-      class="message"
-    ></div>
+    <div id="loginMessage" class="message"></div>
 
   </div>
 
@@ -1292,26 +1282,17 @@ footer {
      AJOUT / MODIFICATION ARTICLE
 ===================================================== -->
 
-<section
-  id="articleSection"
-  class="article-page hidden"
->
+<section id="articleSection" class="article-page hidden">
 
   <div class="page-header">
 
     <div>
 
-      <div
-        id="articleEyebrow"
-        class="eyebrow"
-      >
+      <div id="articleEyebrow" class="eyebrow">
         NOUVEL OBJET
       </div>
 
-      <div
-        id="articlePageTitle"
-        class="page-title"
-      >
+      <div id="articlePageTitle" class="page-title">
         AJOUTER<br>
         UN OBJET.
       </div>
@@ -1449,11 +1430,7 @@ footer {
       Enregistrer l'objet
     </button>
 
-
-    <div
-      id="articleMessage"
-      class="message"
-    ></div>
+    <div id="articleMessage" class="message"></div>
 
   </div>
 
@@ -1493,10 +1470,7 @@ footer {
 
   <div class="objects-toolbar">
 
-    <div
-      id="objectsCount"
-      class="objects-count"
-    >
+    <div id="objectsCount" class="objects-count">
       Chargement…
     </div>
 
@@ -1509,16 +1483,9 @@ footer {
 
   </div>
 
+  <div id="objectsMessage" class="message"></div>
 
-  <div
-    id="objectsMessage"
-    class="message"
-  ></div>
-
-  <div
-    id="objectsGrid"
-    class="objects-grid"
-  ></div>
+  <div id="objectsGrid" class="objects-grid"></div>
 
 </section>
 
@@ -1554,10 +1521,7 @@ footer {
   </div>
 
 
-  <div
-    id="salesMessage"
-    class="message"
-  ></div>
+  <div id="salesMessage" class="message"></div>
 
 
   <div class="sales-stats">
@@ -1568,10 +1532,7 @@ footer {
         CHIFFRE<br>D'AFFAIRES
       </div>
 
-      <div
-        id="salesGross"
-        class="sales-stat-value"
-      >
+      <div id="salesGross" class="sales-stat-value">
         0,00 €
       </div>
 
@@ -1584,10 +1545,7 @@ footer {
         COMMISSION<br>VIDE DECO
       </div>
 
-      <div
-        id="salesCommission"
-        class="sales-stat-value"
-      >
+      <div id="salesCommission" class="sales-stat-value">
         0,00 €
       </div>
 
@@ -1600,10 +1558,7 @@ footer {
         NET À<br>RECEVOIR
       </div>
 
-      <div
-        id="salesNet"
-        class="sales-stat-value"
-      >
+      <div id="salesNet" class="sales-stat-value">
         0,00 €
       </div>
 
@@ -1616,10 +1571,7 @@ footer {
         ARTICLES<br>VENDUS
       </div>
 
-      <div
-        id="salesQuantity"
-        class="sales-stat-value"
-      >
+      <div id="salesQuantity" class="sales-stat-value">
         0
       </div>
 
@@ -1631,7 +1583,6 @@ footer {
   <div class="sales-section-title">
     HISTORIQUE
   </div>
-
 
   <div id="salesList" class="sales-list"></div>
 
@@ -1680,30 +1631,15 @@ footer {
 
   <div class="qr-box">
 
-    <div
-      id="qrReference"
-      class="qr-reference"
-    ></div>
+    <div id="qrReference" class="qr-reference"></div>
 
-    <div
-      id="qrName"
-      class="qr-name"
-    ></div>
+    <div id="qrName" class="qr-name"></div>
 
-    <div
-      id="qrPrice"
-      class="qr-price"
-    ></div>
+    <div id="qrPrice" class="qr-price"></div>
 
-    <div
-      id="qrCode"
-      class="qr-code"
-    ></div>
+    <div id="qrCode" class="qr-code"></div>
 
-    <div
-      id="qrHelp"
-      class="qr-help"
-    >
+    <div id="qrHelp" class="qr-help">
       Le QR code contient l'identifiant unique de
       l'article. Le prix est récupéré dans la base
       au moment du passage en caisse.
@@ -1789,16 +1725,9 @@ footer {
       </button>
 
 
-      <div
-        id="reader"
-        class="hidden"
-      ></div>
+      <div id="reader" class="hidden"></div>
 
-
-      <div
-        id="cashMessage"
-        class="message"
-      ></div>
+      <div id="cashMessage" class="message"></div>
 
 
       <div class="form-info">
@@ -1833,10 +1762,7 @@ footer {
           TOTAL
         </div>
 
-        <div
-          id="cartTotal"
-          class="cart-total-value"
-        >
+        <div id="cartTotal" class="cart-total-value">
           0,00 €
         </div>
 
@@ -1905,10 +1831,7 @@ footer {
      VENTE RÉUSSIE
 ===================================================== -->
 
-<section
-  id="saleSuccessSection"
-  class="hidden"
->
+<section id="saleSuccessSection" class="hidden">
 
   <div class="sale-success">
 
@@ -1921,10 +1844,7 @@ footer {
       ENREGISTRÉE.
     </div>
 
-    <div
-      id="successTotal"
-      class="sale-success-total"
-    >
+    <div id="successTotal" class="sale-success-total">
       0,00 €
     </div>
 
@@ -1948,7 +1868,6 @@ footer {
   </div>
 
 </section>
-
 
 </main>
 
@@ -2472,7 +2391,9 @@ async function enregistrerArticle() {
     articlePhoto.files[0] || null;
 
 
-    /* MODIFICATION */
+    /* =====================================================
+       MODIFICATION
+    ===================================================== */
 
     if (articleEnModification) {
 
@@ -2586,7 +2507,9 @@ async function enregistrerArticle() {
     }
 
 
-    /* NOUVEAU */
+    /* =====================================================
+       NOUVEAU
+    ===================================================== */
 
     const {data:article,error} =
     await db
@@ -2940,7 +2863,9 @@ async function chargerMesObjets() {
       "VENDU";
 
       remove.disabled = true;
-      remove.style.opacity = ".3";
+
+      remove.style.opacity =
+      ".3";
 
     }
 
@@ -2953,7 +2878,8 @@ async function chargerMesObjets() {
       () =>
       retirerArticle(
         article.id,
-        article.nom
+        article.nom,
+        article.photo_url
       );
 
     }
@@ -3050,7 +2976,9 @@ async function modifierArticle(id) {
   articlePhoto.value = "";
 
   articleMessage.textContent = "";
-  articleMessage.className = "message";
+
+  articleMessage.className =
+  "message";
 
 
   if (data.photo_url) {
@@ -3078,7 +3006,8 @@ async function modifierArticle(id) {
   document.getElementById(
     "articleEyebrow"
   ).textContent =
-  data.reference || "MODIFICATION";
+  data.reference ||
+  "MODIFICATION";
 
 
   document.getElementById(
@@ -3110,7 +3039,8 @@ async function modifierArticle(id) {
 
 async function retirerArticle(
   id,
-  nom
+  nom,
+  photoUrl
 ) {
 
   const ok =
@@ -3145,6 +3075,62 @@ async function retirerArticle(
     );
 
     return;
+
+  }
+
+
+  /*
+     Suppression de la photo :
+     elle est tentée après suppression de l'article.
+     Si elle échoue, cela ne bloque pas l'inventaire.
+  */
+
+  if (photoUrl) {
+
+    try {
+
+      const marqueur =
+      "/photos-articles/";
+
+      const position =
+      photoUrl.indexOf(marqueur);
+
+
+      if (position !== -1) {
+
+        let chemin =
+        photoUrl.substring(
+          position +
+          marqueur.length
+        );
+
+        chemin =
+        chemin.split("?")[0];
+
+        chemin =
+        decodeURIComponent(
+          chemin
+        );
+
+
+        await db.storage
+        .from("photos-articles")
+        .remove([
+          chemin
+        ]);
+
+      }
+
+    }
+
+    catch(errorPhoto) {
+
+      console.log(
+        "Photo non supprimée :",
+        errorPhoto
+      );
+
+    }
 
   }
 
@@ -3385,11 +3371,7 @@ function afficherHistoriqueVentes(
     element.innerHTML = `
 
       <div class="sale-date">
-
-        ${formaterDate(
-          ligne.created_at
-        )}
-
+        ${formaterDate(ligne.created_at)}
       </div>
 
 
@@ -3490,7 +3472,9 @@ async function afficherQRCode(id) {
 
   cacherToutesLesPages();
 
-  qrSection.classList.remove("hidden");
+  qrSection.classList.remove(
+    "hidden"
+  );
 
   window.scrollTo(0,0);
 
@@ -3511,7 +3495,9 @@ async function afficherQRCode(id) {
   document.getElementById(
     "qrPrice"
   ).textContent =
-  formaterPrix(data.prix);
+  formaterPrix(
+    data.prix
+  );
 
 
   const zone =
@@ -3526,15 +3512,18 @@ async function afficherQRCode(id) {
   new QRCode(
     zone,
     {
+
       text:
       "VIDEDECO:" +
       data.id,
 
       width:240,
+
       height:240,
 
       correctLevel:
       QRCode.CorrectLevel.H
+
     }
   );
 
@@ -3545,7 +3534,7 @@ async function afficherQRCode(id) {
    OUVRIR CAISSE
 ========================================================= */
 
-function ouvrirCaisse() {
+async function ouvrirCaisse() {
 
   if (
     !profilActuel ||
@@ -3561,8 +3550,13 @@ function ouvrirCaisse() {
   }
 
 
+  await arreterScanner();
+
+
   panier = [];
+
   modePaiement = null;
+
 
   cacherToutesLesPages();
 
@@ -3570,12 +3564,17 @@ function ouvrirCaisse() {
     "hidden"
   );
 
+
   document.getElementById(
     "cashReference"
   ).value = "";
 
+
   cashMessage.textContent = "";
-  cashMessage.className = "message";
+
+  cashMessage.className =
+  "message";
+
 
   reinitialiserPaiements();
 
@@ -3676,9 +3675,14 @@ async function ajouterParQRCode(
   texte
 ) {
 
+  const valeur =
+  String(
+    texte || ""
+  ).trim();
+
+
   if (
-    !texte ||
-    !texte.startsWith(
+    !valeur.startsWith(
       "VIDEDECO:"
     )
   ) {
@@ -3693,9 +3697,27 @@ async function ajouterParQRCode(
 
 
   const id =
-  texte.substring(
+  valeur.substring(
     "VIDEDECO:".length
   );
+
+
+  if (!id) {
+
+    erreurCaisse(
+      "QR code invalide."
+    );
+
+    return;
+
+  }
+
+
+  cashMessage.textContent =
+  "Recherche de l'article…";
+
+  cashMessage.className =
+  "message";
 
 
   const {data,error} =
@@ -3704,7 +3726,10 @@ async function ajouterParQRCode(
   .select(
     "id, reference, nom, prix, quantite_disponible, statut"
   )
-  .eq("id",id)
+  .eq(
+    "id",
+    id
+  )
   .maybeSingle();
 
 
@@ -3869,11 +3894,15 @@ function afficherPanier() {
       ligne.innerHTML = `
 
         <div class="cart-ref">
-          ${echapperHTML(item.reference || "")}
+          ${echapperHTML(
+            item.reference || ""
+          )}
         </div>
 
         <div class="cart-name">
-          ${echapperHTML(item.nom)}
+          ${echapperHTML(
+            item.nom
+          )}
         </div>
 
         <div class="cart-line">
@@ -3890,6 +3919,7 @@ function afficherPanier() {
           <div class="quantity-controls">
 
             <button
+              type="button"
               onclick="changerQuantite(${index},-1)"
             >
               −
@@ -3900,6 +3930,7 @@ function afficherPanier() {
             </span>
 
             <button
+              type="button"
               onclick="changerQuantite(${index},1)"
             >
               +
@@ -3910,6 +3941,7 @@ function afficherPanier() {
         </div>
 
         <button
+          type="button"
           class="cart-remove"
           onclick="supprimerDuPanier(${index})"
         >
@@ -3918,7 +3950,9 @@ function afficherPanier() {
       `;
 
 
-      zone.appendChild(ligne);
+      zone.appendChild(
+        ligne
+      );
 
     });
 
@@ -4023,7 +4057,7 @@ function calculerTotal() {
       total +
       (
         Number(item.prix) *
-        item.quantite
+        Number(item.quantite)
       ),
 
     0
@@ -4149,7 +4183,7 @@ function actualiserBoutonVente() {
 
 
 /* =========================================================
-   TEXTE MODE DE PAIEMENT
+   MODE PAIEMENT
 ========================================================= */
 
 function nomPaiement(mode) {
@@ -4171,6 +4205,124 @@ function nomPaiement(mode) {
 }
 
 
+/*
+   La base accepte actuellement :
+   carte / especes / autre
+
+   L'interface affiche "CHÈQUE",
+   mais transmet "autre" à la base.
+*/
+
+function modePaiementSupabase(
+  mode
+) {
+
+  if (mode === "cheque") {
+    return "autre";
+  }
+
+  return mode;
+
+}
+
+
+/* =========================================================
+   RAFRAÎCHIR LE PANIER AVANT VENTE
+========================================================= */
+
+async function verifierPanierAvantVente() {
+
+  for (
+    const item of panier
+  ) {
+
+    const {data,error} =
+    await db
+    .from("articles")
+    .select(
+      "id, reference, nom, prix, quantite_disponible, statut"
+    )
+    .eq(
+      "id",
+      item.id
+    )
+    .maybeSingle();
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    if (!data) {
+
+      throw new Error(
+        "L'article " +
+        (
+          item.reference ||
+          item.nom
+        ) +
+        " n'existe plus."
+      );
+
+    }
+
+
+    if (
+      data.statut === "vendu" ||
+      data.statut === "retire" ||
+      Number(
+        data.quantite_disponible
+      ) <
+      Number(
+        item.quantite
+      )
+    ) {
+
+      throw new Error(
+        "L'article " +
+        (
+          data.reference ||
+          data.nom
+        ) +
+        " n'est plus disponible dans la quantité demandée."
+      );
+
+    }
+
+
+    /*
+       On remet à jour le nom,
+       le prix et le stock depuis Supabase.
+    */
+
+    item.reference =
+    data.reference;
+
+    item.nom =
+    data.nom;
+
+    item.prix =
+    Number(
+      data.prix
+    );
+
+    item.quantite_disponible =
+    Number(
+      data.quantite_disponible
+    );
+
+    item.statut =
+    data.statut;
+
+  }
+
+
+  afficherPanier();
+
+}
+
+
 /* =========================================================
    VALIDER VENTE
 ========================================================= */
@@ -4185,28 +4337,6 @@ async function validerVente() {
   }
 
 
-  const total =
-  calculerTotal();
-
-
-  const confirmation =
-  confirm(
-    "CONFIRMER LE PAIEMENT ?\n\n" +
-    "Total : " +
-    formaterPrix(total) +
-    "\n" +
-    "Paiement : " +
-    nomPaiement(modePaiement) +
-    "\n\n" +
-    "Confirme uniquement si le paiement a bien été encaissé."
-  );
-
-
-  if (!confirmation) {
-    return;
-  }
-
-
   const bouton =
   document.getElementById(
     "validateSaleButton"
@@ -4215,40 +4345,100 @@ async function validerVente() {
 
   bouton.disabled = true;
 
-  bouton.textContent =
-  "ENREGISTREMENT…";
-
 
   cashMessage.textContent =
-  "Enregistrement de la vente…";
+  "Vérification du panier…";
 
   cashMessage.className =
   "message";
 
 
-  const articlesRPC =
-  panier.map(
-    item => ({
-      article_id:
-      item.id,
-
-      quantite:
-      item.quantite
-    })
-  );
-
-
   try {
+
+    /*
+       On vérifie une dernière fois
+       les prix et disponibilités.
+    */
+
+    await verifierPanierAvantVente();
+
+
+    const total =
+    calculerTotal();
+
+
+    const confirmation =
+    confirm(
+      "CONFIRMER LE PAIEMENT ?\n\n" +
+      "Total : " +
+      formaterPrix(total) +
+      "\n" +
+      "Paiement : " +
+      nomPaiement(modePaiement) +
+      "\n\n" +
+      "Confirme uniquement si le paiement a bien été encaissé."
+    );
+
+
+    if (!confirmation) {
+
+      actualiserBoutonVente();
+
+      cashMessage.textContent = "";
+
+      return;
+
+    }
+
+
+    bouton.disabled = true;
+
+    bouton.textContent =
+    "ENREGISTREMENT…";
+
+
+    cashMessage.textContent =
+    "Enregistrement de la vente…";
+
+    cashMessage.className =
+    "message";
+
+
+    const articlesRPC =
+    panier.map(
+      item => ({
+
+        article_id:
+        item.id,
+
+        quantite:
+        item.quantite
+
+      })
+    );
+
+
+    const paiementAffiche =
+    modePaiement;
+
+
+    const paiementBase =
+    modePaiementSupabase(
+      modePaiement
+    );
+
 
     const {data,error} =
     await db.rpc(
       "valider_vente",
       {
+
         p_articles:
         articlesRPC,
 
         p_mode_paiement:
-        modePaiement
+        paiementBase
+
       }
     );
 
@@ -4261,11 +4451,9 @@ async function validerVente() {
     const totalFinal =
     total;
 
-    const paiementFinal =
-    modePaiement;
-
 
     panier = [];
+
     modePaiement = null;
 
 
@@ -4289,7 +4477,7 @@ async function validerVente() {
     ).textContent =
     "Paiement : " +
     nomPaiement(
-      paiementFinal
+      paiementAffiche
     );
 
 
@@ -4316,8 +4504,6 @@ async function validerVente() {
     );
 
 
-    bouton.disabled = false;
-
     actualiserBoutonVente();
 
   }
@@ -4337,7 +4523,7 @@ function nouvelleVente() {
 
 
 /* =========================================================
-   SCANNER
+   SCANNER QR
 ========================================================= */
 
 async function demarrerScanner() {
@@ -4351,6 +4537,20 @@ async function demarrerScanner() {
   if (scannerActif) {
 
     await arreterScanner();
+
+    return;
+
+  }
+
+
+  if (
+    typeof Html5Qrcode ===
+    "undefined"
+  ) {
+
+    erreurCaisse(
+      "Le lecteur QR n'a pas pu être chargé. Utilise la référence manuelle."
+    );
 
     return;
 
@@ -4463,13 +4663,30 @@ async function arreterScanner() {
 
       await scanner.stop();
 
+    }
+
+    catch(error) {
+
+      console.log(
+        "Arrêt scanner :",
+        error
+      );
+
+    }
+
+
+    try {
+
       scanner.clear();
 
     }
 
     catch(error) {
 
-      console.log(error);
+      console.log(
+        "Nettoyage scanner :",
+        error
+      );
 
     }
 
@@ -4529,7 +4746,9 @@ function quitterCaisse() {
    ERREUR CAISSE
 ========================================================= */
 
-function erreurCaisse(message) {
+function erreurCaisse(
+  message
+) {
 
   cashMessage.textContent =
   message;
@@ -4544,9 +4763,13 @@ function erreurCaisse(message) {
    OUTILS
 ========================================================= */
 
-function formaterPrix(prix) {
+function formaterPrix(
+  prix
+) {
 
-  return Number(prix)
+  return Number(
+    prix || 0
+  )
   .toLocaleString(
     "fr-FR",
     {
@@ -4559,7 +4782,9 @@ function formaterPrix(prix) {
 }
 
 
-function formaterDate(date) {
+function formaterDate(
+  date
+) {
 
   if (!date) {
     return "—";
@@ -4590,7 +4815,9 @@ function formaterDate(date) {
 }
 
 
-function texteStatut(statut) {
+function texteStatut(
+  statut
+) {
 
   switch(statut) {
 
@@ -4614,10 +4841,14 @@ function texteStatut(statut) {
 }
 
 
-function echapperHTML(texte) {
+function echapperHTML(
+  texte
+) {
 
   const div =
-  document.createElement("div");
+  document.createElement(
+    "div"
+  );
 
   div.textContent =
   texte || "";
@@ -4650,10 +4881,22 @@ function afficherConnexion() {
     "hidden"
   );
 
+
   utilisateurActuel = null;
+
   profilActuel = null;
+
+  articleEnModification = null;
+
   panier = [];
+
   modePaiement = null;
+
+
+  loginMessage.textContent = "";
+
+  loginMessage.className =
+  "message";
 
 }
 
@@ -4784,4 +5027,5 @@ verifierSession();
 </script>
 
 </body>
+
 </html>
