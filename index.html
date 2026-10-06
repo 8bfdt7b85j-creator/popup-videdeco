@@ -16,7 +16,7 @@
 
 /* =========================================================
    VIDE DECO
-   ========================================================= */
+========================================================= */
 
 * {
   box-sizing:border-box;
@@ -40,10 +40,10 @@ html {
 
 body {
   margin:0;
+  min-height:100vh;
   background:var(--bg);
   color:var(--black);
   font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
 }
 
 button,
@@ -69,7 +69,7 @@ button:disabled {
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 header {
   width:100%;
@@ -96,7 +96,7 @@ header {
 
 /* =========================================================
    STRUCTURE
-   ========================================================= */
+========================================================= */
 
 main {
   width:min(1200px,90%);
@@ -105,18 +105,18 @@ main {
 }
 
 .eyebrow {
+  margin-bottom:15px;
   font-size:11px;
   font-weight:900;
   letter-spacing:1.2px;
   text-transform:uppercase;
-  margin-bottom:15px;
 }
 
 h1 {
+  margin-bottom:35px;
   font-size:clamp(52px,8vw,92px);
   line-height:.85;
   letter-spacing:-5px;
-  margin-bottom:35px;
 }
 
 h2 {
@@ -167,20 +167,12 @@ h2 {
   color:white;
 }
 
-.danger {
-  border:2px solid var(--black);
-  background:var(--red);
-  color:white;
-  padding:12px 17px;
-  font-weight:900;
-}
-
 label {
   display:block;
+  margin:20px 0 8px;
   font-size:11px;
   font-weight:900;
   text-transform:uppercase;
-  margin:20px 0 8px;
 }
 
 input,
@@ -236,7 +228,7 @@ textarea {
 
 /* =========================================================
    LOGIN
-   ========================================================= */
+========================================================= */
 
 .login,
 .signup {
@@ -303,7 +295,7 @@ textarea {
 
 /* =========================================================
    DASHBOARD
-   ========================================================= */
+========================================================= */
 
 .logout {
   border:2px solid var(--black);
@@ -329,6 +321,15 @@ textarea {
 }
 
 .card:hover {
+  background:var(--black);
+  color:white;
+}
+
+.card.stock-check-card {
+  background:var(--green);
+}
+
+.card.stock-check-card:hover {
   background:var(--black);
   color:white;
 }
@@ -363,8 +364,8 @@ textarea {
 
 
 /* =========================================================
-   FORMULAIRE ARTICLE
-   ========================================================= */
+   ARTICLE
+========================================================= */
 
 .article-page {
   width:min(760px,100%);
@@ -392,6 +393,27 @@ textarea {
   font-weight:900;
 }
 
+.auto-reference {
+  border:2px solid var(--black);
+  background:var(--green);
+  padding:14px;
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  font-size:13px;
+  font-weight:900;
+}
+
+.auto-reference.saved {
+  background:white;
+}
+
+.reference-help {
+  margin-top:7px;
+  font-size:10px;
+  line-height:1.4;
+}
+
 .photo-zone {
   margin-top:20px;
   padding:22px;
@@ -409,7 +431,7 @@ textarea {
 
 /* =========================================================
    STOCK
-   ========================================================= */
+========================================================= */
 
 .toolbar {
   display:flex;
@@ -556,8 +578,8 @@ textarea {
 
 
 /* =========================================================
-   QR SELECTION
-   ========================================================= */
+   CARTELS
+========================================================= */
 
 .label-selector {
   position:absolute;
@@ -595,6 +617,10 @@ textarea {
   flex-wrap:wrap;
 }
 
+.label-toolbar.seller-toolbar {
+  background:var(--green);
+}
+
 .label-toolbar-left {
   display:flex;
   gap:8px;
@@ -607,6 +633,13 @@ textarea {
   font-weight:900;
 }
 
+.label-help {
+  width:100%;
+  margin-top:5px;
+  font-size:10px;
+  line-height:1.4;
+}
+
 .label-print-button {
   border:0;
   background:var(--green);
@@ -615,10 +648,15 @@ textarea {
   font-weight:900;
 }
 
+.seller-toolbar .label-print-button {
+  background:var(--black);
+  color:white;
+}
+
 
 /* =========================================================
    INVENTAIRE
-   ========================================================= */
+========================================================= */
 
 .inventory-sellers {
   display:grid;
@@ -740,6 +778,14 @@ textarea {
   font-weight:900;
 }
 
+.inventory-done {
+  padding:11px;
+  border:1px solid var(--black);
+  font-size:9px;
+  font-weight:900;
+  text-align:center;
+}
+
 .inventory-note {
   grid-column:1/-1;
   font-size:11px;
@@ -749,8 +795,177 @@ textarea {
 
 
 /* =========================================================
+   VÉRIFICATION RAPIDE DU STOCK
+========================================================= */
+
+.stock-check-wrapper {
+  width:min(800px,100%);
+  margin:auto;
+}
+
+.stock-check-search {
+  border:3px solid var(--black);
+  padding:25px;
+  background:white;
+}
+
+.stock-check-search-title {
+  font-size:28px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-1px;
+  margin-bottom:20px;
+}
+
+.stock-check-input {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+}
+
+.stock-check-input button {
+  border:0;
+  background:var(--black);
+  color:white;
+  padding:0 22px;
+  font-weight:900;
+}
+
+.stock-scan-button {
+  width:100%;
+  border:2px solid var(--black);
+  background:var(--green);
+  padding:17px;
+  margin-top:10px;
+  font-size:12px;
+  font-weight:900;
+}
+
+#stockCheckReader {
+  margin-top:15px;
+  background:white;
+}
+
+.stock-result {
+  margin-top:25px;
+  border:3px solid var(--black);
+  background:white;
+}
+
+.stock-result-image {
+  width:100%;
+  max-height:360px;
+  object-fit:cover;
+  border-bottom:3px solid var(--black);
+}
+
+.stock-result-no-image {
+  height:180px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-bottom:3px solid var(--black);
+  background:#ddd9d2;
+  font-size:11px;
+  font-weight:900;
+}
+
+.stock-result-main {
+  padding:25px;
+}
+
+.stock-result-reference {
+  font-size:11px;
+  font-weight:900;
+}
+
+.stock-result-name {
+  margin-top:7px;
+  font-size:clamp(34px,7vw,62px);
+  line-height:.9;
+  letter-spacing:-3px;
+  font-weight:900;
+}
+
+.stock-result-seller {
+  margin-top:10px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.stock-result-price {
+  margin-top:18px;
+  font-size:35px;
+  font-weight:900;
+}
+
+.stock-big-status {
+  margin-top:25px;
+  border:3px solid var(--black);
+  padding:25px 15px;
+  text-align:center;
+  background:var(--green);
+}
+
+.stock-big-status.empty {
+  background:var(--red);
+  color:white;
+}
+
+.stock-big-number {
+  font-size:clamp(48px,10vw,85px);
+  line-height:.8;
+  letter-spacing:-5px;
+  font-weight:900;
+}
+
+.stock-big-label {
+  margin-top:12px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.stock-detail-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:3px solid var(--black);
+}
+
+.stock-detail {
+  min-height:100px;
+  padding:15px;
+  border-right:1px solid var(--black);
+}
+
+.stock-detail:last-child {
+  border-right:0;
+}
+
+.stock-detail-label {
+  font-size:8px;
+  font-weight:900;
+}
+
+.stock-detail-value {
+  margin-top:10px;
+  font-size:24px;
+  font-weight:900;
+}
+
+.scan-another {
+  width:100%;
+  border:0;
+  border-top:3px solid var(--black);
+  background:var(--black);
+  color:white;
+  padding:18px;
+  font-weight:900;
+}
+
+
+/* =========================================================
    STATS
-   ========================================================= */
+========================================================= */
 
 .stats {
   display:grid;
@@ -789,7 +1004,7 @@ textarea {
 
 /* =========================================================
    TABLE
-   ========================================================= */
+========================================================= */
 
 .table-wrap {
   overflow-x:auto;
@@ -841,8 +1056,8 @@ textarea {
 
 
 /* =========================================================
-   DEMANDES BROCANTEURS
-   ========================================================= */
+   DEMANDES
+========================================================= */
 
 .request-list {
   display:grid;
@@ -882,7 +1097,7 @@ textarea {
 
 /* =========================================================
    VENTES
-   ========================================================= */
+========================================================= */
 
 .sales-list,
 .repayment-list {
@@ -945,8 +1160,8 @@ textarea {
 
 
 /* =========================================================
-   QR UNIQUE
-   ========================================================= */
+   QR
+========================================================= */
 
 .qr-box {
   width:min(500px,100%);
@@ -978,8 +1193,8 @@ textarea {
 
 
 /* =========================================================
-   ÉTIQUETTES
-   ========================================================= */
+   CARTELS A4
+========================================================= */
 
 .labels-screen-info {
   border:2px solid var(--black);
@@ -1083,7 +1298,7 @@ textarea {
 
 /* =========================================================
    CAISSE
-   ========================================================= */
+========================================================= */
 
 .cashier-layout {
   display:grid;
@@ -1222,7 +1437,7 @@ textarea {
 
 /* =========================================================
    MODAL
-   ========================================================= */
+========================================================= */
 
 .modal-overlay {
   position:fixed;
@@ -1301,7 +1516,7 @@ textarea {
 
 /* =========================================================
    SUCCÈS VENTE
-   ========================================================= */
+========================================================= */
 
 .sale-success {
   width:min(650px,100%);
@@ -1326,7 +1541,7 @@ textarea {
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer {
   border-top:1px solid #bbb;
@@ -1340,7 +1555,7 @@ footer {
 
 /* =========================================================
    IMPRESSION
-   ========================================================= */
+========================================================= */
 
 @media print {
 
@@ -1391,33 +1606,12 @@ footer {
     break-after:auto;
   }
 
-
-  body.print-single > header,
-  body.print-single > footer,
-  body.print-single main > section:not(#qrSection) {
-    display:none !important;
-  }
-
-  body.print-single main {
-    width:100%;
-    padding:0;
-  }
-
-  body.print-single #qrSection {
-    display:block !important;
-  }
-
-  body.print-single #qrSection .page-header,
-  body.print-single #qrSection .qr-print-actions {
-    display:none !important;
-  }
-
 }
 
 
 /* =========================================================
    RESPONSIVE
-   ========================================================= */
+========================================================= */
 
 @media(max-width:950px) {
 
@@ -1470,8 +1664,21 @@ footer {
 
   .inventory-item > div:first-child,
   .inventory-item .inventory-action,
+  .inventory-item .inventory-done,
   .inventory-note {
     grid-column:1/-1;
+  }
+
+  .stock-detail-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stock-detail:nth-child(2) {
+    border-right:0;
+  }
+
+  .stock-detail:nth-child(-n+2) {
+    border-bottom:1px solid var(--black);
   }
 
 }
@@ -1655,8 +1862,6 @@ footer {
   </div>
 
 
-  <!-- ADMIN -->
-
   <div id="adminCards" class="cards hidden">
 
     <div class="card" onclick="ouvrirStock()">
@@ -1666,7 +1871,7 @@ footer {
         <p>
           Voir tous les objets.<br>
           Modifier les fiches.<br>
-          Imprimer les étiquettes QR.
+          Imprimer les cartels QR.
         </p>
       </div>
       <div class="arrow">→</div>
@@ -1714,10 +1919,20 @@ footer {
       <div class="arrow">→</div>
     </div>
 
+
+    <div class="card stock-check-card" onclick="ouvrirVerificationStock()">
+      <div class="number">05</div>
+      <div>
+        <div class="card-title">VÉRIFIER<br>LE STOCK</div>
+        <p>
+          Scanner le cartel d'un objet et savoir immédiatement combien il en reste en boutique.
+        </p>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+
   </div>
 
-
-  <!-- BROCANTEUR -->
 
   <div id="sellerCards" class="cards hidden">
 
@@ -1726,7 +1941,7 @@ footer {
       <div>
         <div class="card-title">AJOUTER</div>
         <p>
-          Déclarer un nouvel objet destiné à la boutique.
+          Déclarer un nouvel objet. Sa référence est créée automatiquement.
         </p>
       </div>
       <div class="arrow">→</div>
@@ -1738,7 +1953,7 @@ footer {
       <div>
         <div class="card-title">MES OBJETS</div>
         <p>
-          Suivre les objets déclarés, réceptionnés et vendus.
+          Suivre les objets et imprimer les cartels avant de les apporter.
         </p>
       </div>
       <div class="arrow">→</div>
@@ -1757,7 +1972,6 @@ footer {
     </div>
 
   </div>
-
 
   <div id="connectionInfo" class="connection"></div>
 
@@ -1783,17 +1997,27 @@ footer {
 
   </div>
 
-
   <div class="form-box">
 
     <div class="form-grid">
 
       <div>
-        <label>Référence *</label>
-        <input id="articleReference">
+
+        <label>Référence</label>
+
+        <div id="articleReferenceDisplay" class="auto-reference">
+          AUTOMATIQUE
+        </div>
+
+        <div id="articleReferenceHelp" class="reference-help">
+          La référence sera créée automatiquement à partir de tes initiales.
+        </div>
+
       </div>
 
+
       <div>
+
         <label>Catégorie</label>
 
         <select id="articleCategorie">
@@ -1812,18 +2036,23 @@ footer {
 
 
       <div class="full">
+
         <label>Nom de l'objet *</label>
         <input id="articleNom">
+
       </div>
 
 
       <div class="full">
+
         <label>Description</label>
         <textarea id="articleDescription"></textarea>
+
       </div>
 
 
       <div>
+
         <label>Prix *</label>
 
         <div class="price-wrapper">
@@ -1835,8 +2064,17 @@ footer {
 
 
       <div>
+
         <label>Quantité déclarée *</label>
-        <input id="articleQuantite" type="number" min="1" step="1" value="1">
+
+        <input
+          id="articleQuantite"
+          type="number"
+          min="1"
+          step="1"
+          value="1"
+        >
+
       </div>
 
     </div>
@@ -1884,7 +2122,7 @@ footer {
   </div>
 
 
-  <div id="adminLabelToolbar" class="label-toolbar hidden">
+  <div id="labelToolbar" class="label-toolbar hidden">
 
     <div class="label-toolbar-left">
 
@@ -1897,10 +2135,13 @@ footer {
       </button>
 
       <div id="qrSelectionCount" class="label-count">
-        0 ÉTIQUETTE SÉLECTIONNÉE
+        0 CARTEL SÉLECTIONNÉ
       </div>
 
+      <div id="labelToolbarHelp" class="label-help"></div>
+
     </div>
+
 
     <button
       id="printSelectedLabelsButton"
@@ -1908,7 +2149,7 @@ footer {
       onclick="preparerEtiquettesSelectionnees()"
       disabled
     >
-      IMPRIMER LES ÉTIQUETTES
+      IMPRIMER LES CARTELS
     </button>
 
   </div>
@@ -1922,14 +2163,15 @@ footer {
       oninput="afficherStockFiltre()"
     >
 
-    <select id="stockReceptionFilter" onchange="afficherStockFiltre()">
-
+    <select
+      id="stockReceptionFilter"
+      onchange="afficherStockFiltre()"
+    >
       <option value="">Tous les statuts</option>
       <option value="a_apporter">À apporter</option>
       <option value="receptionne">Réceptionné</option>
       <option value="ecart">Écart</option>
       <option value="refuse">Refusé</option>
-
     </select>
 
   </div>
@@ -1941,7 +2183,7 @@ footer {
 
 
 <!-- ======================================================
-     INVENTAIRE : BROCANTEURS
+     INVENTAIRE
 ====================================================== -->
 
 <section id="inventorySection" class="hidden">
@@ -1959,13 +2201,17 @@ footer {
 
   </div>
 
+
   <div class="toolbar">
+
     <input
       id="inventorySellerSearch"
       placeholder="Rechercher un brocanteur..."
       oninput="afficherBrocanteursInventaire()"
     >
+
   </div>
+
 
   <div id="inventorySellers" class="inventory-sellers"></div>
 
@@ -1973,7 +2219,7 @@ footer {
 
 
 <!-- ======================================================
-     INVENTAIRE D'UN BROCANTEUR
+     INVENTAIRE BROCANTEUR
 ====================================================== -->
 
 <section id="inventorySellerSection" class="hidden">
@@ -2009,12 +2255,10 @@ footer {
       id="inventoryArticleFilter"
       onchange="afficherArticlesInventaire()"
     >
-
       <option value="">Tous</option>
       <option value="a_apporter">À contrôler</option>
       <option value="receptionne">Réceptionnés</option>
       <option value="ecart">Écarts</option>
-
     </select>
 
   </div>
@@ -2026,7 +2270,73 @@ footer {
 
 
 <!-- ======================================================
-     QR INDIVIDUEL
+     VÉRIFIER LE STOCK
+====================================================== -->
+
+<section id="stockCheckSection" class="hidden">
+
+  <div class="page-header">
+
+    <div>
+      <div class="eyebrow">OUTIL BOUTIQUE</div>
+      <div class="page-title">VÉRIFIER<br>LE STOCK.</div>
+    </div>
+
+    <button class="secondary" onclick="fermerScannerStock();ouvrirDashboard()">
+      ← ACCUEIL
+    </button>
+
+  </div>
+
+
+  <div class="stock-check-wrapper">
+
+    <div class="stock-check-search">
+
+      <div class="stock-check-search-title">
+        QUEL OBJET ?
+      </div>
+
+      <div class="stock-check-input">
+
+        <input
+          id="stockCheckReference"
+          placeholder="Ex. JS-000014"
+          onkeydown="if(event.key==='Enter') rechercherStockRapide()"
+        >
+
+        <button onclick="rechercherStockRapide()">
+          CHERCHER
+        </button>
+
+      </div>
+
+
+      <button
+        id="stockScanButton"
+        class="stock-scan-button"
+        onclick="basculerScannerStock()"
+      >
+        SCANNER LE QR CODE
+      </button>
+
+
+      <div id="stockCheckReader" class="hidden"></div>
+
+      <div id="stockCheckMessage" class="message"></div>
+
+    </div>
+
+
+    <div id="stockCheckResult" class="stock-result hidden"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     QR
 ====================================================== -->
 
 <section id="qrSection" class="hidden">
@@ -2034,7 +2344,7 @@ footer {
   <div class="page-header">
 
     <div>
-      <div class="eyebrow">ÉTIQUETTE</div>
+      <div class="eyebrow">CARTEL</div>
       <div class="page-title">QR CODE.</div>
     </div>
 
@@ -2059,21 +2369,13 @@ footer {
 
     <div id="qrStatus" class="message"></div>
 
-    <div class="qr-print-actions">
-
-      <button class="primary" onclick="imprimerQRCodeUnique()">
-        IMPRIMER
-      </button>
-
-    </div>
-
   </div>
 
 </section>
 
 
 <!-- ======================================================
-     PLANCHE ÉTIQUETTES
+     CARTELS A4
 ====================================================== -->
 
 <section id="labelsSection" class="hidden">
@@ -2082,24 +2384,29 @@ footer {
 
     <div>
       <div class="eyebrow">IMPRESSION A4</div>
-      <div class="page-title">ÉTIQUETTES.</div>
+      <div class="page-title">CARTELS.</div>
     </div>
 
-    <button class="secondary" onclick="ouvrirStock()">
-      ← STOCK
+    <button class="secondary" onclick="retourDepuisCartels()">
+      ← RETOUR
     </button>
 
   </div>
 
 
   <div class="labels-screen-info">
-    PETITES ÉTIQUETTES 70 × 45 MM — 12 ÉTIQUETTES MAXIMUM PAR PAGE A4.
+    CARTELS 70 × 45 MM — 12 CARTELS MAXIMUM PAR PAGE A4.
+    LA QUANTITÉ DÉCLARÉE EST PRISE EN COMPTE.
   </div>
 
 
   <div class="labels-actions" style="margin-bottom:25px">
 
-    <button class="primary" style="width:auto;margin:0" onclick="imprimerPlancheEtiquettes()">
+    <button
+      class="primary"
+      style="width:auto;margin:0"
+      onclick="imprimerPlancheEtiquettes()"
+    >
       IMPRIMER LA PLANCHE
     </button>
 
@@ -2133,7 +2440,6 @@ footer {
 
   <div class="cashier-layout">
 
-
     <div class="cashier-panel">
 
       <div class="cashier-title">
@@ -2154,9 +2460,11 @@ footer {
 
       </div>
 
+
       <button class="scan-button" onclick="basculerScanner()">
         SCANNER UN QR CODE
       </button>
+
 
       <div id="reader" class="hidden"></div>
 
@@ -2172,6 +2480,7 @@ footer {
       </div>
 
       <div id="cartContent"></div>
+
 
       <div id="cartTotals" class="hidden">
 
@@ -2231,7 +2540,6 @@ footer {
 
     </div>
 
-
   </div>
 
 </section>
@@ -2251,7 +2559,11 @@ footer {
       VENTE<br>VALIDÉE.
     </div>
 
-    <div id="saleSuccessNumber" class="eyebrow" style="margin-top:25px"></div>
+    <div
+      id="saleSuccessNumber"
+      class="eyebrow"
+      style="margin-top:25px"
+    ></div>
 
     <div id="saleSuccessTotal" class="sale-success-total"></div>
 
@@ -2259,7 +2571,11 @@ footer {
       NOUVELLE VENTE
     </button>
 
-    <button class="secondary" style="width:100%;margin-top:10px" onclick="ouvrirDashboard()">
+    <button
+      class="secondary"
+      style="width:100%;margin-top:10px"
+      onclick="ouvrirDashboard()"
+    >
       RETOUR À L'ACCUEIL
     </button>
 
@@ -2269,7 +2585,7 @@ footer {
 
 
 <!-- ======================================================
-     MES VENTES BROCANTEUR
+     MES VENTES
 ====================================================== -->
 
 <section id="sellerSalesSection" class="hidden">
@@ -2308,7 +2624,7 @@ footer {
 
 
 <!-- ======================================================
-     ADMIN FINANCES
+     ADMIN
 ====================================================== -->
 
 <section id="adminSection" class="hidden">
@@ -2345,12 +2661,12 @@ footer {
     BROCANTEURS
   </div>
 
+
   <div class="table-wrap">
 
     <table class="data-table">
 
       <thead>
-
         <tr>
           <th>BROCANTEUR</th>
           <th>COMMISSION</th>
@@ -2362,7 +2678,6 @@ footer {
           <th>RESTE À REVERSER</th>
           <th></th>
         </tr>
-
       </thead>
 
       <tbody id="adminFinanceBody"></tbody>
@@ -2391,7 +2706,7 @@ footer {
 
 
 <!-- ======================================================
-     MODAL GÉNÉRIQUE
+     MODAL
 ====================================================== -->
 
 <div id="modalOverlay" class="modal-overlay hidden">
@@ -2421,7 +2736,7 @@ footer {
 
 /* =========================================================
    SUPABASE
-   ========================================================= */
+========================================================= */
 
 const SUPABASE_URL =
   "https://zxwvbfhkeszkcxcnijcp.supabase.co";
@@ -2429,15 +2744,16 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_N41aQyb44mwHgDtox4oRjA_6zsYafiH";
 
-const db = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+const db =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
 /* =========================================================
    VARIABLES
-   ========================================================= */
+========================================================= */
 
 let utilisateur = null;
 let profil = null;
@@ -2448,12 +2764,12 @@ let profilsCache = [];
 
 let editingArticleId = null;
 let editingArticlePhotoUrl = null;
-let articleReturnDestination = "stock";
 
 let qrArticle = null;
 let qrReturnDestination = "stock";
 
 let qrSelection = new Set();
+let labelsReturnDestination = "stock";
 
 let inventorySellerId = null;
 let inventorySellerArticles = [];
@@ -2464,16 +2780,21 @@ let modePaiement = null;
 let html5QrCode = null;
 let scannerActif = false;
 
+let stockQrCode = null;
+let stockScannerActif = false;
+
 
 /* =========================================================
    OUTILS
-   ========================================================= */
+========================================================= */
 
 function cacherSections() {
 
-  document.querySelectorAll("main > section").forEach(section => {
-    section.classList.add("hidden");
-  });
+  document
+    .querySelectorAll("main > section")
+    .forEach(section => {
+      section.classList.add("hidden");
+    });
 
 }
 
@@ -2482,7 +2803,8 @@ function afficherSection(id) {
 
   cacherSections();
 
-  const section = document.getElementById(id);
+  const section =
+    document.getElementById(id);
 
   if (section) {
     section.classList.remove("hidden");
@@ -2498,36 +2820,43 @@ function afficherSection(id) {
 
 function formaterPrix(valeur) {
 
-  return Number(valeur || 0).toLocaleString(
-    "fr-FR",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  ) + " €";
+  return Number(valeur || 0)
+    .toLocaleString(
+      "fr-FR",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    ) + " €";
 
 }
 
 
 function formaterDate(date) {
 
-  if (!date) return "—";
+  if (!date) {
+    return "—";
+  }
 
-  return new Date(date).toLocaleDateString(
-    "fr-FR",
-    {
-      day:"2-digit",
-      month:"2-digit",
-      year:"numeric"
-    }
-  );
+  return new Date(date)
+    .toLocaleDateString(
+      "fr-FR",
+      {
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+      }
+    );
 
 }
 
 
 function echapperHTML(texte) {
 
-  if (texte === null || texte === undefined) {
+  if (
+    texte === null ||
+    texte === undefined
+  ) {
     return "";
   }
 
@@ -2543,13 +2872,40 @@ function echapperHTML(texte) {
 
 function nomBrocanteur(vendeurId) {
 
-  const p = profilsCache.find(x => x.id === vendeurId);
+  const p =
+    profilsCache.find(
+      x => x.id === vendeurId
+    );
 
-  if (!p) return "Brocanteur";
+  if (!p) {
+    return "Brocanteur";
+  }
 
-  return p.enseigne ||
-         `${p.prenom || ""} ${p.nom || ""}`.trim() ||
-         "Brocanteur";
+  return (
+    p.enseigne ||
+    `${p.prenom || ""} ${p.nom || ""}`.trim() ||
+    "Brocanteur"
+  );
+
+}
+
+
+function initialesProfil(p) {
+
+  if (!p) {
+    return "";
+  }
+
+  const prenom =
+    String(p.prenom || "").trim();
+
+  const nom =
+    String(p.nom || "").trim();
+
+  return (
+    (prenom ? prenom.charAt(0) : "") +
+    (nom ? nom.charAt(0) : "")
+  ).toUpperCase();
 
 }
 
@@ -2597,13 +2953,68 @@ function classeStatutReception(statut) {
 }
 
 
+function quantitePourCartels(article) {
+
+  if (
+    !article.statut_reception ||
+    article.statut_reception === "a_apporter"
+  ) {
+
+    return Math.max(
+      0,
+      Number(
+        article.quantite_declaree ??
+        article.quantite ??
+        0
+      )
+    );
+
+  }
+
+
+  if (
+    article.statut_reception === "receptionne" ||
+    article.statut_reception === "ecart"
+  ) {
+
+    return Math.max(
+      0,
+      Number(article.quantite_recue || 0)
+    );
+
+  }
+
+  return 0;
+
+}
+
+
+function articleImprimable(article) {
+
+  if (!article) {
+    return false;
+  }
+
+  if (
+    article.statut_reception === "refuse"
+  ) {
+    return false;
+  }
+
+  return quantitePourCartels(article) > 0;
+
+}
+
+
 /* =========================================================
    INSCRIPTION
-   ========================================================= */
+========================================================= */
 
 function ouvrirInscription() {
 
-  document.getElementById("signupMessage").textContent = "";
+  document.getElementById(
+    "signupMessage"
+  ).textContent = "";
 
   afficherSection("signupSection");
 
@@ -2620,28 +3031,45 @@ function retourConnexion() {
 async function inscriptionBrocanteur() {
 
   const prenom =
-    document.getElementById("signupPrenom").value.trim();
+    document.getElementById(
+      "signupPrenom"
+    ).value.trim();
 
   const nom =
-    document.getElementById("signupNom").value.trim();
+    document.getElementById(
+      "signupNom"
+    ).value.trim();
 
   const enseigne =
-    document.getElementById("signupEnseigne").value.trim();
+    document.getElementById(
+      "signupEnseigne"
+    ).value.trim();
 
   const telephone =
-    document.getElementById("signupTelephone").value.trim();
+    document.getElementById(
+      "signupTelephone"
+    ).value.trim();
 
   const email =
-    document.getElementById("signupEmail").value.trim();
+    document.getElementById(
+      "signupEmail"
+    ).value.trim();
 
   const password =
-    document.getElementById("signupPassword").value;
+    document.getElementById(
+      "signupPassword"
+    ).value;
 
   const confirmation =
-    document.getElementById("signupPasswordConfirm").value;
+    document.getElementById(
+      "signupPasswordConfirm"
+    ).value;
 
   const message =
-    document.getElementById("signupMessage");
+    document.getElementById(
+      "signupMessage"
+    );
+
 
   message.className = "message";
   message.textContent = "";
@@ -2656,7 +3084,9 @@ async function inscriptionBrocanteur() {
     !password
   ) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
       "Merci de remplir tous les champs obligatoires.";
 
@@ -2667,7 +3097,9 @@ async function inscriptionBrocanteur() {
 
   if (password.length < 6) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
       "Le mot de passe doit contenir au moins 6 caractères.";
 
@@ -2678,7 +3110,9 @@ async function inscriptionBrocanteur() {
 
   if (password !== confirmation) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
       "Les deux mots de passe ne correspondent pas.";
 
@@ -2688,39 +3122,44 @@ async function inscriptionBrocanteur() {
 
 
   const bouton =
-    document.getElementById("signupButton");
+    document.getElementById(
+      "signupButton"
+    );
 
   bouton.disabled = true;
   bouton.textContent = "ENVOI...";
 
 
-  const { error } = await db.auth.signUp({
+  const { error } =
+    await db.auth.signUp({
 
-    email,
-    password,
+      email,
+      password,
 
-    options: {
-
-      data: {
-        prenom,
-        nom,
-        enseigne,
-        telephone
+      options:{
+        data:{
+          prenom,
+          nom,
+          enseigne,
+          telephone
+        }
       }
 
-    }
-
-  });
+    });
 
 
   bouton.disabled = false;
-  bouton.textContent = "ENVOYER MA DEMANDE";
+  bouton.textContent =
+    "ENVOYER MA DEMANDE";
 
 
   if (error) {
 
-    message.className = "message error";
-    message.textContent = error.message;
+    message.className =
+      "message error";
+
+    message.textContent =
+      error.message;
 
     return;
 
@@ -2729,43 +3168,64 @@ async function inscriptionBrocanteur() {
 
   await db.auth.signOut();
 
-  afficherSection("signupSuccessSection");
+  afficherSection(
+    "signupSuccessSection"
+  );
 
 }
 
 
 /* =========================================================
    CONNEXION
-   ========================================================= */
+========================================================= */
 
-document.getElementById("loginButton")
-.addEventListener("click", connexion);
-
-
-document.getElementById("password")
-.addEventListener("keydown", event => {
-
-  if (event.key === "Enter") {
-    connexion();
-  }
-
-});
+document
+  .getElementById("loginButton")
+  .addEventListener(
+    "click",
+    connexion
+  );
 
 
-document.getElementById("logoutButton")
-.addEventListener("click", deconnexion);
+document
+  .getElementById("password")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+        connexion();
+      }
+
+    }
+  );
+
+
+document
+  .getElementById("logoutButton")
+  .addEventListener(
+    "click",
+    deconnexion
+  );
 
 
 async function connexion() {
 
   const email =
-    document.getElementById("email").value.trim();
+    document.getElementById(
+      "email"
+    ).value.trim();
 
   const password =
-    document.getElementById("password").value;
+    document.getElementById(
+      "password"
+    ).value;
 
   const message =
-    document.getElementById("loginMessage");
+    document.getElementById(
+      "loginMessage"
+    );
+
 
   message.className = "message";
   message.textContent = "";
@@ -2773,7 +3233,9 @@ async function connexion() {
 
   if (!email || !password) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
       "Entre ton e-mail et ton mot de passe.";
 
@@ -2783,35 +3245,44 @@ async function connexion() {
 
 
   const bouton =
-    document.getElementById("loginButton");
+    document.getElementById(
+      "loginButton"
+    );
 
   bouton.disabled = true;
-  bouton.textContent = "CONNEXION...";
+  bouton.textContent =
+    "CONNEXION...";
 
 
-  const { data, error } =
-    await db.auth.signInWithPassword({
-      email,
-      password
-    });
+  const { data,error } =
+    await db.auth
+      .signInWithPassword({
+        email,
+        password
+      });
 
 
   bouton.disabled = false;
-  bouton.textContent = "SE CONNECTER";
+  bouton.textContent =
+    "SE CONNECTER";
 
 
   if (error) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
-      "Connexion impossible : " + error.message;
+      "Connexion impossible : " +
+      error.message;
 
     return;
 
   }
 
 
-  utilisateur = data.user;
+  utilisateur =
+    data.user;
 
   await afficherUtilisateur();
 
@@ -2820,12 +3291,14 @@ async function connexion() {
 
 async function deconnexion() {
 
-  fermerScanner();
+  await fermerScanner();
+  await fermerScannerStock();
 
   await db.auth.signOut();
 
   utilisateur = null;
   profil = null;
+
   panier = [];
   qrSelection.clear();
 
@@ -2836,7 +3309,7 @@ async function deconnexion() {
 
 /* =========================================================
    PROFIL
-   ========================================================= */
+========================================================= */
 
 async function afficherUtilisateur() {
 
@@ -2850,7 +3323,9 @@ async function afficherUtilisateur() {
     utilisateur = null;
     profil = null;
 
-    afficherSection("loginSection");
+    afficherSection(
+      "loginSection"
+    );
 
     return;
 
@@ -2861,11 +3336,14 @@ async function afficherUtilisateur() {
     sessionData.session.user;
 
 
-  const { data, error } =
+  const { data,error } =
     await db
       .from("profils")
       .select("*")
-      .eq("id", utilisateur.id)
+      .eq(
+        "id",
+        utilisateur.id
+      )
       .single();
 
 
@@ -2873,13 +3351,19 @@ async function afficherUtilisateur() {
 
     await db.auth.signOut();
 
-    document.getElementById("loginMessage").className =
+    document.getElementById(
+      "loginMessage"
+    ).className =
       "message error";
 
-    document.getElementById("loginMessage").textContent =
+    document.getElementById(
+      "loginMessage"
+    ).textContent =
       "Profil introuvable.";
 
-    afficherSection("loginSection");
+    afficherSection(
+      "loginSection"
+    );
 
     return;
 
@@ -2889,17 +3373,26 @@ async function afficherUtilisateur() {
   profil = data;
 
 
-  if (profil.statut_compte === "en_attente") {
+  if (
+    profil.statut_compte ===
+    "en_attente"
+  ) {
 
     await db.auth.signOut();
 
-    document.getElementById("loginMessage").className =
+    document.getElementById(
+      "loginMessage"
+    ).className =
       "message";
 
-    document.getElementById("loginMessage").innerHTML =
+    document.getElementById(
+      "loginMessage"
+    ).innerHTML =
       "<strong>Ta demande est encore en attente de validation par VIDE DECO.</strong>";
 
-    afficherSection("loginSection");
+    afficherSection(
+      "loginSection"
+    );
 
     return;
 
@@ -2907,19 +3400,26 @@ async function afficherUtilisateur() {
 
 
   if (
-    profil.statut_compte === "refuse" ||
+    profil.statut_compte ===
+      "refuse" ||
     profil.actif === false
   ) {
 
     await db.auth.signOut();
 
-    document.getElementById("loginMessage").className =
+    document.getElementById(
+      "loginMessage"
+    ).className =
       "message error";
 
-    document.getElementById("loginMessage").textContent =
+    document.getElementById(
+      "loginMessage"
+    ).textContent =
       "Ce compte n'est pas actif.";
 
-    afficherSection("loginSection");
+    afficherSection(
+      "loginSection"
+    );
 
     return;
 
@@ -2934,8 +3434,8 @@ async function afficherUtilisateur() {
 
 
 /* =========================================================
-   PROFILS CACHE
-   ========================================================= */
+   PROFILS
+========================================================= */
 
 async function chargerProfils() {
 
@@ -2944,20 +3444,24 @@ async function chargerProfils() {
       .from("profils")
       .select("*");
 
-  profilsCache = data || [];
+  profilsCache =
+    data || [];
 
 }
 
 
 /* =========================================================
    DASHBOARD
-   ========================================================= */
+========================================================= */
 
 function ouvrirDashboard() {
 
   fermerScanner();
+  fermerScannerStock();
 
-  afficherSection("dashboardSection");
+  afficherSection(
+    "dashboardSection"
+  );
 
 
   const nom =
@@ -2966,41 +3470,61 @@ function ouvrirDashboard() {
     "";
 
 
-  document.getElementById("hello").textContent =
+  document.getElementById(
+    "hello"
+  ).textContent =
     `BONJOUR${nom ? " " + nom.toUpperCase() : ""}.`;
 
 
-  document.getElementById("roleBadge").textContent =
+  document.getElementById(
+    "roleBadge"
+  ).textContent =
     profil?.role === "admin"
       ? "ADMINISTRATEUR"
       : "BROCANTEUR";
 
 
-  document.getElementById("connectionInfo").textContent =
+  document.getElementById(
+    "connectionInfo"
+  ).textContent =
     utilisateur?.email
       ? `Connecté avec ${utilisateur.email}`
       : "";
 
 
-  if (profil?.role === "admin") {
+  if (
+    profil?.role === "admin"
+  ) {
 
     document
-      .getElementById("adminCards")
-      .classList.remove("hidden");
+      .getElementById(
+        "adminCards"
+      )
+      .classList
+      .remove("hidden");
 
     document
-      .getElementById("sellerCards")
-      .classList.add("hidden");
+      .getElementById(
+        "sellerCards"
+      )
+      .classList
+      .add("hidden");
 
   } else {
 
     document
-      .getElementById("sellerCards")
-      .classList.remove("hidden");
+      .getElementById(
+        "sellerCards"
+      )
+      .classList
+      .remove("hidden");
 
     document
-      .getElementById("adminCards")
-      .classList.add("hidden");
+      .getElementById(
+        "adminCards"
+      )
+      .classList
+      .add("hidden");
 
   }
 
@@ -3008,54 +3532,119 @@ function ouvrirDashboard() {
 
 
 /* =========================================================
-   ARTICLE : OUVERTURE
-   ========================================================= */
+   ARTICLE
+========================================================= */
+
+function viderFormulaireArticle() {
+
+  document.getElementById(
+    "articleCategorie"
+  ).value = "";
+
+  document.getElementById(
+    "articleNom"
+  ).value = "";
+
+  document.getElementById(
+    "articleDescription"
+  ).value = "";
+
+  document.getElementById(
+    "articlePrix"
+  ).value = "";
+
+  document.getElementById(
+    "articleQuantite"
+  ).value = 1;
+
+  document.getElementById(
+    "articleQuantite"
+  ).disabled = false;
+
+  document.getElementById(
+    "articlePhoto"
+  ).value = "";
+
+  document.getElementById(
+    "articleMessage"
+  ).textContent = "";
+
+
+  const preview =
+    document.getElementById(
+      "articlePhotoPreview"
+    );
+
+  preview.src = "";
+  preview.classList.add(
+    "hidden"
+  );
+
+}
+
 
 function ouvrirNouvelArticle() {
 
   editingArticleId = null;
   editingArticlePhotoUrl = null;
-  articleReturnDestination = "stock";
 
   viderFormulaireArticle();
 
-  document.getElementById("articleEyebrow").textContent =
+
+  document.getElementById(
+    "articleEyebrow"
+  ).textContent =
     "NOUVEL OBJET";
 
-  document.getElementById("articleTitle").innerHTML =
+
+  document.getElementById(
+    "articleTitle"
+  ).innerHTML =
     "AJOUTER<br>UN OBJET.";
 
-  document.getElementById("saveArticleButton").textContent =
+
+  document.getElementById(
+    "saveArticleButton"
+  ).textContent =
     "ENREGISTRER L'OBJET";
 
-  afficherSection("articleSection");
 
-}
+  const initiales =
+    initialesProfil(profil);
 
 
-function viderFormulaireArticle() {
+  document.getElementById(
+    "articleReferenceDisplay"
+  ).textContent =
+    initiales
+      ? `${initiales}-XXXXXX`
+      : "AUTOMATIQUE";
 
-  document.getElementById("articleReference").value = "";
-  document.getElementById("articleCategorie").value = "";
-  document.getElementById("articleNom").value = "";
-  document.getElementById("articleDescription").value = "";
-  document.getElementById("articlePrix").value = "";
-  document.getElementById("articleQuantite").value = 1;
-  document.getElementById("articlePhoto").value = "";
-  document.getElementById("articleMessage").textContent = "";
 
-  const preview =
-    document.getElementById("articlePhotoPreview");
+  document.getElementById(
+    "articleReferenceDisplay"
+  ).className =
+    "auto-reference";
 
-  preview.src = "";
-  preview.classList.add("hidden");
+
+  document.getElementById(
+    "articleReferenceHelp"
+  ).textContent =
+    "La référence définitive sera créée automatiquement lors de l'enregistrement.";
+
+
+  afficherSection(
+    "articleSection"
+  );
 
 }
 
 
 function retourDepuisArticle() {
 
-  if (articleReturnDestination === "stock") {
+  if (
+    profil?.role === "admin"
+  ) {
     ouvrirStock();
   } else {
     ouvrirMesObjets();
@@ -3066,46 +3655,71 @@ function retourDepuisArticle() {
 
 /* =========================================================
    PHOTO
-   ========================================================= */
+========================================================= */
 
-document.getElementById("articlePhoto")
-.addEventListener("change", event => {
+document
+  .getElementById(
+    "articlePhoto"
+  )
+  .addEventListener(
+    "change",
+    event => {
 
-  const fichier =
-    event.target.files?.[0];
+      const fichier =
+        event.target.files?.[0];
 
-  const preview =
-    document.getElementById("articlePhotoPreview");
+      const preview =
+        document.getElementById(
+          "articlePhotoPreview"
+        );
 
 
-  if (!fichier) {
+      if (!fichier) {
 
-    if (!editingArticlePhotoUrl) {
-      preview.classList.add("hidden");
+        if (
+          !editingArticlePhotoUrl
+        ) {
+          preview.classList.add(
+            "hidden"
+          );
+        }
+
+        return;
+
+      }
+
+
+      preview.src =
+        URL.createObjectURL(
+          fichier
+        );
+
+      preview.classList.remove(
+        "hidden"
+      );
+
     }
-
-    return;
-
-  }
+  );
 
 
-  preview.src =
-    URL.createObjectURL(fichier);
-
-  preview.classList.remove("hidden");
-
-});
-
-
-async function uploaderPhotoArticle(fichier) {
+async function uploaderPhotoArticle(
+  fichier
+) {
 
   if (!fichier) {
-    return editingArticlePhotoUrl || null;
+    return (
+      editingArticlePhotoUrl ||
+      null
+    );
   }
 
 
   const extension =
-    fichier.name.split(".").pop() || "jpg";
+    fichier.name
+      .split(".")
+      .pop() ||
+    "jpg";
+
 
   const chemin =
     `${utilisateur.id}/${Date.now()}-${crypto.randomUUID()}.${extension}`;
@@ -3131,7 +3745,9 @@ async function uploaderPhotoArticle(fichier) {
   const { data } =
     db.storage
       .from("photos-articles")
-      .getPublicUrl(chemin);
+      .getPublicUrl(
+        chemin
+      );
 
 
   return data.publicUrl;
@@ -3141,41 +3757,57 @@ async function uploaderPhotoArticle(fichier) {
 
 /* =========================================================
    ENREGISTRER ARTICLE
-   ========================================================= */
+========================================================= */
 
 async function enregistrerArticle() {
 
-  const reference =
-    document.getElementById("articleReference").value.trim();
-
   const nom =
-    document.getElementById("articleNom").value.trim();
+    document.getElementById(
+      "articleNom"
+    ).value.trim();
 
   const description =
-    document.getElementById("articleDescription").value.trim();
+    document.getElementById(
+      "articleDescription"
+    ).value.trim();
 
   const categorie =
-    document.getElementById("articleCategorie").value;
+    document.getElementById(
+      "articleCategorie"
+    ).value;
 
   const prix =
-    Number(document.getElementById("articlePrix").value);
+    Number(
+      document.getElementById(
+        "articlePrix"
+      ).value
+    );
 
   const quantite =
-    Number(document.getElementById("articleQuantite").value);
+    Number(
+      document.getElementById(
+        "articleQuantite"
+      ).value
+    );
 
   const fichier =
-    document.getElementById("articlePhoto").files?.[0];
+    document.getElementById(
+      "articlePhoto"
+    ).files?.[0];
 
   const message =
-    document.getElementById("articleMessage");
+    document.getElementById(
+      "articleMessage"
+    );
 
 
-  message.className = "message";
+  message.className =
+    "message";
+
   message.textContent = "";
 
 
   if (
-    !reference ||
     !nom ||
     !Number.isFinite(prix) ||
     prix < 0 ||
@@ -3183,9 +3815,11 @@ async function enregistrerArticle() {
     quantite < 1
   ) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
-      "Vérifie la référence, le nom, le prix et la quantité.";
+      "Vérifie le nom, le prix et la quantité.";
 
     return;
 
@@ -3193,54 +3827,58 @@ async function enregistrerArticle() {
 
 
   const bouton =
-    document.getElementById("saveArticleButton");
+    document.getElementById(
+      "saveArticleButton"
+    );
 
   bouton.disabled = true;
-  bouton.textContent = "ENREGISTREMENT...";
+  bouton.textContent =
+    "ENREGISTREMENT...";
 
 
   try {
 
     const photoUrl =
-      await uploaderPhotoArticle(fichier);
+      await uploaderPhotoArticle(
+        fichier
+      );
 
 
     if (editingArticleId) {
 
       const articleExistant =
-        stockCache.find(a => a.id === editingArticleId);
+        stockCache.find(
+          a =>
+            a.id ===
+            editingArticleId
+        );
 
 
       const modifications = {
 
-        reference,
         nom,
         description,
         categorie,
         prix,
         photo_url:photoUrl,
-        updated_at:new Date().toISOString()
+        updated_at:
+          new Date().toISOString()
 
       };
 
 
-      /*
-       * Avant réception :
-       * le vendeur/admin peut encore modifier
-       * la quantité déclarée.
-       *
-       * Après réception :
-       * on ne modifie pas silencieusement
-       * le stock réel depuis cette fiche.
-       */
-
       if (
         !articleExistant ||
-        articleExistant.statut_reception === "a_apporter"
+        !articleExistant.statut_reception ||
+        articleExistant.statut_reception ===
+          "a_apporter"
       ) {
 
-        modifications.quantite_declaree = quantite;
-        modifications.quantite = quantite;
+        modifications.quantite_declaree =
+          quantite;
+
+        modifications.quantite =
+          quantite;
 
       }
 
@@ -3248,8 +3886,13 @@ async function enregistrerArticle() {
       const { error } =
         await db
           .from("articles")
-          .update(modifications)
-          .eq("id", editingArticleId);
+          .update(
+            modifications
+          )
+          .eq(
+            "id",
+            editingArticleId
+          );
 
 
       if (error) {
@@ -3257,43 +3900,56 @@ async function enregistrerArticle() {
       }
 
 
-      message.className = "message success";
+      message.className =
+        "message success";
+
       message.textContent =
         "Objet modifié avec succès.";
 
 
     } else {
 
-      const { error } =
+      /*
+       * IMPORTANT :
+       * aucune référence n'est envoyée.
+       * Le trigger Supabase crée automatiquement
+       * JS-000001, JS-000002, etc.
+       */
+
+      const { data,error } =
         await db
           .from("articles")
           .insert({
 
-            vendeur_id:utilisateur.id,
+            vendeur_id:
+              utilisateur.id,
 
-            reference,
             nom,
             description,
             categorie,
             prix,
 
-            /*
-             * Le brocanteur déclare la quantité.
-             * Elle n'est PAS encore considérée
-             * comme présente physiquement.
-             */
+            quantite:
+              quantite,
 
-            quantite:quantite,
-            quantite_declaree:quantite,
-            quantite_recue:0,
-            quantite_disponible:0,
+            quantite_declaree:
+              quantite,
 
-            photo_url:photoUrl,
+            quantite_recue:
+              0,
 
-            statut:"actif",
-            statut_reception:"a_apporter"
+            quantite_disponible:
+              0,
 
-          });
+            photo_url:
+              photoUrl,
+
+            statut_reception:
+              "a_apporter"
+
+          })
+          .select()
+          .single();
 
 
       if (error) {
@@ -3301,29 +3957,53 @@ async function enregistrerArticle() {
       }
 
 
-      message.className = "message success";
+      document.getElementById(
+        "articleReferenceDisplay"
+      ).textContent =
+        data.reference ||
+        "RÉFÉRENCE CRÉÉE";
+
+
+      document.getElementById(
+        "articleReferenceDisplay"
+      ).className =
+        "auto-reference saved";
+
+
+      message.className =
+        "message success";
+
       message.textContent =
-        "Objet déclaré. Il doit maintenant être réceptionné par VIDE DECO.";
+        `Objet déclaré sous la référence ${data.reference}. Tu peux maintenant imprimer ses cartels dans MES OBJETS.`;
 
     }
 
 
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      if (profil.role === "admin") {
-        ouvrirStock();
-      } else {
-        ouvrirMesObjets();
-      }
+        if (
+          profil.role ===
+          "admin"
+        ) {
+          ouvrirStock();
+        } else {
+          ouvrirMesObjets();
+        }
 
-    },700);
+      },
+      900
+    );
 
 
   } catch (error) {
 
-    message.className = "message error";
+    message.className =
+      "message error";
+
     message.textContent =
-      "Erreur : " + error.message;
+      "Erreur : " +
+      error.message;
 
   }
 
@@ -3339,8 +4019,8 @@ async function enregistrerArticle() {
 
 
 /* =========================================================
-   STOCK
-   ========================================================= */
+   CHARGER STOCK
+========================================================= */
 
 async function chargerStock() {
 
@@ -3348,12 +4028,17 @@ async function chargerStock() {
     db
       .from("articles")
       .select("*")
-      .order("created_at", {
-        ascending:false
-      });
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
-  if (profil.role !== "admin") {
+  if (
+    profil.role !== "admin"
+  ) {
 
     requete =
       requete.eq(
@@ -3364,13 +4049,15 @@ async function chargerStock() {
   }
 
 
-  const { data, error } =
+  const { data,error } =
     await requete;
 
 
   if (error) {
 
-    document.getElementById("objectsGrid").innerHTML =
+    document.getElementById(
+      "objectsGrid"
+    ).innerHTML =
       `<div class="empty-state">${echapperHTML(error.message)}</div>`;
 
     return;
@@ -3378,37 +4065,87 @@ async function chargerStock() {
   }
 
 
-  stockCache = data || [];
+  stockCache =
+    data || [];
+
+
+  const ids =
+    new Set(
+      stockCache.map(
+        a => a.id
+      )
+    );
+
+
+  Array
+    .from(qrSelection)
+    .forEach(id => {
+
+      if (!ids.has(id)) {
+        qrSelection.delete(id);
+      }
+
+    });
 
 }
 
 
+/* =========================================================
+   STOCK
+========================================================= */
+
 async function ouvrirStock() {
 
-  articleReturnDestination = "stock";
+  labelsReturnDestination =
+    "stock";
+
+  qrSelection.clear();
 
   await chargerProfils();
   await chargerStock();
 
 
-  document.getElementById("stockEyebrow").textContent =
+  document.getElementById(
+    "stockEyebrow"
+  ).textContent =
     "ADMINISTRATION";
 
-  document.getElementById("stockTitle").textContent =
+
+  document.getElementById(
+    "stockTitle"
+  ).textContent =
     "STOCK.";
 
 
-  document
-    .getElementById("adminLabelToolbar")
-    .classList.remove("hidden");
+  const toolbar =
+    document.getElementById(
+      "labelToolbar"
+    );
+
+  toolbar.classList.remove(
+    "hidden"
+  );
+
+  toolbar.classList.remove(
+    "seller-toolbar"
+  );
 
 
-  document
-    .getElementById("stockReceptionFilter")
-    .classList.remove("hidden");
+  document.getElementById(
+    "labelToolbarHelp"
+  ).textContent =
+    "Sélectionne les objets dont tu souhaites imprimer les cartels.";
 
 
-  afficherSection("stockSection");
+  document.getElementById(
+    "printSelectedLabelsButton"
+  ).textContent =
+    "IMPRIMER LES CARTELS";
+
+
+  afficherSection(
+    "stockSection"
+  );
 
   afficherStockFiltre();
   actualiserCompteurQR();
@@ -3416,94 +4153,146 @@ async function ouvrirStock() {
 }
 
 
+/* =========================================================
+   MES OBJETS
+========================================================= */
+
 async function ouvrirMesObjets() {
 
-  articleReturnDestination = "seller";
+  labelsReturnDestination =
+    "seller";
+
+  qrSelection.clear();
 
   await chargerStock();
 
 
-  document.getElementById("stockEyebrow").textContent =
+  document.getElementById(
+    "stockEyebrow"
+  ).textContent =
     "ESPACE BROCANTEUR";
 
-  document.getElementById("stockTitle").textContent =
+
+  document.getElementById(
+    "stockTitle"
+  ).textContent =
     "MES OBJETS.";
 
 
-  document
-    .getElementById("adminLabelToolbar")
-    .classList.add("hidden");
+  const toolbar =
+    document.getElementById(
+      "labelToolbar"
+    );
+
+  toolbar.classList.remove(
+    "hidden"
+  );
+
+  toolbar.classList.add(
+    "seller-toolbar"
+  );
 
 
-  document
-    .getElementById("stockReceptionFilter")
-    .classList.remove("hidden");
+  document.getElementById(
+    "labelToolbarHelp"
+  ).textContent =
+    "Imprime tes cartels avant d'apporter les objets à VIDE DECO. Chaque exemplaire possède son cartel.";
 
 
-  afficherSection("stockSection");
+  document.getElementById(
+    "printSelectedLabelsButton"
+  ).textContent =
+    "IMPRIMER MES CARTELS";
+
+
+  afficherSection(
+    "stockSection"
+  );
 
   afficherStockFiltre();
+  actualiserCompteurQR();
 
 }
 
 
 /* =========================================================
-   AFFICHAGE STOCK
-   ========================================================= */
+   FILTRER STOCK
+========================================================= */
 
 function afficherStockFiltre() {
 
   const recherche =
-    document
-      .getElementById("stockSearch")
-      .value
-      .trim()
-      .toLowerCase();
+    document.getElementById(
+      "stockSearch"
+    )
+    .value
+    .trim()
+    .toLowerCase();
 
 
   const statut =
-    document
-      .getElementById("stockReceptionFilter")
-      .value;
+    document.getElementById(
+      "stockReceptionFilter"
+    ).value;
 
 
   stockAfficheCache =
-    stockCache.filter(article => {
+    stockCache.filter(
+      article => {
 
-      const texte = [
-        article.reference,
-        article.nom,
-        article.categorie,
-        nomBrocanteur(article.vendeur_id)
-      ]
-      .join(" ")
-      .toLowerCase();
-
-
-      const rechercheOk =
-        !recherche ||
-        texte.includes(recherche);
+        const texte = [
+          article.reference,
+          article.nom,
+          article.categorie,
+          nomBrocanteur(
+            article.vendeur_id
+          )
+        ]
+        .join(" ")
+        .toLowerCase();
 
 
-      const statutOk =
-        !statut ||
-        article.statut_reception === statut;
+        const rechercheOk =
+          !recherche ||
+          texte.includes(
+            recherche
+          );
 
 
-      return rechercheOk && statutOk;
+        const statutOk =
+          !statut ||
+          article.statut_reception ===
+            statut;
 
-    });
+
+        return (
+          rechercheOk &&
+          statutOk
+        );
+
+      }
+    );
 
 
-  afficherCartesStock(stockAfficheCache);
+  afficherCartesStock(
+    stockAfficheCache
+  );
 
 }
 
 
-function afficherCartesStock(articles) {
+/* =========================================================
+   CARTES STOCK
+========================================================= */
+
+function afficherCartesStock(
+  articles
+) {
 
   const grille =
-    document.getElementById("objectsGrid");
+    document.getElementById(
+      "objectsGrid"
+    );
 
   grille.innerHTML = "";
 
@@ -3518,267 +4307,317 @@ function afficherCartesStock(articles) {
   }
 
 
-  articles.forEach(article => {
+  articles.forEach(
+    article => {
 
-    const carte =
-      document.createElement("article");
-
-    carte.className =
-      "object-card" +
-      (qrSelection.has(article.id)
-        ? " selected"
-        : "");
+      const carte =
+        document.createElement(
+          "article"
+        );
 
 
-    /*
-     * Sélection impression :
-     * uniquement admin + article physiquement reçu.
-     */
+      carte.className =
+        "object-card" +
+        (
+          qrSelection.has(
+            article.id
+          )
+          ? " selected"
+          : ""
+        );
 
-    if (
-      profil.role === "admin" &&
-      (
-        article.statut_reception === "receptionne" ||
-        article.statut_reception === "ecart"
-      ) &&
-      Number(article.quantite_recue || 0) > 0
-    ) {
 
-      const selecteur =
-        document.createElement("label");
+      if (
+        articleImprimable(
+          article
+        )
+      ) {
 
-      selecteur.className =
-        "label-selector";
+        const selecteur =
+          document.createElement(
+            "label"
+          );
 
-      selecteur.innerHTML = `
-        <input
-          type="checkbox"
-          ${qrSelection.has(article.id) ? "checked" : ""}
-        >
-        ÉTIQUETTE
+        selecteur.className =
+          "label-selector";
+
+
+        selecteur.innerHTML = `
+          <input
+            type="checkbox"
+            ${qrSelection.has(article.id) ? "checked" : ""}
+          >
+          CARTEL
+        `;
+
+
+        const checkbox =
+          selecteur.querySelector(
+            "input"
+          );
+
+
+        checkbox.addEventListener(
+          "change",
+          event => {
+
+            if (
+              event.target.checked
+            ) {
+
+              qrSelection.add(
+                article.id
+              );
+
+            } else {
+
+              qrSelection.delete(
+                article.id
+              );
+
+            }
+
+
+            afficherStockFiltre();
+            actualiserCompteurQR();
+
+          }
+        );
+
+
+        carte.appendChild(
+          selecteur
+        );
+
+      }
+
+
+      if (
+        article.photo_url
+      ) {
+
+        const image =
+          document.createElement(
+            "img"
+          );
+
+        image.className =
+          "object-image";
+
+        image.src =
+          article.photo_url;
+
+        image.alt =
+          article.nom || "";
+
+        carte.appendChild(
+          image
+        );
+
+      } else {
+
+        const sansPhoto =
+          document.createElement(
+            "div"
+          );
+
+        sansPhoto.className =
+          "object-no-image";
+
+        sansPhoto.textContent =
+          "AUCUNE PHOTO";
+
+        carte.appendChild(
+          sansPhoto
+        );
+
+      }
+
+
+      const contenu =
+        document.createElement(
+          "div"
+        );
+
+      contenu.className =
+        "object-content";
+
+
+      const declaree =
+        Number(
+          article.quantite_declaree ??
+          article.quantite ??
+          0
+        );
+
+
+      const recue =
+        Number(
+          article.quantite_recue ??
+          0
+        );
+
+
+      const disponible =
+        Number(
+          article.quantite_disponible ??
+          0
+        );
+
+
+      contenu.innerHTML = `
+
+        <div class="object-reference">
+          RÉF. ${echapperHTML(article.reference || "—")}
+        </div>
+
+        <div class="object-name">
+          ${echapperHTML(article.nom || "Objet")}
+        </div>
+
+        ${
+          profil.role === "admin"
+          ? `
+            <div class="object-seller">
+              ${echapperHTML(nomBrocanteur(article.vendeur_id))}
+            </div>
+          `
+          : ""
+        }
+
+        <div class="object-category">
+          ${echapperHTML(article.categorie || "Sans catégorie")}
+        </div>
+
+        <div class="object-price">
+          ${formaterPrix(article.prix)}
+        </div>
+
+        <div class="object-quantity">
+          DÉCLARÉ : ${declaree}<br>
+          REÇU : ${recue}<br>
+          DISPONIBLE : ${disponible}
+        </div>
+
+        <div class="object-status ${classeStatutReception(article.statut_reception)}">
+          ${statutReceptionTexte(article.statut_reception)}
+        </div>
+
       `;
 
 
-      const checkbox =
-        selecteur.querySelector("input");
-
-
-      checkbox.addEventListener(
-        "change",
-        event => {
-
-          if (event.target.checked) {
-            qrSelection.add(article.id);
-          } else {
-            qrSelection.delete(article.id);
-          }
-
-          afficherStockFiltre();
-          actualiserCompteurQR();
-
-        }
+      carte.appendChild(
+        contenu
       );
 
 
-      carte.appendChild(selecteur);
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+      actions.className =
+        "object-actions";
+
+
+      const modifier =
+        document.createElement(
+          "button"
+        );
+
+      modifier.className =
+        "object-action";
+
+      modifier.textContent =
+        "MODIFIER";
+
+      modifier.onclick =
+        () =>
+          modifierArticle(
+            article.id
+          );
+
+
+      const qr =
+        document.createElement(
+          "button"
+        );
+
+      qr.className =
+        "object-action";
+
+      qr.textContent =
+        "QR / CARTEL";
+
+      qr.disabled =
+        !articleImprimable(
+          article
+        );
+
+      qr.onclick =
+        () =>
+          ouvrirQR(
+            article.id
+          );
+
+
+      actions.appendChild(
+        modifier
+      );
+
+      actions.appendChild(
+        qr
+      );
+
+      carte.appendChild(
+        actions
+      );
+
+      grille.appendChild(
+        carte
+      );
 
     }
-
-
-    if (article.photo_url) {
-
-      const image =
-        document.createElement("img");
-
-      image.className =
-        "object-image";
-
-      image.src =
-        article.photo_url;
-
-      image.alt =
-        article.nom || "";
-
-      carte.appendChild(image);
-
-    } else {
-
-      const sansPhoto =
-        document.createElement("div");
-
-      sansPhoto.className =
-        "object-no-image";
-
-      sansPhoto.textContent =
-        "AUCUNE PHOTO";
-
-      carte.appendChild(sansPhoto);
-
-    }
-
-
-    const contenu =
-      document.createElement("div");
-
-    contenu.className =
-      "object-content";
-
-
-    const declaree =
-      Number(
-        article.quantite_declaree ??
-        article.quantite ??
-        0
-      );
-
-
-    const recue =
-      Number(
-        article.quantite_recue ??
-        0
-      );
-
-
-    const disponible =
-      Number(
-        article.quantite_disponible ??
-        0
-      );
-
-
-    contenu.innerHTML = `
-
-      <div class="object-reference">
-        RÉF. ${echapperHTML(article.reference || "—")}
-      </div>
-
-      <div class="object-name">
-        ${echapperHTML(article.nom || "Objet")}
-      </div>
-
-      ${
-        profil.role === "admin"
-        ? `
-          <div class="object-seller">
-            ${echapperHTML(nomBrocanteur(article.vendeur_id))}
-          </div>
-        `
-        : ""
-      }
-
-      <div class="object-category">
-        ${echapperHTML(article.categorie || "Sans catégorie")}
-      </div>
-
-      <div class="object-price">
-        ${formaterPrix(article.prix)}
-      </div>
-
-      <div class="object-quantity">
-        DÉCLARÉ : ${declaree}<br>
-        REÇU : ${recue}<br>
-        DISPONIBLE : ${disponible}
-      </div>
-
-      <div class="object-status ${classeStatutReception(article.statut_reception)}">
-        ${statutReceptionTexte(article.statut_reception)}
-      </div>
-
-    `;
-
-
-    carte.appendChild(contenu);
-
-
-    const actions =
-      document.createElement("div");
-
-    actions.className =
-      "object-actions";
-
-
-    const modifier =
-      document.createElement("button");
-
-    modifier.className =
-      "object-action";
-
-    modifier.textContent =
-      "MODIFIER";
-
-
-    modifier.onclick =
-      () => modifierArticle(article.id);
-
-
-    /*
-     * Brocanteur :
-     * après réception, la quantité réelle ne doit plus
-     * être modifiée depuis la fiche.
-     *
-     * Il peut toujours modifier les informations descriptives.
-     */
-
-
-    const qr =
-      document.createElement("button");
-
-    qr.className =
-      "object-action";
-
-    qr.textContent =
-      "QR CODE";
-
-
-    const qrAutorise =
-      article.statut_reception === "receptionne" ||
-      article.statut_reception === "ecart";
-
-
-    qr.disabled =
-      !qrAutorise ||
-      Number(article.quantite_recue || 0) <= 0;
-
-
-    qr.onclick =
-      () => ouvrirQR(article.id);
-
-
-    actions.appendChild(modifier);
-    actions.appendChild(qr);
-
-    carte.appendChild(actions);
-
-    grille.appendChild(carte);
-
-  });
+  );
 
 }
 
 
 /* =========================================================
    MODIFIER ARTICLE
-   ========================================================= */
+========================================================= */
 
-async function modifierArticle(id) {
+async function modifierArticle(
+  id
+) {
 
   let article =
-    stockCache.find(a => a.id === id);
+    stockCache.find(
+      a => a.id === id
+    );
 
 
   if (!article) {
 
-    const { data, error } =
+    const { data,error } =
       await db
         .from("articles")
         .select("*")
-        .eq("id", id)
+        .eq("id",id)
         .single();
 
 
-    if (error || !data) {
-      alert("Article introuvable.");
+    if (
+      error ||
+      !data
+    ) {
+
+      alert(
+        "Article introuvable."
+      );
+
       return;
+
     }
 
     article = data;
@@ -3790,96 +4629,173 @@ async function modifierArticle(id) {
     article.id;
 
   editingArticlePhotoUrl =
-    article.photo_url || null;
+    article.photo_url ||
+    null;
 
 
-  articleReturnDestination =
-    profil.role === "admin"
-      ? "stock"
-      : "seller";
-
-
-  document.getElementById("articleEyebrow").textContent =
+  document.getElementById(
+    "articleEyebrow"
+  ).textContent =
     "MODIFICATION";
 
-  document.getElementById("articleTitle").innerHTML =
+
+  document.getElementById(
+    "articleTitle"
+  ).innerHTML =
     "MODIFIER<br>L'OBJET.";
 
-  document.getElementById("saveArticleButton").textContent =
+
+  document.getElementById(
+    "saveArticleButton"
+  ).textContent =
     "ENREGISTRER LES MODIFICATIONS";
 
 
-  document.getElementById("articleReference").value =
-    article.reference || "";
+  document.getElementById(
+    "articleReferenceDisplay"
+  ).textContent =
+    article.reference ||
+    "—";
 
-  document.getElementById("articleCategorie").value =
-    article.categorie || "";
 
-  document.getElementById("articleNom").value =
-    article.nom || "";
+  document.getElementById(
+    "articleReferenceDisplay"
+  ).className =
+    "auto-reference saved";
 
-  document.getElementById("articleDescription").value =
-    article.description || "";
 
-  document.getElementById("articlePrix").value =
-    article.prix ?? "";
+  document.getElementById(
+    "articleReferenceHelp"
+  ).textContent =
+    "La référence est définitive et ne peut pas être modifiée.";
 
-  document.getElementById("articleQuantite").value =
+
+  document.getElementById(
+    "articleCategorie"
+  ).value =
+    article.categorie ||
+    "";
+
+
+  document.getElementById(
+    "articleNom"
+  ).value =
+    article.nom ||
+    "";
+
+
+  document.getElementById(
+    "articleDescription"
+  ).value =
+    article.description ||
+    "";
+
+
+  document.getElementById(
+    "articlePrix"
+  ).value =
+    article.prix ??
+    "";
+
+
+  document.getElementById(
+    "articleQuantite"
+  ).value =
     article.quantite_declaree ??
     article.quantite ??
     1;
 
 
+  document.getElementById(
+    "articleQuantite"
+  ).disabled =
+    !!(
+      article.statut_reception &&
+      article.statut_reception !==
+        "a_apporter"
+    );
+
+
   const preview =
-    document.getElementById("articlePhotoPreview");
+    document.getElementById(
+      "articlePhotoPreview"
+    );
 
 
-  if (article.photo_url) {
+  if (
+    article.photo_url
+  ) {
 
     preview.src =
       article.photo_url;
 
-    preview.classList.remove("hidden");
+    preview.classList.remove(
+      "hidden"
+    );
 
   } else {
 
     preview.src = "";
-    preview.classList.add("hidden");
+
+    preview.classList.add(
+      "hidden"
+    );
 
   }
 
 
-  document.getElementById("articlePhoto").value = "";
-  document.getElementById("articleMessage").textContent = "";
+  document.getElementById(
+    "articlePhoto"
+  ).value = "";
 
-  afficherSection("articleSection");
+
+  document.getElementById(
+    "articleMessage"
+  ).textContent = "";
+
+
+  afficherSection(
+    "articleSection"
+  );
 
 }
 
 
 /* =========================================================
-   QR UNIQUE
-   ========================================================= */
+   QR ARTICLE
+========================================================= */
 
-async function ouvrirQR(articleId) {
+async function ouvrirQR(
+  articleId
+) {
 
   let article =
-    stockCache.find(a => a.id === articleId);
+    stockCache.find(
+      a => a.id === articleId
+    );
 
 
   if (!article) {
 
-    const { data, error } =
+    const { data,error } =
       await db
         .from("articles")
         .select("*")
-        .eq("id", articleId)
+        .eq(
+          "id",
+          articleId
+        )
         .single();
 
 
-    if (error || !data) {
+    if (
+      error ||
+      !data
+    ) {
 
-      alert("Article introuvable.");
+      alert(
+        "Article introuvable."
+      );
 
       return;
 
@@ -3890,7 +4806,8 @@ async function ouvrirQR(articleId) {
   }
 
 
-  qrArticle = article;
+  qrArticle =
+    article;
 
 
   qrReturnDestination =
@@ -3899,18 +4816,31 @@ async function ouvrirQR(articleId) {
       : "seller";
 
 
-  document.getElementById("qrName").textContent =
-    article.nom || "Objet";
+  document.getElementById(
+    "qrName"
+  ).textContent =
+    article.nom ||
+    "Objet";
 
-  document.getElementById("qrReference").textContent =
+
+  document.getElementById(
+    "qrReference"
+  ).textContent =
     `RÉF. ${article.reference || "—"}`;
 
-  document.getElementById("qrPrice").textContent =
-    formaterPrix(article.prix);
+
+  document.getElementById(
+    "qrPrice"
+  ).textContent =
+    formaterPrix(
+      article.prix
+    );
 
 
   const zone =
-    document.getElementById("qrCode");
+    document.getElementById(
+      "qrCode"
+    );
 
   zone.innerHTML = "";
 
@@ -3918,26 +4848,40 @@ async function ouvrirQR(articleId) {
   new QRCode(
     zone,
     {
-      text:`VIDEDECO:${article.id}`,
+      text:
+        `VIDEDECO:${article.id}`,
+
       width:230,
       height:230,
-      correctLevel:QRCode.CorrectLevel.H
+
+      correctLevel:
+        QRCode.CorrectLevel.H
     }
   );
 
 
-  document.getElementById("qrStatus").textContent =
-    "Ce QR code reste associé à cet objet, même si son prix est modifié.";
+  document.getElementById(
+    "qrStatus"
+  ).textContent =
+    article.statut_reception ===
+      "a_apporter"
+      ? "À APPORTER — ce QR code permettra d'identifier l'objet lors de sa réception."
+      : "Ce QR code reste associé à cet objet.";
 
 
-  afficherSection("qrSection");
+  afficherSection(
+    "qrSection"
+  );
 
 }
 
 
 function retourDepuisQR() {
 
-  if (qrReturnDestination === "stock") {
+  if (
+    qrReturnDestination ===
+    "stock"
+  ) {
     ouvrirStock();
   } else {
     ouvrirMesObjets();
@@ -3946,71 +4890,76 @@ function retourDepuisQR() {
 }
 
 
-function imprimerQRCodeUnique() {
-
-  document.body.classList.remove("print-labels");
-  document.body.classList.add("print-single");
-
-  window.print();
-
-}
-
-
-window.addEventListener(
-  "afterprint",
-  () => {
-
-    document.body.classList.remove(
-      "print-labels",
-      "print-single"
-    );
-
-  }
-);
-
-
 /* =========================================================
-   SÉLECTION QR
-   ========================================================= */
+   SÉLECTION CARTELS
+========================================================= */
 
 function actualiserCompteurQR() {
 
-  const n =
+  const nombreReferences =
     qrSelection.size;
 
 
-  const compteur =
-    document.getElementById("qrSelectionCount");
+  const nombreCartels =
+    Array
+      .from(qrSelection)
+      .reduce(
+        (total,id) => {
+
+          const article =
+            stockCache.find(
+              a => a.id === id
+            );
+
+          return (
+            total +
+            (
+              article
+                ? quantitePourCartels(
+                    article
+                  )
+                : 0
+            )
+          );
+
+        },
+        0
+      );
 
 
-  compteur.textContent =
-    `${n} ÉTIQUETTE${n > 1 ? "S" : ""} SÉLECTIONNÉE${n > 1 ? "S" : ""}`;
+  document.getElementById(
+    "qrSelectionCount"
+  ).textContent =
+    `${nombreReferences} RÉFÉRENCE${nombreReferences > 1 ? "S" : ""} — ${nombreCartels} CARTEL${nombreCartels > 1 ? "S" : ""}`;
 
 
   document.getElementById(
     "printSelectedLabelsButton"
-  ).disabled = n === 0;
+  ).disabled =
+    nombreCartels === 0;
 
 }
 
 
 function selectionnerTousQR() {
 
-  stockAfficheCache.forEach(article => {
+  stockAfficheCache.forEach(
+    article => {
 
-    if (
-      (
-        article.statut_reception === "receptionne" ||
-        article.statut_reception === "ecart"
-      ) &&
-      Number(article.quantite_recue || 0) > 0
-    ) {
+      if (
+        articleImprimable(
+          article
+        )
+      ) {
 
-      qrSelection.add(article.id);
+        qrSelection.add(
+          article.id
+        );
+
+      }
 
     }
-
-  });
+  );
 
 
   afficherStockFiltre();
@@ -4030,37 +4979,41 @@ function deselectionnerTousQR() {
 
 
 /* =========================================================
-   PLANCHE ÉTIQUETTES
-   ========================================================= */
+   CARTELS A4
+========================================================= */
 
 async function preparerEtiquettesSelectionnees() {
 
-  if (!qrSelection.size) {
+  if (
+    !qrSelection.size
+  ) {
     return;
   }
 
 
-  /*
-   * On recharge les articles pour être certain
-   * d'imprimer les données les plus récentes.
-   */
-
   const ids =
-    Array.from(qrSelection);
+    Array.from(
+      qrSelection
+    );
 
 
-  const { data, error } =
+  const { data,error } =
     await db
       .from("articles")
       .select("*")
-      .in("id", ids)
-      .order("reference");
+      .in(
+        "id",
+        ids
+      )
+      .order(
+        "reference"
+      );
 
 
   if (error) {
 
     alert(
-      "Impossible de préparer les étiquettes : " +
+      "Impossible de préparer les cartels : " +
       error.message
     );
 
@@ -4070,19 +5023,51 @@ async function preparerEtiquettesSelectionnees() {
 
 
   const articles =
-    (data || []).filter(article =>
-      (
-        article.statut_reception === "receptionne" ||
-        article.statut_reception === "ecart"
-      ) &&
-      Number(article.quantite_recue || 0) > 0
-    );
+    (data || [])
+      .filter(
+        article =>
+          articleImprimable(
+            article
+          )
+      );
 
 
-  if (!articles.length) {
+  const cartels = [];
+
+
+  articles.forEach(
+    article => {
+
+      const quantite =
+        quantitePourCartels(
+          article
+        );
+
+
+      for (
+        let i = 0;
+        i < quantite;
+        i++
+      ) {
+
+        cartels.push({
+          ...article,
+          numero_exemplaire:
+            i + 1,
+          total_exemplaires:
+            quantite
+        });
+
+      }
+
+    }
+  );
+
+
+  if (!cartels.length) {
 
     alert(
-      "Aucun objet réceptionné parmi la sélection."
+      "Aucun cartel à imprimer."
     );
 
     return;
@@ -4090,117 +5075,145 @@ async function preparerEtiquettesSelectionnees() {
   }
 
 
-  construirePlancheEtiquettes(articles);
+  construirePlancheEtiquettes(
+    cartels
+  );
 
-  afficherSection("labelsSection");
+  afficherSection(
+    "labelsSection"
+  );
 
 }
 
 
-function construirePlancheEtiquettes(articles) {
+function construirePlancheEtiquettes(
+  cartels
+) {
 
   const conteneur =
-    document.getElementById("printPages");
+    document.getElementById(
+      "printPages"
+    );
 
   conteneur.innerHTML = "";
 
 
-  /*
-   * 12 petites étiquettes par A4 :
-   * 2 colonnes × 6 lignes.
-   */
-
-  const taillePage = 12;
-
-
   for (
     let debut = 0;
-    debut < articles.length;
-    debut += taillePage
+    debut < cartels.length;
+    debut += 12
   ) {
 
     const page =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     page.className =
       "print-page";
 
 
     const lot =
-      articles.slice(
+      cartels.slice(
         debut,
-        debut + taillePage
+        debut + 12
       );
 
 
-    lot.forEach(article => {
+    lot.forEach(
+      article => {
 
-      const etiquette =
-        document.createElement("div");
+        const etiquette =
+          document.createElement(
+            "div"
+          );
 
-      etiquette.className =
-        "sale-label";
-
-
-      const infos =
-        document.createElement("div");
-
-      infos.className =
-        "sale-label-info";
+        etiquette.className =
+          "sale-label";
 
 
-      infos.innerHTML = `
+        const infos =
+          document.createElement(
+            "div"
+          );
 
-        <div class="sale-label-brand">
-          VIDE DECO
-        </div>
-
-        <div class="sale-label-name">
-          ${echapperHTML(article.nom || "Objet")}
-        </div>
-
-        <div class="sale-label-category">
-          ${echapperHTML(article.categorie || "")}
-        </div>
-
-        <div class="sale-label-reference">
-          RÉF. ${echapperHTML(article.reference || "—")}
-        </div>
-
-        <div class="sale-label-price">
-          ${formaterPrix(article.prix)}
-        </div>
-
-      `;
+        infos.className =
+          "sale-label-info";
 
 
-      const qr =
-        document.createElement("div");
+        infos.innerHTML = `
 
-      qr.className =
-        "sale-label-qr";
+          <div class="sale-label-brand">
+            VIDE DECO
+          </div>
+
+          <div class="sale-label-name">
+            ${echapperHTML(article.nom || "Objet")}
+          </div>
+
+          <div class="sale-label-category">
+            ${echapperHTML(article.categorie || "")}
+          </div>
+
+          <div class="sale-label-reference">
+            RÉF. ${echapperHTML(article.reference || "—")}
+            ${
+              article.total_exemplaires > 1
+              ? ` · ${article.numero_exemplaire}/${article.total_exemplaires}`
+              : ""
+            }
+          </div>
+
+          <div class="sale-label-price">
+            ${formaterPrix(article.prix)}
+          </div>
+
+        `;
 
 
-      etiquette.appendChild(infos);
-      etiquette.appendChild(qr);
+        const qr =
+          document.createElement(
+            "div"
+          );
 
-      page.appendChild(etiquette);
-
-
-      new QRCode(
-        qr,
-        {
-          text:`VIDEDECO:${article.id}`,
-          width:160,
-          height:160,
-          correctLevel:QRCode.CorrectLevel.H
-        }
-      );
-
-    });
+        qr.className =
+          "sale-label-qr";
 
 
-    conteneur.appendChild(page);
+        etiquette.appendChild(
+          infos
+        );
+
+        etiquette.appendChild(
+          qr
+        );
+
+        page.appendChild(
+          etiquette
+        );
+
+
+        new QRCode(
+          qr,
+          {
+            text:
+              `VIDEDECO:${article.id}`,
+
+            width:160,
+            height:160,
+
+            correctLevel:
+              QRCode.CorrectLevel.H
+          }
+        );
+
+      }
+    );
+
+
+    conteneur.appendChild(
+      page
+    );
 
   }
 
@@ -4209,8 +5222,9 @@ function construirePlancheEtiquettes(articles) {
 
 function imprimerPlancheEtiquettes() {
 
-  document.body.classList.remove("print-single");
-  document.body.classList.add("print-labels");
+  document.body.classList.add(
+    "print-labels"
+  );
 
   setTimeout(
     () => window.print(),
@@ -4220,13 +5234,41 @@ function imprimerPlancheEtiquettes() {
 }
 
 
+window.addEventListener(
+  "afterprint",
+  () => {
+
+    document.body.classList.remove(
+      "print-labels"
+    );
+
+  }
+);
+
+
+function retourDepuisCartels() {
+
+  if (
+    labelsReturnDestination ===
+    "seller"
+  ) {
+    ouvrirMesObjets();
+  } else {
+    ouvrirStock();
+  }
+
+}
+
+
 /* =========================================================
-   INVENTAIRE : OUVERTURE
-   ========================================================= */
+   INVENTAIRE
+========================================================= */
 
 async function ouvrirInventaire() {
 
-  if (profil.role !== "admin") {
+  if (
+    profil.role !== "admin"
+  ) {
     return;
   }
 
@@ -4234,18 +5276,23 @@ async function ouvrirInventaire() {
   await chargerProfils();
 
 
-  const { data, error } =
+  const { data,error } =
     await db
       .from("articles")
       .select("*")
-      .order("created_at", {
-        ascending:false
-      });
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
   if (error) {
 
-    alert(error.message);
+    alert(
+      error.message
+    );
 
     return;
 
@@ -4256,7 +5303,9 @@ async function ouvrirInventaire() {
     data || [];
 
 
-  afficherSection("inventorySection");
+  afficherSection(
+    "inventorySection"
+  );
 
   afficherBrocanteursInventaire();
 
@@ -4265,53 +5314,61 @@ async function ouvrirInventaire() {
 
 /* =========================================================
    BROCANTEURS INVENTAIRE
-   ========================================================= */
+========================================================= */
 
 function afficherBrocanteursInventaire() {
 
   const recherche =
-    document
-      .getElementById("inventorySellerSearch")
-      .value
-      .trim()
-      .toLowerCase();
+    document.getElementById(
+      "inventorySellerSearch"
+    )
+    .value
+    .trim()
+    .toLowerCase();
 
 
   const vendeurs =
-    profilsCache.filter(p =>
-      p.role === "brocanteur" &&
-      p.actif === true &&
-      (
-        !p.statut_compte ||
-        p.statut_compte === "actif"
-      )
+    profilsCache.filter(
+      p =>
+        p.role === "brocanteur" &&
+        p.actif === true &&
+        (
+          !p.statut_compte ||
+          p.statut_compte ===
+            "actif"
+        )
     );
 
 
   const zone =
-    document.getElementById("inventorySellers");
+    document.getElementById(
+      "inventorySellers"
+    );
 
   zone.innerHTML = "";
 
 
   const filtres =
-    vendeurs.filter(vendeur => {
+    vendeurs.filter(
+      vendeur => {
 
-      const texte = [
-        vendeur.prenom,
-        vendeur.nom,
-        vendeur.enseigne
-      ]
-      .join(" ")
-      .toLowerCase();
+        const texte = [
+          vendeur.prenom,
+          vendeur.nom,
+          vendeur.enseigne
+        ]
+        .join(" ")
+        .toLowerCase();
 
+        return (
+          !recherche ||
+          texte.includes(
+            recherche
+          )
+        );
 
-      return (
-        !recherche ||
-        texte.includes(recherche)
-      );
-
-    });
+      }
+    );
 
 
   if (!filtres.length) {
@@ -4324,103 +5381,126 @@ function afficherBrocanteursInventaire() {
   }
 
 
-  filtres.forEach(vendeur => {
+  filtres.forEach(
+    vendeur => {
 
-    const articles =
-      stockCache.filter(
-        a => a.vendeur_id === vendeur.id
+      const articles =
+        stockCache.filter(
+          a =>
+            a.vendeur_id ===
+            vendeur.id
+        );
+
+
+      const referencesDeclarees =
+        articles.length;
+
+
+      const objetsDeclares =
+        articles.reduce(
+          (somme,a) =>
+            somme +
+            Number(
+              a.quantite_declaree ??
+              a.quantite ??
+              0
+            ),
+          0
+        );
+
+
+      const objetsRecus =
+        articles.reduce(
+          (somme,a) =>
+            somme +
+            Number(
+              a.quantite_recue ||
+              0
+            ),
+          0
+        );
+
+
+      const aControler =
+        articles.filter(
+          a =>
+            !a.statut_reception ||
+            a.statut_reception ===
+              "a_apporter"
+        ).length;
+
+
+      const ecarts =
+        articles.filter(
+          a =>
+            a.statut_reception ===
+              "ecart"
+        ).length;
+
+
+      const carte =
+        document.createElement(
+          "div"
+        );
+
+      carte.className =
+        "inventory-seller";
+
+
+      carte.innerHTML = `
+
+        <div class="inventory-seller-name">
+          ${echapperHTML(
+            vendeur.enseigne ||
+            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+          )}
+        </div>
+
+        <div class="inventory-seller-company">
+          ${echapperHTML(
+            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+          )}
+        </div>
+
+        <div class="inventory-seller-stats">
+          ${referencesDeclarees} référence(s)<br>
+          ${objetsDeclares} objet(s) déclaré(s)<br>
+          ${objetsRecus} objet(s) reçu(s)<br>
+          <strong>${aControler} à contrôler</strong><br>
+          ${
+            ecarts
+              ? `<strong>⚠ ${ecarts} écart(s)</strong>`
+              : "Aucun écart"
+          }
+        </div>
+
+      `;
+
+
+      carte.onclick =
+        () =>
+          ouvrirInventaireBrocanteur(
+            vendeur.id
+          );
+
+
+      zone.appendChild(
+        carte
       );
 
-
-    const referencesDeclarees =
-      articles.length;
-
-
-    const objetsDeclares =
-      articles.reduce(
-        (somme,a) =>
-          somme +
-          Number(
-            a.quantite_declaree ??
-            a.quantite ??
-            0
-          ),
-        0
-      );
-
-
-    const objetsRecus =
-      articles.reduce(
-        (somme,a) =>
-          somme +
-          Number(a.quantite_recue || 0),
-        0
-      );
-
-
-    const aControler =
-      articles.filter(
-        a =>
-          !a.statut_reception ||
-          a.statut_reception === "a_apporter"
-      ).length;
-
-
-    const ecarts =
-      articles.filter(
-        a => a.statut_reception === "ecart"
-      ).length;
-
-
-    const carte =
-      document.createElement("div");
-
-    carte.className =
-      "inventory-seller";
-
-
-    carte.innerHTML = `
-
-      <div class="inventory-seller-name">
-        ${echapperHTML(
-          vendeur.enseigne ||
-          `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
-        )}
-      </div>
-
-      <div class="inventory-seller-company">
-        ${echapperHTML(
-          `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
-        )}
-      </div>
-
-      <div class="inventory-seller-stats">
-        ${referencesDeclarees} référence(s)<br>
-        ${objetsDeclares} objet(s) déclaré(s)<br>
-        ${objetsRecus} objet(s) reçu(s)<br>
-        <strong>${aControler} à contrôler</strong><br>
-        ${ecarts ? `<strong>⚠ ${ecarts} écart(s)</strong>` : "Aucun écart"}
-      </div>
-
-    `;
-
-
-    carte.onclick =
-      () => ouvrirInventaireBrocanteur(vendeur.id);
-
-
-    zone.appendChild(carte);
-
-  });
+    }
+  );
 
 }
 
 
 /* =========================================================
    INVENTAIRE BROCANTEUR
-   ========================================================= */
+========================================================= */
 
-async function ouvrirInventaireBrocanteur(vendeurId) {
+async function ouvrirInventaireBrocanteur(
+  vendeurId
+) {
 
   inventorySellerId =
     vendeurId;
@@ -4439,22 +5519,31 @@ async function ouvrirInventaireBrocanteur(vendeurId) {
       vendeur?.enseigne ||
       vendeur?.nom ||
       "BROCANTEUR"
-    ).toUpperCase() + ".";
+    ).toUpperCase() +
+    ".";
 
 
-  const { data, error } =
+  const { data,error } =
     await db
       .from("articles")
       .select("*")
-      .eq("vendeur_id", vendeurId)
-      .order("created_at", {
-        ascending:false
-      });
+      .eq(
+        "vendeur_id",
+        vendeurId
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
   if (error) {
 
-    alert(error.message);
+    alert(
+      error.message
+    );
 
     return;
 
@@ -4465,7 +5554,9 @@ async function ouvrirInventaireBrocanteur(vendeurId) {
     data || [];
 
 
-  afficherSection("inventorySellerSection");
+  afficherSection(
+    "inventorySellerSection"
+  );
 
   actualiserResumeInventaire();
   afficherArticlesInventaire();
@@ -4475,7 +5566,7 @@ async function ouvrirInventaireBrocanteur(vendeurId) {
 
 /* =========================================================
    RÉSUMÉ INVENTAIRE
-   ========================================================= */
+========================================================= */
 
 function actualiserResumeInventaire() {
 
@@ -4504,7 +5595,10 @@ function actualiserResumeInventaire() {
     articles.reduce(
       (somme,a) =>
         somme +
-        Number(a.quantite_recue || 0),
+        Number(
+          a.quantite_recue ||
+          0
+        ),
       0
     );
 
@@ -4513,13 +5607,16 @@ function actualiserResumeInventaire() {
     articles.filter(
       a =>
         !a.statut_reception ||
-        a.statut_reception === "a_apporter"
+        a.statut_reception ===
+          "a_apporter"
     ).length;
 
 
   const ecarts =
     articles.filter(
-      a => a.statut_reception === "ecart"
+      a =>
+        a.statut_reception ===
+          "ecart"
     ).length;
 
 
@@ -4585,52 +5682,64 @@ function actualiserResumeInventaire() {
 
 /* =========================================================
    ARTICLES INVENTAIRE
-   ========================================================= */
+========================================================= */
 
 function afficherArticlesInventaire() {
 
   const recherche =
-    document
-      .getElementById("inventoryArticleSearch")
-      .value
-      .trim()
-      .toLowerCase();
+    document.getElementById(
+      "inventoryArticleSearch"
+    )
+    .value
+    .trim()
+    .toLowerCase();
 
 
   const filtre =
-    document
-      .getElementById("inventoryArticleFilter")
-      .value;
+    document.getElementById(
+      "inventoryArticleFilter"
+    ).value;
 
 
   const articles =
-    inventorySellerArticles.filter(article => {
+    inventorySellerArticles
+      .filter(
+        article => {
 
-      const texte = [
-        article.reference,
-        article.nom
-      ]
-      .join(" ")
-      .toLowerCase();
-
-
-      const rechercheOk =
-        !recherche ||
-        texte.includes(recherche);
+          const texte = [
+            article.reference,
+            article.nom
+          ]
+          .join(" ")
+          .toLowerCase();
 
 
-      const filtreOk =
-        !filtre ||
-        article.statut_reception === filtre;
+          const rechercheOk =
+            !recherche ||
+            texte.includes(
+              recherche
+            );
 
 
-      return rechercheOk && filtreOk;
+          const filtreOk =
+            !filtre ||
+            article.statut_reception ===
+              filtre;
 
-    });
+
+          return (
+            rechercheOk &&
+            filtreOk
+          );
+
+        }
+      );
 
 
   const zone =
-    document.getElementById("inventoryList");
+    document.getElementById(
+      "inventoryList"
+    );
 
   zone.innerHTML = "";
 
@@ -4645,119 +5754,167 @@ function afficherArticlesInventaire() {
   }
 
 
-  articles.forEach(article => {
+  articles.forEach(
+    article => {
 
-    const declaree =
-      Number(
-        article.quantite_declaree ??
-        article.quantite ??
-        0
-      );
-
-
-    const recue =
-      Number(article.quantite_recue || 0);
+      const declaree =
+        Number(
+          article.quantite_declaree ??
+          article.quantite ??
+          0
+        );
 
 
-    const ligne =
-      document.createElement("div");
+      const recue =
+        Number(
+          article.quantite_recue ||
+          0
+        );
 
 
-    let classe =
-      "inventory-item";
+      const ligne =
+        document.createElement(
+          "div"
+        );
 
 
-    if (article.statut_reception === "receptionne") {
-      classe += " received";
-    }
+      let classe =
+        "inventory-item";
 
 
-    if (article.statut_reception === "ecart") {
-      classe += " difference";
-    }
-
-
-    ligne.className =
-      classe;
-
-
-    ligne.innerHTML = `
-
-      <div>
-
-        <div class="inventory-item-name">
-          ${echapperHTML(article.nom)}
-        </div>
-
-        <div class="inventory-item-ref">
-          RÉF. ${echapperHTML(article.reference || "—")}
-        </div>
-
-        <div class="object-status ${classeStatutReception(article.statut_reception)}">
-          ${statutReceptionTexte(article.statut_reception)}
-        </div>
-
-      </div>
-
-
-      <div class="inventory-quantity">
-        DÉCLARÉ
-        <strong>${declaree}</strong>
-      </div>
-
-
-      <div class="inventory-quantity">
-        REÇU
-        <strong>${recue}</strong>
-      </div>
-
-
-      <button
-        class="inventory-action"
-        onclick="ouvrirReceptionArticle('${article.id}')"
-      >
-        ${
-          article.statut_reception === "a_apporter"
-            ? "RÉCEPTIONNER"
-            : "CONTRÔLER / CORRIGER"
-        }
-      </button>
-
-      ${
-        article.note_reception
-        ? `
-          <div class="inventory-note">
-            <strong>NOTE :</strong>
-            ${echapperHTML(article.note_reception)}
-          </div>
-        `
-        : ""
+      if (
+        article.statut_reception ===
+        "receptionne"
+      ) {
+        classe +=
+          " received";
       }
 
-    `;
+
+      if (
+        article.statut_reception ===
+        "ecart"
+      ) {
+        classe +=
+          " difference";
+      }
 
 
-    zone.appendChild(ligne);
+      ligne.className =
+        classe;
 
-  });
+
+      const receptionPossible =
+        !article.statut_reception ||
+        article.statut_reception ===
+          "a_apporter";
+
+
+      ligne.innerHTML = `
+
+        <div>
+
+          <div class="inventory-item-name">
+            ${echapperHTML(article.nom)}
+          </div>
+
+          <div class="inventory-item-ref">
+            RÉF. ${echapperHTML(article.reference || "—")}
+          </div>
+
+          <div class="object-status ${classeStatutReception(article.statut_reception)}">
+            ${statutReceptionTexte(article.statut_reception)}
+          </div>
+
+        </div>
+
+
+        <div class="inventory-quantity">
+          DÉCLARÉ
+          <strong>${declaree}</strong>
+        </div>
+
+
+        <div class="inventory-quantity">
+          REÇU
+          <strong>${recue}</strong>
+        </div>
+
+
+        ${
+          receptionPossible
+          ? `
+            <button
+              class="inventory-action"
+              onclick="ouvrirReceptionArticle('${article.id}')"
+            >
+              RÉCEPTIONNER
+            </button>
+          `
+          : `
+            <div class="inventory-done">
+              RÉCEPTION ENREGISTRÉE
+            </div>
+          `
+        }
+
+
+        ${
+          article.note_reception
+          ? `
+            <div class="inventory-note">
+              <strong>NOTE :</strong>
+              ${echapperHTML(article.note_reception)}
+            </div>
+          `
+          : ""
+        }
+
+      `;
+
+
+      zone.appendChild(
+        ligne
+      );
+
+    }
+  );
 
 }
 
 
 /* =========================================================
-   MODAL RÉCEPTION
-   ========================================================= */
+   RÉCEPTION
+========================================================= */
 
-function ouvrirReceptionArticle(articleId) {
+function ouvrirReceptionArticle(
+  articleId
+) {
 
   const article =
-    inventorySellerArticles.find(
-      a => a.id === articleId
-    );
+    inventorySellerArticles
+      .find(
+        a => a.id === articleId
+      );
 
 
   if (!article) {
     return;
+  }
+
+
+  if (
+    article.statut_reception &&
+    article.statut_reception !==
+      "a_apporter"
+  ) {
+
+    alert(
+      "La réception de cet objet a déjà été enregistrée."
+    );
+
+    return;
+
   }
 
 
@@ -4769,17 +5926,15 @@ function ouvrirReceptionArticle(articleId) {
     );
 
 
-  const valeurInitiale =
-    article.statut_reception === "a_apporter"
-      ? declaree
-      : Number(article.quantite_recue || 0);
-
-
-  document.getElementById("modalTitle").innerHTML =
+  document.getElementById(
+    "modalTitle"
+  ).innerHTML =
     "RÉCEPTION<br>OBJET.";
 
 
-  document.getElementById("modalContent").innerHTML = `
+  document.getElementById(
+    "modalContent"
+  ).innerHTML = `
 
     <div class="modal-summary">
 
@@ -4801,14 +5956,16 @@ function ouvrirReceptionArticle(articleId) {
     </div>
 
 
-    <label>Quantité réellement reçue</label>
+    <label>
+      Quantité réellement reçue
+    </label>
 
     <input
       id="receptionQuantity"
       type="number"
       min="0"
       step="1"
-      value="${valeurInitiale}"
+      value="${declaree}"
       oninput="actualiserEcartReception(${declaree})"
     >
 
@@ -4819,12 +5976,14 @@ function ouvrirReceptionArticle(articleId) {
     ></div>
 
 
-    <label>Observation / écart éventuel</label>
+    <label>
+      Observation / écart éventuel
+    </label>
 
     <textarea
       id="receptionNote"
-      placeholder="Ex. 2 objets non apportés, objet différent, emballage abîmé..."
-    >${echapperHTML(article.note_reception || "")}</textarea>
+      placeholder="Ex. objet manquant, quantité différente..."
+    ></textarea>
 
 
     <div class="modal-actions">
@@ -4849,34 +6008,53 @@ function ouvrirReceptionArticle(articleId) {
   `;
 
 
-  actualiserEcartReception(declaree);
+  actualiserEcartReception(
+    declaree
+  );
 
-  document
-    .getElementById("modalOverlay")
-    .classList.remove("hidden");
+
+  document.getElementById(
+    "modalOverlay"
+  ).classList.remove(
+    "hidden"
+  );
 
 }
 
 
-function actualiserEcartReception(declaree) {
+function actualiserEcartReception(
+  declaree
+) {
 
   const champ =
-    document.getElementById("receptionQuantity");
+    document.getElementById(
+      "receptionQuantity"
+    );
 
   const zone =
-    document.getElementById("receptionDifference");
+    document.getElementById(
+      "receptionDifference"
+    );
 
 
-  if (!champ || !zone) {
+  if (
+    !champ ||
+    !zone
+  ) {
     return;
   }
 
 
   const recue =
-    Number(champ.value);
+    Number(
+      champ.value
+    );
 
 
-  if (!Number.isInteger(recue) || recue < 0) {
+  if (
+    !Number.isInteger(recue) ||
+    recue < 0
+  ) {
 
     zone.className =
       "message error";
@@ -4890,10 +6068,13 @@ function actualiserEcartReception(declaree) {
 
 
   const ecart =
-    recue - declaree;
+    recue -
+    declaree;
 
 
-  if (ecart === 0) {
+  if (
+    ecart === 0
+  ) {
 
     zone.className =
       "message success";
@@ -4914,20 +6095,55 @@ function actualiserEcartReception(declaree) {
 }
 
 
-async function validerReceptionArticle(articleId) {
+async function validerReceptionArticle(
+  articleId
+) {
+
+  const article =
+    inventorySellerArticles
+      .find(
+        a => a.id === articleId
+      );
+
+
+  if (
+    !article ||
+    (
+      article.statut_reception &&
+      article.statut_reception !==
+        "a_apporter"
+    )
+  ) {
+
+    alert(
+      "Cette réception a déjà été enregistrée."
+    );
+
+    fermerModal();
+
+    return;
+
+  }
+
 
   const quantite =
     Number(
-      document.getElementById("receptionQuantity").value
+      document.getElementById(
+        "receptionQuantity"
+      ).value
     );
 
 
   const note =
-    document.getElementById("receptionNote").value.trim();
+    document.getElementById(
+      "receptionNote"
+    ).value.trim();
 
 
   if (
-    !Number.isInteger(quantite) ||
+    !Number.isInteger(
+      quantite
+    ) ||
     quantite < 0
   ) {
 
@@ -4941,19 +6157,27 @@ async function validerReceptionArticle(articleId) {
 
 
   const bouton =
-    document.getElementById("receptionValidateButton");
+    document.getElementById(
+      "receptionValidateButton"
+    );
 
   bouton.disabled = true;
-  bouton.textContent = "ENREGISTREMENT...";
+  bouton.textContent =
+    "ENREGISTREMENT...";
 
 
   const { error } =
     await db.rpc(
       "receptionner_article",
       {
-        p_article_id:articleId,
-        p_quantite_recue:quantite,
-        p_note:note || null
+        p_article_id:
+          articleId,
+
+        p_quantite_recue:
+          quantite,
+
+        p_note:
+          note || null
       }
     );
 
@@ -4961,10 +6185,13 @@ async function validerReceptionArticle(articleId) {
   if (error) {
 
     bouton.disabled = false;
-    bouton.textContent = "VALIDER LA RÉCEPTION";
+
+    bouton.textContent =
+      "VALIDER LA RÉCEPTION";
 
     alert(
-      "Erreur : " + error.message
+      "Erreur : " +
+      error.message
     );
 
     return;
@@ -4974,6 +6201,7 @@ async function validerReceptionArticle(articleId) {
 
   fermerModal();
 
+
   await ouvrirInventaireBrocanteur(
     inventorySellerId
   );
@@ -4982,62 +6210,64 @@ async function validerReceptionArticle(articleId) {
 
 
 /* =========================================================
-   MODAL
-   ========================================================= */
+   VÉRIFIER LE STOCK
+========================================================= */
 
-function fermerModal() {
+function ouvrirVerificationStock() {
 
-  document
-    .getElementById("modalOverlay")
-    .classList.add("hidden");
+  if (
+    profil?.role !== "admin"
+  ) {
+    return;
+  }
 
-}
-
-
-/* =========================================================
-   CAISSE
-   ========================================================= */
-
-async function ouvrirCaisse() {
-
-  panier = [];
-  modePaiement = null;
 
   fermerScanner();
 
-  afficherSection("cashierSection");
 
-  afficherPanier();
+  document.getElementById(
+    "stockCheckReference"
+  ).value = "";
+
+
+  document.getElementById(
+    "stockCheckMessage"
+  ).className =
+    "message";
+
+
+  document.getElementById(
+    "stockCheckMessage"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "stockCheckResult"
+  ).classList.add(
+    "hidden"
+  );
+
+
+  document.getElementById(
+    "stockCheckResult"
+  ).innerHTML = "";
+
+
+  afficherSection(
+    "stockCheckSection"
+  );
 
 }
 
 
-function choisirPaiement(mode) {
-
-  modePaiement = mode;
-
-
-  document
-    .querySelectorAll(".payment-button")
-    .forEach(bouton => {
-
-      bouton.classList.toggle(
-        "active",
-        bouton.dataset.payment === mode
-      );
-
-    });
-
-}
-
-
-async function rechercherArticleCaisse() {
+async function rechercherStockRapide() {
 
   const valeur =
-    document
-      .getElementById("cashierReference")
-      .value
-      .trim();
+    document.getElementById(
+      "stockCheckReference"
+    )
+    .value
+    .trim();
 
 
   if (!valeur) {
@@ -5045,7 +6275,602 @@ async function rechercherArticleCaisse() {
   }
 
 
-  await ajouterArticleCaisseParRecherche(valeur);
+  await trouverArticleStock(
+    valeur
+  );
+
+}
+
+
+async function trouverArticleStock(
+  valeur
+) {
+
+  const message =
+    document.getElementById(
+      "stockCheckMessage"
+    );
+
+
+  message.className =
+    "message";
+
+  message.textContent =
+    "Recherche...";
+
+
+  let requete =
+    db
+      .from("articles")
+      .select("*");
+
+
+  if (
+    valeur.startsWith(
+      "VIDEDECO:"
+    )
+  ) {
+
+    const id =
+      valeur.replace(
+        "VIDEDECO:",
+        ""
+      );
+
+    requete =
+      requete.eq(
+        "id",
+        id
+      );
+
+  } else {
+
+    requete =
+      requete.eq(
+        "reference",
+        valeur.toUpperCase()
+      );
+
+  }
+
+
+  const { data,error } =
+    await requete
+      .maybeSingle();
+
+
+  if (
+    error ||
+    !data
+  ) {
+
+    message.className =
+      "message error";
+
+    message.textContent =
+      "Objet introuvable.";
+
+    document.getElementById(
+      "stockCheckResult"
+    ).classList.add(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+
+  message.textContent = "";
+
+
+  await chargerProfils();
+
+
+  afficherResultatStock(
+    data
+  );
+
+}
+
+
+function afficherResultatStock(
+  article
+) {
+
+  const zone =
+    document.getElementById(
+      "stockCheckResult"
+    );
+
+
+  const declare =
+    Number(
+      article.quantite_declaree ??
+      article.quantite ??
+      0
+    );
+
+
+  const recu =
+    Number(
+      article.quantite_recue ||
+      0
+    );
+
+
+  const disponible =
+    Number(
+      article.quantite_disponible ||
+      0
+    );
+
+
+  /*
+   * La quantité vendue est calculée simplement :
+   * quantité reçue - quantité encore disponible.
+   */
+
+  const vendu =
+    Math.max(
+      0,
+      recu -
+      disponible
+    );
+
+
+  const stockTexte =
+    disponible === 0
+      ? "ÉPUISÉ"
+      : disponible === 1
+        ? "1 EN STOCK"
+        : `${disponible} EN STOCK`;
+
+
+  zone.innerHTML = `
+
+    ${
+      article.photo_url
+      ? `
+        <img
+          class="stock-result-image"
+          src="${echapperHTML(article.photo_url)}"
+          alt="${echapperHTML(article.nom || "")}"
+        >
+      `
+      : `
+        <div class="stock-result-no-image">
+          AUCUNE PHOTO
+        </div>
+      `
+    }
+
+
+    <div class="stock-result-main">
+
+      <div class="stock-result-reference">
+        RÉF. ${echapperHTML(article.reference || "—")}
+      </div>
+
+      <div class="stock-result-name">
+        ${echapperHTML(article.nom || "OBJET")}
+      </div>
+
+      <div class="stock-result-seller">
+        ${echapperHTML(nomBrocanteur(article.vendeur_id))}
+      </div>
+
+      <div class="stock-result-price">
+        ${formaterPrix(article.prix)}
+      </div>
+
+
+      <div class="stock-big-status ${disponible <= 0 ? "empty" : ""}">
+
+        <div class="stock-big-number">
+          ${
+            disponible <= 0
+              ? "0"
+              : disponible
+          }
+        </div>
+
+        <div class="stock-big-label">
+          ${stockTexte}
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="stock-detail-grid">
+
+      <div class="stock-detail">
+
+        <div class="stock-detail-label">
+          DÉCLARÉ
+        </div>
+
+        <div class="stock-detail-value">
+          ${declare}
+        </div>
+
+      </div>
+
+
+      <div class="stock-detail">
+
+        <div class="stock-detail-label">
+          RÉCEPTIONNÉ
+        </div>
+
+        <div class="stock-detail-value">
+          ${recu}
+        </div>
+
+      </div>
+
+
+      <div class="stock-detail">
+
+        <div class="stock-detail-label">
+          VENDU
+        </div>
+
+        <div class="stock-detail-value">
+          ${vendu}
+        </div>
+
+      </div>
+
+
+      <div class="stock-detail">
+
+        <div class="stock-detail-label">
+          DISPONIBLE
+        </div>
+
+        <div class="stock-detail-value">
+          ${disponible}
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="scan-another"
+      onclick="scannerAutreObjetStock()"
+    >
+      SCANNER UN AUTRE OBJET
+    </button>
+
+  `;
+
+
+  zone.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+async function scannerAutreObjetStock() {
+
+  await fermerScannerStock();
+
+
+  document.getElementById(
+    "stockCheckReference"
+  ).value = "";
+
+
+  document.getElementById(
+    "stockCheckResult"
+  ).classList.add(
+    "hidden"
+  );
+
+
+  document.getElementById(
+    "stockCheckResult"
+  ).innerHTML = "";
+
+
+  document.getElementById(
+    "stockCheckMessage"
+  ).textContent = "";
+
+
+  await basculerScannerStock();
+
+}
+
+
+/* =========================================================
+   SCANNER STOCK
+========================================================= */
+
+async function basculerScannerStock() {
+
+  if (
+    stockScannerActif
+  ) {
+
+    await fermerScannerStock();
+
+    return;
+
+  }
+
+
+  const zone =
+    document.getElementById(
+      "stockCheckReader"
+    );
+
+
+  zone.classList.remove(
+    "hidden"
+  );
+
+
+  const bouton =
+    document.getElementById(
+      "stockScanButton"
+    );
+
+
+  bouton.textContent =
+    "FERMER LA CAMÉRA";
+
+
+  try {
+
+    stockQrCode =
+      new Html5Qrcode(
+        "stockCheckReader"
+      );
+
+
+    await stockQrCode.start(
+
+      {
+        facingMode:
+          "environment"
+      },
+
+      {
+        fps:10,
+
+        qrbox:{
+          width:250,
+          height:250
+        }
+      },
+
+      async texte => {
+
+        /*
+         * On bloque immédiatement les nouveaux scans.
+         */
+
+        if (
+          !stockScannerActif
+        ) {
+          return;
+        }
+
+
+        stockScannerActif =
+          false;
+
+
+        try {
+
+          await stockQrCode.stop();
+
+        } catch (_) {}
+
+
+        try {
+
+          await stockQrCode.clear();
+
+        } catch (_) {}
+
+
+        stockQrCode = null;
+
+
+        zone.innerHTML = "";
+
+        zone.classList.add(
+          "hidden"
+        );
+
+
+        bouton.textContent =
+          "SCANNER LE QR CODE";
+
+
+        await trouverArticleStock(
+          texte
+        );
+
+      },
+
+      () => {}
+
+    );
+
+
+    stockScannerActif =
+      true;
+
+
+  } catch (error) {
+
+    stockQrCode = null;
+    stockScannerActif = false;
+
+    zone.innerHTML = "";
+
+    zone.classList.add(
+      "hidden"
+    );
+
+
+    bouton.textContent =
+      "SCANNER LE QR CODE";
+
+
+    document.getElementById(
+      "stockCheckMessage"
+    ).className =
+      "message error";
+
+
+    document.getElementById(
+      "stockCheckMessage"
+    ).textContent =
+      "Impossible d'ouvrir la caméra : " +
+      error.message;
+
+  }
+
+}
+
+
+async function fermerScannerStock() {
+
+  if (
+    stockQrCode
+  ) {
+
+    try {
+
+      if (
+        stockScannerActif
+      ) {
+        await stockQrCode.stop();
+      }
+
+    } catch (_) {}
+
+
+    try {
+      await stockQrCode.clear();
+    } catch (_) {}
+
+  }
+
+
+  stockQrCode = null;
+  stockScannerActif = false;
+
+
+  const zone =
+    document.getElementById(
+      "stockCheckReader"
+    );
+
+
+  if (zone) {
+
+    zone.innerHTML = "";
+
+    zone.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  const bouton =
+    document.getElementById(
+      "stockScanButton"
+    );
+
+
+  if (bouton) {
+
+    bouton.textContent =
+      "SCANNER LE QR CODE";
+
+  }
+
+}
+
+
+/* =========================================================
+   CAISSE
+========================================================= */
+
+async function ouvrirCaisse() {
+
+  panier = [];
+  modePaiement = null;
+
+  await fermerScannerStock();
+
+  afficherSection(
+    "cashierSection"
+  );
+
+  afficherPanier();
+
+}
+
+
+function choisirPaiement(
+  mode
+) {
+
+  modePaiement =
+    mode;
+
+
+  document
+    .querySelectorAll(
+      ".payment-button"
+    )
+    .forEach(
+      bouton => {
+
+        bouton.classList.toggle(
+          "active",
+          bouton.dataset.payment ===
+            mode
+        );
+
+      }
+    );
+
+}
+
+
+async function rechercherArticleCaisse() {
+
+  const valeur =
+    document.getElementById(
+      "cashierReference"
+    )
+    .value
+    .trim();
+
+
+  if (!valeur) {
+    return;
+  }
+
+
+  await ajouterArticleCaisseParRecherche(
+    valeur
+  );
+
 
   document.getElementById(
     "cashierReference"
@@ -5054,12 +6879,19 @@ async function rechercherArticleCaisse() {
 }
 
 
-async function ajouterArticleCaisseParRecherche(valeur) {
+async function ajouterArticleCaisseParRecherche(
+  valeur
+) {
 
   const message =
-    document.getElementById("cashierMessage");
+    document.getElementById(
+      "cashierMessage"
+    );
 
-  message.className = "message";
+
+  message.className =
+    "message";
+
   message.textContent = "";
 
 
@@ -5069,27 +6901,44 @@ async function ajouterArticleCaisseParRecherche(valeur) {
       .select("*");
 
 
-  if (valeur.startsWith("VIDEDECO:")) {
+  if (
+    valeur.startsWith(
+      "VIDEDECO:"
+    )
+  ) {
 
     const id =
-      valeur.replace("VIDEDECO:","");
+      valeur.replace(
+        "VIDEDECO:",
+        ""
+      );
 
     requete =
-      requete.eq("id",id);
+      requete.eq(
+        "id",
+        id
+      );
 
   } else {
 
     requete =
-      requete.eq("reference",valeur);
+      requete.eq(
+        "reference",
+        valeur.toUpperCase()
+      );
 
   }
 
 
-  const { data, error } =
-    await requete.maybeSingle();
+  const { data,error } =
+    await requete
+      .maybeSingle();
 
 
-  if (error || !data) {
+  if (
+    error ||
+    !data
+  ) {
 
     message.className =
       "message error";
@@ -5102,15 +6951,11 @@ async function ajouterArticleCaisseParRecherche(valeur) {
   }
 
 
-  /*
-   * SÉCURITÉ :
-   * seuls les objets réellement réceptionnés
-   * peuvent être vendus.
-   */
-
   if (
-    data.statut_reception !== "receptionne" &&
-    data.statut_reception !== "ecart"
+    data.statut_reception !==
+      "receptionne" &&
+    data.statut_reception !==
+      "ecart"
   ) {
 
     message.className =
@@ -5125,7 +6970,10 @@ async function ajouterArticleCaisseParRecherche(valeur) {
 
 
   if (
-    Number(data.quantite_disponible || 0) <= 0
+    Number(
+      data.quantite_disponible ||
+      0
+    ) <= 0
   ) {
 
     message.className =
@@ -5139,20 +6987,26 @@ async function ajouterArticleCaisseParRecherche(valeur) {
   }
 
 
-  ajouterAuPanier(data);
+  ajouterAuPanier(
+    data
+  );
 
 }
 
 
 /* =========================================================
    PANIER
-   ========================================================= */
+========================================================= */
 
-function ajouterAuPanier(article) {
+function ajouterAuPanier(
+  article
+) {
 
   const existant =
     panier.find(
-      ligne => ligne.id === article.id
+      ligne =>
+        ligne.id ===
+        article.id
     );
 
 
@@ -5160,12 +7014,17 @@ function ajouterAuPanier(article) {
 
     if (
       existant.quantitePanier >=
-      Number(article.quantite_disponible || 0)
+      Number(
+        article.quantite_disponible ||
+        0
+      )
     ) {
 
       document.getElementById(
         "cashierMessage"
-      ).className = "message error";
+      ).className =
+        "message error";
+
 
       document.getElementById(
         "cashierMessage"
@@ -5177,7 +7036,8 @@ function ajouterAuPanier(article) {
     }
 
 
-    existant.quantitePanier += 1;
+    existant.quantitePanier +=
+      1;
 
   } else {
 
@@ -5191,7 +7051,9 @@ function ajouterAuPanier(article) {
 
   document.getElementById(
     "cashierMessage"
-  ).className = "message success";
+  ).className =
+    "message success";
+
 
   document.getElementById(
     "cashierMessage"
@@ -5204,7 +7066,10 @@ function ajouterAuPanier(article) {
 }
 
 
-function modifierQuantitePanier(articleId, delta) {
+function modifierQuantitePanier(
+  articleId,
+  delta
+) {
 
   const ligne =
     panier.find(
@@ -5218,19 +7083,27 @@ function modifierQuantitePanier(articleId, delta) {
 
 
   const nouvelle =
-    ligne.quantitePanier + delta;
+    ligne.quantitePanier +
+    delta;
 
 
-  if (nouvelle <= 0) {
+  if (
+    nouvelle <= 0
+  ) {
 
     panier =
       panier.filter(
-        x => x.id !== articleId
+        x =>
+          x.id !==
+          articleId
       );
 
   } else if (
     nouvelle <=
-    Number(ligne.quantite_disponible || 0)
+    Number(
+      ligne.quantite_disponible ||
+      0
+    )
   ) {
 
     ligne.quantitePanier =
@@ -5247,16 +7120,22 @@ function modifierQuantitePanier(articleId, delta) {
 function afficherPanier() {
 
   const zone =
-    document.getElementById("cartContent");
+    document.getElementById(
+      "cartContent"
+    );
 
   const totals =
-    document.getElementById("cartTotals");
+    document.getElementById(
+      "cartTotals"
+    );
 
 
   zone.innerHTML = "";
 
 
-  if (!panier.length) {
+  if (
+    !panier.length
+  ) {
 
     zone.innerHTML = `
       <div class="cart-empty">
@@ -5264,69 +7143,77 @@ function afficherPanier() {
       </div>
     `;
 
-    totals.classList.add("hidden");
+    totals.classList.add(
+      "hidden"
+    );
 
     return;
 
   }
 
 
-  panier.forEach(ligne => {
+  panier.forEach(
+    ligne => {
 
-    const div =
-      document.createElement("div");
+      const div =
+        document.createElement(
+          "div"
+        );
 
-    div.className =
-      "cart-item";
+      div.className =
+        "cart-item";
 
 
-    div.innerHTML = `
+      div.innerHTML = `
 
-      <div class="sale-ref">
-        ${echapperHTML(ligne.reference || "")}
-      </div>
-
-      <div class="cart-name">
-        ${echapperHTML(ligne.nom)}
-      </div>
-
-      <div class="cart-line">
-
-        <div class="cart-price">
-          ${formaterPrix(
-            Number(ligne.prix) *
-            ligne.quantitePanier
-          )}
+        <div class="sale-ref">
+          ${echapperHTML(ligne.reference || "")}
         </div>
 
-        <div class="quantity-controls">
+        <div class="cart-name">
+          ${echapperHTML(ligne.nom)}
+        </div>
 
-          <button
-            onclick="modifierQuantitePanier('${ligne.id}',-1)"
-          >
-            −
-          </button>
+        <div class="cart-line">
 
-          <span>
-            ${ligne.quantitePanier}
-          </span>
+          <div class="cart-price">
+            ${formaterPrix(
+              Number(ligne.prix) *
+              ligne.quantitePanier
+            )}
+          </div>
 
-          <button
-            onclick="modifierQuantitePanier('${ligne.id}',1)"
-          >
-            +
-          </button>
+          <div class="quantity-controls">
+
+            <button
+              onclick="modifierQuantitePanier('${ligne.id}',-1)"
+            >
+              −
+            </button>
+
+            <span>
+              ${ligne.quantitePanier}
+            </span>
+
+            <button
+              onclick="modifierQuantitePanier('${ligne.id}',1)"
+            >
+              +
+            </button>
+
+          </div>
 
         </div>
 
-      </div>
-
-    `;
+      `;
 
 
-    zone.appendChild(div);
+      zone.appendChild(
+        div
+      );
 
-  });
+    }
+  );
 
 
   const total =
@@ -5342,23 +7229,29 @@ function afficherPanier() {
   document.getElementById(
     "cartTotalValue"
   ).textContent =
-    formaterPrix(total);
+    formaterPrix(
+      total
+    );
 
 
-  totals.classList.remove("hidden");
+  totals.classList.remove(
+    "hidden"
+  );
 
 }
 
 
 /* =========================================================
-   SCANNER
-   ========================================================= */
+   SCANNER CAISSE
+========================================================= */
 
 async function basculerScanner() {
 
-  if (scannerActif) {
+  if (
+    scannerActif
+  ) {
 
-    fermerScanner();
+    await fermerScanner();
 
     return;
 
@@ -5366,25 +7259,33 @@ async function basculerScanner() {
 
 
   const zone =
-    document.getElementById("reader");
+    document.getElementById(
+      "reader"
+    );
 
-  zone.classList.remove("hidden");
+  zone.classList.remove(
+    "hidden"
+  );
 
 
   try {
 
     html5QrCode =
-      new Html5Qrcode("reader");
+      new Html5Qrcode(
+        "reader"
+      );
 
 
     await html5QrCode.start(
 
       {
-        facingMode:"environment"
+        facingMode:
+          "environment"
       },
 
       {
         fps:10,
+
         qrbox:{
           width:250,
           height:250
@@ -5393,7 +7294,36 @@ async function basculerScanner() {
 
       async texte => {
 
-        await fermerScanner();
+        if (
+          !scannerActif
+        ) {
+          return;
+        }
+
+
+        scannerActif =
+          false;
+
+
+        try {
+          await html5QrCode.stop();
+        } catch (_) {}
+
+
+        try {
+          await html5QrCode.clear();
+        } catch (_) {}
+
+
+        html5QrCode = null;
+
+
+        zone.innerHTML = "";
+
+        zone.classList.add(
+          "hidden"
+        );
+
 
         await ajouterArticleCaisseParRecherche(
           texte
@@ -5406,16 +7336,27 @@ async function basculerScanner() {
     );
 
 
-    scannerActif = true;
+    scannerActif =
+      true;
 
 
   } catch (error) {
 
-    zone.classList.add("hidden");
+    html5QrCode = null;
+    scannerActif = false;
+
+    zone.innerHTML = "";
+
+    zone.classList.add(
+      "hidden"
+    );
+
 
     document.getElementById(
       "cashierMessage"
-    ).className = "message error";
+    ).className =
+      "message error";
+
 
     document.getElementById(
       "cashierMessage"
@@ -5431,13 +7372,19 @@ async function basculerScanner() {
 async function fermerScanner() {
 
   if (
-    html5QrCode &&
-    scannerActif
+    html5QrCode
   ) {
 
     try {
-      await html5QrCode.stop();
+
+      if (
+        scannerActif
+      ) {
+        await html5QrCode.stop();
+      }
+
     } catch (_) {}
+
 
     try {
       await html5QrCode.clear();
@@ -5451,12 +7398,18 @@ async function fermerScanner() {
 
 
   const zone =
-    document.getElementById("reader");
+    document.getElementById(
+      "reader"
+    );
+
 
   if (zone) {
 
     zone.innerHTML = "";
-    zone.classList.add("hidden");
+
+    zone.classList.add(
+      "hidden"
+    );
 
   }
 
@@ -5464,21 +7417,27 @@ async function fermerScanner() {
 
 
 /* =========================================================
-   VALIDER VENTE
-   ========================================================= */
+   VENTE
+========================================================= */
 
 async function validerVente() {
 
-  if (!panier.length) {
+  if (
+    !panier.length
+  ) {
 
-    alert("Le panier est vide.");
+    alert(
+      "Le panier est vide."
+    );
 
     return;
 
   }
 
 
-  if (!modePaiement) {
+  if (
+    !modePaiement
+  ) {
 
     alert(
       "Choisis le mode de paiement."
@@ -5490,31 +7449,42 @@ async function validerVente() {
 
 
   const bouton =
-    document.getElementById("validateSaleButton");
+    document.getElementById(
+      "validateSaleButton"
+    );
 
   bouton.disabled = true;
-  bouton.textContent = "VALIDATION...";
+  bouton.textContent =
+    "VALIDATION...";
 
 
   const payload =
-    panier.map(ligne => ({
-      article_id:ligne.id,
-      quantite:ligne.quantitePanier
-    }));
+    panier.map(
+      ligne => ({
+        article_id:
+          ligne.id,
+        quantite:
+          ligne.quantitePanier
+      })
+    );
 
 
-  const { data, error } =
+  const { data,error } =
     await db.rpc(
       "valider_vente",
       {
-        p_articles:payload,
-        p_mode_paiement:modePaiement
+        p_articles:
+          payload,
+
+        p_mode_paiement:
+          modePaiement
       }
     );
 
 
   bouton.disabled = false;
-  bouton.textContent = "VALIDER LA VENTE";
+  bouton.textContent =
+    "VALIDER LA VENTE";
 
 
   if (error) {
@@ -5542,7 +7512,9 @@ async function validerVente() {
   document.getElementById(
     "saleSuccessTotal"
   ).textContent =
-    formaterPrix(total);
+    formaterPrix(
+      total
+    );
 
 
   document.getElementById(
@@ -5556,7 +7528,10 @@ async function validerVente() {
   panier = [];
   modePaiement = null;
 
-  afficherSection("saleSuccessSection");
+
+  afficherSection(
+    "saleSuccessSection"
+  );
 
 }
 
@@ -5569,22 +7544,30 @@ function nouvelleVente() {
 
 
 /* =========================================================
-   MES VENTES BROCANTEUR
-   ========================================================= */
+   MES VENTES
+========================================================= */
 
 async function ouvrirMesVentes() {
 
-  afficherSection("sellerSalesSection");
+  afficherSection(
+    "sellerSalesSection"
+  );
 
 
-  const { data:lignes, error } =
+  const { data:lignes,error } =
     await db
       .from("lignes_vente")
       .select("*")
-      .eq("vendeur_id",utilisateur.id)
-      .order("created_at",{
-        ascending:false
-      });
+      .eq(
+        "vendeur_id",
+        utilisateur.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
   if (error) {
@@ -5603,10 +7586,16 @@ async function ouvrirMesVentes() {
     await db
       .from("reversements")
       .select("*")
-      .eq("vendeur_id",utilisateur.id)
-      .order("created_at",{
-        ascending:false
-      });
+      .eq(
+        "vendeur_id",
+        utilisateur.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
   const ventes =
@@ -5627,7 +7616,10 @@ async function ouvrirMesVentes() {
     ventes.reduce(
       (s,a) =>
         s +
-        Number(a.montant_commission || 0),
+        Number(
+          a.montant_commission ||
+          0
+        ),
       0
     );
 
@@ -5636,22 +7628,30 @@ async function ouvrirMesVentes() {
     ventes.reduce(
       (s,a) =>
         s +
-        Number(a.montant_vendeur || 0),
+        Number(
+          a.montant_vendeur ||
+          0
+        ),
       0
     );
 
 
   const reverse =
-    (reversements || []).reduce(
-      (s,r) =>
-        s +
-        Number(r.montant || 0),
-      0
-    );
+    (reversements || [])
+      .reduce(
+        (s,r) =>
+          s +
+          Number(
+            r.montant ||
+            0
+          ),
+        0
+      );
 
 
   const reste =
-    du - reverse;
+    du -
+    reverse;
 
 
   document.getElementById(
@@ -5682,59 +7682,69 @@ async function ouvrirMesVentes() {
 
 
   const liste =
-    document.getElementById("sellerSalesList");
+    document.getElementById(
+      "sellerSalesList"
+    );
 
   liste.innerHTML = "";
 
 
-  if (!ventes.length) {
+  if (
+    !ventes.length
+  ) {
 
     liste.innerHTML =
       `<div class="empty-state">Aucune vente pour le moment.</div>`;
 
   } else {
 
-    ventes.forEach(ligne => {
+    ventes.forEach(
+      ligne => {
 
-      const div =
-        document.createElement("div");
+        const div =
+          document.createElement(
+            "div"
+          );
 
-      div.className =
-        "sale-row";
-
-
-      div.innerHTML = `
-
-        <div class="sale-ref">
-          ${formaterDate(ligne.created_at)}<br>
-          ${echapperHTML(ligne.reference_article || "")}
-        </div>
-
-        <div class="sale-name">
-          ${echapperHTML(ligne.nom_article || "Objet")}
-        </div>
-
-        <div>
-          Qté ${ligne.quantite}
-        </div>
-
-        <div>
-          ${formaterPrix(
-            Number(ligne.prix_unitaire) *
-            Number(ligne.quantite)
-          )}
-        </div>
-
-        <div class="sale-net">
-          ${formaterPrix(ligne.montant_vendeur)}
-        </div>
-
-      `;
+        div.className =
+          "sale-row";
 
 
-      liste.appendChild(div);
+        div.innerHTML = `
 
-    });
+          <div class="sale-ref">
+            ${formaterDate(ligne.created_at)}<br>
+            ${echapperHTML(ligne.reference_article || "")}
+          </div>
+
+          <div class="sale-name">
+            ${echapperHTML(ligne.nom_article || "Objet")}
+          </div>
+
+          <div>
+            Qté ${ligne.quantite}
+          </div>
+
+          <div>
+            ${formaterPrix(
+              Number(ligne.prix_unitaire) *
+              Number(ligne.quantite)
+            )}
+          </div>
+
+          <div class="sale-net">
+            ${formaterPrix(ligne.montant_vendeur)}
+          </div>
+
+        `;
+
+
+        liste.appendChild(
+          div
+        );
+
+      }
+    );
 
   }
 
@@ -5749,17 +7759,21 @@ async function ouvrirMesVentes() {
 
 
 /* =========================================================
-   ADMIN FINANCES
-   ========================================================= */
+   ADMIN
+========================================================= */
 
 async function ouvrirAdmin() {
 
-  if (profil.role !== "admin") {
+  if (
+    profil.role !== "admin"
+  ) {
     return;
   }
 
 
-  afficherSection("adminSection");
+  afficherSection(
+    "adminSection"
+  );
 
 
   await chargerProfils();
@@ -5773,25 +7787,34 @@ async function ouvrirAdmin() {
     db
       .from("lignes_vente")
       .select("*")
-      .order("created_at",{
-        ascending:false
-      }),
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      ),
 
     db
       .from("reversements")
       .select("*")
-      .order("created_at",{
-        ascending:false
-      })
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
 
   ]);
 
 
   const lignes =
-    lignesResult.data || [];
+    lignesResult.data ||
+    [];
+
 
   const reversements =
-    reversementsResult.data || [];
+    reversementsResult.data ||
+    [];
 
 
   afficherDemandesBrocanteurs();
@@ -5812,25 +7835,31 @@ async function ouvrirAdmin() {
 
 /* =========================================================
    DEMANDES BROCANTEURS
-   ========================================================= */
+========================================================= */
 
 function afficherDemandesBrocanteurs() {
 
   const demandes =
     profilsCache.filter(
       p =>
-        p.role === "brocanteur" &&
-        p.statut_compte === "en_attente"
+        p.role ===
+          "brocanteur" &&
+        p.statut_compte ===
+          "en_attente"
     );
 
 
   const zone =
-    document.getElementById("pendingSellers");
+    document.getElementById(
+      "pendingSellers"
+    );
 
   zone.innerHTML = "";
 
 
-  if (!demandes.length) {
+  if (
+    !demandes.length
+  ) {
 
     zone.innerHTML =
       `<div class="empty-state">Aucune demande en attente.</div>`;
@@ -5840,79 +7869,85 @@ function afficherDemandesBrocanteurs() {
   }
 
 
-  demandes.forEach(vendeur => {
+  demandes.forEach(
+    vendeur => {
 
-    const carte =
-      document.createElement("div");
+      const carte =
+        document.createElement(
+          "div"
+        );
 
-    carte.className =
-      "request-card";
+      carte.className =
+        "request-card";
 
 
-    carte.innerHTML = `
+      carte.innerHTML = `
 
-      <div>
+        <div>
 
-        <div class="request-name">
-          ${echapperHTML(
-            vendeur.enseigne ||
-            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
-          )}
+          <div class="request-name">
+            ${echapperHTML(
+              vendeur.enseigne ||
+              `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+            )}
+          </div>
+
+          <div class="request-details">
+            ${echapperHTML(
+              `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+            )}<br>
+            ${echapperHTML(vendeur.telephone || "")}
+          </div>
+
         </div>
 
-        <div class="request-details">
-          ${echapperHTML(
-            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
-          )}<br>
-          ${echapperHTML(vendeur.telephone || "")}
+
+        <div>
+
+          <label style="margin-top:0">
+            Commission VIDE DECO %
+          </label>
+
+          <input
+            id="commission-${vendeur.id}"
+            class="request-commission"
+            type="number"
+            min="0"
+            max="100"
+            step="0.1"
+            value="${Number(vendeur.commission ?? 20)}"
+          >
+
         </div>
 
-      </div>
+
+        <div class="request-actions">
+
+          <button
+            class="accept-button"
+            onclick="validerBrocanteur('${vendeur.id}',true)"
+          >
+            ACCEPTER
+          </button>
+
+          <button
+            class="refuse-button"
+            onclick="validerBrocanteur('${vendeur.id}',false)"
+          >
+            REFUSER
+          </button>
+
+        </div>
+
+      `;
 
 
-      <div>
+      zone.appendChild(
+        carte
+      );
 
-        <label style="margin-top:0">
-          Commission VIDE DECO %
-        </label>
-
-        <input
-          id="commission-${vendeur.id}"
-          class="request-commission"
-          type="number"
-          min="0"
-          max="100"
-          step="0.1"
-          value="${Number(vendeur.commission ?? 20)}"
-        >
-
-      </div>
-
-
-      <div class="request-actions">
-
-        <button
-          class="accept-button"
-          onclick="validerBrocanteur('${vendeur.id}',true)"
-        >
-          ACCEPTER
-        </button>
-
-        <button
-          class="refuse-button"
-          onclick="validerBrocanteur('${vendeur.id}',false)"
-        >
-          REFUSER
-        </button>
-
-      </div>
-
-    `;
-
-
-    zone.appendChild(carte);
-
-  });
+    }
+  );
 
 }
 
@@ -5929,13 +7964,18 @@ async function validerBrocanteur(
 
 
   const commission =
-    Number(champ?.value || 20);
+    Number(
+      champ?.value ||
+      20
+    );
 
 
   if (
     accepter &&
     (
-      !Number.isFinite(commission) ||
+      !Number.isFinite(
+        commission
+      ) ||
       commission < 0 ||
       commission > 100
     )
@@ -5954,9 +7994,14 @@ async function validerBrocanteur(
     await db.rpc(
       "valider_brocanteur",
       {
-        p_vendeur_id:vendeurId,
-        p_accepter:accepter,
-        p_commission:commission
+        p_vendeur_id:
+          vendeurId,
+
+        p_accepter:
+          accepter,
+
+        p_commission:
+          commission
       }
     );
 
@@ -5980,7 +8025,7 @@ async function validerBrocanteur(
 
 /* =========================================================
    FINANCES ADMIN
-   ========================================================= */
+========================================================= */
 
 function afficherFinancesAdmin(
   lignes,
@@ -5990,11 +8035,14 @@ function afficherFinancesAdmin(
   const vendeurs =
     profilsCache.filter(
       p =>
-        p.role === "brocanteur" &&
-        p.actif === true &&
+        p.role ===
+          "brocanteur" &&
+        p.actif ===
+          true &&
         (
           !p.statut_compte ||
-          p.statut_compte === "actif"
+          p.statut_compte ===
+            "actif"
         )
     );
 
@@ -6013,7 +8061,10 @@ function afficherFinancesAdmin(
     lignes.reduce(
       (s,l) =>
         s +
-        Number(l.montant_commission || 0),
+        Number(
+          l.montant_commission ||
+          0
+        ),
       0
     );
 
@@ -6022,7 +8073,10 @@ function afficherFinancesAdmin(
     lignes.reduce(
       (s,l) =>
         s +
-        Number(l.montant_vendeur || 0),
+        Number(
+          l.montant_vendeur ||
+          0
+        ),
       0
     );
 
@@ -6031,13 +8085,17 @@ function afficherFinancesAdmin(
     reversements.reduce(
       (s,r) =>
         s +
-        Number(r.montant || 0),
+        Number(
+          r.montant ||
+          0
+        ),
       0
     );
 
 
   const totalReste =
-    totalDu - totalReverse;
+    totalDu -
+    totalReverse;
 
 
   document.getElementById(
@@ -6073,132 +8131,156 @@ function afficherFinancesAdmin(
 
 
   const tbody =
-    document.getElementById("adminFinanceBody");
+    document.getElementById(
+      "adminFinanceBody"
+    );
 
   tbody.innerHTML = "";
 
 
-  vendeurs.forEach(vendeur => {
+  vendeurs.forEach(
+    vendeur => {
 
-    const ventesVendeur =
-      lignes.filter(
-        l => l.vendeur_id === vendeur.id
+      const ventesVendeur =
+        lignes.filter(
+          l =>
+            l.vendeur_id ===
+            vendeur.id
+        );
+
+
+      const reversementsVendeur =
+        reversements.filter(
+          r =>
+            r.vendeur_id ===
+            vendeur.id
+        );
+
+
+      const ca =
+        ventesVendeur.reduce(
+          (s,l) =>
+            s +
+            Number(l.prix_unitaire) *
+            Number(l.quantite),
+          0
+        );
+
+
+      const commission =
+        ventesVendeur.reduce(
+          (s,l) =>
+            s +
+            Number(
+              l.montant_commission ||
+              0
+            ),
+          0
+        );
+
+
+      const du =
+        ventesVendeur.reduce(
+          (s,l) =>
+            s +
+            Number(
+              l.montant_vendeur ||
+              0
+            ),
+          0
+        );
+
+
+      const reverse =
+        reversementsVendeur.reduce(
+          (s,r) =>
+            s +
+            Number(
+              r.montant ||
+              0
+            ),
+          0
+        );
+
+
+      const reste =
+        du -
+        reverse;
+
+
+      const tr =
+        document.createElement(
+          "tr"
+        );
+
+
+      tr.innerHTML = `
+
+        <td>
+          <strong>
+            ${echapperHTML(
+              vendeur.enseigne ||
+              `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
+            )}
+          </strong>
+        </td>
+
+        <td>
+          ${Number(vendeur.commission ?? 20)} %
+        </td>
+
+        <td>
+          ${ventesVendeur.length}
+        </td>
+
+        <td class="money">
+          ${formaterPrix(ca)}
+        </td>
+
+        <td class="money">
+          ${formaterPrix(commission)}
+        </td>
+
+        <td class="money">
+          ${formaterPrix(du)}
+        </td>
+
+        <td class="money">
+          ${formaterPrix(reverse)}
+        </td>
+
+        <td class="money">
+          ${formaterPrix(reste)}
+        </td>
+
+        <td>
+
+          <button
+            class="reverse-button"
+            ${reste <= 0 ? "disabled" : ""}
+            onclick="ouvrirModalReversement('${vendeur.id}',${reste})"
+          >
+            REVERSER
+          </button>
+
+        </td>
+
+      `;
+
+
+      tbody.appendChild(
+        tr
       );
 
-
-    const reversementsVendeur =
-      reversements.filter(
-        r => r.vendeur_id === vendeur.id
-      );
-
-
-    const ca =
-      ventesVendeur.reduce(
-        (s,l) =>
-          s +
-          Number(l.prix_unitaire) *
-          Number(l.quantite),
-        0
-      );
-
-
-    const commission =
-      ventesVendeur.reduce(
-        (s,l) =>
-          s +
-          Number(l.montant_commission || 0),
-        0
-      );
-
-
-    const du =
-      ventesVendeur.reduce(
-        (s,l) =>
-          s +
-          Number(l.montant_vendeur || 0),
-        0
-      );
-
-
-    const reverse =
-      reversementsVendeur.reduce(
-        (s,r) =>
-          s +
-          Number(r.montant || 0),
-        0
-      );
-
-
-    const reste =
-      du - reverse;
-
-
-    const tr =
-      document.createElement("tr");
-
-
-    tr.innerHTML = `
-
-      <td>
-        <strong>
-          ${echapperHTML(
-            vendeur.enseigne ||
-            `${vendeur.prenom || ""} ${vendeur.nom || ""}`.trim()
-          )}
-        </strong>
-      </td>
-
-      <td>
-        ${Number(vendeur.commission ?? 20)} %
-      </td>
-
-      <td>
-        ${ventesVendeur.length}
-      </td>
-
-      <td class="money">
-        ${formaterPrix(ca)}
-      </td>
-
-      <td class="money">
-        ${formaterPrix(commission)}
-      </td>
-
-      <td class="money">
-        ${formaterPrix(du)}
-      </td>
-
-      <td class="money">
-        ${formaterPrix(reverse)}
-      </td>
-
-      <td class="money">
-        ${formaterPrix(reste)}
-      </td>
-
-      <td>
-        <button
-          class="reverse-button"
-          ${reste <= 0 ? "disabled" : ""}
-          onclick="ouvrirModalReversement('${vendeur.id}',${reste})"
-        >
-          REVERSER
-        </button>
-      </td>
-
-    `;
-
-
-    tbody.appendChild(tr);
-
-  });
+    }
+  );
 
 }
 
 
 /* =========================================================
    REVERSEMENTS
-   ========================================================= */
+========================================================= */
 
 function afficherReversements(
   elementId,
@@ -6207,12 +8289,16 @@ function afficherReversements(
 ) {
 
   const zone =
-    document.getElementById(elementId);
+    document.getElementById(
+      elementId
+    );
 
   zone.innerHTML = "";
 
 
-  if (!reversements.length) {
+  if (
+    !reversements.length
+  ) {
 
     zone.innerHTML =
       `<div class="empty-state">Aucun reversement enregistré.</div>`;
@@ -6222,68 +8308,78 @@ function afficherReversements(
   }
 
 
-  reversements.forEach(reversement => {
+  reversements.forEach(
+    reversement => {
 
-    const ligne =
-      document.createElement("div");
+      const ligne =
+        document.createElement(
+          "div"
+        );
 
-    ligne.className =
-      "repayment-row";
+      ligne.className =
+        "repayment-row";
 
 
-    ligne.innerHTML = `
+      ligne.innerHTML = `
 
-      <div>
-        ${formaterDate(reversement.created_at)}
-      </div>
-
-      <div>
-
-        ${
-          afficherVendeur
-          ? `
-            <div class="repayment-seller">
-              ${echapperHTML(
-                nomBrocanteur(reversement.vendeur_id)
-              )}
-            </div>
-          `
-          : ""
-        }
-
-        <div class="repayment-mode">
-          ${echapperHTML(
-            String(reversement.mode_paiement || "")
-            .toUpperCase()
-          )}
+        <div>
+          ${formaterDate(reversement.created_at)}
         </div>
 
-        ${
-          reversement.note
-          ? `
-            <div class="repayment-note">
-              ${echapperHTML(reversement.note)}
-            </div>
-          `
-          : ""
-        }
+        <div>
 
-      </div>
+          ${
+            afficherVendeur
+            ? `
+              <div class="repayment-seller">
+                ${echapperHTML(
+                  nomBrocanteur(
+                    reversement.vendeur_id
+                  )
+                )}
+              </div>
+            `
+            : ""
+          }
 
-      <div class="repayment-amount">
-        ${formaterPrix(reversement.montant)}
-      </div>
+          <div class="repayment-mode">
+            ${echapperHTML(
+              String(
+                reversement.mode_paiement ||
+                ""
+              ).toUpperCase()
+            )}
+          </div>
 
-      <div>
-        EFFECTUÉ
-      </div>
+          ${
+            reversement.note
+            ? `
+              <div class="repayment-note">
+                ${echapperHTML(reversement.note)}
+              </div>
+            `
+            : ""
+          }
 
-    `;
+        </div>
+
+        <div class="repayment-amount">
+          ${formaterPrix(reversement.montant)}
+        </div>
+
+        <div>
+          EFFECTUÉ
+        </div>
+
+      `;
 
 
-    zone.appendChild(ligne);
+      zone.appendChild(
+        ligne
+      );
 
-  });
+    }
+  );
 
 }
 
@@ -6295,15 +8391,21 @@ function ouvrirModalReversement(
 
   const vendeur =
     profilsCache.find(
-      p => p.id === vendeurId
+      p =>
+        p.id ===
+        vendeurId
     );
 
 
-  document.getElementById("modalTitle").innerHTML =
+  document.getElementById(
+    "modalTitle"
+  ).innerHTML =
     "NOUVEAU<br>VERSEMENT.";
 
 
-  document.getElementById("modalContent").innerHTML = `
+  document.getElementById(
+    "modalContent"
+  ).innerHTML = `
 
     <div class="modal-summary">
 
@@ -6378,9 +8480,11 @@ function ouvrirModalReversement(
   `;
 
 
-  document
-    .getElementById("modalOverlay")
-    .classList.remove("hidden");
+  document.getElementById(
+    "modalOverlay"
+  ).classList.remove(
+    "hidden"
+  );
 
 }
 
@@ -6410,7 +8514,9 @@ async function enregistrerReversement(
 
 
   if (
-    !Number.isFinite(montant) ||
+    !Number.isFinite(
+      montant
+    ) ||
     montant <= 0
   ) {
 
@@ -6429,17 +8535,25 @@ async function enregistrerReversement(
     );
 
   bouton.disabled = true;
-  bouton.textContent = "ENREGISTREMENT...";
+  bouton.textContent =
+    "ENREGISTREMENT...";
 
 
   const { error } =
     await db.rpc(
       "enregistrer_reversement",
       {
-        p_vendeur_id:vendeurId,
-        p_montant:montant,
-        p_mode_paiement:mode,
-        p_note:note || null
+        p_vendeur_id:
+          vendeurId,
+
+        p_montant:
+          montant,
+
+        p_mode_paiement:
+          mode,
+
+        p_note:
+          note || null
       }
     );
 
@@ -6447,7 +8561,8 @@ async function enregistrerReversement(
   if (error) {
 
     bouton.disabled = false;
-    bouton.textContent = "ENREGISTRER";
+    bouton.textContent =
+      "ENREGISTRER";
 
     alert(
       "Erreur : " +
@@ -6467,14 +8582,28 @@ async function enregistrerReversement(
 
 
 /* =========================================================
-   DÉMARRAGE
-   ========================================================= */
+   MODAL
+========================================================= */
+
+function fermerModal() {
+
+  document.getElementById(
+    "modalOverlay"
+  ).classList.add(
+    "hidden"
+  );
+
+}
+
+
+/* =========================================================
+   INITIALISATION
+========================================================= */
 
 async function initialiserApplication() {
 
-  const {
-    data
-  } = await db.auth.getSession();
+  const { data } =
+    await db.auth.getSession();
 
 
   if (
@@ -6489,7 +8618,9 @@ async function initialiserApplication() {
 
   } else {
 
-    afficherSection("loginSection");
+    afficherSection(
+      "loginSection"
+    );
 
   }
 
@@ -6497,7 +8628,7 @@ async function initialiserApplication() {
 
 
 db.auth.onAuthStateChange(
-  (event, session) => {
+  (event,session) => {
 
     if (
       event === "SIGNED_OUT" &&
