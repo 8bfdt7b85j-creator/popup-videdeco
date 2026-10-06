@@ -32,7 +32,9 @@
     }
 
     button,
-    input {
+    input,
+    textarea,
+    select {
       font: inherit;
     }
 
@@ -70,13 +72,6 @@
       display: none !important;
     }
 
-    /* LOGIN */
-
-    .login {
-      max-width: 520px;
-      margin: 40px auto;
-    }
-
     .eyebrow {
       font-size: 12px;
       font-weight: 900;
@@ -97,7 +92,15 @@
       letter-spacing: -1.5px;
     }
 
-    .login-box {
+    /* LOGIN */
+
+    .login {
+      max-width: 520px;
+      margin: 40px auto;
+    }
+
+    .login-box,
+    .form-box {
       border: 2px solid var(--black);
       padding: 28px;
     }
@@ -110,13 +113,20 @@
       margin: 20px 0 8px;
     }
 
-    input {
+    input,
+    textarea,
+    select {
       width: 100%;
       padding: 15px;
       border: 1px solid #999;
       background: white;
       border-radius: 0;
       font-size: 16px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
     }
 
     .primary {
@@ -134,6 +144,14 @@
       opacity: .85;
     }
 
+    .secondary {
+      border: 1px solid var(--black);
+      background: transparent;
+      padding: 12px 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
     .message {
       margin-top: 18px;
       font-size: 14px;
@@ -144,9 +162,17 @@
       color: #b52222;
     }
 
+    .message.success {
+      background: var(--green);
+      color: var(--black);
+      padding: 12px;
+      font-weight: 800;
+    }
+
     /* DASHBOARD */
 
-    .dashboard-header {
+    .dashboard-header,
+    .page-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -154,11 +180,13 @@
       margin-bottom: 50px;
     }
 
-    .hello {
+    .hello,
+    .page-title {
       font-size: clamp(42px, 7vw, 80px);
       line-height: .9;
       letter-spacing: -4px;
       margin-top: 8px;
+      font-weight: 900;
     }
 
     .logout {
@@ -193,6 +221,7 @@
       justify-content: space-between;
       background: transparent;
       transition: .15s;
+      cursor: pointer;
     }
 
     .card:hover {
@@ -229,6 +258,46 @@
       line-height: 1.6;
     }
 
+    /* FORMULAIRE ARTICLE */
+
+    .article-page {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .price-wrapper {
+      position: relative;
+    }
+
+    .price-wrapper input {
+      padding-right: 50px;
+    }
+
+    .euro {
+      position: absolute;
+      right: 17px;
+      bottom: 15px;
+      font-weight: 900;
+    }
+
+    .form-info {
+      margin-top: 25px;
+      padding: 18px;
+      border: 1px solid #aaa;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     footer {
       border-top: 1px solid #ccc;
       padding: 22px 5%;
@@ -260,8 +329,17 @@
         min-height: 190px;
       }
 
-      .dashboard-header {
+      .dashboard-header,
+      .page-header {
         flex-direction: column;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
       }
     }
   </style>
@@ -289,7 +367,6 @@
       <h2>Connexion</h2>
 
       <label for="email">Adresse e-mail</label>
-
       <input
         type="email"
         id="email"
@@ -298,7 +375,6 @@
       >
 
       <label for="password">Mot de passe</label>
-
       <input
         type="password"
         id="password"
@@ -306,11 +382,7 @@
         placeholder="••••••••"
       >
 
-      <button
-        class="primary"
-        id="loginButton"
-        type="button"
-      >
+      <button class="primary" id="loginButton" type="button">
         Se connecter
       </button>
 
@@ -321,7 +393,7 @@
   </section>
 
 
-  <!-- ESPACE CONNECTÉ -->
+  <!-- DASHBOARD -->
 
   <section id="dashboardSection" class="hidden">
 
@@ -354,7 +426,7 @@
     </div>
 
 
-    <!-- ESPACE ADMIN -->
+    <!-- ADMIN -->
 
     <div id="adminCards" class="cards hidden">
 
@@ -408,11 +480,11 @@
     </div>
 
 
-    <!-- ESPACE BROCANTEUR -->
+    <!-- BROCANTEUR -->
 
     <div id="sellerCards" class="cards hidden">
 
-      <div class="card" onclick="fonctionBientotDisponible('AJOUTER UN ARTICLE')">
+      <div class="card" onclick="ouvrirAjoutArticle()">
         <div class="number">01</div>
 
         <div>
@@ -469,6 +541,139 @@
 
   </section>
 
+
+  <!-- AJOUTER UN ARTICLE -->
+
+  <section id="articleSection" class="article-page hidden">
+
+    <div class="page-header">
+
+      <div>
+        <div class="eyebrow">
+          NOUVEL OBJET
+        </div>
+
+        <div class="page-title">
+          AJOUTER<br>UN OBJET.
+        </div>
+      </div>
+
+      <button
+        class="secondary"
+        type="button"
+        onclick="retourDashboard()"
+      >
+        ← Retour
+      </button>
+
+    </div>
+
+
+    <div class="form-box">
+
+      <div class="form-grid">
+
+        <div class="full">
+          <label for="articleNom">
+            Nom de l'objet *
+          </label>
+
+          <input
+            id="articleNom"
+            type="text"
+            placeholder="Ex. Lampe vintage"
+          >
+        </div>
+
+
+        <div>
+          <label for="articleCategorie">
+            Catégorie
+          </label>
+
+          <select id="articleCategorie">
+            <option value="">Choisir</option>
+            <option value="Mobilier">Mobilier</option>
+            <option value="Luminaire">Luminaire</option>
+            <option value="Décoration">Décoration</option>
+            <option value="Vaisselle">Vaisselle</option>
+            <option value="Textile">Textile</option>
+            <option value="Art">Art</option>
+            <option value="Livre">Livre</option>
+            <option value="Divers">Divers</option>
+          </select>
+        </div>
+
+
+        <div class="price-wrapper">
+          <label for="articlePrix">
+            Prix *
+          </label>
+
+          <input
+            id="articlePrix"
+            type="number"
+            min="0"
+            step="0.01"
+            inputmode="decimal"
+            placeholder="0,00"
+          >
+
+          <span class="euro">€</span>
+        </div>
+
+
+        <div>
+          <label for="articleQuantite">
+            Quantité *
+          </label>
+
+          <input
+            id="articleQuantite"
+            type="number"
+            min="1"
+            step="1"
+            value="1"
+          >
+        </div>
+
+
+        <div class="full">
+          <label for="articleDescription">
+            Description
+          </label>
+
+          <textarea
+            id="articleDescription"
+            placeholder="Décris brièvement l'objet..."
+          ></textarea>
+        </div>
+
+      </div>
+
+
+      <button
+        id="saveArticleButton"
+        class="primary"
+        type="button"
+      >
+        Enregistrer l'objet
+      </button>
+
+
+      <div id="articleMessage" class="message"></div>
+
+
+      <div class="form-info">
+        Après l'enregistrement, l'objet apparaîtra avec le statut
+        <strong>À APPORTER</strong>. Nous ajouterons ensuite la photo,
+        la référence automatique et l'étiquette.
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
 
 
@@ -497,6 +702,14 @@
 
 
   /* =========================================================
+     VARIABLES
+     ========================================================= */
+
+  let utilisateurActuel = null;
+  let profilActuel = null;
+
+
+  /* =========================================================
      ÉLÉMENTS
      ========================================================= */
 
@@ -506,14 +719,23 @@
   const dashboardSection =
     document.getElementById("dashboardSection");
 
+  const articleSection =
+    document.getElementById("articleSection");
+
   const loginButton =
     document.getElementById("loginButton");
 
   const logoutButton =
     document.getElementById("logoutButton");
 
+  const saveArticleButton =
+    document.getElementById("saveArticleButton");
+
   const loginMessage =
     document.getElementById("loginMessage");
+
+  const articleMessage =
+    document.getElementById("articleMessage");
 
   const adminCards =
     document.getElementById("adminCards");
@@ -546,7 +768,6 @@
     const password =
       document.getElementById("password").value;
 
-
     if (!email || !password) {
 
       loginMessage.textContent =
@@ -561,14 +782,14 @@
 
     const { data, error } =
       await db.auth.signInWithPassword({
-        email: email,
-        password: password
+        email,
+        password
       });
 
 
     if (error) {
 
-      console.error("ERREUR CONNEXION :", error);
+      console.error(error);
 
       loginMessage.textContent =
         "Connexion impossible : vérifie ton e-mail et ton mot de passe.";
@@ -580,29 +801,24 @@
     }
 
 
-    console.log("UTILISATEUR CONNECTÉ :", data.user);
-
     await afficherUtilisateur(data.user);
 
   }
 
 
   /* =========================================================
-     CHARGEMENT DU PROFIL
+     UTILISATEUR
      ========================================================= */
 
   async function afficherUtilisateur(user) {
 
     if (!user) {
-
       afficherConnexion();
-
       return;
     }
 
 
-    console.log("USER ID :", user.id);
-    console.log("USER EMAIL :", user.email);
+    utilisateurActuel = user;
 
 
     const { data: profil, error } =
@@ -612,21 +828,17 @@
           "id, role, nom, prenom, enseigne, commission, actif"
         )
         .eq("id", user.id)
-        .maybeSingle();
+        .single();
 
 
-    /*
-      IMPORTANT :
-      Si Supabase refuse la lecture du profil,
-      on affiche maintenant l'erreur exacte.
-    */
-
-    if (error) {
+    if (error || !profil) {
 
       console.error("ERREUR PROFIL :", error);
 
       loginMessage.textContent =
-        "ERREUR SUPABASE : " + error.message;
+        error
+          ? "ERREUR SUPABASE : " + error.message
+          : "Profil utilisateur introuvable.";
 
       loginMessage.className =
         "message error";
@@ -635,51 +847,11 @@
     }
 
 
-    if (!profil) {
+    profilActuel = profil;
 
-      console.error(
-        "AUCUN PROFIL POUR L'UTILISATEUR :",
-        user.id
-      );
-
-      loginMessage.textContent =
-        "ERREUR : aucun profil trouvé pour " + user.id;
-
-      loginMessage.className =
-        "message error";
-
-      return;
-    }
-
-
-    console.log("PROFIL TROUVÉ :", profil);
-
-
-    /*
-      Vérification supplémentaire :
-      le profil doit être actif.
-    */
-
-    if (profil.actif === false) {
-
-      loginMessage.textContent =
-        "Ce compte est actuellement désactivé.";
-
-      loginMessage.className =
-        "message error";
-
-      await db.auth.signOut();
-
-      return;
-    }
-
-
-    /* AFFICHAGE DU DASHBOARD */
-
-    loginMessage.textContent = "";
 
     loginSection.classList.add("hidden");
-
+    articleSection.classList.add("hidden");
     dashboardSection.classList.remove("hidden");
 
 
@@ -700,13 +872,8 @@
 
 
     adminCards.classList.add("hidden");
-
     sellerCards.classList.add("hidden");
 
-
-    /*
-      ADMIN
-    */
 
     if (profil.role === "admin") {
 
@@ -715,14 +882,7 @@
 
       adminCards.classList.remove("hidden");
 
-    }
-
-
-    /*
-      BROCANTEUR
-    */
-
-    else if (profil.role === "brocanteur") {
+    } else {
 
       roleBadge.textContent =
         "BROCANTEUR";
@@ -731,56 +891,244 @@
 
     }
 
+  }
 
-    /*
-      RÔLE INCONNU
-    */
 
-    else {
+  /* =========================================================
+     AJOUT ARTICLE
+     ========================================================= */
 
-      roleBadge.textContent =
-        "RÔLE INCONNU";
+  function ouvrirAjoutArticle() {
 
-      console.error(
-        "Rôle inconnu :",
-        profil.role
+    dashboardSection.classList.add("hidden");
+    articleSection.classList.remove("hidden");
+
+    articleMessage.textContent = "";
+    articleMessage.className = "message";
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+  function retourDashboard() {
+
+    articleSection.classList.add("hidden");
+    dashboardSection.classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+
+  }
+
+
+  async function enregistrerArticle() {
+
+    articleMessage.textContent = "";
+    articleMessage.className = "message";
+
+
+    if (!utilisateurActuel) {
+
+      articleMessage.textContent =
+        "Utilisateur non connecté.";
+
+      articleMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    const nom =
+      document.getElementById("articleNom")
+        .value
+        .trim();
+
+    const categorie =
+      document.getElementById("articleCategorie")
+        .value;
+
+    const prix =
+      Number(
+        document.getElementById("articlePrix").value
       );
 
+    const quantite =
+      Number(
+        document.getElementById("articleQuantite").value
+      );
+
+    const description =
+      document.getElementById("articleDescription")
+        .value
+        .trim();
+
+
+    if (!nom) {
+
+      articleMessage.textContent =
+        "Indique le nom de l'objet.";
+
+      articleMessage.className =
+        "message error";
+
+      return;
     }
+
+
+    if (
+      !Number.isFinite(prix) ||
+      prix < 0
+    ) {
+
+      articleMessage.textContent =
+        "Indique un prix valide.";
+
+      articleMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    if (
+      !Number.isInteger(quantite) ||
+      quantite < 1
+    ) {
+
+      articleMessage.textContent =
+        "La quantité doit être au minimum de 1.";
+
+      articleMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    saveArticleButton.disabled = true;
+    saveArticleButton.textContent =
+      "ENREGISTREMENT…";
+
+
+    const nouvelArticle = {
+
+      vendeur_id:
+        utilisateurActuel.id,
+
+      nom:
+        nom,
+
+      description:
+        description || null,
+
+      categorie:
+        categorie || null,
+
+      prix:
+        prix,
+
+      quantite:
+        quantite,
+
+      quantite_disponible:
+        quantite,
+
+      statut:
+        "a_apporter"
+
+    };
+
+
+    const { data, error } =
+      await db
+        .from("articles")
+        .insert(nouvelArticle)
+        .select()
+        .single();
+
+
+    saveArticleButton.disabled = false;
+    saveArticleButton.textContent =
+      "ENREGISTRER L'OBJET";
+
+
+    if (error) {
+
+      console.error(
+        "ERREUR ARTICLE :",
+        error
+      );
+
+      articleMessage.textContent =
+        "Erreur : " + error.message;
+
+      articleMessage.className =
+        "message error";
+
+      return;
+    }
+
+
+    console.log(
+      "ARTICLE CRÉÉ :",
+      data
+    );
+
+
+    articleMessage.textContent =
+      "OBJET ENREGISTRÉ ✓";
+
+    articleMessage.className =
+      "message success";
+
+
+    document.getElementById("articleNom").value =
+      "";
+
+    document.getElementById("articleCategorie").value =
+      "";
+
+    document.getElementById("articlePrix").value =
+      "";
+
+    document.getElementById("articleQuantite").value =
+      "1";
+
+    document.getElementById("articleDescription").value =
+      "";
 
   }
 
 
   /* =========================================================
-     ÉCRAN DE CONNEXION
+     CONNEXION / DÉCONNEXION
      ========================================================= */
 
   function afficherConnexion() {
 
     dashboardSection.classList.add("hidden");
-
+    articleSection.classList.add("hidden");
     loginSection.classList.remove("hidden");
 
     adminCards.classList.add("hidden");
-
     sellerCards.classList.add("hidden");
 
-    databaseStatus.textContent = "";
+    utilisateurActuel = null;
+    profilActuel = null;
 
   }
 
-
-  /* =========================================================
-     DÉCONNEXION
-     ========================================================= */
 
   async function deconnexion() {
 
     await db.auth.signOut();
 
-    document.getElementById("password").value = "";
+    document.getElementById("password").value =
+      "";
 
-    loginMessage.textContent = "";
+    loginMessage.textContent =
+      "";
 
     afficherConnexion();
 
@@ -788,44 +1136,27 @@
 
 
   /* =========================================================
-     VÉRIFICATION SESSION
+     SESSION
      ========================================================= */
 
   async function verifierSession() {
 
     const {
-      data: { session },
-      error
-    } = await db.auth.getSession();
+      data: { session }
+    } =
+      await db.auth.getSession();
 
 
-    if (error) {
-
-      console.error(
-        "ERREUR SESSION :",
-        error
-      );
-
-      afficherConnexion();
-
-      return;
-    }
-
-
-    if (session && session.user) {
-
-      console.log(
-        "SESSION EXISTANTE :",
-        session.user
-      );
+    if (
+      session &&
+      session.user
+    ) {
 
       await afficherUtilisateur(
         session.user
       );
 
-    }
-
-    else {
+    } else {
 
       afficherConnexion();
 
@@ -835,7 +1166,7 @@
 
 
   /* =========================================================
-     BOUTONS
+     ÉVÉNEMENTS
      ========================================================= */
 
   loginButton.addEventListener(
@@ -850,6 +1181,12 @@
   );
 
 
+  saveArticleButton.addEventListener(
+    "click",
+    enregistrerArticle
+  );
+
+
   document
     .getElementById("password")
     .addEventListener(
@@ -857,18 +1194,12 @@
       function(event) {
 
         if (event.key === "Enter") {
-
           connexion();
-
         }
 
       }
     );
 
-
-  /* =========================================================
-     FONCTIONS À CONSTRUIRE
-     ========================================================= */
 
   function fonctionBientotDisponible(nom) {
 
