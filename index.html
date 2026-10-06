@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VIDE DECO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f2ed;
+      color: #111;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    header {
+      padding: 35px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 70px 6% 45px;
+    }
+
+    .hero-small {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(50px, 9vw, 120px);
+      line-height: .85;
+      letter-spacing: -5px;
+      max-width: 1000px;
+    }
+
+    .hero-text {
+      margin-top: 30px;
+      font-size: 18px;
+      max-width: 550px;
+      line-height: 1.5;
+    }
+
+    /* ESPACES */
+
+    .spaces {
+      padding: 20px 6% 70px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      min-height: 300px;
+      padding: 30px;
+      border: 2px solid #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: .2s;
+      background: transparent;
+    }
+
+    .card:hover {
+      background: #111;
+      color: white;
+    }
+
+    .number {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .card h2 {
+      font-size: 35px;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .arrow {
+      font-size: 35px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 25px 6%;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 25px 5%;
+      }
+
+      .hero {
+        padding: 50px 5% 35px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .spaces {
+        grid-template-columns: 1fr;
+        padding: 10px 5% 50px;
+      }
+
+      .card {
+        min-height: 220px;
+      }
+
+      footer {
+        padding: 25px 5%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    VIDE DECO
+  </div>
+
+  <div class="tag">
+    POP-UP STORE
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-small">
+    Gestion de la boutique
+  </div>
+
+  <h1>
+    OBJETS.<br>
+    VENDEURS.<br>
+    HISTOIRES.
+  </h1>
+
+  <div class="hero-text">
+    Une plateforme simple pour enregistrer les objets,
+    gérer les vendeurs et fluidifier l'encaissement
+    de la boutique.
+  </div>
+
+</section>
+
+
+<section class="spaces">
+
+  <!-- VENDEUR -->
+
+  <div class="card" onclick="ouvrirVendeur()">
+
+    <div class="number">
+      01
+    </div>
+
+    <div>
+
+      <h2>
+        VENDEUR
+      </h2>
+
+      <p>
+        Ajouter mes objets<br>
+        Gérer mes prix<br>
+        Suivre mes ventes
+      </p>
+
+    </div>
+
+    <div class="arrow">
+      →
+    </div>
+
+  </div>
+
+
+  <!-- CAISSE -->
+
+  <div class="card" onclick="ouvrirCaisse()">
+
+    <div class="number">
+      02
+    </div>
+
+    <div>
+
+      <h2>
+        CAISSE
+      </h2>
+
+      <p>
+        Scanner les articles<br>
+        Créer le panier<br>
+        Valider les ventes
+      </p>
+
+    </div>
+
+    <div class="arrow">
+      →
+    </div>
+
+  </div>
+
+
+  <!-- ADMIN -->
+
+  <div class="card" onclick="ouvrirAdmin()">
+
+    <div class="number">
+      03
+    </div>
+
+    <div>
+
+      <h2>
+        ADMIN
+      </h2>
+
+      <p>
+        Vendeurs & stocks<br>
+        Chiffre d'affaires<br>
+        Commissions
+      </p>
+
+    </div>
+
+    <div class="arrow">
+      →
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <div>
+    VIDE DECO
+  </div>
+
+  <div>
+    Boutique éphémère
+  </div>
+
+</footer>
+
+
+<script>
+
+function ouvrirVendeur() {
+  alert("ESPACE VENDEUR — bientôt disponible");
+}
+
+function ouvrirCaisse() {
+  alert("CAISSE — bientôt disponible");
+}
+
+function ouvrirAdmin() {
+  alert("ADMINISTRATION — bientôt disponible");
+}
+
+</script>
+
+</body>
+</html>
