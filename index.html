@@ -43,8 +43,8 @@
     }
 
     button:disabled {
-      cursor: wait;
-      opacity: .6;
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     header {
@@ -97,7 +97,9 @@
       letter-spacing: -1.5px;
     }
 
-    /* LOGIN */
+    /* =========================
+       CONNEXION
+       ========================= */
 
     .login {
       max-width: 520px;
@@ -174,7 +176,9 @@
       font-weight: 800;
     }
 
-    /* DASHBOARD */
+    /* =========================
+       DASHBOARD
+       ========================= */
 
     .dashboard-header,
     .page-header {
@@ -263,7 +267,9 @@
       line-height: 1.6;
     }
 
-    /* FORMULAIRE ARTICLE */
+    /* =========================
+       FORMULAIRE ARTICLE
+       ========================= */
 
     .article-page {
       max-width: 760px;
@@ -300,45 +306,30 @@
     .photo-zone {
       margin-top: 8px;
       border: 2px dashed var(--black);
-      background: #ebe9e3;
-      padding: 25px;
+      background: white;
+      padding: 24px;
       text-align: center;
     }
 
-    .photo-input {
-      padding: 12px;
-      background: white;
-      border: 1px solid #999;
+    .photo-zone input {
+      border: 0;
+      padding: 0;
+      background: transparent;
     }
 
     .photo-help {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 12px;
-      line-height: 1.4;
-    }
-
-    .photo-preview-wrapper {
-      margin-top: 18px;
+      line-height: 1.5;
     }
 
     .photo-preview {
-      display: block;
       width: 100%;
       max-height: 420px;
       object-fit: contain;
+      margin-top: 18px;
+      border: 1px solid #999;
       background: white;
-      border: 1px solid var(--black);
-    }
-
-    .remove-photo {
-      width: 100%;
-      margin-top: 8px;
-      padding: 11px;
-      border: 1px solid var(--black);
-      background: transparent;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
     }
 
     .form-info {
@@ -359,6 +350,7 @@
     }
 
     @media (max-width: 800px) {
+
       main {
         width: 90%;
         padding-top: 35px;
@@ -405,19 +397,29 @@
 
 <main>
 
-  <!-- CONNEXION -->
+  <!-- =========================
+       CONNEXION
+       ========================= -->
 
   <section id="loginSection" class="login">
 
-    <div class="eyebrow">Boutique éphémère</div>
+    <div class="eyebrow">
+      Boutique éphémère
+    </div>
 
-    <h1>GÉRER.<br>VENDRE.<br>SUIVRE.</h1>
+    <h1>
+      GÉRER.<br>
+      VENDRE.<br>
+      SUIVRE.
+    </h1>
 
     <div class="login-box">
 
       <h2>Connexion</h2>
 
-      <label for="email">Adresse e-mail</label>
+      <label for="email">
+        Adresse e-mail
+      </label>
 
       <input
         type="email"
@@ -426,7 +428,9 @@
         placeholder="votre@email.fr"
       >
 
-      <label for="password">Mot de passe</label>
+      <label for="password">
+        Mot de passe
+      </label>
 
       <input
         type="password"
@@ -435,20 +439,32 @@
         placeholder="••••••••"
       >
 
-      <button class="primary" id="loginButton" type="button">
+      <button
+        class="primary"
+        id="loginButton"
+        type="button"
+      >
         Se connecter
       </button>
 
-      <div id="loginMessage" class="message"></div>
+      <div
+        id="loginMessage"
+        class="message"
+      ></div>
 
     </div>
 
   </section>
 
 
-  <!-- DASHBOARD -->
+  <!-- =========================
+       DASHBOARD
+       ========================= -->
 
-  <section id="dashboardSection" class="hidden">
+  <section
+    id="dashboardSection"
+    class="hidden"
+  >
 
     <div class="dashboard-header">
 
@@ -458,11 +474,17 @@
           VIDE DECO POP-UP
         </div>
 
-        <div id="hello" class="hello">
+        <div
+          id="hello"
+          class="hello"
+        >
           BONJOUR.
         </div>
 
-        <div id="roleBadge" class="status">
+        <div
+          id="roleBadge"
+          class="status"
+        >
           CONNEXION
         </div>
 
@@ -481,58 +503,97 @@
 
     <!-- ADMIN -->
 
-    <div id="adminCards" class="cards hidden">
+    <div
+      id="adminCards"
+      class="cards hidden"
+    >
 
-      <div class="card" onclick="fonctionBientotDisponible('STOCK')">
+      <div
+        class="card"
+        onclick="fonctionBientotDisponible('STOCK')"
+      >
 
-        <div class="number">01</div>
+        <div class="number">
+          01
+        </div>
 
         <div>
-          <div class="card-title">STOCK</div>
+
+          <div class="card-title">
+            STOCK
+          </div>
+
           <p>
             Articles en boutique<br>
             Articles à apporter<br>
             Retraits et retours
           </p>
+
         </div>
 
-        <div class="arrow">→</div>
+        <div class="arrow">
+          →
+        </div>
 
       </div>
 
 
-      <div class="card" onclick="fonctionBientotDisponible('CAISSE')">
+      <div
+        class="card"
+        onclick="fonctionBientotDisponible('CAISSE')"
+      >
 
-        <div class="number">02</div>
+        <div class="number">
+          02
+        </div>
 
         <div>
-          <div class="card-title">CAISSE</div>
+
+          <div class="card-title">
+            CAISSE
+          </div>
+
           <p>
             Scanner les articles<br>
             Constituer le panier<br>
             Valider les ventes
           </p>
+
         </div>
 
-        <div class="arrow">→</div>
+        <div class="arrow">
+          →
+        </div>
 
       </div>
 
 
-      <div class="card" onclick="fonctionBientotDisponible('ADMINISTRATION')">
+      <div
+        class="card"
+        onclick="fonctionBientotDisponible('ADMINISTRATION')"
+      >
 
-        <div class="number">03</div>
+        <div class="number">
+          03
+        </div>
 
         <div>
-          <div class="card-title">ADMIN</div>
+
+          <div class="card-title">
+            ADMIN
+          </div>
+
           <p>
             Brocanteurs<br>
             Chiffre d'affaires<br>
             Commissions et reversements
           </p>
+
         </div>
 
-        <div class="arrow">→</div>
+        <div class="arrow">
+          →
+        </div>
 
       </div>
 
@@ -541,58 +602,97 @@
 
     <!-- BROCANTEUR -->
 
-    <div id="sellerCards" class="cards hidden">
+    <div
+      id="sellerCards"
+      class="cards hidden"
+    >
 
-      <div class="card" onclick="ouvrirAjoutArticle()">
+      <div
+        class="card"
+        onclick="ouvrirAjoutArticle()"
+      >
 
-        <div class="number">01</div>
-
-        <div>
-          <div class="card-title">AJOUTER</div>
-          <p>
-            Enregistrer un objet<br>
-            Définir son prix<br>
-            Préparer son arrivée
-          </p>
+        <div class="number">
+          01
         </div>
 
-        <div class="arrow">→</div>
+        <div>
+
+          <div class="card-title">
+            AJOUTER
+          </div>
+
+          <p>
+            Enregistrer un objet<br>
+            Ajouter sa photo<br>
+            Définir son prix
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          →
+        </div>
 
       </div>
 
 
-      <div class="card" onclick="fonctionBientotDisponible('MES ARTICLES')">
+      <div
+        class="card"
+        onclick="fonctionBientotDisponible('MES ARTICLES')"
+      >
 
-        <div class="number">02</div>
+        <div class="number">
+          02
+        </div>
 
         <div>
-          <div class="card-title">MES OBJETS</div>
+
+          <div class="card-title">
+            MES OBJETS
+          </div>
+
           <p>
             À apporter<br>
             En boutique<br>
             Vendus ou retirés
           </p>
+
         </div>
 
-        <div class="arrow">→</div>
+        <div class="arrow">
+          →
+        </div>
 
       </div>
 
 
-      <div class="card" onclick="fonctionBientotDisponible('MES VENTES')">
+      <div
+        class="card"
+        onclick="fonctionBientotDisponible('MES VENTES')"
+      >
 
-        <div class="number">03</div>
+        <div class="number">
+          03
+        </div>
 
         <div>
-          <div class="card-title">MES VENTES</div>
+
+          <div class="card-title">
+            MES VENTES
+          </div>
+
           <p>
             Suivre les ventes<br>
             Chiffre d'affaires<br>
             Historique
           </p>
+
         </div>
 
-        <div class="arrow">→</div>
+        <div class="arrow">
+          →
+        </div>
 
       </div>
 
@@ -600,16 +700,28 @@
 
 
     <div class="connection">
-      <strong>Base de données :</strong>
-      <span id="databaseStatus">connexion en cours…</span>
+
+      <strong>
+        Base de données :
+      </strong>
+
+      <span id="databaseStatus">
+        connexion en cours…
+      </span>
+
     </div>
 
   </section>
 
 
-  <!-- AJOUTER UN ARTICLE -->
+  <!-- =========================
+       AJOUTER UN ARTICLE
+       ========================= -->
 
-  <section id="articleSection" class="article-page hidden">
+  <section
+    id="articleSection"
+    class="article-page hidden"
+  >
 
     <div class="page-header">
 
@@ -620,7 +732,8 @@
         </div>
 
         <div class="page-title">
-          AJOUTER<br>UN OBJET.
+          AJOUTER<br>
+          UN OBJET.
         </div>
 
       </div>
@@ -668,15 +781,41 @@
 
           <select id="articleCategorie">
 
-            <option value="">Choisir</option>
-            <option value="Mobilier">Mobilier</option>
-            <option value="Luminaire">Luminaire</option>
-            <option value="Décoration">Décoration</option>
-            <option value="Vaisselle">Vaisselle</option>
-            <option value="Textile">Textile</option>
-            <option value="Art">Art</option>
-            <option value="Livre">Livre</option>
-            <option value="Divers">Divers</option>
+            <option value="">
+              Choisir
+            </option>
+
+            <option value="Mobilier">
+              Mobilier
+            </option>
+
+            <option value="Luminaire">
+              Luminaire
+            </option>
+
+            <option value="Décoration">
+              Décoration
+            </option>
+
+            <option value="Vaisselle">
+              Vaisselle
+            </option>
+
+            <option value="Textile">
+              Textile
+            </option>
+
+            <option value="Art">
+              Art
+            </option>
+
+            <option value="Livre">
+              Livre
+            </option>
+
+            <option value="Divers">
+              Divers
+            </option>
 
           </select>
 
@@ -700,7 +839,9 @@
             placeholder="0,00"
           >
 
-          <span class="euro">€</span>
+          <span class="euro">
+            €
+          </span>
 
         </div>
 
@@ -752,37 +893,20 @@
 
             <input
               id="articlePhoto"
-              class="photo-input"
               type="file"
               accept="image/*"
             >
 
             <div class="photo-help">
-              Sur téléphone ou tablette, tu peux prendre une photo
-              ou choisir une image existante.
+              Prends directement une photo ou choisis une image
+              dans ta photothèque.
             </div>
 
-
-            <div
-              id="photoPreviewWrapper"
-              class="photo-preview-wrapper hidden"
+            <img
+              id="photoPreview"
+              class="photo-preview hidden"
+              alt="Aperçu de l'objet"
             >
-
-              <img
-                id="photoPreview"
-                class="photo-preview"
-                alt="Aperçu de l'objet"
-              >
-
-              <button
-                id="removePhotoButton"
-                class="remove-photo"
-                type="button"
-              >
-                Supprimer cette photo
-              </button>
-
-            </div>
 
           </div>
 
@@ -800,13 +924,20 @@
       </button>
 
 
-      <div id="articleMessage" class="message"></div>
+      <div
+        id="articleMessage"
+        class="message"
+      ></div>
 
 
       <div class="form-info">
+
         L'objet sera enregistré avec le statut
         <strong>À APPORTER</strong>.
-        La photo sera conservée dans VIDE DECO et associée à l'objet.
+
+        Sa photo sera associée automatiquement
+        à sa fiche.
+
       </div>
 
     </div>
@@ -817,8 +948,15 @@
 
 
 <footer>
-  <div>VIDE DECO</div>
-  <div>Boutique éphémère</div>
+
+  <div>
+    VIDE DECO
+  </div>
+
+  <div>
+    Boutique éphémère
+  </div>
+
 </footer>
 
 
@@ -841,13 +979,27 @@
 
 
   /* =========================================================
+     IMPORTANT
+     =========================================================
+
+     Le bucket Storage créé dans Supabase doit s'appeler :
+
+     articles
+
+     Si tu lui as donné un autre nom, il faudra simplement
+     modifier STORAGE_BUCKET ci-dessous.
+
+     ========================================================= */
+
+  const STORAGE_BUCKET = "articles";
+
+
+  /* =========================================================
      VARIABLES
      ========================================================= */
 
   let utilisateurActuel = null;
   let profilActuel = null;
-  let photoSelectionnee = null;
-  let photoPreviewURL = null;
 
 
   /* =========================================================
@@ -899,12 +1051,6 @@
   const photoPreview =
     document.getElementById("photoPreview");
 
-  const photoPreviewWrapper =
-    document.getElementById("photoPreviewWrapper");
-
-  const removePhotoButton =
-    document.getElementById("removePhotoButton");
-
 
   /* =========================================================
      CONNEXION
@@ -912,14 +1058,24 @@
 
   async function connexion() {
 
-    loginMessage.textContent = "Connexion…";
-    loginMessage.className = "message";
+    loginMessage.textContent =
+      "Connexion…";
+
+    loginMessage.className =
+      "message";
+
 
     const email =
-      document.getElementById("email").value.trim();
+      document
+        .getElementById("email")
+        .value
+        .trim();
+
 
     const password =
-      document.getElementById("password").value;
+      document
+        .getElementById("password")
+        .value;
 
 
     if (!email || !password) {
@@ -931,6 +1087,7 @@
         "message error";
 
       return;
+
     }
 
 
@@ -952,10 +1109,13 @@
         "message error";
 
       return;
+
     }
 
 
-    await afficherUtilisateur(data.user);
+    await afficherUtilisateur(
+      data.user
+    );
 
   }
 
@@ -967,12 +1127,16 @@
   async function afficherUtilisateur(user) {
 
     if (!user) {
+
       afficherConnexion();
+
       return;
+
     }
 
 
-    utilisateurActuel = user;
+    utilisateurActuel =
+      user;
 
 
     const { data: profil, error } =
@@ -981,7 +1145,10 @@
         .select(
           "id, role, nom, prenom, enseigne, commission, actif"
         )
-        .eq("id", user.id)
+        .eq(
+          "id",
+          user.id
+        )
         .single();
 
 
@@ -1001,15 +1168,25 @@
         "message error";
 
       return;
+
     }
 
 
-    profilActuel = profil;
+    profilActuel =
+      profil;
 
 
-    loginSection.classList.add("hidden");
-    articleSection.classList.add("hidden");
-    dashboardSection.classList.remove("hidden");
+    loginSection.classList.add(
+      "hidden"
+    );
+
+    articleSection.classList.add(
+      "hidden"
+    );
+
+    dashboardSection.classList.remove(
+      "hidden"
+    );
 
 
     const nomAffiche =
@@ -1028,8 +1205,13 @@
       "Supabase connecté ✓";
 
 
-    adminCards.classList.add("hidden");
-    sellerCards.classList.add("hidden");
+    adminCards.classList.add(
+      "hidden"
+    );
+
+    sellerCards.classList.add(
+      "hidden"
+    );
 
 
     if (profil.role === "admin") {
@@ -1037,14 +1219,18 @@
       roleBadge.textContent =
         "ADMINISTRATEUR";
 
-      adminCards.classList.remove("hidden");
+      adminCards.classList.remove(
+        "hidden"
+      );
 
     } else {
 
       roleBadge.textContent =
         "BROCANTEUR";
 
-      sellerCards.classList.remove("hidden");
+      sellerCards.classList.remove(
+        "hidden"
+      );
 
     }
 
@@ -1052,98 +1238,80 @@
 
 
   /* =========================================================
-     NAVIGATION
+     PAGE AJOUT ARTICLE
      ========================================================= */
 
   function ouvrirAjoutArticle() {
 
-    dashboardSection.classList.add("hidden");
-    articleSection.classList.remove("hidden");
+    dashboardSection.classList.add(
+      "hidden"
+    );
 
-    articleMessage.textContent = "";
-    articleMessage.className = "message";
+    articleSection.classList.remove(
+      "hidden"
+    );
 
-    window.scrollTo(0, 0);
+    articleMessage.textContent =
+      "";
+
+    articleMessage.className =
+      "message";
+
+    window.scrollTo(
+      0,
+      0
+    );
 
   }
 
 
   function retourDashboard() {
 
-    articleSection.classList.add("hidden");
-    dashboardSection.classList.remove("hidden");
+    articleSection.classList.add(
+      "hidden"
+    );
 
-    window.scrollTo(0, 0);
+    dashboardSection.classList.remove(
+      "hidden"
+    );
+
+    window.scrollTo(
+      0,
+      0
+    );
 
   }
 
 
   /* =========================================================
-     PHOTO
+     APERÇU PHOTO
      ========================================================= */
-
-  function afficherApercuPhoto(file) {
-
-    if (photoPreviewURL) {
-      URL.revokeObjectURL(photoPreviewURL);
-    }
-
-    photoPreviewURL =
-      URL.createObjectURL(file);
-
-    photoPreview.src =
-      photoPreviewURL;
-
-    photoPreviewWrapper.classList.remove(
-      "hidden"
-    );
-
-  }
-
-
-  function supprimerPhotoSelectionnee() {
-
-    photoSelectionnee = null;
-
-    articlePhoto.value = "";
-
-    if (photoPreviewURL) {
-
-      URL.revokeObjectURL(
-        photoPreviewURL
-      );
-
-      photoPreviewURL = null;
-
-    }
-
-    photoPreview.removeAttribute("src");
-
-    photoPreviewWrapper.classList.add(
-      "hidden"
-    );
-
-  }
-
 
   articlePhoto.addEventListener(
     "change",
-    function(event) {
+    function() {
 
-      const file =
-        event.target.files[0];
+      const fichier =
+        articlePhoto.files[0];
 
 
-      if (!file) {
+      if (!fichier) {
 
-        supprimerPhotoSelectionnee();
+        photoPreview.src =
+          "";
+
+        photoPreview.classList.add(
+          "hidden"
+        );
 
         return;
 
       }
 
 
-      if (!file.type.startsWith("image/")) {
+      if (
+        !fichier.type.startsWith("image/")
+      ) {
 
         articleMessage.textContent =
           "Le fichier sélectionné doit être une image.";
@@ -1151,103 +1319,100 @@
         articleMessage.className =
           "message error";
 
-        supprimerPhotoSelectionnee();
+        articlePhoto.value =
+          "";
 
         return;
 
       }
 
 
-      photoSelectionnee = file;
+      const urlApercu =
+        URL.createObjectURL(
+          fichier
+        );
 
-      afficherApercuPhoto(file);
 
-      articleMessage.textContent = "";
-      articleMessage.className = "message";
+      photoPreview.src =
+        urlApercu;
+
+      photoPreview.classList.remove(
+        "hidden"
+      );
 
     }
-  );
-
-
-  removePhotoButton.addEventListener(
-    "click",
-    supprimerPhotoSelectionnee
   );
 
 
   /* =========================================================
-     ENVOI PHOTO SUPABASE
+     ENVOI PHOTO DANS STORAGE
      ========================================================= */
 
-  async function envoyerPhoto(articleId) {
+  async function envoyerPhoto(
+    fichier,
+    articleId
+  ) {
 
-    if (!photoSelectionnee) {
+    if (!fichier) {
       return null;
     }
 
 
-    const extensionOriginale =
-      photoSelectionnee.name
+    let extension =
+      fichier.name
         .split(".")
         .pop()
         .toLowerCase();
 
 
-    const extension =
-      extensionOriginale ||
-      "jpg";
+    if (!extension) {
+      extension = "jpg";
+    }
 
-
-    /*
-      Chaque vendeur possède son propre dossier.
-      Chaque article possède ensuite son fichier.
-    */
 
     const chemin =
       utilisateurActuel.id +
       "/" +
       articleId +
-      "-" +
-      Date.now() +
       "." +
       extension;
 
 
-    const { error: uploadError } =
-      await db.storage
-        .from("photos-articles")
+    const {
+      error: uploadError
+    } =
+      await db
+        .storage
+        .from(STORAGE_BUCKET)
         .upload(
           chemin,
-          photoSelectionnee,
+          fichier,
           {
             cacheControl: "3600",
-            upsert: false
+            upsert: true
           }
         );
 
 
     if (uploadError) {
 
-      console.error(
-        "ERREUR PHOTO :",
-        uploadError
-      );
-
-      throw new Error(
-        "Impossible d'envoyer la photo : " +
-        uploadError.message
-      );
+      throw uploadError;
 
     }
 
 
-    const { data } =
-      db.storage
-        .from("photos-articles")
-        .getPublicUrl(chemin);
+    const {
+      data: publicData
+    } =
+      db
+        .storage
+        .from(STORAGE_BUCKET)
+        .getPublicUrl(
+          chemin
+        );
 
 
-    return data.publicUrl;
+    return publicData.publicUrl;
 
   }
 
@@ -1258,8 +1423,11 @@
 
   async function enregistrerArticle() {
 
-    articleMessage.textContent = "";
-    articleMessage.className = "message";
+    articleMessage.textContent =
+      "";
+
+    articleMessage.className =
+      "message";
 
 
     if (!utilisateurActuel) {
@@ -1311,6 +1479,10 @@
         .trim();
 
 
+    const fichierPhoto =
+      articlePhoto.files[0] || null;
+
+
     if (!nom) {
 
       articleMessage.textContent =
@@ -1356,105 +1528,100 @@
     }
 
 
-    saveArticleButton.disabled = true;
+    saveArticleButton.disabled =
+      true;
 
     saveArticleButton.textContent =
-      photoSelectionnee
-        ? "ENREGISTREMENT ET ENVOI DE LA PHOTO…"
-        : "ENREGISTREMENT…";
+      "ENREGISTREMENT…";
 
-
-    /*
-      1 — Création de l'article
-    */
-
-    const nouvelArticle = {
-
-      vendeur_id:
-        utilisateurActuel.id,
-
-      nom:
-        nom,
-
-      description:
-        description || null,
-
-      categorie:
-        categorie || null,
-
-      prix:
-        prix,
-
-      quantite:
-        quantite,
-
-      quantite_disponible:
-        quantite,
-
-      statut:
-        "a_apporter"
-
-    };
-
-
-    const {
-      data: articleCree,
-      error: articleError
-    } =
-      await db
-        .from("articles")
-        .insert(nouvelArticle)
-        .select()
-        .single();
-
-
-    if (articleError) {
-
-      console.error(
-        "ERREUR ARTICLE :",
-        articleError
-      );
-
-      saveArticleButton.disabled = false;
-      saveArticleButton.textContent =
-        "ENREGISTRER L'OBJET";
-
-      articleMessage.textContent =
-        "Erreur : " +
-        articleError.message;
-
-      articleMessage.className =
-        "message error";
-
-      return;
-
-    }
-
-
-    /*
-      2 — Envoi de la photo
-    */
 
     try {
 
-      if (photoSelectionnee) {
+      /* -------------------------
+         1. CRÉATION ARTICLE
+         ------------------------- */
 
-        const photoURL =
+      const nouvelArticle = {
+
+        vendeur_id:
+          utilisateurActuel.id,
+
+        nom:
+          nom,
+
+        description:
+          description || null,
+
+        categorie:
+          categorie || null,
+
+        prix:
+          prix,
+
+        quantite:
+          quantite,
+
+        quantite_disponible:
+          quantite,
+
+        statut:
+          "a_apporter"
+
+      };
+
+
+      const {
+        data: articleCree,
+        error: articleError
+      } =
+        await db
+          .from("articles")
+          .insert(
+            nouvelArticle
+          )
+          .select()
+          .single();
+
+
+      if (articleError) {
+
+        throw articleError;
+
+      }
+
+
+      /* -------------------------
+         2. PHOTO
+         ------------------------- */
+
+      let photoUrl =
+        null;
+
+
+      if (fichierPhoto) {
+
+        articleMessage.textContent =
+          "Envoi de la photo…";
+
+
+        photoUrl =
           await envoyerPhoto(
+            fichierPhoto,
             articleCree.id
           );
 
 
-        /*
-          3 — Enregistrement de l'adresse
-          de la photo dans l'article
-        */
+        /* -------------------------
+           3. URL PHOTO DANS ARTICLE
+           ------------------------- */
 
-        const { error: updateError } =
+        const {
+          error: updateError
+        } =
           await db
             .from("articles")
             .update({
-              photo_url: photoURL
+              photo_url: photoUrl
             })
             .eq(
               "id",
@@ -1464,23 +1631,27 @@
 
         if (updateError) {
 
-          console.error(
-            "ERREUR URL PHOTO :",
-            updateError
-          );
-
-          throw new Error(
-            "La photo a été envoyée mais son adresse n'a pas pu être enregistrée : " +
-            updateError.message
-          );
+          throw updateError;
 
         }
 
       }
 
 
+      console.log(
+        "ARTICLE CRÉÉ :",
+        articleCree
+      );
+
+
+      console.log(
+        "PHOTO :",
+        photoUrl
+      );
+
+
       articleMessage.textContent =
-        photoSelectionnee
+        fichierPhoto
           ? "OBJET ET PHOTO ENREGISTRÉS ✓"
           : "OBJET ENREGISTRÉ ✓";
 
@@ -1489,44 +1660,65 @@
         "message success";
 
 
-      /*
-        Réinitialisation du formulaire
-      */
+      /* -------------------------
+         NETTOYAGE FORMULAIRE
+         ------------------------- */
 
-      document.getElementById(
-        "articleNom"
-      ).value = "";
-
-
-      document.getElementById(
-        "articleCategorie"
-      ).value = "";
+      document
+        .getElementById("articleNom")
+        .value =
+        "";
 
 
-      document.getElementById(
-        "articlePrix"
-      ).value = "";
+      document
+        .getElementById("articleCategorie")
+        .value =
+        "";
 
 
-      document.getElementById(
-        "articleQuantite"
-      ).value = "1";
+      document
+        .getElementById("articlePrix")
+        .value =
+        "";
 
 
-      document.getElementById(
-        "articleDescription"
-      ).value = "";
+      document
+        .getElementById("articleQuantite")
+        .value =
+        "1";
 
 
-      supprimerPhotoSelectionnee();
+      document
+        .getElementById("articleDescription")
+        .value =
+        "";
+
+
+      articlePhoto.value =
+        "";
+
+
+      photoPreview.src =
+        "";
+
+
+      photoPreview.classList.add(
+        "hidden"
+      );
 
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "ERREUR ENREGISTREMENT :",
+        error
+      );
+
 
       articleMessage.textContent =
+        "Erreur : " +
         error.message;
+
 
       articleMessage.className =
         "message error";
@@ -1534,7 +1726,9 @@
     }
 
 
-    saveArticleButton.disabled = false;
+    saveArticleButton.disabled =
+      false;
+
 
     saveArticleButton.textContent =
       "ENREGISTRER L'OBJET";
@@ -1570,8 +1764,11 @@
     );
 
 
-    utilisateurActuel = null;
-    profilActuel = null;
+    utilisateurActuel =
+      null;
+
+    profilActuel =
+      null;
 
   }
 
@@ -1580,11 +1777,16 @@
 
     await db.auth.signOut();
 
-    document.getElementById(
-      "password"
-    ).value = "";
 
-    loginMessage.textContent = "";
+    document
+      .getElementById("password")
+      .value =
+      "";
+
+
+    loginMessage.textContent =
+      "";
+
 
     afficherConnexion();
 
@@ -1649,15 +1851,21 @@
       "keydown",
       function(event) {
 
-        if (event.key === "Enter") {
+        if (
+          event.key === "Enter"
+        ) {
+
           connexion();
+
         }
 
       }
     );
 
 
-  function fonctionBientotDisponible(nom) {
+  function fonctionBientotDisponible(
+    nom
+  ) {
 
     alert(
       nom +
