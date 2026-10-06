@@ -21,7 +21,6 @@
 <!-- SCANNER QR -->
 <script src="https://unpkg.com/html5-qrcode"></script>
 
-
 <style>
 
 /* =========================================================
@@ -41,6 +40,7 @@
   --grey:#d6d3cc;
   --green:#b7ff00;
   --red:#e34b3f;
+  --blue:#2f86ff;
 }
 
 html {
@@ -770,6 +770,105 @@ textarea {
 
 
 /* =========================================================
+   MES VENTES
+========================================================= */
+
+.sales-stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.sales-stat {
+  border:2px solid var(--black);
+  padding:20px;
+  min-height:155px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.sales-stat.highlight {
+  background:var(--green);
+}
+
+.sales-stat-label {
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+  line-height:1.3;
+}
+
+.sales-stat-value {
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+}
+
+.sales-section-title {
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:-1px;
+  margin-bottom:20px;
+}
+
+.sales-list {
+  border-top:2px solid var(--black);
+}
+
+.sale-row {
+  display:grid;
+  grid-template-columns:130px 1fr 110px 110px 130px;
+  gap:15px;
+  align-items:center;
+  padding:20px 5px;
+  border-bottom:1px solid #aaa;
+}
+
+.sale-date {
+  font-size:12px;
+  line-height:1.4;
+}
+
+.sale-ref {
+  font-size:10px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.sale-name {
+  font-size:18px;
+  font-weight:900;
+}
+
+.sale-qty {
+  font-size:12px;
+  font-weight:800;
+}
+
+.sale-amount {
+  font-size:17px;
+  font-weight:900;
+  text-align:right;
+}
+
+.sale-net {
+  font-size:18px;
+  font-weight:900;
+  text-align:right;
+}
+
+.sales-note {
+  margin-top:25px;
+  border:1px solid #aaa;
+  padding:16px;
+  font-size:12px;
+  line-height:1.5;
+}
+
+
+/* =========================================================
    VENTE RÉUSSIE
 ========================================================= */
 
@@ -847,7 +946,8 @@ footer {
 
   .cards,
   .objects-grid,
-  .cashier-layout {
+  .cashier-layout,
+  .sales-stats {
     grid-template-columns:1fr;
   }
 
@@ -870,6 +970,20 @@ footer {
 
   .cashier-layout {
     gap:15px;
+  }
+
+  .sale-row {
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .sale-row > div:nth-child(2) {
+    grid-column:1/-1;
+  }
+
+  .sale-amount,
+  .sale-net {
+    text-align:left;
   }
 
 }
@@ -992,10 +1106,7 @@ footer {
      DASHBOARD
 ===================================================== -->
 
-<section
-  id="dashboardSection"
-  class="hidden"
->
+<section id="dashboardSection" class="hidden">
 
   <div class="dashboard-header">
 
@@ -1005,17 +1116,11 @@ footer {
         VIDE DECO POP-UP
       </div>
 
-      <div
-        id="hello"
-        class="hello"
-      >
+      <div id="hello" class="hello">
         BONJOUR.
       </div>
 
-      <div
-        id="roleBadge"
-        class="status"
-      >
+      <div id="roleBadge" class="status">
         CONNEXION
       </div>
 
@@ -1034,10 +1139,7 @@ footer {
 
   <!-- ADMIN -->
 
-  <div
-    id="adminCards"
-    class="cards hidden"
-  >
+  <div id="adminCards" class="cards hidden">
 
     <div
       class="card"
@@ -1047,17 +1149,12 @@ footer {
       <div class="number">01</div>
 
       <div>
-
-        <div class="card-title">
-          STOCK
-        </div>
-
+        <div class="card-title">STOCK</div>
         <p>
           Articles en boutique<br>
           Articles à apporter<br>
           Stock général
         </p>
-
       </div>
 
       <div class="arrow">→</div>
@@ -1073,17 +1170,12 @@ footer {
       <div class="number">02</div>
 
       <div>
-
-        <div class="card-title">
-          CAISSE
-        </div>
-
+        <div class="card-title">CAISSE</div>
         <p>
           Scanner les QR codes<br>
           Constituer le panier<br>
           Enregistrer les paiements
         </p>
-
       </div>
 
       <div class="arrow">→</div>
@@ -1099,17 +1191,12 @@ footer {
       <div class="number">03</div>
 
       <div>
-
-        <div class="card-title">
-          ADMIN
-        </div>
-
+        <div class="card-title">ADMIN</div>
         <p>
           Brocanteurs<br>
           Chiffre d'affaires<br>
           Reversements
         </p>
-
       </div>
 
       <div class="arrow">→</div>
@@ -1121,10 +1208,7 @@ footer {
 
   <!-- BROCANTEUR -->
 
-  <div
-    id="sellerCards"
-    class="cards hidden"
-  >
+  <div id="sellerCards" class="cards hidden">
 
     <div
       class="card"
@@ -1134,17 +1218,12 @@ footer {
       <div class="number">01</div>
 
       <div>
-
-        <div class="card-title">
-          AJOUTER
-        </div>
-
+        <div class="card-title">AJOUTER</div>
         <p>
           Enregistrer un objet<br>
           Ajouter sa photo<br>
           Définir son prix
         </p>
-
       </div>
 
       <div class="arrow">→</div>
@@ -1160,17 +1239,12 @@ footer {
       <div class="number">02</div>
 
       <div>
-
-        <div class="card-title">
-          MES OBJETS
-        </div>
-
+        <div class="card-title">MES OBJETS</div>
         <p>
           Voir les objets<br>
           Modifier<br>
           Imprimer les QR codes
         </p>
-
       </div>
 
       <div class="arrow">→</div>
@@ -1180,23 +1254,18 @@ footer {
 
     <div
       class="card"
-      onclick="fonctionBientotDisponible('MES VENTES')"
+      onclick="ouvrirMesVentes()"
     >
 
       <div class="number">03</div>
 
       <div>
-
-        <div class="card-title">
-          MES VENTES
-        </div>
-
+        <div class="card-title">MES VENTES</div>
         <p>
           Historique<br>
           Chiffre d'affaires<br>
           Reversements
         </p>
-
       </div>
 
       <div class="arrow">→</div>
@@ -1285,10 +1354,7 @@ footer {
 
         <select id="articleCategorie">
 
-          <option value="">
-            Choisir
-          </option>
-
+          <option value="">Choisir</option>
           <option>Mobilier</option>
           <option>Luminaire</option>
           <option>Décoration</option>
@@ -1316,9 +1382,7 @@ footer {
           step="0.01"
         >
 
-        <span class="euro">
-          €
-        </span>
+        <span class="euro">€</span>
 
       </div>
 
@@ -1345,9 +1409,7 @@ footer {
           Description
         </label>
 
-        <textarea
-          id="articleDescription"
-        ></textarea>
+        <textarea id="articleDescription"></textarea>
 
       </div>
 
@@ -1402,10 +1464,7 @@ footer {
      MES OBJETS
 ===================================================== -->
 
-<section
-  id="objectsSection"
-  class="hidden"
->
+<section id="objectsSection" class="hidden">
 
   <div class="page-header">
 
@@ -1465,13 +1524,134 @@ footer {
 
 
 <!-- =====================================================
+     MES VENTES
+===================================================== -->
+
+<section id="salesSection" class="hidden">
+
+  <div class="page-header">
+
+    <div>
+
+      <div class="eyebrow">
+        ACTIVITÉ BROCANTEUR
+      </div>
+
+      <div class="page-title">
+        MES<br>
+        VENTES.
+      </div>
+
+    </div>
+
+    <button
+      class="secondary"
+      onclick="retourDashboard()"
+    >
+      ← Retour
+    </button>
+
+  </div>
+
+
+  <div
+    id="salesMessage"
+    class="message"
+  ></div>
+
+
+  <div class="sales-stats">
+
+    <div class="sales-stat">
+
+      <div class="sales-stat-label">
+        CHIFFRE<br>D'AFFAIRES
+      </div>
+
+      <div
+        id="salesGross"
+        class="sales-stat-value"
+      >
+        0,00 €
+      </div>
+
+    </div>
+
+
+    <div class="sales-stat">
+
+      <div class="sales-stat-label">
+        COMMISSION<br>VIDE DECO
+      </div>
+
+      <div
+        id="salesCommission"
+        class="sales-stat-value"
+      >
+        0,00 €
+      </div>
+
+    </div>
+
+
+    <div class="sales-stat highlight">
+
+      <div class="sales-stat-label">
+        NET À<br>RECEVOIR
+      </div>
+
+      <div
+        id="salesNet"
+        class="sales-stat-value"
+      >
+        0,00 €
+      </div>
+
+    </div>
+
+
+    <div class="sales-stat">
+
+      <div class="sales-stat-label">
+        ARTICLES<br>VENDUS
+      </div>
+
+      <div
+        id="salesQuantity"
+        class="sales-stat-value"
+      >
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="sales-section-title">
+    HISTORIQUE
+  </div>
+
+
+  <div id="salesList" class="sales-list"></div>
+
+
+  <div class="sales-note">
+
+    Les montants affichés sont calculés à partir des ventes
+    enregistrées dans VIDE DECO. Le montant net correspond au
+    chiffre d'affaires après déduction de la commission VIDE DECO.
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
      QR CODE
 ===================================================== -->
 
-<section
-  id="qrSection"
-  class="hidden"
->
+<section id="qrSection" class="hidden">
 
   <div class="page-header">
 
@@ -1549,10 +1729,7 @@ footer {
      CAISSE
 ===================================================== -->
 
-<section
-  id="cashierSection"
-  class="hidden"
->
+<section id="cashierSection" class="hidden">
 
   <div class="page-header">
 
@@ -1580,7 +1757,6 @@ footer {
 
   <div class="cashier-layout">
 
-
     <div class="cashier-panel">
 
       <div class="cashier-title">
@@ -1597,9 +1773,7 @@ footer {
           autocomplete="off"
         >
 
-        <button
-          onclick="ajouterParReference()"
-        >
+        <button onclick="ajouterParReference()">
           AJOUTER
         </button>
 
@@ -1643,7 +1817,6 @@ footer {
       <div class="cashier-title">
         PANIER
       </div>
-
 
       <div id="cartItems">
 
@@ -1782,13 +1955,9 @@ footer {
 
 <footer>
 
-  <div>
-    VIDE DECO
-  </div>
+  <div>VIDE DECO</div>
 
-  <div>
-    Boutique éphémère
-  </div>
+  <div>Boutique éphémère</div>
 
 </footer>
 
@@ -1845,6 +2014,9 @@ document.getElementById("articleSection");
 const objectsSection =
 document.getElementById("objectsSection");
 
+const salesSection =
+document.getElementById("salesSection");
+
 const qrSection =
 document.getElementById("qrSection");
 
@@ -1862,6 +2034,9 @@ document.getElementById("articleMessage");
 
 const objectsMessage =
 document.getElementById("objectsMessage");
+
+const salesMessage =
+document.getElementById("salesMessage");
 
 const cashMessage =
 document.getElementById("cashMessage");
@@ -1889,6 +2064,7 @@ function cacherToutesLesPages() {
   dashboardSection.classList.add("hidden");
   articleSection.classList.add("hidden");
   objectsSection.classList.add("hidden");
+  salesSection.classList.add("hidden");
   qrSection.classList.add("hidden");
   cashierSection.classList.add("hidden");
   saleSuccessSection.classList.add("hidden");
@@ -1930,10 +2106,12 @@ async function connexion() {
   loginMessage.className =
   "message";
 
+
   const email =
   document.getElementById("email")
   .value
   .trim();
+
 
   const password =
   document.getElementById("password")
@@ -2294,9 +2472,7 @@ async function enregistrerArticle() {
     articlePhoto.files[0] || null;
 
 
-    /* =====================================================
-       MODIFICATION
-    ===================================================== */
+    /* MODIFICATION */
 
     if (articleEnModification) {
 
@@ -2410,9 +2586,7 @@ async function enregistrerArticle() {
     }
 
 
-    /* =====================================================
-       NOUVEAU
-    ===================================================== */
+    /* NOUVEAU */
 
     const {data:article,error} =
     await db
@@ -2976,6 +3150,317 @@ async function retirerArticle(
 
 
   await chargerMesObjets();
+
+}
+
+
+/* =========================================================
+   MES VENTES
+========================================================= */
+
+async function ouvrirMesVentes() {
+
+  if (!utilisateurActuel) {
+    return;
+  }
+
+
+  cacherToutesLesPages();
+
+  salesSection.classList.remove(
+    "hidden"
+  );
+
+  window.scrollTo(0,0);
+
+
+  salesMessage.textContent =
+  "Chargement des ventes…";
+
+  salesMessage.className =
+  "message";
+
+
+  document.getElementById(
+    "salesList"
+  ).innerHTML = "";
+
+
+  const {data,error} =
+  await db
+  .from("lignes_vente")
+  .select(`
+    id,
+    vente_id,
+    article_id,
+    vendeur_id,
+    quantite,
+    prix_unitaire,
+    taux_commission,
+    reference_article,
+    nom_article,
+    montant_commission,
+    montant_vendeur,
+    created_at
+  `)
+  .eq(
+    "vendeur_id",
+    utilisateurActuel.id
+  )
+  .order(
+    "created_at",
+    {
+      ascending:false
+    }
+  );
+
+
+  if (error) {
+
+    salesMessage.textContent =
+    "Impossible de charger les ventes : " +
+    error.message;
+
+    salesMessage.className =
+    "message error";
+
+    return;
+
+  }
+
+
+  const ventes =
+  data || [];
+
+
+  let chiffreAffaires = 0;
+  let commissions = 0;
+  let netVendeur = 0;
+  let quantiteVendue = 0;
+
+
+  ventes.forEach(ligne => {
+
+    const quantite =
+    Number(ligne.quantite) || 0;
+
+    const prix =
+    Number(ligne.prix_unitaire) || 0;
+
+    const totalLigne =
+    prix * quantite;
+
+
+    chiffreAffaires +=
+    totalLigne;
+
+
+    commissions +=
+    Number(
+      ligne.montant_commission
+    ) || 0;
+
+
+    netVendeur +=
+    Number(
+      ligne.montant_vendeur
+    ) || 0;
+
+
+    quantiteVendue +=
+    quantite;
+
+  });
+
+
+  document.getElementById(
+    "salesGross"
+  ).textContent =
+  formaterPrix(
+    chiffreAffaires
+  );
+
+
+  document.getElementById(
+    "salesCommission"
+  ).textContent =
+  formaterPrix(
+    commissions
+  );
+
+
+  document.getElementById(
+    "salesNet"
+  ).textContent =
+  formaterPrix(
+    netVendeur
+  );
+
+
+  document.getElementById(
+    "salesQuantity"
+  ).textContent =
+  quantiteVendue;
+
+
+  salesMessage.textContent = "";
+
+
+  afficherHistoriqueVentes(
+    ventes
+  );
+
+}
+
+
+/* =========================================================
+   HISTORIQUE VENTES
+========================================================= */
+
+function afficherHistoriqueVentes(
+  ventes
+) {
+
+  const zone =
+  document.getElementById(
+    "salesList"
+  );
+
+
+  zone.innerHTML = "";
+
+
+  if (!ventes.length) {
+
+    zone.innerHTML = `
+
+      <div class="empty-state">
+
+        <div class="empty-title">
+          AUCUNE VENTE.
+        </div>
+
+        <p>
+          Tes premières ventes apparaîtront ici
+          automatiquement après leur passage en caisse.
+        </p>
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  ventes.forEach(ligne => {
+
+    const quantite =
+    Number(ligne.quantite) || 0;
+
+    const prix =
+    Number(ligne.prix_unitaire) || 0;
+
+    const total =
+    prix * quantite;
+
+    const commission =
+    Number(
+      ligne.montant_commission
+    ) || 0;
+
+    const net =
+    Number(
+      ligne.montant_vendeur
+    ) || 0;
+
+
+    const element =
+    document.createElement("div");
+
+    element.className =
+    "sale-row";
+
+
+    element.innerHTML = `
+
+      <div class="sale-date">
+
+        ${formaterDate(
+          ligne.created_at
+        )}
+
+      </div>
+
+
+      <div>
+
+        <div class="sale-ref">
+          ${echapperHTML(
+            ligne.reference_article || "—"
+          )}
+        </div>
+
+        <div class="sale-name">
+          ${echapperHTML(
+            ligne.nom_article || "Article"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="sale-qty">
+
+        QTÉ ${quantite}<br>
+
+        ${Number(
+          ligne.taux_commission
+        ) || 0}% COMM.
+
+      </div>
+
+
+      <div class="sale-amount">
+
+        ${formaterPrix(total)}
+
+        <div
+          style="
+            font-size:10px;
+            font-weight:normal;
+            margin-top:4px;
+          "
+        >
+          − ${formaterPrix(commission)}
+        </div>
+
+      </div>
+
+
+      <div class="sale-net">
+
+        ${formaterPrix(net)}
+
+        <div
+          style="
+            font-size:9px;
+            font-weight:900;
+            margin-top:4px;
+          "
+        >
+          NET
+        </div>
+
+      </div>
+    `;
+
+
+    zone.appendChild(
+      element
+    );
+
+  });
 
 }
 
@@ -4070,6 +4555,37 @@ function formaterPrix(prix) {
     }
   ) +
   " €";
+
+}
+
+
+function formaterDate(date) {
+
+  if (!date) {
+    return "—";
+  }
+
+
+  const objetDate =
+  new Date(date);
+
+
+  return objetDate.toLocaleDateString(
+    "fr-FR",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  ) +
+  "<br>" +
+  objetDate.toLocaleTimeString(
+    "fr-FR",
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
 
 }
 
