@@ -65,6 +65,10 @@ button {
   cursor:pointer;
 }
 
+button:disabled {
+  cursor:not-allowed;
+}
+
 .hidden {
   display:none !important;
 }
@@ -142,7 +146,6 @@ h2 {
 
 .primary:disabled {
   opacity:.35;
-  cursor:not-allowed;
 }
 
 .secondary {
@@ -156,15 +159,6 @@ h2 {
 .secondary:hover {
   background:var(--black);
   color:white;
-}
-
-.danger {
-  border:0;
-  background:var(--red);
-  color:white;
-  padding:14px 18px;
-  font-weight:900;
-  text-transform:uppercase;
 }
 
 
@@ -533,6 +527,7 @@ textarea {
 
 .object-action.remove:hover {
   background:var(--red);
+  color:white;
 }
 
 
@@ -1225,7 +1220,7 @@ footer {
 
 
 <!-- =====================================================
-     ARTICLE
+     AJOUT / MODIFICATION ARTICLE
 ===================================================== -->
 
 <section
@@ -1376,6 +1371,7 @@ footer {
         <img
           id="photoPreview"
           class="photo-preview hidden"
+          alt="Aperçu"
         >
 
       </div>
@@ -1386,6 +1382,7 @@ footer {
     <button
       id="saveArticleButton"
       class="primary"
+      type="button"
     >
       Enregistrer l'objet
     </button>
@@ -1527,9 +1524,9 @@ footer {
       id="qrHelp"
       class="qr-help"
     >
-      Le QR code contient uniquement l'identifiant de
-      l'article. Le prix est récupéré dans la base au
-      moment de la vente.
+      Le QR code contient l'identifiant unique de
+      l'article. Le prix est récupéré dans la base
+      au moment du passage en caisse.
     </div>
 
     <div id="qrPrintButtons">
@@ -1584,8 +1581,6 @@ footer {
   <div class="cashier-layout">
 
 
-    <!-- SCAN -->
-
     <div class="cashier-panel">
 
       <div class="cashier-title">
@@ -1598,7 +1593,7 @@ footer {
         <input
           id="cashReference"
           type="text"
-          placeholder="VD-000002"
+          placeholder="VD-000001"
           autocomplete="off"
         >
 
@@ -1634,16 +1629,14 @@ footer {
 
       <div class="form-info">
 
-        Tu peux scanner l'étiquette de l'objet ou saisir
+        Scanne l'étiquette de l'objet ou saisis
         directement sa référence, par exemple
-        <strong>VD-000002</strong>.
+        <strong>VD-000001</strong>.
 
       </div>
 
     </div>
 
-
-    <!-- PANIER -->
 
     <div class="cashier-panel">
 
@@ -1701,11 +1694,11 @@ footer {
         </button>
 
         <button
-          id="paymentAutre"
+          id="paymentCheque"
           class="payment-button"
-          onclick="choisirPaiement('autre')"
+          onclick="choisirPaiement('cheque')"
         >
-          AUTRE
+          CHÈQUE
         </button>
 
       </div>
@@ -1723,9 +1716,8 @@ footer {
 
       <div class="cash-warning">
 
-        Pour un paiement par carte, attends que le TPE
-        confirme que le paiement est accepté avant de
-        valider la vente dans VIDE DECO.
+        Pour un paiement par carte, attends la confirmation
+        du TPE avant de valider la vente dans VIDE DECO.
 
       </div>
 
@@ -1935,6 +1927,9 @@ async function connexion() {
   loginMessage.textContent =
   "Connexion…";
 
+  loginMessage.className =
+  "message";
+
   const email =
   document.getElementById("email")
   .value
@@ -2101,6 +2096,7 @@ function resetArticleForm() {
   photoPreview.classList.add("hidden");
 
   articleMessage.textContent = "";
+  articleMessage.className = "message";
 
 }
 
@@ -2133,6 +2129,8 @@ function ouvrirAjoutArticle() {
   cacherToutesLesPages();
 
   articleSection.classList.remove("hidden");
+
+  window.scrollTo(0,0);
 
 }
 
@@ -2296,7 +2294,9 @@ async function enregistrerArticle() {
     articlePhoto.files[0] || null;
 
 
-    /* MODIFICATION */
+    /* =====================================================
+       MODIFICATION
+    ===================================================== */
 
     if (articleEnModification) {
 
@@ -2342,26 +2342,45 @@ async function enregistrerArticle() {
       }
 
 
+      const nouvelleDisponible =
+      quantite - dejaVendus;
+
+
+      const nouveauStatut =
+      nouvelleDisponible <= 0
+      ? "vendu"
+      : (
+          articleEnModification.statut === "vendu"
+          ? "a_apporter"
+          : articleEnModification.statut
+        );
+
+
       const {error} =
       await db
       .from("articles")
       .update({
 
         nom,
+
         categorie:
         categorie || null,
 
         prix,
+
         quantite,
 
         quantite_disponible:
-        quantite - dejaVendus,
+        nouvelleDisponible,
 
         description:
         description || null,
 
         photo_url:
         photo,
+
+        statut:
+        nouveauStatut,
 
         updated_at:
         new Date().toISOString()
@@ -2382,6 +2401,8 @@ async function enregistrerArticle() {
       }
 
 
+      articleEnModification = null;
+
       await ouvrirMesObjets();
 
       return;
@@ -2389,7 +2410,9 @@ async function enregistrerArticle() {
     }
 
 
-    /* NOUVEAU */
+    /* =====================================================
+       NOUVEAU
+    ===================================================== */
 
     const {data:article,error} =
     await db
@@ -2442,7 +2465,11 @@ async function enregistrerArticle() {
       .update({
         photo_url:photo
       })
-      .eq("id",article.id);
+      .eq("id",article.id)
+      .eq(
+        "vendeur_id",
+        utilisateurActuel.id
+      );
 
 
       if (photoError) {
@@ -2455,7 +2482,7 @@ async function enregistrerArticle() {
     resetArticleForm();
 
     articleMessage.textContent =
-    "OBJET ENREGISTRÉ ✓";
+    "OBJET ET PHOTO ENREGISTRÉS ✓";
 
     articleMessage.className =
     "message success";
@@ -2500,6 +2527,8 @@ async function ouvrirMesObjets() {
 
   objectsSection.classList.remove("hidden");
 
+  window.scrollTo(0,0);
+
   await chargerMesObjets();
 
 }
@@ -2512,6 +2541,9 @@ async function chargerMesObjets() {
   objectsMessage.textContent =
   "Chargement…";
 
+  objectsMessage.className =
+  "message";
+
 
   const {data,error} =
   await db
@@ -2520,6 +2552,10 @@ async function chargerMesObjets() {
   .eq(
     "vendeur_id",
     utilisateurActuel.id
+  )
+  .neq(
+    "statut",
+    "retire"
   )
   .order(
     "created_at",
@@ -2606,6 +2642,9 @@ async function chargerMesObjets() {
       image.src =
       article.photo_url;
 
+      image.alt =
+      article.nom || "Objet";
+
       card.appendChild(image);
 
     }
@@ -2636,7 +2675,7 @@ async function chargerMesObjets() {
     content.innerHTML = `
 
       <div class="object-reference">
-        RÉF. ${article.reference || "—"}
+        RÉF. ${echapperHTML(article.reference || "—")}
       </div>
 
       <div class="object-name">
@@ -2660,7 +2699,7 @@ async function chargerMesObjets() {
 
       </div>
 
-      <div class="object-status ${article.statut}">
+      <div class="object-status ${echapperHTML(article.statut || "")}">
         ${texteStatut(article.statut)}
       </div>
     `;
@@ -2685,8 +2724,20 @@ async function chargerMesObjets() {
     edit.textContent =
     "MODIFIER";
 
-    edit.onclick =
-    () => modifierArticle(article.id);
+
+    if (article.statut === "vendu") {
+
+      edit.disabled = true;
+      edit.style.opacity = ".3";
+
+    }
+
+    else {
+
+      edit.onclick =
+      () => modifierArticle(article.id);
+
+    }
 
 
     const qr =
@@ -2708,13 +2759,11 @@ async function chargerMesObjets() {
     remove.className =
     "object-action remove";
 
-    remove.textContent =
-    article.statut === "vendu"
-    ? "VENDU"
-    : "RETIRER";
-
 
     if (article.statut === "vendu") {
+
+      remove.textContent =
+      "VENDU";
 
       remove.disabled = true;
       remove.style.opacity = ".3";
@@ -2722,6 +2771,9 @@ async function chargerMesObjets() {
     }
 
     else {
+
+      remove.textContent =
+      "RETIRER";
 
       remove.onclick =
       () =>
@@ -2750,7 +2802,7 @@ async function chargerMesObjets() {
 
 
 /* =========================================================
-   MODIFIER
+   MODIFIER ARTICLE
 ========================================================= */
 
 async function modifierArticle(id) {
@@ -2770,6 +2822,17 @@ async function modifierArticle(id) {
   if (error) {
 
     alert(error.message);
+
+    return;
+
+  }
+
+
+  if (data.statut === "vendu") {
+
+    alert(
+      "Un article vendu ne peut plus être modifié."
+    );
 
     return;
 
@@ -2812,6 +2875,9 @@ async function modifierArticle(id) {
 
   articlePhoto.value = "";
 
+  articleMessage.textContent = "";
+  articleMessage.className = "message";
+
 
   if (data.photo_url) {
 
@@ -2825,6 +2891,8 @@ async function modifierArticle(id) {
   }
 
   else {
+
+    photoPreview.src = "";
 
     photoPreview.classList.add(
       "hidden"
@@ -2857,11 +2925,13 @@ async function modifierArticle(id) {
     "hidden"
   );
 
+  window.scrollTo(0,0);
+
 }
 
 
 /* =========================================================
-   RETIRER = SUPPRIMER
+   RETIRER ARTICLE
 ========================================================= */
 
 async function retirerArticle(
@@ -2873,7 +2943,7 @@ async function retirerArticle(
   confirm(
     "RETIRER CET OBJET ?\n\n" +
     nom +
-    "\n\nIl disparaîtra de ton inventaire."
+    "\n\nL'objet disparaîtra de ton inventaire."
   );
 
 
@@ -2937,6 +3007,8 @@ async function afficherQRCode(id) {
 
   qrSection.classList.remove("hidden");
 
+  window.scrollTo(0,0);
+
 
   document.getElementById(
     "qrReference"
@@ -2985,10 +3057,24 @@ async function afficherQRCode(id) {
 
 
 /* =========================================================
-   CAISSE
+   OUVRIR CAISSE
 ========================================================= */
 
 function ouvrirCaisse() {
+
+  if (
+    !profilActuel ||
+    profilActuel.role !== "admin"
+  ) {
+
+    alert(
+      "Accès caisse non autorisé."
+    );
+
+    return;
+
+  }
+
 
   panier = [];
   modePaiement = null;
@@ -3004,8 +3090,13 @@ function ouvrirCaisse() {
   ).value = "";
 
   cashMessage.textContent = "";
+  cashMessage.className = "message";
+
+  reinitialiserPaiements();
 
   afficherPanier();
+
+  window.scrollTo(0,0);
 
 }
 
@@ -3022,14 +3113,20 @@ async function ajouterParReference() {
   );
 
 
-  let reference =
+  const reference =
   input.value
   .trim()
   .toUpperCase();
 
 
   if (!reference) {
+
+    erreurCaisse(
+      "Saisis une référence."
+    );
+
     return;
+
   }
 
 
@@ -3087,7 +3184,7 @@ async function ajouterParReference() {
 
 
 /* =========================================================
-   AJOUT QR
+   AJOUT PAR QR
 ========================================================= */
 
 async function ajouterParQRCode(
@@ -3095,6 +3192,7 @@ async function ajouterParQRCode(
 ) {
 
   if (
+    !texte ||
     !texte.startsWith(
       "VIDEDECO:"
     )
@@ -3125,7 +3223,18 @@ async function ajouterParQRCode(
   .maybeSingle();
 
 
-  if (error || !data) {
+  if (error) {
+
+    erreurCaisse(
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  if (!data) {
 
     erreurCaisse(
       "Article introuvable."
@@ -3144,12 +3253,25 @@ async function ajouterParQRCode(
 
 
 /* =========================================================
-   PANIER
+   AJOUTER AU PANIER
 ========================================================= */
 
 function ajouterArticleAuPanier(
   article
 ) {
+
+  if (
+    article.statut === "retire"
+  ) {
+
+    erreurCaisse(
+      "Cet article a été retiré de la vente."
+    );
+
+    return;
+
+  }
+
 
   if (
     article.statut === "vendu" ||
@@ -3344,6 +3466,11 @@ function changerQuantite(
   panier[index];
 
 
+  if (!item) {
+    return;
+  }
+
+
   const nouvelle =
   item.quantite +
   variation;
@@ -3426,6 +3553,19 @@ function calculerTotal() {
 
 function choisirPaiement(mode) {
 
+  if (
+    ![
+      "carte",
+      "especes",
+      "cheque"
+    ].includes(mode)
+  ) {
+
+    return;
+
+  }
+
+
   modePaiement =
   mode;
 
@@ -3450,8 +3590,8 @@ function choisirPaiement(mode) {
     especes:
     "paymentEspeces",
 
-    autre:
-    "paymentAutre"
+    cheque:
+    "paymentCheque"
 
   };
 
@@ -3465,6 +3605,24 @@ function choisirPaiement(mode) {
 
 
   actualiserBoutonVente();
+
+}
+
+
+function reinitialiserPaiements() {
+
+  modePaiement = null;
+
+  document
+  .querySelectorAll(
+    ".payment-button"
+  )
+  .forEach(
+    bouton =>
+    bouton.classList.remove(
+      "active"
+    )
+  );
 
 }
 
@@ -3506,6 +3664,29 @@ function actualiserBoutonVente() {
 
 
 /* =========================================================
+   TEXTE MODE DE PAIEMENT
+========================================================= */
+
+function nomPaiement(mode) {
+
+  if (mode === "carte") {
+    return "CARTE";
+  }
+
+  if (mode === "especes") {
+    return "ESPÈCES";
+  }
+
+  if (mode === "cheque") {
+    return "CHÈQUE";
+  }
+
+  return "";
+
+}
+
+
+/* =========================================================
    VALIDER VENTE
 ========================================================= */
 
@@ -3523,20 +3704,6 @@ async function validerVente() {
   calculerTotal();
 
 
-  let texteMode =
-  modePaiement.toUpperCase();
-
-
-  if (
-    modePaiement === "especes"
-  ) {
-
-    texteMode =
-    "ESPÈCES";
-
-  }
-
-
   const confirmation =
   confirm(
     "CONFIRMER LE PAIEMENT ?\n\n" +
@@ -3544,7 +3711,7 @@ async function validerVente() {
     formaterPrix(total) +
     "\n" +
     "Paiement : " +
-    texteMode +
+    nomPaiement(modePaiement) +
     "\n\n" +
     "Confirme uniquement si le paiement a bien été encaissé."
   );
@@ -3636,10 +3803,8 @@ async function validerVente() {
       "successPayment"
     ).textContent =
     "Paiement : " +
-    (
-      paiementFinal === "especes"
-      ? "ESPÈCES"
-      : paiementFinal.toUpperCase()
+    nomPaiement(
+      paiementFinal
     );
 
 
@@ -3647,6 +3812,9 @@ async function validerVente() {
       "VENTE ENREGISTRÉE :",
       data
     );
+
+
+    window.scrollTo(0,0);
 
   }
 
@@ -3724,6 +3892,10 @@ async function demarrerScanner() {
     );
 
 
+    scannerActif =
+    true;
+
+
     await scanner.start(
 
       {
@@ -3760,10 +3932,6 @@ async function demarrerScanner() {
     );
 
 
-    scannerActif =
-    true;
-
-
     document.getElementById(
       "scanButton"
     ).textContent =
@@ -3780,6 +3948,9 @@ async function demarrerScanner() {
 
     scannerActif =
     false;
+
+    scanner =
+    null;
 
 
     reader.classList.add(
@@ -3916,6 +4087,9 @@ function texteStatut(statut) {
     case "vendu":
       return "VENDU";
 
+    case "retire":
+      return "RETIRÉ";
+
     default:
       return statut || "—";
 
@@ -3962,6 +4136,8 @@ function afficherConnexion() {
 
   utilisateurActuel = null;
   profilActuel = null;
+  panier = [];
+  modePaiement = null;
 
 }
 
