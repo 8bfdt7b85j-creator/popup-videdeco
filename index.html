@@ -474,6 +474,10 @@ textarea {
   margin-bottom:40px;
 }
 
+.stats-5 {
+  grid-template-columns:repeat(5,1fr);
+}
+
 .stat {
   min-height:150px;
   border:2px solid var(--black);
@@ -512,7 +516,7 @@ textarea {
 .data-table {
   width:100%;
   border-collapse:collapse;
-  min-width:850px;
+  min-width:1100px;
 }
 
 .data-table th {
@@ -526,10 +530,27 @@ textarea {
   padding:16px 10px;
   border-bottom:1px solid #aaa;
   font-size:13px;
+  vertical-align:middle;
 }
 
 .data-table .money {
   font-weight:900;
+}
+
+.reverse-button {
+  border:0;
+  background:var(--black);
+  color:white;
+  padding:10px 13px;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.reverse-button:hover {
+  background:var(--green);
+  color:var(--black);
 }
 
 
@@ -568,7 +589,128 @@ textarea {
 .sales-section-title {
   font-size:30px;
   font-weight:900;
-  margin:30px 0 20px;
+  margin:40px 0 20px;
+}
+
+
+/* =========================================================
+   REVERSEMENTS
+========================================================= */
+
+.repayment-list {
+  border-top:2px solid var(--black);
+}
+
+.repayment-row {
+  display:grid;
+  grid-template-columns:150px 1fr 160px 160px;
+  gap:20px;
+  align-items:center;
+  padding:18px 5px;
+  border-bottom:1px solid #aaa;
+}
+
+.repayment-seller {
+  font-weight:900;
+  font-size:16px;
+}
+
+.repayment-mode {
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.repayment-amount {
+  font-size:20px;
+  font-weight:900;
+}
+
+.repayment-note {
+  font-size:12px;
+  margin-top:5px;
+}
+
+
+/* =========================================================
+   MODAL REVERSEMENT
+========================================================= */
+
+.modal-overlay {
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.72);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box {
+  width:min(560px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  background:var(--background);
+  border:3px solid var(--black);
+  padding:30px;
+}
+
+.modal-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+}
+
+.modal-title {
+  font-size:36px;
+  line-height:.9;
+  letter-spacing:-2px;
+  font-weight:900;
+}
+
+.modal-close {
+  border:1px solid var(--black);
+  background:transparent;
+  width:42px;
+  height:42px;
+  font-weight:900;
+  flex:none;
+}
+
+.modal-summary {
+  margin-top:25px;
+  border:2px solid var(--black);
+  padding:18px;
+}
+
+.modal-summary-line {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:6px 0;
+  font-size:13px;
+}
+
+.modal-summary-line.total {
+  border-top:2px solid var(--black);
+  margin-top:8px;
+  padding-top:13px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.modal-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:22px;
+}
+
+.modal-actions .primary,
+.modal-actions .secondary {
+  margin:0;
 }
 
 
@@ -803,11 +945,20 @@ footer {
    MOBILE
 ========================================================= */
 
+@media(max-width:1000px) {
+
+  .stats-5 {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
 @media(max-width:850px) {
 
   .cards,
   .objects-grid,
   .stats,
+  .stats-5,
   .cashier-layout {
     grid-template-columns:1fr;
   }
@@ -831,6 +982,14 @@ footer {
 
   .sale-row > div:nth-child(2) {
     grid-column:1/-1;
+  }
+
+  .repayment-row {
+    grid-template-columns:1fr 1fr;
+  }
+
+  .modal-actions {
+    grid-template-columns:1fr;
   }
 
 }
@@ -884,30 +1043,22 @@ SUIVRE.
 <label>Mot de passe</label>
 <input id="password" type="password">
 
-<button
-id="loginButton"
-class="primary">
+<button id="loginButton" class="primary">
 Se connecter
 </button>
 
-<div
-id="loginMessage"
-class="message">
-</div>
+<div id="loginMessage" class="message"></div>
 
 </div>
 
 </section>
 
 
-
 <!-- =========================================================
      DASHBOARD
 ========================================================= -->
 
-<section
-id="dashboardSection"
-class="hidden">
+<section id="dashboardSection" class="hidden">
 
 <div class="dashboard-header">
 
@@ -917,45 +1068,30 @@ class="hidden">
 VIDE DECO POP-UP
 </div>
 
-<div
-id="hello"
-class="hello">
+<div id="hello" class="hello">
 BONJOUR.
 </div>
 
-<div
-id="roleBadge"
-class="status">
+<div id="roleBadge" class="status">
 CONNEXION
 </div>
 
 </div>
 
-
-<button
-id="logoutButton"
-class="logout">
+<button id="logoutButton" class="logout">
 Déconnexion
 </button>
 
 </div>
 
 
-
 <!-- ADMIN -->
 
-<div
-id="adminCards"
-class="cards hidden">
+<div id="adminCards" class="cards hidden">
 
+<div class="card" onclick="ouvrirStock()">
 
-<div
-class="card"
-onclick="ouvrirStock()">
-
-<div class="number">
-01
-</div>
+<div class="number">01</div>
 
 <div>
 
@@ -971,21 +1107,14 @@ Brocanteurs
 
 </div>
 
-<div class="arrow">
-→
-</div>
+<div class="arrow">→</div>
 
 </div>
 
 
+<div class="card" onclick="ouvrirCaisse()">
 
-<div
-class="card"
-onclick="ouvrirCaisse()">
-
-<div class="number">
-02
-</div>
+<div class="number">02</div>
 
 <div>
 
@@ -1001,21 +1130,14 @@ Enregistrer les paiements
 
 </div>
 
-<div class="arrow">
-→
-</div>
+<div class="arrow">→</div>
 
 </div>
 
 
+<div class="card" onclick="ouvrirAdmin()">
 
-<div
-class="card"
-onclick="ouvrirAdmin()">
-
-<div class="number">
-03
-</div>
+<div class="number">03</div>
 
 <div>
 
@@ -1031,30 +1153,20 @@ Reversements
 
 </div>
 
-<div class="arrow">
-→
-</div>
+<div class="arrow">→</div>
 
 </div>
 
 </div>
-
 
 
 <!-- BROCANTEUR -->
 
-<div
-id="sellerCards"
-class="cards hidden">
+<div id="sellerCards" class="cards hidden">
 
+<div class="card" onclick="ouvrirAjoutArticle()">
 
-<div
-class="card"
-onclick="ouvrirAjoutArticle()">
-
-<div class="number">
-01
-</div>
+<div class="number">01</div>
 
 <div>
 
@@ -1070,21 +1182,14 @@ Définir son prix
 
 </div>
 
-<div class="arrow">
-→
-</div>
+<div class="arrow">→</div>
 
 </div>
 
 
+<div class="card" onclick="ouvrirMesObjets()">
 
-<div
-class="card"
-onclick="ouvrirMesObjets()">
-
-<div class="number">
-02
-</div>
+<div class="number">02</div>
 
 <div>
 
@@ -1100,21 +1205,14 @@ QR codes
 
 </div>
 
-<div class="arrow">
-→
-</div>
+<div class="arrow">→</div>
 
 </div>
 
 
+<div class="card" onclick="ouvrirMesVentes()">
 
-<div
-class="card"
-onclick="ouvrirMesVentes()">
-
-<div class="number">
-03
-</div>
+<div class="number">03</div>
 
 <div>
 
@@ -1125,14 +1223,12 @@ MES VENTES
 <p>
 Historique<br>
 Chiffre d'affaires<br>
-Net à recevoir
+Reversements
 </p>
 
 </div>
 
-<div class="arrow">
-→
-</div>
+<div class="arrow">→</div>
 
 </div>
 
@@ -1141,9 +1237,7 @@ Net à recevoir
 
 <div class="connection">
 
-<strong>
-Base de données :
-</strong>
+<strong>Base de données :</strong>
 
 <span id="databaseStatus">
 connexion…
@@ -1154,38 +1248,28 @@ connexion…
 </section>
 
 
-
 <!-- =========================================================
      AJOUT ARTICLE
 ========================================================= -->
 
-<section
-id="articleSection"
-class="article-page hidden">
+<section id="articleSection" class="article-page hidden">
 
 <div class="page-header">
 
 <div>
 
-<div
-id="articleEyebrow"
-class="eyebrow">
+<div id="articleEyebrow" class="eyebrow">
 NOUVEL OBJET
 </div>
 
-<div
-id="articlePageTitle"
-class="page-title">
+<div id="articlePageTitle" class="page-title">
 AJOUTER<br>
 UN OBJET.
 </div>
 
 </div>
 
-
-<button
-class="secondary"
-onclick="annulerArticle()">
+<button class="secondary" onclick="annulerArticle()">
 ← Retour
 </button>
 
@@ -1196,33 +1280,21 @@ onclick="annulerArticle()">
 
 <div class="form-grid">
 
-
 <div class="full">
 
-<label>
-Nom de l'objet *
-</label>
-
-<input
-id="articleNom"
-type="text">
+<label>Nom de l'objet *</label>
+<input id="articleNom" type="text">
 
 </div>
 
 
-
 <div>
 
-<label>
-Catégorie
-</label>
+<label>Catégorie</label>
 
 <select id="articleCategorie">
 
-<option value="">
-Choisir
-</option>
-
+<option value="">Choisir</option>
 <option>Mobilier</option>
 <option>Luminaire</option>
 <option>Décoration</option>
@@ -1237,12 +1309,9 @@ Choisir
 </div>
 
 
-
 <div class="price-wrapper">
 
-<label>
-Prix *
-</label>
+<label>Prix *</label>
 
 <input
 id="articlePrix"
@@ -1250,19 +1319,14 @@ type="number"
 min="0"
 step="0.01">
 
-<span class="euro">
-€
-</span>
+<span class="euro">€</span>
 
 </div>
 
 
-
 <div>
 
-<label>
-Quantité *
-</label>
+<label>Quantité *</label>
 
 <input
 id="articleQuantite"
@@ -1273,26 +1337,18 @@ value="1">
 </div>
 
 
-
 <div class="full">
 
-<label>
-Description
-</label>
+<label>Description</label>
 
-<textarea
-id="articleDescription">
-</textarea>
+<textarea id="articleDescription"></textarea>
 
 </div>
 
 
-
 <div class="full photo-zone">
 
-<label>
-Photo
-</label>
+<label>Photo</label>
 
 <input
 id="articlePhoto"
@@ -1308,31 +1364,22 @@ class="photo-preview hidden">
 </div>
 
 
-<button
-id="saveArticleButton"
-class="primary">
+<button id="saveArticleButton" class="primary">
 ENREGISTRER L'OBJET
 </button>
 
-
-<div
-id="articleMessage"
-class="message">
-</div>
+<div id="articleMessage" class="message"></div>
 
 </div>
 
 </section>
 
 
-
 <!-- =========================================================
      MES OBJETS
 ========================================================= -->
 
-<section
-id="objectsSection"
-class="hidden">
+<section id="objectsSection" class="hidden">
 
 <div class="page-header">
 
@@ -1349,9 +1396,7 @@ OBJETS.
 
 </div>
 
-<button
-class="secondary"
-onclick="retourDashboard()">
+<button class="secondary" onclick="retourDashboard()">
 ← Retour
 </button>
 
@@ -1364,36 +1409,25 @@ onclick="retourDashboard()">
 Chargement…
 </strong>
 
-<button
-class="secondary"
-onclick="ouvrirAjoutArticle()">
+<button class="secondary" onclick="ouvrirAjoutArticle()">
 + Ajouter
 </button>
 
 </div>
 
 
-<div
-id="objectsMessage"
-class="message">
-</div>
+<div id="objectsMessage" class="message"></div>
 
-<div
-id="objectsGrid"
-class="objects-grid">
-</div>
+<div id="objectsGrid" class="objects-grid"></div>
 
 </section>
-
 
 
 <!-- =========================================================
      MES VENTES BROCANTEUR
 ========================================================= -->
 
-<section
-id="salesSection"
-class="hidden">
+<section id="salesSection" class="hidden">
 
 <div class="page-header">
 
@@ -1410,22 +1444,17 @@ VENTES.
 
 </div>
 
-<button
-class="secondary"
-onclick="retourDashboard()">
+<button class="secondary" onclick="retourDashboard()">
 ← Retour
 </button>
 
 </div>
 
 
-<div
-id="salesMessage"
-class="message">
-</div>
+<div id="salesMessage" class="message"></div>
 
 
-<div class="stats">
+<div class="stats stats-5">
 
 <div class="stat">
 
@@ -1433,9 +1462,7 @@ class="message">
 CHIFFRE D'AFFAIRES
 </div>
 
-<div
-id="salesGross"
-class="stat-value">
+<div id="salesGross" class="stat-value">
 0,00 €
 </div>
 
@@ -1448,24 +1475,7 @@ class="stat-value">
 COMMISSION VIDE DECO
 </div>
 
-<div
-id="salesCommission"
-class="stat-value">
-0,00 €
-</div>
-
-</div>
-
-
-<div class="stat green">
-
-<div class="stat-label">
-NET À RECEVOIR
-</div>
-
-<div
-id="salesNet"
-class="stat-value">
+<div id="salesCommission" class="stat-value">
 0,00 €
 </div>
 
@@ -1475,13 +1485,37 @@ class="stat-value">
 <div class="stat">
 
 <div class="stat-label">
-ARTICLES VENDUS
+NET GAGNÉ
 </div>
 
-<div
-id="salesQuantity"
-class="stat-value">
-0
+<div id="salesNet" class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+DÉJÀ REÇU
+</div>
+
+<div id="salesPaid" class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div class="stat-label">
+RESTE À RECEVOIR
+</div>
+
+<div id="salesRemaining" class="stat-value">
+0,00 €
 </div>
 
 </div>
@@ -1490,25 +1524,26 @@ class="stat-value">
 
 
 <div class="sales-section-title">
-HISTORIQUE
+HISTORIQUE DES VENTES
 </div>
 
-<div
-id="salesList"
-class="sales-list">
+<div id="salesList" class="sales-list"></div>
+
+
+<div class="sales-section-title">
+MES REVERSEMENTS
 </div>
+
+<div id="sellerRepaymentsList" class="repayment-list"></div>
 
 </section>
-
 
 
 <!-- =========================================================
      STOCK ADMIN
 ========================================================= -->
 
-<section
-id="stockSection"
-class="hidden">
+<section id="stockSection" class="hidden">
 
 <div class="page-header">
 
@@ -1524,9 +1559,7 @@ STOCK.
 
 </div>
 
-<button
-class="secondary"
-onclick="retourDashboard()">
+<button class="secondary" onclick="retourDashboard()">
 ← Retour
 </button>
 
@@ -1541,9 +1574,7 @@ onclick="retourDashboard()">
 RÉFÉRENCES
 </div>
 
-<div
-id="stockReferences"
-class="stat-value">
+<div id="stockReferences" class="stat-value">
 0
 </div>
 
@@ -1556,9 +1587,7 @@ class="stat-value">
 UNITÉS DISPONIBLES
 </div>
 
-<div
-id="stockAvailable"
-class="stat-value">
+<div id="stockAvailable" class="stat-value">
 0
 </div>
 
@@ -1571,9 +1600,7 @@ class="stat-value">
 UNITÉS VENDUES
 </div>
 
-<div
-id="stockSold"
-class="stat-value">
+<div id="stockSold" class="stat-value">
 0
 </div>
 
@@ -1586,9 +1613,7 @@ class="stat-value">
 VALEUR STOCK DISPONIBLE
 </div>
 
-<div
-id="stockValue"
-class="stat-value">
+<div id="stockValue" class="stat-value">
 0,00 €
 </div>
 
@@ -1604,48 +1629,29 @@ id="stockSearch"
 type="search"
 placeholder="Rechercher référence, objet, brocanteur…">
 
-<select
-id="stockFilter"
-style="max-width:230px">
+<select id="stockFilter" style="max-width:230px">
 
-<option value="all">
-Tous les articles
-</option>
-
-<option value="available">
-Disponibles
-</option>
-
-<option value="sold">
-Vendus
-</option>
+<option value="all">Tous les articles</option>
+<option value="available">Disponibles</option>
+<option value="sold">Vendus</option>
 
 </select>
 
 </div>
 
 
-<div
-id="stockMessage"
-class="message">
-</div>
+<div id="stockMessage" class="message"></div>
 
-<div
-id="stockGrid"
-class="objects-grid">
-</div>
+<div id="stockGrid" class="objects-grid"></div>
 
 </section>
-
 
 
 <!-- =========================================================
      ADMIN FINANCES
 ========================================================= -->
 
-<section
-id="adminSection"
-class="hidden">
+<section id="adminSection" class="hidden">
 
 <div class="page-header">
 
@@ -1661,22 +1667,17 @@ ADMIN.
 
 </div>
 
-<button
-class="secondary"
-onclick="retourDashboard()">
+<button class="secondary" onclick="retourDashboard()">
 ← Retour
 </button>
 
 </div>
 
 
-<div
-id="adminMessage"
-class="message">
-</div>
+<div id="adminMessage" class="message"></div>
 
 
-<div class="stats">
+<div class="stats stats-5">
 
 <div class="stat">
 
@@ -1684,9 +1685,7 @@ class="message">
 CHIFFRE D'AFFAIRES
 </div>
 
-<div
-id="adminGross"
-class="stat-value">
+<div id="adminGross" class="stat-value">
 0,00 €
 </div>
 
@@ -1699,9 +1698,7 @@ class="stat-value">
 COMMISSIONS VIDE DECO
 </div>
 
-<div
-id="adminCommission"
-class="stat-value">
+<div id="adminCommission" class="stat-value">
 0,00 €
 </div>
 
@@ -1711,12 +1708,10 @@ class="stat-value">
 <div class="stat">
 
 <div class="stat-label">
-À REVERSER
+NET VENDEURS
 </div>
 
-<div
-id="adminSellerNet"
-class="stat-value">
+<div id="adminSellerNet" class="stat-value">
 0,00 €
 </div>
 
@@ -1726,13 +1721,24 @@ class="stat-value">
 <div class="stat">
 
 <div class="stat-label">
-ARTICLES VENDUS
+DÉJÀ REVERSÉ
 </div>
 
-<div
-id="adminSoldQuantity"
-class="stat-value">
-0
+<div id="adminAlreadyPaid" class="stat-value">
+0,00 €
+</div>
+
+</div>
+
+
+<div class="stat green">
+
+<div class="stat-label">
+RESTE À REVERSER
+</div>
+
+<div id="adminRemaining" class="stat-value">
+0,00 €
 </div>
 
 </div>
@@ -1752,17 +1758,19 @@ BROCANTEURS
 
 <tr>
 <th>Brocanteur</th>
-<th>Commission</th>
-<th>Articles vendus</th>
+<th>Taux</th>
+<th>Vendus</th>
 <th>CA</th>
-<th>Commission VIDE DECO</th>
-<th>À reverser</th>
+<th>Commission</th>
+<th>Net vendeur</th>
+<th>Déjà reversé</th>
+<th>Reste</th>
+<th>Action</th>
 </tr>
 
 </thead>
 
-<tbody id="adminSellerTable">
-</tbody>
+<tbody id="adminSellerTable"></tbody>
 
 </table>
 
@@ -1770,25 +1778,168 @@ BROCANTEURS
 
 
 <div class="sales-section-title">
+HISTORIQUE DES REVERSEMENTS
+</div>
+
+<div id="adminRepaymentsList" class="repayment-list"></div>
+
+
+<div class="sales-section-title">
 DERNIÈRES VENTES
 </div>
 
-<div
-id="adminSalesList"
-class="sales-list">
-</div>
+<div id="adminSalesList" class="sales-list"></div>
 
 </section>
 
+
+<!-- =========================================================
+     MODAL REVERSEMENT
+========================================================= -->
+
+<div id="repaymentModal" class="modal-overlay hidden">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<div>
+
+<div class="eyebrow">
+VERSEMENT BROCANTEUR
+</div>
+
+<div class="modal-title">
+ENREGISTRER<br>
+UN REVERSEMENT.
+</div>
+
+</div>
+
+<button
+class="modal-close"
+onclick="fermerReversement()">
+×
+</button>
+
+</div>
+
+
+<div class="modal-summary">
+
+<div class="modal-summary-line">
+
+<span>Brocanteur</span>
+
+<strong id="repaymentSeller">
+—
+</strong>
+
+</div>
+
+<div class="modal-summary-line">
+
+<span>Net vendeur</span>
+
+<strong id="repaymentNet">
+0,00 €
+</strong>
+
+</div>
+
+<div class="modal-summary-line">
+
+<span>Déjà reversé</span>
+
+<strong id="repaymentAlready">
+0,00 €
+</strong>
+
+</div>
+
+<div class="modal-summary-line total">
+
+<span>RESTE À REVERSER</span>
+
+<strong id="repaymentRemaining">
+0,00 €
+</strong>
+
+</div>
+
+</div>
+
+
+<label>Montant du reversement *</label>
+
+<input
+id="repaymentAmount"
+type="number"
+min="0.01"
+step="0.01">
+
+
+<label>Mode de règlement *</label>
+
+<select id="repaymentMode">
+
+<option value="virement">
+Virement
+</option>
+
+<option value="especes">
+Espèces
+</option>
+
+<option value="cheque">
+Chèque
+</option>
+
+<option value="autre">
+Autre
+</option>
+
+</select>
+
+
+<label>Note</label>
+
+<textarea
+id="repaymentNote"
+placeholder="Facultatif">
+</textarea>
+
+
+<div id="repaymentMessage" class="message"></div>
+
+
+<div class="modal-actions">
+
+<button
+class="secondary"
+onclick="fermerReversement()">
+ANNULER
+</button>
+
+<button
+id="saveRepaymentButton"
+class="primary"
+onclick="enregistrerReversement()">
+ENREGISTRER
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 
 <!-- =========================================================
      QR
 ========================================================= -->
 
-<section
-id="qrSection"
-class="hidden">
+<section id="qrSection" class="hidden">
 
 <div class="page-header">
 
@@ -1805,9 +1956,7 @@ CODE.
 
 </div>
 
-<button
-class="secondary"
-onclick="ouvrirMesObjets()">
+<button class="secondary" onclick="ouvrirMesObjets()">
 ← Retour
 </button>
 
@@ -1816,29 +1965,15 @@ onclick="ouvrirMesObjets()">
 
 <div class="qr-box">
 
-<div
-id="qrReference"
-class="object-reference">
-</div>
+<div id="qrReference" class="object-reference"></div>
 
-<div
-id="qrName"
-class="qr-name">
-</div>
+<div id="qrName" class="qr-name"></div>
 
-<div
-id="qrPrice"
-class="qr-price">
-</div>
+<div id="qrPrice" class="qr-price"></div>
 
-<div
-id="qrCode"
-class="qr-code">
-</div>
+<div id="qrCode" class="qr-code"></div>
 
-<button
-class="primary"
-onclick="window.print()">
+<button class="primary" onclick="window.print()">
 IMPRIMER
 </button>
 
@@ -1847,14 +1982,11 @@ IMPRIMER
 </section>
 
 
-
 <!-- =========================================================
      CAISSE
 ========================================================= -->
 
-<section
-id="cashierSection"
-class="hidden">
+<section id="cashierSection" class="hidden">
 
 <div class="page-header">
 
@@ -1870,9 +2002,7 @@ CAISSE.
 
 </div>
 
-<button
-class="secondary"
-onclick="quitterCaisse()">
+<button class="secondary" onclick="quitterCaisse()">
 ← Retour
 </button>
 
@@ -1895,8 +2025,7 @@ AJOUTER UN ARTICLE
 id="cashReference"
 placeholder="VD-000001">
 
-<button
-onclick="ajouterParReference()">
+<button onclick="ajouterParReference()">
 AJOUTER
 </button>
 
@@ -1911,19 +2040,11 @@ onclick="demarrerScanner()">
 </button>
 
 
-<div
-id="reader"
-class="hidden">
-</div>
+<div id="reader" class="hidden"></div>
 
-
-<div
-id="cashMessage"
-class="message">
-</div>
+<div id="cashMessage" class="message"></div>
 
 </div>
-
 
 
 <div class="cashier-panel">
@@ -1943,22 +2064,16 @@ Aucun article dans le panier.
 
 <div class="cart-total">
 
-<div>
-TOTAL
-</div>
+<div>TOTAL</div>
 
-<div
-id="cartTotal"
-class="cart-total-value">
+<div id="cartTotal" class="cart-total-value">
 0,00 €
 </div>
 
 </div>
 
 
-<label>
-MODE DE PAIEMENT
-</label>
+<label>MODE DE PAIEMENT</label>
 
 
 <div class="payment-methods">
@@ -2002,14 +2117,11 @@ VALIDER LE PAIEMENT
 </section>
 
 
-
 <!-- =========================================================
      SUCCÈS
 ========================================================= -->
 
-<section
-id="saleSuccessSection"
-class="hidden">
+<section id="saleSuccessSection" class="hidden">
 
 <div class="sale-success">
 
@@ -2022,18 +2134,13 @@ VENTE<br>
 ENREGISTRÉE.
 </div>
 
-<div
-id="successTotal"
-class="sale-success-total">
+<div id="successTotal" class="sale-success-total">
 0,00 €
 </div>
 
-<div id="successPayment">
-</div>
+<div id="successPayment"></div>
 
-<button
-class="primary"
-onclick="nouvelleVente()">
+<button class="primary" onclick="nouvelleVente()">
 NOUVELLE VENTE
 </button>
 
@@ -2054,16 +2161,11 @@ RETOUR
 
 <footer>
 
-<div>
-VIDE DECO
-</div>
+<div>VIDE DECO</div>
 
-<div>
-BOUTIQUE ÉPHÉMÈRE
-</div>
+<div>BOUTIQUE ÉPHÉMÈRE</div>
 
 </footer>
-
 
 
 <script>
@@ -2102,6 +2204,8 @@ let scannerActif = false;
 
 let stockCache = [];
 let profilsCache = {};
+
+let vendeurReversement = null;
 
 
 /* =========================================================
@@ -2154,6 +2258,8 @@ window.scrollTo(0,0);
 function retourDashboard(){
 
 arreterScanner();
+
+fermerReversement();
 
 afficherPage(
 "dashboardSection"
@@ -2389,6 +2495,8 @@ afficherPage(
 async function deconnexion(){
 
 await arreterScanner();
+
+fermerReversement();
 
 await db.auth.signOut();
 
@@ -3464,12 +3572,17 @@ document.getElementById(
 message.textContent =
 "Chargement des ventes…";
 
+message.className =
+"message";
 
-const {
-data,
-error
-} =
-await db
+
+const [
+ventesResult,
+reversementsResult
+] =
+await Promise.all([
+
+db
 .from("lignes_vente")
 .select("*")
 .eq(
@@ -3481,14 +3594,44 @@ utilisateurActuel.id
 {
 ascending:false
 }
-);
+),
+
+db
+.from("reversements")
+.select("*")
+.eq(
+"vendeur_id",
+utilisateurActuel.id
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
+
+]);
 
 
-if(error){
+if(ventesResult.error){
 
 message.textContent =
 "Impossible de charger les ventes : " +
-error.message;
+ventesResult.error.message;
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+if(reversementsResult.error){
+
+message.textContent =
+"Impossible de charger les reversements : " +
+reversementsResult.error.message;
 
 message.className =
 "message error";
@@ -3502,13 +3645,16 @@ message.textContent = "";
 
 
 const ventes =
-data || [];
+ventesResult.data || [];
+
+
+const reversements =
+reversementsResult.data || [];
 
 
 let ca = 0;
 let commission = 0;
 let net = 0;
-let quantite = 0;
 
 
 ventes.forEach(ligne=>{
@@ -3539,11 +3685,25 @@ Number(
 ligne.montant_vendeur
 ) || 0;
 
-
-quantite +=
-q;
-
 });
+
+
+const dejaRecu =
+reversements.reduce(
+(total,r)=>
+total +
+(
+Number(r.montant) || 0
+),
+0
+);
+
+
+const reste =
+Math.max(
+0,
+net - dejaRecu
+);
 
 
 document
@@ -3567,10 +3727,22 @@ formaterPrix(net);
 
 
 document
-.getElementById("salesQuantity")
+.getElementById("salesPaid")
 .textContent =
-quantite;
+formaterPrix(
+dejaRecu
+);
 
+
+document
+.getElementById("salesRemaining")
+.textContent =
+formaterPrix(
+reste
+);
+
+
+/* VENTES */
 
 const zone =
 document.getElementById(
@@ -3589,10 +3761,9 @@ AUCUNE VENTE POUR LE MOMENT.
 </div>
 `;
 
-return;
-
 }
 
+else{
 
 ventes.forEach(ligne=>{
 
@@ -3670,6 +3841,86 @@ element
 );
 
 });
+
+}
+
+
+/* REVERSEMENTS */
+
+const reversementZone =
+document.getElementById(
+"sellerRepaymentsList"
+);
+
+reversementZone.innerHTML = "";
+
+
+if(!reversements.length){
+
+reversementZone.innerHTML =
+`
+<div class="empty-state">
+AUCUN REVERSEMENT POUR LE MOMENT.
+</div>
+`;
+
+}
+
+else{
+
+reversements.forEach(r=>{
+
+const row =
+document.createElement(
+"div"
+);
+
+row.className =
+"repayment-row";
+
+
+row.innerHTML =
+`
+
+<div>
+${formaterDate(r.created_at)}
+</div>
+
+<div>
+
+<div class="repayment-mode">
+${escapeHTML(nomModeReversement(r.mode_paiement))}
+</div>
+
+${r.note
+?
+`
+<div class="repayment-note">
+${escapeHTML(r.note)}
+</div>
+`
+:
+""
+}
+
+</div>
+
+<div></div>
+
+<div class="repayment-amount">
+${formaterPrix(r.montant)}
+</div>
+
+`;
+
+
+reversementZone.appendChild(
+row
+);
+
+});
+
+}
 
 }
 
@@ -4020,10 +4271,14 @@ document.getElementById(
 message.textContent =
 "Chargement des données…";
 
+message.className =
+"message";
+
 
 const [
 lignesResult,
-profilsResult
+profilsResult,
+reversementsResult
 ] =
 await Promise.all([
 
@@ -4041,6 +4296,16 @@ db
 .from("profils")
 .select(
 "id,nom,prenom,enseigne,commission,role,actif"
+),
+
+db
+.from("reversements")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
 )
 
 ]);
@@ -4074,12 +4339,30 @@ return;
 }
 
 
+if(reversementsResult.error){
+
+message.textContent =
+"Impossible de charger les reversements : " +
+reversementsResult.error.message;
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
 const lignes =
 lignesResult.data || [];
 
 
 const profils =
 profilsResult.data || [];
+
+
+const reversements =
+reversementsResult.data || [];
 
 
 const profilsMap = {};
@@ -4094,8 +4377,8 @@ profilsMap[p.id] = p;
 
 let ca = 0;
 let commissions = 0;
-let reversements = 0;
-let quantite = 0;
+let netVendeurs = 0;
+let totalDejaReverse = 0;
 
 
 const vendeurs = {};
@@ -4131,8 +4414,7 @@ ligne.montant_vendeur
 
 ca += total;
 commissions += commission;
-reversements += net;
-quantite += q;
+netVendeurs += net;
 
 
 if(!vendeurs[
@@ -4152,7 +4434,9 @@ ca:0,
 
 commission:0,
 
-net:0
+net:0,
+
+reverse:0
 
 };
 
@@ -4181,6 +4465,60 @@ ligne.vendeur_id
 });
 
 
+reversements.forEach(r=>{
+
+const montant =
+Number(
+r.montant
+) || 0;
+
+
+totalDejaReverse +=
+montant;
+
+
+if(!vendeurs[
+r.vendeur_id
+]){
+
+vendeurs[
+r.vendeur_id
+] = {
+
+vendeur_id:
+r.vendeur_id,
+
+quantite:0,
+
+ca:0,
+
+commission:0,
+
+net:0,
+
+reverse:0
+
+};
+
+}
+
+
+vendeurs[
+r.vendeur_id
+].reverse +=
+montant;
+
+});
+
+
+const totalReste =
+Math.max(
+0,
+netVendeurs -
+totalDejaReverse
+);
+
+
 document
 .getElementById(
 "adminGross"
@@ -4205,16 +4543,28 @@ document
 )
 .textContent =
 formaterPrix(
-reversements
+netVendeurs
 );
 
 
 document
 .getElementById(
-"adminSoldQuantity"
+"adminAlreadyPaid"
 )
 .textContent =
-quantite;
+formaterPrix(
+totalDejaReverse
+);
+
+
+document
+.getElementById(
+"adminRemaining"
+)
+.textContent =
+formaterPrix(
+totalReste
+);
 
 
 /* TABLE BROCANTEURS */
@@ -4244,8 +4594,17 @@ profil.id
 quantite:0,
 ca:0,
 commission:0,
-net:0
+net:0,
+reverse:0
 };
+
+
+const reste =
+Math.max(
+0,
+valeurs.net -
+valeurs.reverse
+);
 
 
 const tr =
@@ -4283,6 +4642,27 @@ ${formaterPrix(valeurs.commission)}
 ${formaterPrix(valeurs.net)}
 </td>
 
+<td class="money">
+${formaterPrix(valeurs.reverse)}
+</td>
+
+<td class="money">
+${formaterPrix(reste)}
+</td>
+
+<td>
+<button
+class="reverse-button"
+${reste <= 0 ? "disabled" : ""}
+onclick="ouvrirReversement(
+'${profil.id}',
+${valeurs.net},
+${valeurs.reverse}
+)">
+${reste <= 0 ? "PAYÉ" : "REVERSER"}
+</button>
+</td>
+
 `;
 
 
@@ -4293,7 +4673,95 @@ tr
 });
 
 
-/* HISTORIQUE ADMIN */
+/* HISTORIQUE REVERSEMENTS */
+
+const zoneReversements =
+document.getElementById(
+"adminRepaymentsList"
+);
+
+
+zoneReversements.innerHTML = "";
+
+
+if(!reversements.length){
+
+zoneReversements.innerHTML =
+`
+<div class="empty-state">
+AUCUN REVERSEMENT ENREGISTRÉ.
+</div>
+`;
+
+}
+
+else{
+
+reversements.forEach(r=>{
+
+const profil =
+profilsMap[
+r.vendeur_id
+];
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"repayment-row";
+
+
+row.innerHTML =
+`
+
+<div>
+${formaterDate(r.created_at)}
+</div>
+
+<div>
+
+<div class="repayment-seller">
+${escapeHTML(nomProfil(profil))}
+</div>
+
+${r.note
+?
+`
+<div class="repayment-note">
+${escapeHTML(r.note)}
+</div>
+`
+:
+""
+}
+
+</div>
+
+<div class="repayment-mode">
+${escapeHTML(nomModeReversement(r.mode_paiement))}
+</div>
+
+<div class="repayment-amount">
+${formaterPrix(r.montant)}
+</div>
+
+`;
+
+
+zoneReversements.appendChild(
+row
+);
+
+});
+
+}
+
+
+/* HISTORIQUE VENTES */
 
 const historique =
 document.getElementById(
@@ -4394,7 +4862,7 @@ ${formaterPrix(ligne.montant_commission)}
 <div class="sale-net">
 ${formaterPrix(ligne.montant_vendeur)}
 <br>
-<small>À REVERSER</small>
+<small>NET VENDEUR</small>
 </div>
 
 `;
@@ -4410,6 +4878,420 @@ row
 
 
 message.textContent = "";
+
+}
+
+
+/* =========================================================
+   MODAL REVERSEMENT
+========================================================= */
+
+function ouvrirReversement(
+vendeurId,
+net,
+dejaReverse
+){
+
+if(!estAdmin()){
+return;
+}
+
+
+const profil =
+profilsCache[
+vendeurId
+] ||
+null;
+
+
+/*
+Le cache du stock n'est pas forcément chargé.
+On conserve donc l'ID puis on récupère le profil
+si nécessaire.
+*/
+
+vendeurReversement = {
+
+id:vendeurId,
+
+net:
+Number(net) || 0,
+
+dejaReverse:
+Number(dejaReverse) || 0
+
+};
+
+
+const reste =
+Math.max(
+0,
+vendeurReversement.net -
+vendeurReversement.dejaReverse
+);
+
+
+document
+.getElementById(
+"repaymentNet"
+)
+.textContent =
+formaterPrix(
+vendeurReversement.net
+);
+
+
+document
+.getElementById(
+"repaymentAlready"
+)
+.textContent =
+formaterPrix(
+vendeurReversement.dejaReverse
+);
+
+
+document
+.getElementById(
+"repaymentRemaining"
+)
+.textContent =
+formaterPrix(
+reste
+);
+
+
+document
+.getElementById(
+"repaymentAmount"
+)
+.value =
+reste.toFixed(2);
+
+
+document
+.getElementById(
+"repaymentAmount"
+)
+.max =
+reste.toFixed(2);
+
+
+document
+.getElementById(
+"repaymentMode"
+)
+.value =
+"virement";
+
+
+document
+.getElementById(
+"repaymentNote"
+)
+.value = "";
+
+
+document
+.getElementById(
+"repaymentMessage"
+)
+.textContent = "";
+
+
+document
+.getElementById(
+"repaymentModal"
+)
+.classList.remove(
+"hidden"
+);
+
+
+chargerNomReversement(
+vendeurId,
+profil
+);
+
+}
+
+
+
+async function chargerNomReversement(
+vendeurId,
+profilCache
+){
+
+if(profilCache){
+
+document
+.getElementById(
+"repaymentSeller"
+)
+.textContent =
+nomProfil(
+profilCache
+);
+
+return;
+
+}
+
+
+const {
+data
+} =
+await db
+.from("profils")
+.select(
+"id,nom,prenom,enseigne"
+)
+.eq(
+"id",
+vendeurId
+)
+.maybeSingle();
+
+
+document
+.getElementById(
+"repaymentSeller"
+)
+.textContent =
+nomProfil(
+data
+);
+
+}
+
+
+
+function fermerReversement(){
+
+document
+.getElementById(
+"repaymentModal"
+)
+.classList.add(
+"hidden"
+);
+
+
+vendeurReversement =
+null;
+
+}
+
+
+
+/* =========================================================
+   ENREGISTRER REVERSEMENT
+========================================================= */
+
+async function enregistrerReversement(){
+
+if(
+!estAdmin() ||
+!vendeurReversement
+){
+
+return;
+
+}
+
+
+const message =
+document.getElementById(
+"repaymentMessage"
+);
+
+
+const montant =
+Number(
+document
+.getElementById(
+"repaymentAmount"
+)
+.value
+);
+
+
+const mode =
+document
+.getElementById(
+"repaymentMode"
+)
+.value;
+
+
+const note =
+document
+.getElementById(
+"repaymentNote"
+)
+.value
+.trim();
+
+
+const reste =
+Math.max(
+0,
+vendeurReversement.net -
+vendeurReversement.dejaReverse
+);
+
+
+if(
+!Number.isFinite(montant) ||
+montant <= 0
+){
+
+message.textContent =
+"Indique un montant valide.";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+if(
+montant >
+reste + 0.001
+){
+
+message.textContent =
+"Le montant ne peut pas dépasser " +
+formaterPrix(reste) +
+".";
+
+message.className =
+"message error";
+
+return;
+
+}
+
+
+const confirmation =
+confirm(
+
+"CONFIRMER LE REVERSEMENT ?\n\n" +
+
+"Brocanteur : " +
+document
+.getElementById(
+"repaymentSeller"
+)
+.textContent +
+"\n" +
+
+"Montant : " +
+formaterPrix(montant) +
+"\n" +
+
+"Mode : " +
+nomModeReversement(mode) +
+"\n\n" +
+
+"Confirme uniquement si le règlement a réellement été effectué."
+
+);
+
+
+if(!confirmation){
+return;
+}
+
+
+const bouton =
+document.getElementById(
+"saveRepaymentButton"
+);
+
+
+bouton.disabled =
+true;
+
+
+bouton.textContent =
+"ENREGISTREMENT…";
+
+
+try{
+
+const {
+error
+} =
+await db.rpc(
+"enregistrer_reversement",
+{
+
+p_vendeur_id:
+vendeurReversement.id,
+
+p_montant:
+montant,
+
+p_mode_paiement:
+mode,
+
+p_note:
+note || null
+
+}
+);
+
+
+if(error){
+throw error;
+}
+
+
+fermerReversement();
+
+
+await ouvrirAdmin();
+
+
+const adminMessage =
+document.getElementById(
+"adminMessage"
+);
+
+
+adminMessage.textContent =
+"REVERSEMENT ENREGISTRÉ ✓";
+
+
+adminMessage.className =
+"message success";
+
+
+}
+
+catch(error){
+
+message.textContent =
+"Impossible d'enregistrer le reversement : " +
+error.message;
+
+message.className =
+"message error";
+
+}
+
+finally{
+
+bouton.disabled =
+false;
+
+bouton.textContent =
+"ENREGISTRER";
+
+}
 
 }
 
@@ -5617,6 +6499,37 @@ profil.nom
 .filter(Boolean)
 .join(" ") ||
 "Brocanteur";
+
+}
+
+
+
+function nomModeReversement(
+mode
+){
+
+const modes = {
+
+virement:
+"VIREMENT",
+
+especes:
+"ESPÈCES",
+
+cheque:
+"CHÈQUE",
+
+autre:
+"AUTRE"
+
+};
+
+
+return (
+modes[mode] ||
+String(mode || "—")
+.toUpperCase()
+);
 
 }
 
