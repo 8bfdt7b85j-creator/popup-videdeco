@@ -606,22 +606,21 @@
         .single();
 
 
-    if (error || !profil) {
+if (error || !profil) {
 
-      console.error(error);
+  console.error("ERREUR PROFIL :", error);
+  console.log("USER ID :", user.id);
+  console.log("PROFIL :", profil);
 
-      await db.auth.signOut();
+  loginMessage.textContent =
+    error
+      ? "ERREUR SUPABASE : " + error.message
+      : "ERREUR : aucun profil trouvé pour " + user.id;
 
-      afficherConnexion();
+  loginMessage.className = "message error";
 
-      loginMessage.textContent =
-        "Le profil utilisateur est introuvable.";
-
-      loginMessage.className =
-        "message error";
-
-      return;
-    }
+  return;
+}
 
 
     loginSection.classList.add("hidden");
